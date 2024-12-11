@@ -177,7 +177,7 @@ elif selected_page == "Input Form":
         st.session_state["input_table"] = []
 
     # Split the form into two columns using st.columns
-    col1, col2 = st.columns(2)
+    col1, col2,col3,col4 = st.columns(4)
 
     # Section 1 (Left Column)
     with col1:
@@ -233,7 +233,7 @@ elif selected_page == "Input Form":
 
         # Date of Call (Date format validation)
         date_of_call = st.date_input("Enter Date of Call:")
-
+    with col2:
         # Call Time Slot (Time format validation)
         call_time_slot = st.time_input("Enter Call Time Slot:")
 
@@ -266,7 +266,7 @@ elif selected_page == "Input Form":
 
 
     # Section 2 (Right Column)
-    with col2:
+    with col3:
         Explained_user_how_to_take_first_loan = st.selectbox("Explained user how to take first loan",
                                                              ["Yes", "Fatal", "NA"])
 
@@ -297,7 +297,7 @@ elif selected_page == "Input Form":
                                                                 "Almost complete"])
 
         PIP_SFA_Status = st.selectbox("PIP/SFA Status", ["Correct", "Incorrect", "NA"])
-
+    with col4:
         VOC = st.text_input("VOC")
 
         AOI = st.text_input("AOI")

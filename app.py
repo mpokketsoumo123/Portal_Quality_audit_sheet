@@ -215,9 +215,11 @@ elif selected_page == "Input Form":
           # Replace with your sheet name
         header=['Emp_ID']
         dropdown_values = sheet.get_all_records(expected_headers=None)
-
+        dropdown=[]
+        for i in dropdown_values:
+            dropdown.append(i['EMP_ID'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        selected_value = st.selectbox("Agent EMP ID", dropdown_values)
+        selected_value = st.selectbox("Agent EMP ID", dropdown)
 
         # Login ID (Numeric validation)
         login_id = st.text_input("Enter Login ID:")

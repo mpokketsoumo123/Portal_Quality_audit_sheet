@@ -79,7 +79,7 @@ def add_custom_css():
 
 # Add a header image (logo)
 def add_header_logo():
-    logo_path = "path_to_logo/logo.png"  # Replace with the path to your logo
+    logo_path = "images (1).png"  # Replace with the path to your logo
     logo_bytes = open(logo_path, "rb").read()
     logo_base64 = base64.b64encode(logo_bytes).decode("utf-8")
     st.markdown(

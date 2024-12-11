@@ -83,7 +83,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Add logo
-st.markdown('<img src="https://img-cdn.thepublive.com/fit-in/1200x675/indianstartupnews/media/media_files/xn66CKIxmcTJsQVRDBaH.png">', unsafe_allow_html=True)
+st.markdown('<img src="https://img-cdn.thepublive.com/fit-in/800x675/indianstartupnews/media/media_files/xn66CKIxmcTJsQVRDBaH.png">', unsafe_allow_html=True)
 
 # Session State Initialization
 if "login_email" not in st.session_state:

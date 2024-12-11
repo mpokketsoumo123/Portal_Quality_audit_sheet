@@ -17,9 +17,9 @@ def authenticate_google_sheets():
     )
     client = gspread.authorize(credentials)
     return client
-def fetch_data_from_gsheet(sheet_name, column_name):
+def fetch_data_from_gsheet(column_name):
     client = authenticate_google_sheets()
-    sheet = client.open(sheet_name).Agent_Data  # Open the first sheet of the spreadsheet
+    sheet = client.open(sheet_name).sheet2  # Open the first sheet of the spreadsheet
     data = sheet.col_values(sheet.find(column_name).col)  # Find column based on column name
     return data[1:] 
 
@@ -208,7 +208,7 @@ elif selected_page == "Input Form":
         audit_category = st.selectbox("Select Audit Category:", ["Floor", "RCA"])
 
         # EMP ID (Non-numeric validation)
-        dropdown_values = fetch_data_from_gsheet(sheet_name, 'Emp_ID')
+        dropdown_values = fetch_data_from_gsheet('Emp_ID')
 
     # Show the dropdown menu with the data fetched from Google Sheets
         selected_value = st.selectbox("Agent EMP ID:", dropdown_values)

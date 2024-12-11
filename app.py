@@ -21,8 +21,27 @@ def authenticate_google_sheets():
 def write_to_sheet(sheet_name, data, email):
     client = authenticate_google_sheets()
     sheet = client.open(sheet_name).sheet1
+
+    # Get the number of rows already in the sheet
+    current_data = sheet.get_all_values()
+
+    # Determine the row index to append data
+    row_index = len(current_data) + 1  # Append below the last existing row
+
+    # Convert date and time objects to string
     current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-    data_with_meta = list(data) + [email, current_date]
+    data_with_meta = []
+    for item in data:
+        if isinstance(item, (datetime.date, datetime.datetime)):
+            item = item.strftime("%Y-%m-%d")  # Convert to date string format
+        elif isinstance(item, datetime.time):
+            item = item.strftime("%H:%M:%S")  # Convert to time string format
+        data_with_meta.append(item)
+
+    # Add email and date columns to the data
+    data_with_meta += [email, current_date]
+
+    # Append the data to the sheet
     sheet.append_row(data_with_meta)
 
 # Streamlit App Configuration

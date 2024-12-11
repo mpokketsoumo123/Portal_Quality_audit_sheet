@@ -17,11 +17,11 @@ def authenticate_google_sheets():
     )
     client = gspread.authorize(credentials)
     return client
-def fetch_data_from_gsheet(column_name):
+def fetch_data_from_gsheet(sheet_name):
     client = authenticate_google_sheets()
-    sheet = client.open(sheet_name).sheet2  # Open the first sheet of the spreadsheet
-    data = sheet.col_values(sheet.find(column_name).col)  # Find column based on column name
-    return data[1:] 
+    sheet = client.open(sheet_name).get_worksheet(1)  # Access Sheet 2 (index starts at 0)
+    data = sheet.col_values(1)  # Get all values from the first column
+    return data[1:]  # Skip header row if there's one
 
 # Write data to Google Sheets
 def write_to_sheet(sheet_name, data, email):
@@ -208,10 +208,11 @@ elif selected_page == "Input Form":
         audit_category = st.selectbox("Select Audit Category:", ["Floor", "RCA"])
 
         # EMP ID (Non-numeric validation)
-        dropdown_values = fetch_data_from_gsheet('Emp_ID')
+        sheet_name = "Agent_Data"  # Replace with your sheet name
+        dropdown_values = fetch_data_from_gsheet(sheet_name)
 
     # Show the dropdown menu with the data fetched from Google Sheets
-        selected_value = st.selectbox("Agent EMP ID:", dropdown_values)
+        selected_value = st.selectbox("Agent EMP ID", dropdown_values)
 
         # Login ID (Numeric validation)
         login_id = st.text_input("Enter Login ID:")

@@ -52,7 +52,7 @@ st.markdown("""
     <style>
         /* Background and text colors */
         .stApp {
-            background-color: #f5b041; /* Blue background */
+            background-color: #3498db; /* Blue background */
             color: white; /* White text */
         }
         /* Orange-colored dropdown boxes */

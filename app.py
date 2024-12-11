@@ -18,75 +18,46 @@ def authenticate_google_sheets():
     return client
 
 # Write data to Google Sheets
-# Write data to Google Sheets
 def write_to_sheet(sheet_name, data, email):
     client = authenticate_google_sheets()
     sheet = client.open(sheet_name).sheet1
-
-    # Get the number of rows already in the sheet
-    current_data = sheet.get_all_values()
-
-    # Determine the row index to append data
-    row_index = len(current_data) + 1  # Append below the last existing row
-
-    # Convert date and time objects to string
     current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-    data_with_meta = []
-    for item in data:
-        if isinstance(item, (datetime.date, datetime.datetime)):
-            item = item.strftime("%Y-%m-%d")  # Convert to date string format
-        elif isinstance(item, datetime.time):
-            item = item.strftime("%H:%M:%S")  # Convert to time string format
-        data_with_meta.append(item)
-
-    # Add email and date columns to the data
-    data_with_meta += [email, current_date]
-
-    # Append the data to the sheet
+    data_with_meta = list(data) + [email, current_date]
     sheet.append_row(data_with_meta)
 
 # Streamlit App Configuration
 st.set_page_config(page_title="Multi-Page App", layout="wide")
 
-# Session State for Login
-# Session State for Login
+# Session State Initialization
 if "login_email" not in st.session_state:
     st.session_state["login_email"] = None
+if "selected_page" not in st.session_state:
+    st.session_state["selected_page"] = "How to Use"
 
 # Page Navigation
-pages = ["Login"]
-if st.session_state["login_email"]:
-    pages += ["Input Form", "How to Use"]
+selected_page = st.session_state["selected_page"]
 
-selected_page = st.sidebar.selectbox("Navigate", pages)
-
-# Login Page
-if selected_page == "Login":
-    st.title("Login")
-    email = st.text_input("Enter your email ID")
-
-    if st.button("Login"):  # When the login button is clicked
-        allowed_emails = ["mis.operations@mpokket.com"]  # Example email list
-        if email in allowed_emails:
-            st.session_state["login_email"] = email
-            st.session_state["selected_page"] = "How to Use"  # Set selected page directly after login
-            st.success("Login successful! Redirecting to 'How to Use' page...")
-        else:
-            st.error("Invalid email ID. Please try again.")
-
-# How to Use Page
-elif selected_page == "How to Use":
+# How to Use Page and Login Section
+if selected_page == "How to Use":
     st.title("How to Use the App")
     st.markdown(
         """
-        1. Login with your email ID on the **Login** page and click on login for 2 times.
-        2. Navigate to the **Input Form** page using the sidebar.
-        3. Fill out the form in the two sections below.
-        4. Review the table showing your input.
-        5. Use the **Delete Row** button to remove any incorrect rows (plese enter Row+1 in the input place).
-        6. Click **Final Submit** to upload the data to Google Sheets.
+        1. Review the **How to Use** section below.
+        2. Enter your email ID in the **Login** section and click Login.
+        3. Once logged in, you will be redirected to the **Input Form** page.
         """
     )
+
+    st.header("Login Section")
+    email = st.text_input("Enter your email ID", key="email_input")
+    if st.button("Login"):
+        allowed_emails = ["mis.operations@mpokket.com"]
+        if email in allowed_emails:
+            st.session_state["login_email"] = email
+            st.session_state["selected_page"] = "Input Form"
+            st.success("Login successful! Redirecting to Input Form...")
+        else:
+            st.error("Invalid email ID. Please try again.")
 
 # Input Form Page
 elif selected_page == "Input Form":

@@ -4,7 +4,8 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import datetime
 import base64
-
+from PIL import Image
+import io
 # Google Sheets Authentication
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(
@@ -48,42 +49,70 @@ def write_to_sheet(sheet_name, data, email):
 st.set_page_config(page_title="Multi-Page App", layout="wide")
 
 # CSS styling
-st.markdown("""
-    <style>
-        /* Background and text colors */
-        .stApp {
-            background-color: #3498db; /* Blue background */
-            color: white; /* White text */
-        }
-        /* Orange-colored dropdown boxes */
-        select {
-            background-color: orange !important;
-            color: black !important;
-        }
-        /* Increase logo size */
-        .logo {
-            width: 300px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        /* Footer text styling */
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #1E90FF;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            font-weight: bold;
-        }
-    </style>
-""", unsafe_allow_html=True)
+uploaded_file = st.file_uploader("Choose a background image", type=["png", "jpg", "jpeg"])
 
-# Add logo
-st.markdown('<img src="https://img-cdn.thepublive.com/fit-in/100x300/indianstartupnews/media/media_files/xn66CKIxmcTJsQVRDBaH.png">', unsafe_allow_html=True)
+if uploaded_file is not None:
+    # Convert uploaded image to Image object
+    image = Image.open(uploaded_file)
+    
+    # Convert image to bytes
+    img_bytes = io.BytesIO()
+    image.save(img_bytes, format='PNG')
+    img_bytes.seek(0)
+
+    # Encode image to base64
+    import base64
+    img_base64 = base64.b64encode(img_bytes.read()).decode()
+
+    # Add custom CSS with local image as background
+    st.markdown(f"""
+        <style>
+            /* Set the uploaded image as the background */
+            .stApp {{
+                background-image: url('data:image/png;base64,{img_base64}');
+                background-size: cover;
+                color: white;
+            }}
+            /* Center the bold text in the header */
+            .header-text {{
+                text-align: center;
+                font-weight: bold;
+                font-size: 32px;
+                color: white;
+                padding-top: 20px;
+            }}
+            /* Orange-colored dropdown boxes */
+            select {{
+                background-color: orange !important;
+                color: black !important;
+            }}
+            /* Increase logo size */
+            .logo {{
+                width: 300px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }}
+            /* Footer text styling */
+            .footer {{
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #1E90FF;
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+                font-weight: bold;
+            }}
+        </style>
+    """, unsafe_allow_html=True)
+
+# Display logo
+st.markdown('<img src="https://img-cdn.thepublive.com/fit-in/100x300/indianstartupnews/media/media_files/xn66CKIxmcTJsQVRDBaH.png" class="logo">', unsafe_allow_html=True)
+
+# Display bold header text
+st.markdown('<div class="header-text">Onboarding Audit Portal</div>', unsafe_allow_html=True)
 
 # Session State Initialization
 if "login_email" not in st.session_state:

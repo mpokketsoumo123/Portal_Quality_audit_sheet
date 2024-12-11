@@ -206,10 +206,14 @@ elif selected_page == "Input Form":
 
         # Audit Category (List format)
         audit_category = st.selectbox("Select Audit Category:", ["Floor", "RCA"])
+        client = authenticate_google_sheets()
 
-        # EMP ID (Non-numeric validation)
-        sheet_name = "Agent_Data"  # Replace with your sheet name
-        dropdown_values = fetch_data_from_gsheet(sheet_name)
+# Open the Google Sheet by its URL or name
+        spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
+# Specify the sheet name you want to read
+        sheet = spreadsheet.worksheet("Agent_Data")
+          # Replace with your sheet name
+        dropdown_values = sheet.get_all_records(expected_headers='Emp_ID')
 
     # Show the dropdown menu with the data fetched from Google Sheets
         selected_value = st.selectbox("Agent EMP ID", dropdown_values)

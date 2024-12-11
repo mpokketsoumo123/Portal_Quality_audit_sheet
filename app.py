@@ -49,7 +49,7 @@ def write_to_sheet(sheet_name, data, email):
 st.set_page_config(page_title="Multi-Page App", layout="wide")
 
 # CSS styling
-uploaded_file = st.file_uploader("Choose a background image", type=["png", "jpg", "jpeg"])
+uploaded_file = st.file_uploader("pngtree-3d-image-quality-assurance-word-cloud-concept-improvement-system-guarantee-photo-image_21067218.jpg", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
     # Convert uploaded image to Image object

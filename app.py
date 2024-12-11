@@ -49,12 +49,12 @@ def write_to_sheet(sheet_name, data, email):
 st.set_page_config(page_title="Multi-Page App", layout="wide")
 
 # CSS styling
-uploaded_file = "pngtree-3d-image-quality-assurance-word-cloud-concept-improvement-system-guarantee-photo-image_21067218.jpg"
+uploaded_file = "Picture2.png"
 
 if uploaded_file is not None:
     # Convert uploaded image to Image object
     image = Image.open(uploaded_file)
-    image = image.resize((image.width // 2, image.height // 3))
+    
     
     # Convert image to bytes
     img_bytes = io.BytesIO()

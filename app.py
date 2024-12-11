@@ -54,7 +54,7 @@ uploaded_file = "pngtree-3d-image-quality-assurance-word-cloud-concept-improveme
 if uploaded_file is not None:
     # Convert uploaded image to Image object
     image = Image.open(uploaded_file)
-    image = image.resize((image.width // 5, image.height // 4))
+    image = image.resize((image.width // 2, image.height // 3))
     
     # Convert image to bytes
     img_bytes = io.BytesIO()

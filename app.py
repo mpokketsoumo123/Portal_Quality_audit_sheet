@@ -89,7 +89,7 @@ if uploaded_file is not None:
             }}
             /* Increase logo size */
             .logo {{
-                width: 300px;
+                width: 150px;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;

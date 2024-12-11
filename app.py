@@ -77,8 +77,8 @@ if uploaded_file is not None:
             .header-text {{
                 text-align: center;
                 font-weight: bold;
-                font-size: 32px;
-                color: white;
+                font-size: 40px;
+                color: Black;
                 padding-top: 20px;
             }}
             /* Orange-colored dropdown boxes */
@@ -100,7 +100,7 @@ if uploaded_file is not None:
                 left: 0;
                 width: 100%;
                 background-color: #1E90FF;
-                color: white;
+                color: black;
                 text-align: center;
                 padding: 10px 0;
                 font-weight: bold;

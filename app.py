@@ -54,6 +54,7 @@ uploaded_file = "pngtree-3d-image-quality-assurance-word-cloud-concept-improveme
 if uploaded_file is not None:
     # Convert uploaded image to Image object
     image = Image.open(uploaded_file)
+    image = image.resize((image.width // 2, image.height // 2))
     
     # Convert image to bytes
     img_bytes = io.BytesIO()
@@ -72,6 +73,7 @@ if uploaded_file is not None:
                 background-image: url('data:image/png;base64,{img_base64}');
                 background-size: cover;
                 color: white;
+                position: relative;
             }}
             /* Center the bold text in the header */
             .header-text {{

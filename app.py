@@ -77,7 +77,7 @@ if uploaded_file is not None:
             .header-text {{
                 text-align: center;
                 font-weight: bold;
-                font-size: 40px;
+                font-size: 50px;
                 color: Black;
                 padding-top: 20px;
             }}

@@ -213,7 +213,6 @@ elif selected_page == "Input Form":
 # Specify the sheet name you want to read
         sheet = spreadsheet.worksheet("Agent_Data")
           # Replace with your sheet name
-        header=['Emp_ID']
         dropdown_values = sheet.get_all_records(expected_headers=None)
         dropdown=[]
         for i in dropdown_values:
@@ -222,6 +221,8 @@ elif selected_page == "Input Form":
         selected_value = st.selectbox("Agent EMP ID", dropdown)
 
         # Login ID (Numeric validation)
+        sheet = spreadsheet.worksheet("Agent_Data")
+        
         login_id = st.text_input("Enter Login ID:")
 
         # Agent Name (No validation)

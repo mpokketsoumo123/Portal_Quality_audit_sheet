@@ -213,7 +213,8 @@ elif selected_page == "Input Form":
 # Specify the sheet name you want to read
         sheet = spreadsheet.worksheet("Agent_Data")
           # Replace with your sheet name
-        dropdown_values = sheet.get_all_records(expected_headers='Emp_ID')
+        header=['Emp_ID']
+        dropdown_values = sheet.get_all_records(expected_headers=header)
 
     # Show the dropdown menu with the data fetched from Google Sheets
         selected_value = st.selectbox("Agent EMP ID", dropdown_values)

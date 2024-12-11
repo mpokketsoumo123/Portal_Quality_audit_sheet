@@ -45,72 +45,45 @@ def write_to_sheet(sheet_name, data, email):
     sheet.append_row(data_with_meta)
 
 # Add custom CSS for styling
-def add_custom_css():
-    st.markdown(
-        """
-        <style>
-            body {
-                background-color: #002366;
-                color: white;
-            }
-            .stButton>button {
-                background-color: orange;
-                color: white;
-                border: none;
-                border-radius: 5px;
-            }
-            .stTextInput>div, .stSelectbox>div {
-                color: white;
-            }
-            .footer {
-                text-align: center;
-                font-weight: bold;
-                color: white;
-                margin-top: 20px;
-            }
-            .header-image {
-                text-align: center;
-                margin-bottom: 10px;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# Add a header image (logo)
-def add_header_logo():
-    logo_path = "images (1).png"  # Replace with the path to your logo
-    logo_bytes = open(logo_path, "rb").read()
-    logo_base64 = base64.b64encode(logo_bytes).decode("utf-8")
-    st.markdown(
-        f"""
-        <div class="header-image">
-            <img src="data:image/png;base64,{logo_base64}" width="200" />
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# Add footer with team and query information
-def add_footer():
-    st.markdown(
-        """
-        <div class="footer">
-            Developed by <b>MIS Team</b><br>
-            For any queries, email: <b>mis.operations@mpokket.com</b>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# Streamlit App Configuration
 st.set_page_config(page_title="Multi-Page App", layout="wide")
 
-# Apply custom styling
-add_custom_css()
+# CSS styling
+st.markdown("""
+    <style>
+        /* Background and text colors */
+        .stApp {
+            background-color: #1E90FF; /* Blue background */
+            color: white; /* White text */
+        }
+        /* Orange-colored dropdown boxes */
+        select {
+            background-color: orange !important;
+            color: black !important;
+        }
+        /* Increase logo size */
+        .logo {
+            width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Footer text styling */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1E90FF;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-# Add logo to the header
-add_header_logo()
+# Add logo
+st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png">', unsafe_allow_html=True)
 
 # Session State Initialization
 if "login_email" not in st.session_state:
@@ -384,4 +357,9 @@ elif selected_page == "Input Form":
             st.session_state["input_table"] = []  # Clear after submission
         except Exception as e:
             st.error(f"An error occurred: {e}")
-    add_footer()
+st.markdown("""
+    <div class="footer">
+        Developed by MIS Team<br>
+        For any query, email at <a href="mailto:mis.operations@mpokket.com" style="color:white;">mis.operations@mpokket.com</a>
+    </div>
+""", unsafe_allow_html=True)

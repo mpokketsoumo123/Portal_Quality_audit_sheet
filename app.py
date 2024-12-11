@@ -218,7 +218,7 @@ elif selected_page == "Input Form":
         for i in dropdown_values:
             dropdown.append(i['EMP_ID'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        selected_value = st.selectbox("Agent EMP ID", dropdown)
+        EMP_ID = st.selectbox("Agent EMP ID", dropdown)
 
         # Login ID (Numeric validation)
         sheet = spreadsheet.worksheet("Agent_Data")
@@ -226,14 +226,14 @@ elif selected_page == "Input Form":
         for i in dropdown_values:
             dropdown.append(i['Ameyo_Id'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        selected_value = st.selectbox("Enter Login ID:", dropdown)
+        Login_ID = st.selectbox("Enter Login ID:", dropdown)
 
         # Agent Name (No validation)
         dropdown=[]
         for i in dropdown_values:
             dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        selected_value = st.selectbox("Enter Agent Name:", dropdown)
+        Agent_Name = st.selectbox("Enter Agent Name:", dropdown)
         
 
         # Team Leader (No validation)
@@ -354,9 +354,9 @@ elif selected_page == "Input Form":
             "Date of Audit": date_of_audit,
             "Week": week,
             "Audit Category": audit_category,
-            "EMP ID": emp_id,
-            "Login ID": login_id,
-            "Agent Name": agent_name,
+            "EMP ID": EMP_ID,
+            "Login ID": Login_ID,
+            "Agent Name": Agent_Name,
             "Team Leader": team_leader,
             "Audit Name": audit_name,
             "Auditor Center": auditor_center,

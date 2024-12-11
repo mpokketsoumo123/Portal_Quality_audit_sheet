@@ -73,7 +73,6 @@ if uploaded_file is not None:
                 background-image: url('data:image/png;base64,{img_base64}');
                 background-size: cover;
                 color: white;
-                position: relative;
             }}
             /* Center the bold text in the header */
             .header-text {{

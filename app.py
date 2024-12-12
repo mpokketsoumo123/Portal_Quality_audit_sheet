@@ -72,67 +72,81 @@ if uploaded_file is not None:
 
     # Add custom CSS with local image as background
     st.markdown(f"""
-    <style>
-        /* Set the uploaded image as the background */
-        .stApp {{
-            background-image: url('data:image/png;base64,{img_base64}');
-            background-size: cover;
-            color: black; /* Set default text color to black */
-        }}
-        
-        /* Center the bold text in the header */
-        .header-text {{
-            text-align: center;
-            font-weight: bold;
-            font-size: 50px;
-            color: black;
-            padding-top: 20px;
-        }}
+<style>
+    /* Set the uploaded image as the background */
+    .stApp {{
+        background-image: url('data:image/png;base64,{img_base64}');
+        background-size: cover;
+        color: black; /* Set default text color to black */
+    }}
+    
+    /* Center the bold text in the header */
+    .header-text {{
+        text-align: center;
+        font-weight: bold;
+        font-size: 50px;
+        color: black;
+        padding-top: 20px;
+    }}
 
-        /* Orange-colored dropdown boxes */
-        select {{
-            background-color: #f9a825 !important; /* Light orange */
-            color: black !important;
-            border: 1px solid #f9a825;
-        }}
+    /* Orange-colored dropdown boxes */
+    select {{
+        background-color: black !important; /* Black background */
+        color: white !important; /* White text */
+        border: 1px solid #f9a825;
+        font-size: 16px; /* Increase text size */
+    }}
 
-        /* Button styling */
-        .stButton button {{
-            background-color: yellow !important; /* Yellow background */
-            color: black !important; /* Black text */
-            border: 2px solid #f9a825; /* Border to match select box */
-            padding: 10px 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }}
-        
-        /* Button hover effect */
-        .stButton button:hover {{
-            background-color: #f9a825 !important;
-            color: black !important;
-        }}
+    /* Label styling */
+    label {{
+        font-weight: bold;
+        color: black;
+        font-size: 18px; /* Increase label size */
+        display: block;
+        margin-bottom: 8px;
+    }}
 
-        /* Increase logo size */
-        .logo {{
-            width: 250px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }}
+    /* Button styling */
+    .stButton button {{
+        background-color: yellow !important; /* Yellow background */
+        color: black !important; /* Black text */
+        border: 2px solid #f9a825; /* Border to match select box */
+        padding: 10px 20px;
+        font-weight: bold;
+        font-size: 14px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px; /* Centering the button */
+    }}
+    
+    /* Button hover effect */
+    .stButton button:hover {{
+        background-color: #f9a825 !important;
+        color: black !important;
+    }}
 
-        /* Footer text styling */
-        .footer {{
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #1E90FF;
-            color: black;
-            text-align: center;
-            padding: 10px 0;
-            font-weight: bold;
-        }}
-    </style>
+    /* Increase logo size */
+    .logo {{
+        width: 250px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }}
+
+    /* Footer text styling */
+    .footer {{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1E90FF;
+        color: black;
+        text-align: center;
+        padding: 10px 0;
+        font-weight: bold;
+    }}
+</style>
 """, unsafe_allow_html=True)
 
 # Display logo

@@ -89,19 +89,21 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-    /* Orange-colored dropdown boxes */
+    /* Styling for all select dropdowns */
     select {{
         background-color: black !important; /* Black background */
         color: white !important; /* White text */
-        border: 1px solid #f9a825;
-        font-size: 16px; /* Increase text size */
+        border: 1px solid #f9a825 !important; /* Border to match the selected color */
+        font-size: 16px !important; /* Increase text size */
+        padding: 8px 10px !important; /* Add padding for better look */
+        width: 100%; /* Ensure it spans available space */
     }}
 
     /* Label styling */
     label {{
-        font-weight: bold;
-        color: black;
-        font-size: 18px; /* Increase label size */
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 18px !important; /* Increase label size */
         display: block;
         margin-bottom: 8px;
     }}

@@ -163,7 +163,7 @@ if selected_page == "How to Use":
 
     st.header("Login Section")
     if "button_text" not in st.session_state:
-        st.session_state.button_text = "Login"
+    st.session_state.button_text = "Login"
     if "login_message" not in st.session_state:
         st.session_state.login_message = ""
     if "selected_page" not in st.session_state:
@@ -181,19 +181,19 @@ if selected_page == "How to Use":
     if st.button(st.session_state.button_text):
         if st.session_state.button_text == "Login":
             if email in allowed_emails:
-                st.session_state.login_message = "You are successfully logged in. Click on the 'Get In' button."
+                st.session_state.login_message = "You are successfully logged in. Redirecting to the Input Form..."
                 st.session_state.button_text = "Get In"
+                st.session_state.selected_page = "Input Form"  # Navigate to the Input Form immediately
                 st.session_state.login_email = email
             else:
                 st.error("Invalid email ID. Please try again.")
         elif st.session_state.button_text == "Get In":
             st.session_state.selected_page = "Input Form"
-            st.success("Login successful! Redirecting to Input Form...")
+            st.success("Redirecting to the Input Form...")
 
     # Display the login message
     if st.session_state.login_message:
         st.write(st.session_state.login_message)
-
 # Input Form Page
 elif selected_page == "Input Form":
     st.title("Input Form")

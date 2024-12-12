@@ -91,7 +91,7 @@ if uploaded_file is not None:
 
     /* Styling for select dropdowns */
     select {{
-        background-color: black !important; /* Black background */
+        background-color: black ; /* Black background */
         color: white !important; /* White text */
         border: 1px solid #f9a825 !important; /* Border to match the selected color */
         font-size: 16px !important; /* Increase text size */

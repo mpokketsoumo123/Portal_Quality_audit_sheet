@@ -189,6 +189,7 @@ if selected_page == "How to Use":
             else:
                 st.error("Invalid email ID. Please try again.")
         elif st.session_state.button_text == "Get In":
+            st.session_state["selected_page"] = "Input Form"
             st.success("Welcome! You can now proceed.")
 
 # Display the login message

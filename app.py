@@ -162,16 +162,37 @@ if selected_page == "How to Use":
     )
 
     st.header("Login Section")
-    email = st.text_input("Enter your email ID", key="email_input")
-    if st.button("Login"):
-        allowed_emails = ["mis.operations@mpokket.com"]
-        if email in allowed_emails:
-            st.session_state["login_email"] = email
-            st.session_state["selected_page"] = "Input Form"
-            st.success("Login successful! Redirecting to Input Form...")
-        else:
-            st.error("Invalid email ID. Please try again.")
+    if "button_text" not in st.session_state:
+        st.session_state.button_text = "Login"
+    if "login_message" not in st.session_state:
+        st.session_state.login_message = ""
+    if "selected_page" not in st.session_state:
+        st.session_state.selected_page = "Login Section"
 
+# Define allowed emails
+    allowed_emails = ["mis.operations@mpokket.com"]
+
+# Page navigation logic
+    if st.session_state.selected_page == "Login Section":
+        st.header("Login Section")
+
+    email = st.text_input("Enter your email ID", key="email_input")
+
+    if st.button(st.session_state.button_text):
+        if st.session_state.button_text == "Login":
+            if email in allowed_emails:
+                st.session_state.login_message = "You are successfully logged in. Click on the 'Get In' button."
+                st.session_state.button_text = "Get In"
+                st.session_state.login_email = email
+            else:
+                st.error("Invalid email ID. Please try again.")
+        elif st.session_state.button_text == "Get In":
+            st.session_state.selected_page = "Input Form"
+            st.success("Login successful! Redirecting to Input Form...")
+
+    # Display the login message
+    if st.session_state.login_message:
+        st.write(st.session_state.login_message)
 
 # Input Form Page
 elif selected_page == "Input Form":

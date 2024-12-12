@@ -257,7 +257,7 @@ elif selected_page == "Input Form":
         for i in dropdown_values:
             dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,dropdown,index=dropdown.index(selected_Name))
+        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
         
 
         # Team Leader (No validation)

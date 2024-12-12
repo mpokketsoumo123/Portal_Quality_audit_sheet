@@ -241,6 +241,8 @@ elif selected_page == "Input Form":
             dropdown.append(i['EMP_ID'])
     # Show the dropdown menu with the data fetched from Google Sheets
         EMP_ID = st.selectbox("Agent EMP ID", dropdown)
+        selected_login_id = next(i["Ameyo_Id"] for item in data if i["EMP_ID"] == EMP_ID)
+        selected_Name = next(item["Name"] for item in data if i["EMP_ID"] == selected_id)
 
         # Login ID (Numeric validation)
         sheet = spreadsheet.worksheet("Agent_Data")
@@ -248,14 +250,14 @@ elif selected_page == "Input Form":
         for i in dropdown_values:
             dropdown.append(i['Ameyo_Id'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Login_ID = st.selectbox("Enter Login ID:", dropdown)
+        Login_ID = st.selectbox("Enter Login ID:", dropdown,index=dropdown.index(selected_login_id))
 
         # Agent Name (No validation)
         dropdown=[]
         for i in dropdown_values:
             dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Agent_Name = st.selectbox("Enter Agent Name:", dropdown)
+        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,dropdown,index=dropdown.index(selected_Name))
         
 
         # Team Leader (No validation)

@@ -274,6 +274,8 @@ elif selected_page == "Input Form":
         # Auditor Designation (List validation)
         auditor_designation = st.selectbox("Select Auditor Designation:", ["TL", "Trainer"])
 
+    with col2:
+        
         # User Register Number (Numeric validation)
         user_register_number = st.text_input("Enter User Register Number:")
 
@@ -282,7 +284,7 @@ elif selected_page == "Input Form":
 
         # Date of Call (Date format validation)
         date_of_call = st.date_input("Enter Date of Call:")
-    with col2:
+        
         # Call Time Slot (Time format validation)
         call_time_slot = st.time_input("Enter Call Time Slot:")
 
@@ -341,12 +343,14 @@ elif selected_page == "Input Form":
 
         Agent_Feedback_Status = st.selectbox("Agent Feedback Status", ["Closed", "Open"])
 
+
+    with col4:
         Profile_completion_status_prior_to_call = st.selectbox("Profile completion status prior to call",
                                                                ["Blank profile", "Partially complete",
                                                                 "Almost complete"])
 
         PIP_SFA_Status = st.selectbox("PIP/SFA Status", ["Correct", "Incorrect", "NA"])
-    with col4:
+        
         VOC = st.text_input("VOC")
 
         AOI = st.text_input("AOI")

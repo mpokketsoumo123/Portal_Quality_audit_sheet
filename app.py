@@ -89,20 +89,21 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-    /* Styling for select dropdowns */
-    select {{
-        background-color: black ; /* Black background */
+   /* Dropdown container and options styling */
+    div[data-baseweb="select"] > div {{
+        background-color: black !important; /* Black dropdown background */
         color: white !important; /* White text */
-        border: 1px solid #f9a825 !important; /* Border to match the selected color */
-        font-size: 16px !important; /* Increase text size */
-        padding: 8px 10px !important; /* Add padding for better look */
-        width: 100% !important; /* Ensure it spans available space */
-        appearance: none !important; /* Remove default styling */
-        -webkit-appearance: none !important; /* For WebKit browsers */
-        -moz-appearance: none !important; /* For Firefox */
+        border: 2px solid #f9a825 !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
+        border-radius: 5px !important; /* Rounded corners */
+        padding: 5px !important;
     }}
 
-    /* Label styling */
+    div[data-baseweb="select"] > div > div {{
+        color: white !important; /* White text for dropdown options */
+    }}
+
+    /* Style for the dropdown label */
     label {{
         font-weight: bold !important;
         color: black !important;

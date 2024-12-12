@@ -216,7 +216,6 @@ if selected_page == "How to Use":
         st.write(st.session_state.login_message)
 # Input Form Page
 elif selected_page == "Input Form":
-    st.title("Input Form")
 
     # Data storage
     if "input_table" not in st.session_state:

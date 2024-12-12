@@ -90,20 +90,20 @@ if uploaded_file is not None:
     }}
 
     /* Dropdown container and options styling */
-    div[data-baseweb="select"] > div {{
-        background-color: black !important; /* Black dropdown background */
+    div[data-baseweb="select"] {{
+        background-color: black !important; /* Black background */
         color: white !important; /* White text */
-        border: 1px solid #f9a825 !important; /* Orange border */
-        font-size: 20px !important; /* Larger text */
+        border: 2px solid #FFFFFF !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
-        padding: 3px !important;
+        padding: 5px !important;
         width: 300px !important; /* Increased width */
-        height: 40px !important; /* Increased height */
-        margin-bottom: 10px; /* Spacing between dropdowns */
+        height: 50px !important; /* Increased height */
+        margin-bottom: 10px; /* Spacing between boxes */
     }}
 
-    div[data-baseweb="select"] > div > div {{
-        color: white !important; /* White text for dropdown options */
+    div[data-baseweb="select"] > div {{
+        color: white !important; /* White text for dropdown and select options */
     }}
 
     /* Style for the dropdown label */

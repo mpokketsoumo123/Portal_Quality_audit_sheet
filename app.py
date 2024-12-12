@@ -163,7 +163,7 @@ if selected_page == "How to Use":
 
     st.header("Login Section")
     if "button_text" not in st.session_state:
-    st.session_state.button_text = "Login"
+        st.session_state.button_text = "Login"
     if "login_message" not in st.session_state:
         st.session_state.login_message = ""
     if "selected_page" not in st.session_state:

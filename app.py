@@ -89,23 +89,26 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-    /* Styling for all select dropdowns */
+    /* Styling for select dropdowns */
     select {{
         background-color: black !important; /* Black background */
         color: white !important; /* White text */
         border: 1px solid #f9a825 !important; /* Border to match the selected color */
         font-size: 16px !important; /* Increase text size */
         padding: 8px 10px !important; /* Add padding for better look */
-        width: 100%; /* Ensure it spans available space */
+        width: 100% !important; /* Ensure it spans available space */
+        appearance: none !important; /* Remove default styling */
+        -webkit-appearance: none !important; /* For WebKit browsers */
+        -moz-appearance: none !important; /* For Firefox */
     }}
 
     /* Label styling */
     label {{
         font-weight: bold !important;
         color: black !important;
-        font-size: 20px !important; /* Increase label size */
+        font-size: 18px !important; /* Increase label size */
         display: block;
-        margin-bottom: 9px;
+        margin-bottom: 8px;
     }}
 
     /* Button styling */

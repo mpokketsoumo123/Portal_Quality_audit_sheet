@@ -93,16 +93,11 @@ if uploaded_file is not None:
      input, select, textarea, div[data-baseweb="select"] > div {{
         background-color: black !important; /* Black dropdown background */
         color: white !important; /* White text */
-        border: 2px solid #FFFFFF !important; /* Orange border */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
         width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
-    }}
-
-    div[data-baseweb="select"] > div {{
-        color: white !important; /* White text for dropdown and select options */
     }}
     
     label {{

@@ -122,6 +122,9 @@ if uploaded_file is not None:
         width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
     }}
+    div[data-baseweb="select"] > div {{
+        color: white !important; /* White text for dropdown and select options */
+    }}
     
     label {{
         font-weight: bold !important;

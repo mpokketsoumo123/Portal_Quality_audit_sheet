@@ -104,14 +104,6 @@ if uploaded_file is not None:
         color: white !important; /* White text for dropdown and select options */
     }}
 
-    /* Style for the dropdown label */
-    label {{
-        font-weight: bold !important;
-        color: black !important;
-        font-size: 18px !important; /* Increase label size */
-        display: block;
-        margin-bottom: 8px;
-    }}
     div[data-baseweb="input"] > div {{
         background-color: black !important; /* Black dropdown background */
         color: white !important; /* White text */
@@ -122,7 +114,7 @@ if uploaded_file is not None:
         width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
     }}
-    div[data-baseweb="select"] > div {{
+    div[data-baseweb="input"] > div {{
         color: white !important; /* White text for dropdown and select options */
     }}
     

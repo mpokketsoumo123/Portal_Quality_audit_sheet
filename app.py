@@ -94,7 +94,7 @@ if uploaded_file is not None:
         background-color: black !important; /* Black background */
         color: white !important; /* White text */
         border: 1px solid #FFFFFF !important; /* White border */
-        font-size: 16px !important; /* Larger text */
+        font-size: 10px !important; /* Larger text */
         #border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
         width: 300px !important; /* Increased width */

@@ -89,24 +89,8 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-     <style>
-    /* Set the uploaded image as the background */
-    .stApp {
-        background-image: url('data:image/png;base64,{img_base64}');
-        background-size: cover;
-        color: black; /* Set default text color to black */
-    }
-    
-    /* Center the bold text in the header */
-    .header-text {
-        text-align: center;
-        font-weight: bold;
-        font-size: 50px;
-        color: black;
-        padding-top: 20px;
-    }
 
-    /* General input and select styling using a universal selector */
+     /* General input and select styling using a universal selector */
     input, select, textarea {{
         background-color: black !important; /* Black background */
         color: white !important; /* White text */
@@ -120,6 +104,21 @@ if uploaded_file is not None:
         box-sizing: border-box; /* Ensures consistent sizing */
         caret-color: white; /* White caret */
     }}
+
+    /* Ensure placeholder text is visible */
+    input::placeholder, textarea::placeholder {{
+        color: white !important; /* White placeholder text */
+        opacity: 1 !important; /* Fully visible */
+    }}
+
+    /* Select dropdown customization */
+    select {{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: none !important; /* Remove default dropdown icon */
+    }}
+
 
     /* Button styling */
     .stButton button {{

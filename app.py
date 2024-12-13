@@ -117,7 +117,7 @@ if uploaded_file is not None:
     }}
     
     label {{
-        font-weight: bold !important;
+        font-weight: super bold !important;
         color: black !important;
         font-size: 34px !important; /* Increase label size */
         display: block;

@@ -89,7 +89,39 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-
+        input {{
+        background-color: black;
+        color: white;
+        width: 300px; /* Set desired width */
+        height: 40px; /* Set desired height */
+        border-radius: 5px; /* Optional for rounded corners */
+        border: 1px solid #ccc;
+        padding: 5px;
+    }}
+    /* Style labels */
+    label {{
+        font-size: 16px; /* Increase font size */
+        font-weight: bold;
+        color: #333; /* Optional: label text color */
+    }}
+    /* Style select boxes */
+    select {{
+        background-color: black;
+        color: white;
+        width: 300px; /* Match input box width */
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }}
+    /* Style text areas */
+    textarea {{
+        background-color: black;
+        color: white;
+        width: 300px;
+        height: 100px; /* Adjust as needed */
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }}
      /* General input and select styling using a universal selector */
     div[data-baseweb="select"] > div {{
         background-color: black !important; /* Black dropdown background */

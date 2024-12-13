@@ -98,7 +98,6 @@ if uploaded_file is not None:
         font-size: 16px !important; /* Larger text size */
         padding: 10px !important; /* Increased padding for better UX */
         border-radius: 5px !important; /* Rounded corners */
-        width: 100% !important; /* Full-width for responsiveness */
         max-width: 300px !important; /* Limit maximum width */
         height: auto !important; /* Adjust height automatically */
         box-sizing: border-box; /* Ensures consistent sizing */

@@ -103,7 +103,7 @@ if uploaded_file is not None:
     /* Style for the labels */
     label {{
         font-weight: bold !important;
-        color: white !important;
+        color: black !important;
         font-size: 20px !important; /* Increased label size */
         display: block;
         margin-bottom: 8px;

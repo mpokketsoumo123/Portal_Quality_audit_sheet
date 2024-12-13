@@ -96,7 +96,6 @@ if uploaded_file is not None:
         border: 1px solid #FFFFFF !important; /* White border */
         font-size: 10px !important; /* Larger text */
         #border-radius: 5px !important; /* Rounded corners */
-        padding: 5px !important;
         width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
     }}

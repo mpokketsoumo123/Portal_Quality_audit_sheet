@@ -91,18 +91,29 @@ if uploaded_file is not None:
 
 
      /* General input and select styling using a universal selector */
-    input, select, textarea {{
-        background-color: black !important; /* Black background */
+    div[data-baseweb="select"] > div {{
+        background-color: black !important; /* Black dropdown background */
         color: white !important; /* White text */
-        border: 2px solid #FFFFFF !important; /* White border */
-        font-size: 16px !important; /* Larger text size */
-        padding: 10px !important; /* Increased padding for better UX */
+        border: 2px solid #FFFFFF !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
-        max-width: 300px !important; /* Limit maximum width */
-        height: auto !important; /* Adjust height automatically */
-        box-sizing: border-box; /* Ensures consistent sizing */
-        caret-color: white; /* White caret */
+        padding: 5px !important;
+        width: 300px !important; /* Increased width */
+        height: 50px !important; /* Increased height */
     }}
+
+    div[data-baseweb="select"] > div {{
+        color: white !important; /* White text for dropdown and select options */
+    }}
+    
+    label {{
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 18px !important; /* Increase label size */
+        display: block;
+        margin-bottom: 8px;
+    }}
+
 
 
     /* Button styling */

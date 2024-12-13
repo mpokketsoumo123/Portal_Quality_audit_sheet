@@ -91,16 +91,14 @@ if uploaded_file is not None:
 
      /* Input, dropdown container, and options styling */
     input, select, div[data-baseweb="select"] > div {{
-        background-color: black !important; /* Black background */
+       background-color: black !important; /* Black dropdown background */
         color: white !important; /* White text */
-        border: 1px solid #FFFFFF !important; /* White border */
-        font-size: 14px !important; /* Adequate text size */
-        padding: 5px !important;
+        border: 2px solid #FFFFFF !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
-        width: 300px !important; /* Consistent width */
-        height: 50px !important; /* Consistent height */
-        box-sizing: border-box; /* Ensures no extra space on the sides */
-        caret-color: white; /* White caret for better visibility */
+        padding: 5px !important;
+        width: 300px !important; /* Increased width */
+        height: 50px !important; /* Increased height */
     }}
 
     /* Ensure placeholder text is visible */

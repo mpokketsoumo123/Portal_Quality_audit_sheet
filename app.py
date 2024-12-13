@@ -99,27 +99,11 @@ if uploaded_file is not None:
         width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
     }}
-
-    /* Ensure placeholder text is visible */
-    input::placeholder, select::placeholder {{
-        color: white !important; /* White placeholder text */
-        opacity: 1 !important; /* Full visibility */
-    }}
-
     
-
-    /* Remove any grayish part in the dropdown box */
-    select {{
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-image: none !important; /* Remove default dropdown icon */
-    }}
-
     /* Style for the labels */
     label {{
         font-weight: bold !important;
-        color: black !important;
+        color: white !important;
         font-size: 20px !important; /* Increased label size */
         display: block;
         margin-bottom: 8px;

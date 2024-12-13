@@ -100,7 +100,16 @@ if uploaded_file is not None:
         width: 300px !important; /* Consistent width */
         height: 50px !important; /* Consistent height */
         box-sizing: border-box; /* Ensures no extra space on the sides */
+        caret-color: white; /* White caret for better visibility */
     }}
+
+    /* Ensure placeholder text is visible */
+    input::placeholder, select::placeholder {{
+        color: white !important; /* White placeholder text */
+        opacity: 1 !important; /* Full visibility */
+    }}
+
+    
 
     /* Remove any grayish part in the dropdown box */
     select {{

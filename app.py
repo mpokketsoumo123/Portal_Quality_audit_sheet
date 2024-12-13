@@ -111,14 +111,6 @@ if uploaded_file is not None:
         opacity: 1 !important; /* Fully visible */
     }}
 
-    /* Select dropdown customization */
-    select {{
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-image: none !important; /* Remove default dropdown icon */
-    }}
-
 
     /* Button styling */
     .stButton button {{

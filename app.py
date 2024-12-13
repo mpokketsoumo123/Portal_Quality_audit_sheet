@@ -90,8 +90,7 @@ if uploaded_file is not None:
     }}
 
     div.stTextInput > div > input, 
-    div.stNumberInput > div > input,
-    div.stSelectbox > div > div > div {{
+    div.stNumberInput  > div > div {{
         background-color: black !important;
         color: white !important;
         width: 300px !important; /* Set desired width */
@@ -103,7 +102,6 @@ if uploaded_file is not None:
     /* Style the labels */
     div.stTextInput > label, 
     div.stNumberInput > label,
-    div.stSelectbox > label,
     div.stTextArea > label {{
         font-size: 18px !important; /* Increase font size */
         font-weight: bold !important; /* Make bold */

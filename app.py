@@ -90,7 +90,7 @@ if uploaded_file is not None:
     }}
 
      /* Input, dropdown container, and options styling */
-    input, select, div[data-baseweb="select"] > div {{
+    div[data-baseweb="select"] > div {{
         background-color: black !important; /* Black dropdown background */
         color: white !important; /* White text */
         border: 2px solid #FFFFFF !important; /* Orange border */

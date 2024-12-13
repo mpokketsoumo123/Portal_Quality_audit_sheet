@@ -105,7 +105,7 @@ if uploaded_file is not None:
     }}
 
     div[data-baseweb="input"] > div {{
-        background-color: black !important; /* Black dropdown background */
+        background-color: Gray !important; /* Black dropdown background */
         color: white !important; /* White text */
         border: 2px solid #FFFFFF !important; /* Orange border */
         font-size: 16px !important; /* Larger text */

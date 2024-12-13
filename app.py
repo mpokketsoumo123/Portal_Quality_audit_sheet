@@ -90,29 +90,25 @@ if uploaded_file is not None:
     }}
 
     /* Dropdown container and options styling */
-    div[data-baseweb="select"] > div {{
-        background-color: black !important; /* Black dropdown background */
+    input, select, textarea, div[data-baseweb="select"] > div {
+        background-color: black !important; /* Black background */
         color: white !important; /* White text */
-        border: 2px solid #FFFFFF !important; /* Orange border */
+        border: 2px solid #FFFFFF !important; /* White border */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
         width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
-    }}
+    }
 
-    div[data-baseweb="select"] > div {{
-        color: white !important; /* White text for dropdown and select options */
-    }}
-
-    /* Style for the dropdown label */
-    label {{
+    /* Style for the labels */
+    label {
         font-weight: bold !important;
         color: black !important;
-        font-size: 18px !important; /* Increase label size */
+        font-size: 20px !important; /* Increased label size */
         display: block;
         margin-bottom: 8px;
-    }}
+    }
 
     /* Button styling */
     .stButton button {{

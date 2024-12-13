@@ -89,26 +89,50 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-     /* Input, dropdown container, and options styling */
-    div[data-baseweb="select"] > div {{
-        background-color: black !important; /* Black dropdown background */
+     <style>
+    /* Set the uploaded image as the background */
+    .stApp {
+        background-image: url('data:image/png;base64,{img_base64}');
+        background-size: cover;
+        color: black; /* Set default text color to black */
+    }
+    
+    /* Center the bold text in the header */
+    .header-text {
+        text-align: center;
+        font-weight: bold;
+        font-size: 50px;
+        color: black;
+        padding-top: 20px;
+    }
+
+    /* General input and select styling using a universal selector */
+    input, select, textarea {{
+        background-color: black !important; /* Black background */
         color: white !important; /* White text */
-        border: 2px solid #FFFFFF !important; /* Orange border */
-        font-size: 16px !important; /* Larger text */
+        border: 2px solid #FFFFFF !important; /* White border */
+        font-size: 16px !important; /* Larger text size */
+        padding: 10px !important; /* Increased padding for better UX */
         border-radius: 5px !important; /* Rounded corners */
-        padding: 5px !important;
-        width: 300px !important; /* Increased width */
-        height: 50px !important; /* Increased height */
+        width: 100% !important; /* Full-width for responsiveness */
+        max-width: 300px !important; /* Limit maximum width */
+        height: auto !important; /* Adjust height automatically */
+        box-sizing: border-box; /* Ensures consistent sizing */
+        caret-color: white; /* White caret */
     }}
 
-    
-    /* Style for the labels */
-    label {{
-        font-weight: bold !important;
-        color: black !important;
-        font-size: 20px !important; /* Increased label size */
-        display: block;
-        margin-bottom: 8px;
+    /* Ensure placeholder text is visible */
+    input::placeholder, textarea::placeholder {{
+        color: white !important; /* White placeholder text */
+        opacity: 1 !important; /* Fully visible */
+    }}
+
+    /* Select dropdown customization */
+    select {{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: none !important; /* Remove default dropdown icon */
     }}
 
     /* Button styling */

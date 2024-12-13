@@ -89,38 +89,35 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-        input {{
-        background-color: black;
-        color: white;
-        width: 300px; /* Set desired width */
-        height: 40px; /* Set desired height */
-        border-radius: 5px; /* Optional for rounded corners */
-        border: 1px solid #ccc;
-        padding: 5px;
+    div.stTextInput > div > input, 
+    div.stNumberInput > div > input,
+    div.stSelectbox > div > div > div {{
+        background-color: black !important;
+        color: white !important;
+        width: 300px !important; /* Set desired width */
+        height: 40px !important; /* Set desired height */
+        border-radius: 5px; /* Optional: rounded corners */
+        border: 1px solid #ccc !important;
+        padding: 5px !important;
     }}
-    /* Style labels */
-    label {{
-        font-size: 16px; /* Increase font size */
-        font-weight: bold;
-        color: #333; /* Optional: label text color */
-    }}
-    /* Style select boxes */
-    select {{
-        background-color: black;
-        color: white;
-        width: 300px; /* Match input box width */
-        height: 40px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+    /* Style the labels */
+    div.stTextInput > label, 
+    div.stNumberInput > label,
+    div.stSelectbox > label,
+    div.stTextArea > label {{
+        font-size: 18px !important; /* Increase font size */
+        font-weight: bold !important; /* Make bold */
+        color: #333 !important; /* Optional: label text color */
     }}
     /* Style text areas */
-    textarea {{
-        background-color: black;
-        color: white;
-        width: 300px;
-        height: 100px; /* Adjust as needed */
-        border-radius: 5px;
-        border: 1px solid #ccc;
+    div.stTextArea > div > textarea {{
+        background-color: black !important;
+        color: white !important;
+        width: 300px !important;
+        height: 100px !important; /* Adjust as needed */
+        border-radius: 5px; /* Optional */
+        border: 1px solid #ccc !important;
+        padding: 5px !important;
     }}
      /* General input and select styling using a universal selector */
     div[data-baseweb="select"] > div {{

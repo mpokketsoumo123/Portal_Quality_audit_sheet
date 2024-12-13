@@ -121,20 +121,6 @@ if uploaded_file is not None:
         caret-color: white; /* White caret */
     }}
 
-    /* Ensure placeholder text is visible */
-    input::placeholder, textarea::placeholder {{
-        color: white !important; /* White placeholder text */
-        opacity: 1 !important; /* Fully visible */
-    }}
-
-    /* Select dropdown customization */
-    select {{
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-image: none !important; /* Remove default dropdown icon */
-    }}
-
     /* Button styling */
     .stButton button {{
         background-color: yellow !important; /* Yellow background */

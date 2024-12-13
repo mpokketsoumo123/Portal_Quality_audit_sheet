@@ -90,8 +90,8 @@ if uploaded_file is not None:
     }}
 
      div[data-baseweb="select"] > div {{
-        background-color: #FFFFFF  !important; /* Black dropdown background */
-        color: #000000 !important; /* White text */
+        background-color: #000000  !important; /* Black dropdown background */
+        color: #FFFFFF !important; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */

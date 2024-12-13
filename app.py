@@ -100,7 +100,7 @@ if uploaded_file is not None:
     }}
 
     div[data-baseweb="select"] > div {{
-        color: white !important; /* White text for dropdown and select options */
+        color: #000000 !important; /* White text for dropdown and select options */
     }}
 
     div[data-baseweb="input"] > div {{
@@ -113,7 +113,7 @@ if uploaded_file is not None:
         height: 50px !important; /* Increased height */
     }}
     div[data-baseweb="input"] > div {{
-        color: white !important; /* White text for dropdown and select options */
+        color: #000000 !important; /* White text for dropdown and select options */
     }}
     
     label {{

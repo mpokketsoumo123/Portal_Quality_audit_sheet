@@ -72,84 +72,67 @@ if uploaded_file is not None:
 
     # Add custom CSS with local image as background
     st.markdown(f"""
-<style>
-    /* Set the uploaded image as the background */
-    .stApp {{
-        background-image: url('data:image/png;base64,{img_base64}');
-        background-size: cover;
-        color: black; /* Set default text color to black */
-    }}
-    
-    /* Center the bold text in the header */
-    .header-text {{
-        text-align: center;
-        font-weight: bold;
-        font-size: 50px;
-        color: black;
-        padding-top: 20px;
-    }}
+    <style>
+        /* Set the uploaded image as the background */
+        .stApp {{
+            background-image: url('data:image/png;base64,{img_base64}');
+            background-size: cover;
+            color: black; /* Set default text color to black */
+        }}
+        
+        /* Center the bold text in the header */
+        .header-text {{
+            text-align: center;
+            font-weight: bold;
+            font-size: 50px;
+            color: black;
+            padding-top: 20px;
+        }}
 
-     /* Input, dropdown container, and options styling */
-    input, select, div[data-baseweb="select"] > div {{
-        background-color: black !important; /* Black dropdown background */
-        color: white !important; /* White text */
-        font-size: 16px !important; /* Larger text */
-        border-radius: 5px !important; /* Rounded corners */
-        padding: 5px !important;
-        width: 300px !important; /* Increased width */
-        height: 50px !important; /* Increased height */
-    }}
-    
-    /* Style for the labels */
-    label {{
-        font-weight: bold !important;
-        color: black !important;
-        font-size: 20px !important; /* Increased label size */
-        display: block;
-        margin-bottom: 8px;
-    }}
+        /* Orange-colored dropdown boxes */
+        select {{
+            background-color: #f9a825 !important; /* Light orange */
+            color: black !important;
+            border: 1px solid #f9a825;
+        }}
 
-    /* Button styling */
-    .stButton button {{
-        background-color: yellow !important; /* Yellow background */
-        color: black !important; /* Black text */
-        border: 2px solid #f9a825; /* Border to match select box */
-        padding: 10px 20px;
-        font-weight: bold;
-        font-size: 14px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px; /* Centering the button */
-    }}
-    
-    /* Button hover effect */
-    .stButton button:hover {{
-        background-color: #f9a825 !important;
-        color: black !important;
-    }}
+        /* Button styling */
+        .stButton button {{
+            background-color: yellow !important; /* Yellow background */
+            color: black !important; /* Black text */
+            border: 2px solid #f9a825; /* Border to match select box */
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }}
+        
+        /* Button hover effect */
+        .stButton button:hover {{
+            background-color: #f9a825 !important;
+            color: black !important;
+        }}
 
-    /* Increase logo size */
-    .logo {{
-        width: 250px;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-    }}
+        /* Increase logo size */
+        .logo {{
+            width: 250px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }}
 
-    /* Footer text styling */
-    .footer {{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #1E90FF;
-        color: black;
-        text-align: center;
-        padding: 10px 0;
-        font-weight: bold;
-    }}
-</style>
+        /* Footer text styling */
+        .footer {{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1E90FF;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+        }}
+    </style>
 """, unsafe_allow_html=True)
 
 # Display logo
@@ -179,41 +162,20 @@ if selected_page == "How to Use":
     )
 
     st.header("Login Section")
-    if "button_text" not in st.session_state:
-        st.session_state.button_text = "Login"
-    if "login_message" not in st.session_state:
-        st.session_state.login_message = ""
-    if "selected_page" not in st.session_state:
-        st.session_state.selected_page = "Login Section"
-
-# Define allowed emails
-    allowed_emails = ["mis.operations@mpokket.com"]
-
-# Page navigation logic
-    if st.session_state.selected_page == "Login Section":
-        st.header("Login Section")
-
     email = st.text_input("Enter your email ID", key="email_input")
-
-    if st.button(st.session_state.button_text):
-        if st.session_state.button_text == "Login":
-            if email in allowed_emails:
-            # Update session state upon successful login
-                st.session_state.login_message = "You are successfully logged in. Click on the 'Get In' button."
-                st.session_state.button_text = "Get In"
-                st.session_state.login_email = email
-                st.success(st.session_state.login_message)
-            else:
-                st.error("Invalid email ID. Please try again.")
-        elif st.session_state.button_text == "Get In":
+    if st.button("Login"):
+        allowed_emails = ["mis.operations@mpokket.com"]
+        if email in allowed_emails:
+            st.session_state["login_email"] = email
             st.session_state["selected_page"] = "Input Form"
-            st.success("Welcome! You can now proceed.")
+            st.success("Login successful! Redirecting to Input Form...")
+        else:
+            st.error("Invalid email ID. Please try again.")
 
-# Display the login message
-    if st.session_state.login_message:
-        st.write(st.session_state.login_message)
+
 # Input Form Page
 elif selected_page == "Input Form":
+    st.title("Input Form")
 
     # Data storage
     if "input_table" not in st.session_state:
@@ -257,8 +219,6 @@ elif selected_page == "Input Form":
             dropdown.append(i['EMP_ID'])
     # Show the dropdown menu with the data fetched from Google Sheets
         EMP_ID = st.selectbox("Agent EMP ID", dropdown)
-        selected_login_id = next(item["Ameyo_Id"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
-        selected_Name = next(item["Name"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
 
         # Login ID (Numeric validation)
         sheet = spreadsheet.worksheet("Agent_Data")
@@ -266,14 +226,14 @@ elif selected_page == "Input Form":
         for i in dropdown_values:
             dropdown.append(i['Ameyo_Id'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Login_ID = st.selectbox("Enter Login ID:", dropdown,index=dropdown.index(selected_login_id))
+        Login_ID = st.selectbox("Enter Login ID:", dropdown)
 
         # Agent Name (No validation)
         dropdown=[]
         for i in dropdown_values:
             dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
+        Agent_Name = st.selectbox("Enter Agent Name:", dropdown)
         
 
         # Team Leader (No validation)
@@ -290,8 +250,6 @@ elif selected_page == "Input Form":
         # Auditor Designation (List validation)
         auditor_designation = st.selectbox("Select Auditor Designation:", ["TL", "Trainer"])
 
-    with col2:
-        
         # User Register Number (Numeric validation)
         user_register_number = st.text_input("Enter User Register Number:")
 
@@ -300,7 +258,7 @@ elif selected_page == "Input Form":
 
         # Date of Call (Date format validation)
         date_of_call = st.date_input("Enter Date of Call:")
-        
+    with col2:
         # Call Time Slot (Time format validation)
         call_time_slot = st.time_input("Enter Call Time Slot:")
 
@@ -359,14 +317,12 @@ elif selected_page == "Input Form":
 
         Agent_Feedback_Status = st.selectbox("Agent Feedback Status", ["Closed", "Open"])
 
-
-    with col4:
         Profile_completion_status_prior_to_call = st.selectbox("Profile completion status prior to call",
                                                                ["Blank profile", "Partially complete",
                                                                 "Almost complete"])
 
         PIP_SFA_Status = st.selectbox("PIP/SFA Status", ["Correct", "Incorrect", "NA"])
-        
+    with col4:
         VOC = st.text_input("VOC")
 
         AOI = st.text_input("AOI")

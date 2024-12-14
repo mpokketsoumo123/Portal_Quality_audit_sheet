@@ -460,6 +460,10 @@ elif selected_page == "Input Form":
             "Actual Tagging L2": Actual_Tagging_L2,
             "Actual Tagging L3": Actual_Tagging_L3
         }
+    missing_fields = [key for key, value in form_data.items() if not value or value == ""]
+    if missing_fields:
+        error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
+    else:
         st.session_state["input_table"].append(data)
 
     # Display Table

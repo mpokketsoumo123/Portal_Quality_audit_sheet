@@ -89,42 +89,25 @@ if uploaded_file is not None:
         padding-top: 20px;
     }}
 
-     div[data-baseweb="select"] > div {{
-        background-color: #FFFFFF  !important; /* Black dropdown background */
-        color: #000000 !important; /* White text */
-        border: 2px solid #000000 !important; /* Orange border */
+     /* Input, dropdown container, and options styling */
+    input, select, div[data-baseweb="select"] > div {{
+        background-color: black !important; /* Black dropdown background */
+        color: white !important; /* White text */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
+        width: 300px !important; /* Increased width */
         height: 50px !important; /* Increased height */
-    }}
-
-    div[data-baseweb="select"] > div {{
-        color: #000000 !important; /* White text for dropdown and select options */
-    }}
-
-    div[data-baseweb="input"] > div {{
-        background-color: #FFFFFF !important; /* Black dropdown background */
-        color: #000000 !important; /* White text */
-        border: 2px solid #000000 !important; /* Orange border */
-        font-size: 16px !important; /* Larger text */
-        border-radius: 5px !important; /* Rounded corners */
-        padding: 5px !important;
-        height: 50px !important; /* Increased height */
-    }}
-    div[data-baseweb="input"] > div {{
-        color: #000000 !important; /* White text for dropdown and select options */
     }}
     
+    /* Style for the labels */
     label {{
-        font-weight: super bold !important;
+        font-weight: bold !important;
         color: black !important;
-        font-size: 40px !important; /* Increase label size */
+        font-size: 20px !important; /* Increased label size */
         display: block;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
     }}
-
-
 
     /* Button styling */
     .stButton button {{
@@ -216,13 +199,15 @@ if selected_page == "How to Use":
         if st.session_state.button_text == "Login":
             if email in allowed_emails:
             # Update session state upon successful login
-                st.session_state.login_message = "You are successfully logged in. Click on the  button again."
-                st.session_state["selected_page"] = "Input Form"
-                st.success("Welcome! You can now proceed.")
+                st.session_state.login_message = "You are successfully logged in. Click on the 'Get In' button."
+                st.session_state.button_text = "Get In"
+                st.session_state.login_email = email
+                st.success(st.session_state.login_message)
             else:
                 st.error("Invalid email ID. Please try again.")
-
-
+        elif st.session_state.button_text == "Get In":
+            st.session_state["selected_page"] = "Input Form"
+            st.success("Welcome! You can now proceed.")
 
 # Display the login message
     if st.session_state.login_message:

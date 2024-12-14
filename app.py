@@ -336,9 +336,15 @@ elif selected_page == "Input Form":
         
         # Call Time Slot (Time format validation)
         call_time_slot = st.time_input("Enter Call Time Slot:")
-
+        
         # Bucket (List format)
-        bucket = st.selectbox("Select Bucket:", ["Bucket 1", "Bucket 2", "Bucket 3", "Bucket 4"])
+        sheet1=spreadsheet.worksheet("dropdown_list")
+        dropdown1_values = sheet1.get_all_records(expected_headers=None)
+        dropdown1=[]
+        for i in dropdown1_values:
+            dropdown1.append(i['Bucket_Name'])
+    # Show the dropdown menu with the data fetched from Google Sheets
+        bucket = st.selectbox("Bucket:",dropdown1)
 
         # Energetic Opening and Closing (Yes/No validation)
         energetic_opening_closing = st.selectbox("Energetic Opening and Closing?", ["Yes", "No"])

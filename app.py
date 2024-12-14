@@ -476,7 +476,9 @@ elif selected_page == "Input Form":
             step=1
         )
         if st.button("Delete Row"):
-            st.session_state["input_table"] = df.drop(index=row_to_delete - 1).reset_index(drop=True)
+    # Remove the row using a 0-based index
+            updated_df = df.drop(index=row_to_delete - 1).reset_index(drop=True)
+            st.session_state["input_table"] = updated_df
             st.success(f"Row {row_to_delete} deleted.")
 
     # Final Submit Button

@@ -127,7 +127,14 @@ if uploaded_file is not None:
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
-
+    .stTextInput>div>div>input {{
+        width: 300px;  /* Set width */
+        height: 50px;  /* Set height */
+    }}
+    .stTextInput label {{
+        font-size: 20px;  /* Adjust font size */
+        font-weight: bold;  /* Make text bold */
+    }}
     /* Style for the dropdown label */
     label {{
         font-weight: bold !important;
@@ -307,7 +314,7 @@ elif selected_page == "Input Form":
         team_leader = st.text_input("Enter Team Leader Name:")
 
         # Audit Name (No validation)
-        audit_name = st.textbox("Enter Audit Name:")
+        audit_name = st.text_input("Enter Audit Name:")
 
         # Auditor Center (List validation)
         auditor_center = st.selectbox("Select Auditor Center:",

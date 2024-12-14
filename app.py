@@ -216,15 +216,13 @@ if selected_page == "How to Use":
         if st.session_state.button_text == "Login":
             if email in allowed_emails:
             # Update session state upon successful login
-                st.session_state.login_message = "You are successfully logged in. Click on the 'Get In' button."
-                st.session_state.button_text = "Get In"
-                st.session_state.login_email = email
-                st.success(st.session_state.login_message)
+                st.session_state.login_message = "You are successfully logged in. Click on the  button again."
+                st.session_state["selected_page"] = "Input Form"
+                st.success("Welcome! You can now proceed.")
             else:
                 st.error("Invalid email ID. Please try again.")
-        elif st.session_state.button_text == "Get In":
-            st.session_state["selected_page"] = "Input Form"
-            st.success("Welcome! You can now proceed.")
+
+
 
 # Display the login message
     if st.session_state.login_message:

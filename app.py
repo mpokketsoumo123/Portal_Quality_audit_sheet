@@ -93,12 +93,12 @@ if uploaded_file is not None:
     div[data-baseweb="select"] > div {{
         background-color: #ffffff !important; /* Black dropdown background */
         color: #000000 !important; /* White text */
-        border: 1px solid #000000 !important; /* Orange border */
+        border: 2px solid #000000 !important; /* Orange border */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
-        width: 400px !important;
-        height:60px !important;
+        width: 300px !important;
+        height:50px !important;
     }}
 
     div[data-baseweb="select"] > div {{

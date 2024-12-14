@@ -406,9 +406,20 @@ elif selected_page == "Input Form":
 
         PIP_SFA_Status = st.selectbox("PIP/SFA Status", ["Correct", "Incorrect", "NA"])
         
-        VOC = st.text_input("VOC")
 
-        AOI = st.text_input("AOI")
+        dropdown1_values = sheet1.get_all_records(expected_headers=None)
+        dropdown1=[]
+        for i in dropdown1_values:
+            dropdown1.append(i['VOC'])
+    # Show the dropdown menu with the data fetched from Google Sheets
+        VOC = st.selectbox("VOC:",dropdown1)
+        
+        dropdown1_values = sheet1.get_all_records(expected_headers=None)
+        dropdown1=[]
+        for i in dropdown1_values:
+            dropdown1.append(i['AOI'])
+    # Show the dropdown menu with the data fetched from Google Sheets
+        AOI = st.selectbox("AOI:",dropdown1)
 
         call_duration = st.text_input("Enter Call Duration (HH:mm:ss):")
 

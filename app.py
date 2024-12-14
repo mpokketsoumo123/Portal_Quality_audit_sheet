@@ -307,7 +307,7 @@ elif selected_page == "Input Form":
         team_leader = st.text_input("Enter Team Leader Name:")
 
         # Audit Name (No validation)
-        audit_name = st.text_input("Enter Audit Name:")
+        audit_name = st.textbox("Enter Audit Name:")
 
         # Auditor Center (List validation)
         auditor_center = st.selectbox("Select Auditor Center:",

@@ -415,6 +415,7 @@ elif selected_page == "Input Form":
         Actual_Tagging_L3 = st.text_input("Actual Tagging L3")
 
     # Add Row Button
+    error_placeholder = st.empty()
     if st.button("Add Row"):
         data = {
             "LOB": LOB,

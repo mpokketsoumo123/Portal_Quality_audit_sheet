@@ -460,11 +460,7 @@ elif selected_page == "Input Form":
             "Actual Tagging L2": Actual_Tagging_L2,
             "Actual Tagging L3": Actual_Tagging_L3
         }
-        missing_fields = [key for key, value in data.items() if not value or value == ""]
-        if missing_fields:
-            error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
-        else:
-            st.session_state["input_table"].append(data)
+        st.session_state["input_table"].append(data)
 
     # Display Table
     if st.session_state["input_table"]:
@@ -474,16 +470,14 @@ elif selected_page == "Input Form":
 
         # Delete Row
         row_to_delete = st.number_input(
-            "Enter Row Number to Delete:",
-            min_value=0,
+            "Enter Row Number to Delete (1-based index):",
+            min_value=1,
             max_value=len(df),
             step=1
         )
         if st.button("Delete Row"):
-    # Remove the row using a 0-based index
-            updated_df = df.drop(index=row_to_delete - 1).reset_index(drop=True)
-            st.session_state["input_table"] = updated_df
-            st.success(f"Row {row_to_delete} deleted.")
+            # Adjust for 1-based index
+            st.session_state["input_table"].pop(row_to_delete - 1)
 
     # Final Submit Button
     if st.session_state["input_table"] and st.button("Final Submit"):

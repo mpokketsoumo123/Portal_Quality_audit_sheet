@@ -131,7 +131,7 @@ if uploaded_file is not None:
         height: 50px;  /* Set height */
     }}
     .stTextInput label {{
-        font-size: 20px;  /* Adjust font size */
+        font-size: 50px;  /* Adjust font size */
         font-weight: bold;  /* Make text bold */
     }}
     /* Style for the dropdown label */

@@ -120,7 +120,8 @@ if uploaded_file is not None:
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
-        width: 300px
+        width: 300px !important;
+        height:50px !important;
     }}
 
     div[data-baseweb="select"] > div {{

@@ -342,10 +342,7 @@ elif selected_page == "Input Form":
         # Call Time Slot (Time format validation)
         sheet1=spreadsheet.worksheet("dropdown_list")
         dropdown1_values = sheet1.get_all_records(expected_headers=None)
-        dropdown1=[]
-        for i in dropdown1_values:
-            dropdown1.append(i['Call_Time_Slot'])
-        call_time_slot = st.selectbox("Call_Time_Slot:",dropdown1)
+        call_time_slot = st.selectbox("Call_Time_Slot:",list(set(i['Call_Time_Slot'] for row in dropdown1_values )))
         
         # Bucket (List format)
         sheet1=spreadsheet.worksheet("dropdown_list")

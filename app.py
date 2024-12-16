@@ -6,6 +6,7 @@ import datetime
 import base64
 from PIL import Image
 import io
+from google.oauth2.service_account import Credentials
 # Google Sheets Authentication
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(
@@ -17,6 +18,7 @@ def authenticate_google_sheets():
     )
     client = gspread.authorize(credentials)
     return client
+@st.cache_data(ttl=300) 
 def fetch_data_from_gsheet(sheet_name):
     client = authenticate_google_sheets()
     sheet = client.open(sheet_name).get_worksheet(1)  # Access Sheet 2 (index starts at 0)

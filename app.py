@@ -21,16 +21,15 @@ def authenticate_google_sheets():
     client = gspread.authorize(credentials)
     return client
 @st.cache_data(ttl=800)
-def get_data():
-    client = authenticate_google_sheets()
-    spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
-    agent_data = spreadsheet.worksheet("Agent_Data").get_all_records()
-    spreadsheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=762746449#gid=762746449")
-    dropdown_data = spreadsheet1.worksheet("dropdown_list").get_all_records()
-    return agent_data, dropdown_data
 
-# Fetch cached data
-agent_data, dropdown_data = get_data()
+client = authenticate_google_sheets()
+spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
+agent_data = spreadsheet.worksheet("Agent_Data").get_all_records()
+spreadsheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=762746449#gid=762746449")
+dropdown_data = spreadsheet1.worksheet("dropdown_list").get_all_records()
+
+
+
 
 # Write data to Google Sheets
 def write_to_sheet(sheet_name, data, email):

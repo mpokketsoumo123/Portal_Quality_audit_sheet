@@ -59,7 +59,7 @@ def write_to_sheet(sheet_name, data, email):
     sheet.append_row(data_with_meta)
 
 # Add custom CSS for styling
-st.set_page_config(page_title="Multi-Page App", layout="wide")
+
 
 # CSS styling
 uploaded_file = "Picture2.png"

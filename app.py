@@ -304,7 +304,7 @@ elif selected_page == "Input Form":
         # Agent Name (No validation)
 
     # Show the dropdown menu with the data fetched from Google Sheets
-        Agent_Name = st.selectbox("Enter Agent Name:", list(set(row['Name'] for row in dropdown_values )))
+        Agent_Name = st.text_input("Enter Agent Name:")
         
 
         # Team Leader (No validation)

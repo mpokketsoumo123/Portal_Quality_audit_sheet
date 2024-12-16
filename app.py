@@ -1,4 +1,4 @@
-st.set_page_config(page_title="Multi-Page App", layout="wide")
+
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -8,6 +8,7 @@ import base64
 from PIL import Image
 import io
 from google.oauth2.service_account import Credentials
+st.set_page_config(page_title="Multi-Page App", layout="wide")
 # Google Sheets Authentication
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(

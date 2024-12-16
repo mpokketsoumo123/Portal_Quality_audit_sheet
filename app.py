@@ -26,7 +26,7 @@ def fetch_data_from_gsheet(sheet_name):
     return data[1:]  # Skip header row if there's one
 
 # Fetch cached data
-agent_data, dropdown_data = get_data()
+
 
 # Write data to Google Sheets
 def write_to_sheet(sheet_name, data, email):

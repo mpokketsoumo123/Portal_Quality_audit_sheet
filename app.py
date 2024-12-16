@@ -1,4 +1,3 @@
-
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -8,7 +7,6 @@ import base64
 from PIL import Image
 import io
 from google.oauth2.service_account import Credentials
-st.set_page_config(page_title="Multi-Page App", layout="wide")
 # Google Sheets Authentication
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(
@@ -21,15 +19,14 @@ def authenticate_google_sheets():
     client = gspread.authorize(credentials)
     return client
 @st.cache_data(ttl=800)
+def fetch_data_from_gsheet(sheet_name):
+    client = authenticate_google_sheets()
+    sheet = client.open(sheet_name).get_worksheet(1)  # Access Sheet 2 (index starts at 0)
+    data = sheet.col_values(1)  # Get all values from the first column
+    return data[1:]  # Skip header row if there's one
 
-
-spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
-agent_data = spreadsheet.worksheet("Agent_Data").get_all_records()
-spreadsheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=762746449#gid=762746449")
-dropdown_data = spreadsheet1.worksheet("dropdown_list").get_all_records()
-
-
-
+# Fetch cached data
+agent_data, dropdown_data = get_data()
 
 # Write data to Google Sheets
 def write_to_sheet(sheet_name, data, email):
@@ -59,7 +56,7 @@ def write_to_sheet(sheet_name, data, email):
     sheet.append_row(data_with_meta)
 
 # Add custom CSS for styling
-
+st.set_page_config(page_title="Multi-Page App", layout="wide")
 
 # CSS styling
 uploaded_file = "Picture2.png"
@@ -287,11 +284,34 @@ elif selected_page == "Input Form":
         audit_category = st.selectbox("Select Audit Category:", ["Floor", "RCA"])
         client = authenticate_google_sheets()
 
-# Open the Google Sheet by its URL or nam
+# Open the Google Sheet by its URL or name
+        spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
+# Specify the sheet name you want to read
+        sheet = spreadsheet.worksheet("Agent_Data")
+          # Replace with your sheet name
+        dropdown_values = sheet.get_all_records(expected_headers=None)
+        dropdown=[]
+        for i in dropdown_values:
+            dropdown.append(i['EMP_ID'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        EMP_ID = st.selectbox("Agent EMP ID", [row['EMP_ID'] for row in agent_data])
-        Login_ID = next(row['Ameyo_Id'] for row in agent_data if row['EMP_ID'] == EMP_ID)
-        Agent_Name =  next(row['Name'] for row in agent_data if row['EMP_ID'] == EMP_ID)
+        EMP_ID = st.selectbox("Agent EMP ID", dropdown)
+        selected_login_id = next(item["Ameyo_Id"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
+        selected_Name = next(item["Name"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
+
+        # Login ID (Numeric validation)
+        sheet = spreadsheet.worksheet("Agent_Data")
+        dropdown=[]
+        for i in dropdown_values:
+            dropdown.append(i['Ameyo_Id'])
+    # Show the dropdown menu with the data fetched from Google Sheets
+        Login_ID = st.selectbox("Enter Login ID:", dropdown,index=dropdown.index(selected_login_id))
+
+        # Agent Name (No validation)
+        dropdown=[]
+        for i in dropdown_values:
+            dropdown.append(i['Name'])
+    # Show the dropdown menu with the data fetched from Google Sheets
+        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
         
 
         # Team Leader (No validation)

@@ -292,7 +292,7 @@ elif selected_page == "Input Form":
         dropdown_values = sheet.get_all_records(expected_headers=None)
 
     # Show the dropdown menu with the data fetched from Google Sheets
-        EMP_ID = st.selectbox("Agent EMP ID", list(set(row['VOC'] for row in dropdown_values )))
+        EMP_ID = st.selectbox("Agent EMP ID", list(set(row['EMP_ID'] for row in dropdown_values )))
         selected_login_id = next(item["Ameyo_Id"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
         selected_Name = next(item["Name"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
 

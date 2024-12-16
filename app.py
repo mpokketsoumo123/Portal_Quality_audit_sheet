@@ -290,28 +290,21 @@ elif selected_page == "Input Form":
         sheet = spreadsheet.worksheet("Agent_Data")
           # Replace with your sheet name
         dropdown_values = sheet.get_all_records(expected_headers=None)
-        dropdown=[]
-        for i in dropdown_values:
-            dropdown.append(i['EMP_ID'])
+
     # Show the dropdown menu with the data fetched from Google Sheets
-        EMP_ID = st.selectbox("Agent EMP ID", dropdown)
+        EMP_ID = st.selectbox("Agent EMP ID", list(set(row['VOC'] for row in dropdown_values )))
         selected_login_id = next(item["Ameyo_Id"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
         selected_Name = next(item["Name"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
 
         # Login ID (Numeric validation)
         sheet = spreadsheet.worksheet("Agent_Data")
-        dropdown=[]
-        for i in dropdown_values:
-            dropdown.append(i['Ameyo_Id'])
-    # Show the dropdown menu with the data fetched from Google Sheets
-        Login_ID = st.selectbox("Enter Login ID:", dropdown,index=dropdown.index(selected_login_id))
+
+        Login_ID = st.selectbox("Enter Login ID:",  list(set(row['Ameyo_Id'] for row in dropdown_values )),index=dropdown.index(selected_login_id))
 
         # Agent Name (No validation)
-        dropdown=[]
-        for i in dropdown_values:
-            dropdown.append(i['Name'])
+
     # Show the dropdown menu with the data fetched from Google Sheets
-        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
+        Agent_Name = st.selectbox("Enter Agent Name:", list(set(row['Name'] for row in dropdown_values )),index=dropdown.index(selected_Name))
         
 
         # Team Leader (No validation)

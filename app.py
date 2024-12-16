@@ -22,7 +22,7 @@ def authenticate_google_sheets():
     return client
 @st.cache_data(ttl=800)
 
-client = authenticate_google_sheets()
+
 spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
 agent_data = spreadsheet.worksheet("Agent_Data").get_all_records()
 spreadsheet1 = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=762746449#gid=762746449")

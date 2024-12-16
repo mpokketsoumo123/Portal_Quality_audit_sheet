@@ -523,7 +523,6 @@ elif selected_page == "Input Form":
         if st.button("Delete Row"):
             # Adjust for 1-based index
             st.session_state["input_table"].pop(row_to_delete - 1)
-            st.experimental_rerun()
 
     # Final Submit Button
     if st.session_state["input_table"] and st.button("Final Submit"):

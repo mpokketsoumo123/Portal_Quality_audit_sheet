@@ -18,7 +18,7 @@ def authenticate_google_sheets():
     )
     client = gspread.authorize(credentials)
     return client
-@st.cache_data(ttl=800)
+@st.cache_data(ttl=1200)
 def fetch_data_from_gsheet(sheet_name):
     client = authenticate_google_sheets()
     sheet = client.open(sheet_name).get_worksheet(1)  # Access Sheet 2 (index starts at 0)

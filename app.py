@@ -23,7 +23,7 @@ def authenticate_google_sheets():
 @st.cache_data(ttl=800)
 def get_data():
     client = authenticate_google_sheets()
-    spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=0#gid=0")
+    spreadsheet = client.open_by_url("https://docs.google.com/spreadsheets/d/1Qi_wJmG-Y1rQaeF1bI51zuAPEP3f-iNdUwVk1RHpM0s/edit?gid=1871398781#gid=1871398781")
     agent_data = spreadsheet.worksheet("Agent_Data").get_all_records()
     dropdown_data = spreadsheet.worksheet("dropdown_list").get_all_records()
     return agent_data, dropdown_data

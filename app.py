@@ -347,11 +347,8 @@ elif selected_page == "Input Form":
         # Bucket (List format)
         sheet1=spreadsheet.worksheet("dropdown_list")
         dropdown1_values = sheet1.get_all_records(expected_headers=None)
-        dropdown1=[]
-        for i in dropdown1_values:
-            dropdown1.append(i['Bucket_Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        bucket = st.selectbox("Bucket:",dropdown1)
+        bucket = st.selectbox("Bucket:",list(set(row['Bucket_Name'] for row in dropdown1_values )))
 
         # Energetic Opening and Closing (Yes/No validation)
         energetic_opening_closing = st.selectbox("Energetic Opening and Closing?", ["Yes", "No"])
@@ -415,18 +412,11 @@ elif selected_page == "Input Form":
         
 
         dropdown1_values = sheet1.get_all_records(expected_headers=None)
-        dropdown1=[]
-        for i in dropdown1_values:
-            dropdown1.append(i['VOC'])
-    # Show the dropdown menu with the data fetched from Google Sheets
-        VOC = st.selectbox("VOC:",dropdown1)
+        VOC = st.selectbox("VOC:",list(set(row['VOC'] for row in dropdown1_values )))
         
         dropdown1_values = sheet1.get_all_records(expected_headers=None)
-        dropdown1=[]
-        for i in dropdown1_values:
-            dropdown1.append(i['AOI'])
-    # Show the dropdown menu with the data fetched from Google Sheets
-        AOI = st.selectbox("AOI:",dropdown1)
+
+        AOI = st.selectbox("AOI:",list(set(row['AOI'] for row in dropdown1_values )))
 
         call_duration = st.text_input("Enter Call Duration (HH:mm:ss):")
 

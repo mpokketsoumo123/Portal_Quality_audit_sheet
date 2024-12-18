@@ -152,7 +152,7 @@ if uploaded_file is not None:
         margin-bottom: 8px;
     }}
     .stSelectbox {{
-        margin-top: -15px; /* Reduce spacing above the dropdown */
+        margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
 
     /* Button styling */

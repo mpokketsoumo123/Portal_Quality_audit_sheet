@@ -60,7 +60,11 @@ st.set_page_config(page_title="Multi-Page App", layout="wide")
 
 # CSS styling
 uploaded_file = "Picture2.png"
-
+df=pd.read_csv('drop_down_list.csv')
+call_time_slot=df['Call Time Slot'].dropna()
+Bucket_name=df['Bucket Name'].dropna()
+VOC=df['VOC'].dropna()
+AOI=df['AOI'].dropna()
 if uploaded_file is not None:
     # Convert uploaded image to Image object
     image = Image.open(uploaded_file)
@@ -333,15 +337,13 @@ elif selected_page == "Input Form":
         date_of_call = st.date_input("Enter Date of Call:")
         
         # Call Time Slot (Time format validation)
-        sheet1=spreadsheet.worksheet("dropdown_list")
-        dropdown1_values = sheet1.get_all_records(expected_headers=None)
-        call_time_slot = st.selectbox("Call_Time_Slot:",list(set(row['Call_Time_Slot'] for row in dropdown1_values )))
+        
+        call_time_slot = st.selectbox("Call_Time_Slot:",list(call_time_slot))
         
         # Bucket (List format)
-        sheet1=spreadsheet.worksheet("dropdown_list")
-        dropdown1_values = sheet1.get_all_records(expected_headers=None)
+        
     # Show the dropdown menu with the data fetched from Google Sheets
-        bucket = st.selectbox("Bucket:",list(set(row['Bucket_Name'] for row in dropdown1_values )))
+        bucket = st.selectbox("Bucket:",list(Bucket_name))
 
         # Energetic Opening and Closing (Yes/No validation)
         energetic_opening_closing = st.selectbox("Energetic Opening and Closing?", ["Yes", "No"])
@@ -405,11 +407,11 @@ elif selected_page == "Input Form":
         
 
         dropdown1_values = sheet1.get_all_records(expected_headers=None)
-        VOC = st.selectbox("VOC:",list(set(row['VOC'] for row in dropdown1_values )))
+        VOC = st.selectbox("VOC:",list(VOC))
         
         dropdown1_values = sheet1.get_all_records(expected_headers=None)
 
-        AOI = st.selectbox("AOI:",list(set(row['AOI'] for row in dropdown1_values )))
+        AOI = st.selectbox("AOI:",list(AOI))
 
         call_duration = st.text_input("Enter Call Duration (HH:mm:ss):")
 

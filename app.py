@@ -95,7 +95,7 @@ if uploaded_file is not None:
         font-weight: bold;
         font-size: 50px;
         color: black;
-        padding-top: 20px;
+        padding-top: 10px;
     }}
 
     /* Dropdown container and options styling */

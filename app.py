@@ -335,7 +335,7 @@ elif selected_page == "Input Form":
 
         # Audit Name (No validation)
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
-        audit_name = st.text_input()
+        audit_name = st.text_input("")
 
         # Auditor Center (List validation)
         st.markdown('<div class="custom-label">Select Auditor Center:</div>', unsafe_allow_html=True)

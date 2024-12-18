@@ -151,6 +151,9 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
+    .stSelectbox {{
+        margin-top: -15px; /* Reduce spacing above the dropdown */
+    }}
 
     /* Button styling */
     .stButton button {{
@@ -270,7 +273,6 @@ elif selected_page == "Input Form":
         # Date of Birth input (DOB)
         st.markdown('<div class="custom-label">LOB:</div>', unsafe_allow_html=True)
         LOB = st.selectbox("", ["SE", "SIB", "SIC", "Student"])
-        st.write(f"You selected: {LOB}")
         # Center selection
         center = st.selectbox("Select your Center:",
                               ["Bhopal", "Indore", "Vijaywada", "MYS", "Noida", "Kolkata", "Coimbatore", "Ranchi"])

@@ -191,7 +191,7 @@ if uploaded_file is not None:
         padding: 10px 0;
         font-weight: bold;
     }}
-    .custom-lob-label {{
+    .custom-label {{
         font-size: 30px; /* Adjust font size */
         font-weight: bold; /* Optional: Make it bold */
         color: #333; /* Optional: Change text color */

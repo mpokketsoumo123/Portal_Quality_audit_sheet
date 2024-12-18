@@ -214,6 +214,12 @@ if uploaded_file is not None:
         margin-right: 10px; /* Space between logo and text */
     }}
 
+     header h1 {{
+        font-size: 24px;
+        color: #333; /* Optional: Change text color */
+        margin: 0;
+        font-weight: bold;}}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -221,6 +227,7 @@ if uploaded_file is not None:
 st.markdown("""
     <header>
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" alt="logo"> 
+        <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)
 #st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)

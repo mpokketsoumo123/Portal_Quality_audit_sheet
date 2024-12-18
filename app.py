@@ -331,7 +331,7 @@ elif selected_page == "Input Form":
 
         # Team Leader (No validation)
         st.markdown('<div class="custom-label">Enter Team Leader Name:</div>', unsafe_allow_html=True)
-        team_leader = st.text_input("")
+        team_leader = st.selectbox("")
 
         # Audit Name (No validation)
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)

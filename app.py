@@ -387,7 +387,7 @@ elif selected_page == "Input Form":
         Current_Profile_Stage_Previous_Interaction = st.selectbox("",
                                                                   ["Yes", "No", "FATAL"],key="Current_Profile_Stage_Previous_Interaction")
 
-        st.markdown('<div class="custom-label">Probe If User have any doc releated Profession Study Business:</div>', unsafe_allow_html=True)
+        st.markdown('<div class="custom-label"> Doc Releated Profession Study Business:</div>', unsafe_allow_html=True)
         Probe_If_User_have_any_doc_releated_Profession_Study_Business = st.selectbox(
             "", ["Yes", "No", "NA"],key="Probe_If_User_have_any_doc_releated_Profession_Study_Business")
 

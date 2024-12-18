@@ -203,7 +203,7 @@ if uploaded_file is not None:
 
     header {{
         display: flex;
-        padding: 10px 20px;
+        padding: 5px 10px;
        
     }}
     header img {{

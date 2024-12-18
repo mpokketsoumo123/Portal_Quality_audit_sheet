@@ -209,9 +209,9 @@ if uploaded_file is not None:
        
     }}
     header img {{
-        max-width: 50px; /* Adjust logo size */
-        height: 150px;
-        margin-right: 20px; /* Space between logo and text */
+        max-width: 40px; /* Adjust logo size */
+        height: 80px;
+        margin-right: 70px; /* Space between logo and text */
     }}
 
      header h1 {{

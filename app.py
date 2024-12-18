@@ -135,25 +135,6 @@ if uploaded_file is not None:
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
-    .stTextInput>div>div>input {{
-        width: 300px;  /* Set width */
-        height: 50px;  /* Set height */
-    }}
-    .stTextInput label {{
-        font-size: 50px;  /* Adjust font size */
-        font-weight: bold;  /* Make text bold */
-    }}
-    /* Style for the dropdown label */
-    .custom-label {{
-        font-weight: bold !important;
-        color: black !important;
-        font-size: 18px !important; /* Increase label size */
-        display: block;
-        margin-bottom: 8px;
-    }}
-    .stSelectbox {{
-        margin-top: -30px; /* Reduce spacing above the dropdown */
-    }}
 
     /* Button styling */
     .stButton button {{
@@ -189,17 +170,23 @@ if uploaded_file is not None:
         text-align: center;
         padding: 10px 0;
         font-weight: bold;
-    .logo {{
+    .header {{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 0px;
+        padding: 10px 20px;
         background-color: #f8f9fa; /* Optional: Change background color */
         border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
     }}
-    .logo img {{
+    .header img {{
         max-width: 120px; /* Adjust logo size */
         height: auto;
+    }}
+    .header h1 {{
+        font-size: 24px;
+        color: #333; /* Optional: Change text color */
+        margin: 0;
+        font-weight: bold;
     }}
 </style>
 """, unsafe_allow_html=True)

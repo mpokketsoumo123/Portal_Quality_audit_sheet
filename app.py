@@ -331,11 +331,11 @@ elif selected_page == "Input Form":
 
         # Team Leader (No validation)
         st.markdown('<div class="custom-label">Enter Team Leader Name:</div>', unsafe_allow_html=True)
-        team_leader = st.selectbox("")
+        team_leader = st.text_input("")
 
         # Audit Name (No validation)
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
-        audit_name = st.text_input("")
+        audit_name = st.selectbox("",dropdown)
 
         # Auditor Center (List validation)
         st.markdown('<div class="custom-label">Select Auditor Center:</div>', unsafe_allow_html=True)

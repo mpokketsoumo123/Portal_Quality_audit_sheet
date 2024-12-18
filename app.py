@@ -285,7 +285,7 @@ elif selected_page == "Input Form":
 
         # Date of Audit (Date format)
         st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
-        date_of_audit = st.date_input("")
+        date_of_audit = st.date_input("",key="date_of_audit")
 
         # Week (List format)
         st.markdown('<div class="custom-label">Select Week:</div>', unsafe_allow_html=True)
@@ -359,7 +359,7 @@ elif selected_page == "Input Form":
 
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
-        date_of_call = st.date_input("")
+        date_of_call = st.date_input("",key="date_of_call")
         
         # Call Time Slot (Time format validation)
         st.markdown('<div class="custom-label">Call_Time_Slot:</div>', unsafe_allow_html=True)

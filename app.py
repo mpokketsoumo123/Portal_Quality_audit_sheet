@@ -201,14 +201,27 @@ if uploaded_file is not None:
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
 
+    header {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f8f9fa; /* Optional: Change background color */
+        border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
+    }}
+    header img {{
+        max-width: 100px; /* Adjust logo size */
+        height: auto;
+    }}
+
 </style>
 """, unsafe_allow_html=True)
 
 # Display logo
-st.markdown("""<header>
-    <div class="logo">
+st.markdown("""
+    <header>
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo"> 
-    </div></header>
+    </header>
     """, unsafe_allow_html=True)
 #st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
 

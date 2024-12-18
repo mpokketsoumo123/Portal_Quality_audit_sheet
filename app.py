@@ -206,8 +206,7 @@ if uploaded_file is not None:
         align-items: flex-start; /* Aligns items to the top */
         justify-content: flex-start; /* Aligns items to the left */
         padding: 10px 20px;
-        background-color: #f8f9fa; /* Optional: Change background color */
-        border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
+       
     }}
     header img {{
         max-width: 100px; /* Adjust logo size */

@@ -99,7 +99,7 @@ if uploaded_file is not None:
     }}
 
     /* Dropdown container and options styling */
-    .div[data-baseweb="select"] > div {{
+    div[data-baseweb="select"] > div {{
         background-color: #ffffff !important; /* Black dropdown background */
         color: #000000 !important; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
@@ -110,19 +110,19 @@ if uploaded_file is not None:
         height:50px !important;
     }}
 
-    .div[data-baseweb="select"] > div {{
+    div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
 
     /* Style for the dropdown label */
-    .label {{
+    label {{
         font-weight: bold !important;
         color: black !important;
         font-size: 18px !important; /* Increase label size */
         display: block;
         margin-bottom: 8px;
     }}
-    .div[data-baseweb="input"] > div {{
+    div[data-baseweb="input"] > div {{
         background-color: #FFFFFF !important; /* Black dropdown background */
         color: #000000 !important; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
@@ -132,7 +132,7 @@ if uploaded_file is not None:
         height:50px !important;
     }}
 
-    .div[data-baseweb="select"] > div {{
+    div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
     .stTextInput>div>div>input {{
@@ -143,6 +143,14 @@ if uploaded_file is not None:
         font-size: 50px;  /* Adjust font size */
         font-weight: bold;  /* Make text bold */
     }}
+    label {{
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 18px !important; /* Increase label size */
+        display: block;
+        margin-bottom: 8px;
+    }}
+
 
 
     /* Button styling */

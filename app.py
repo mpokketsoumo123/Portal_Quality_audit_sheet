@@ -379,7 +379,7 @@ elif selected_page == "Input Form":
         motive_of_call = st.selectbox("", ["Yes", "No"])
 
         # Probe / Confirm User's Profession (Yes/No validation)
-        st.markdown('<div class="custom-label">Probe / Confirm User's Profession:</div>', unsafe_allow_html=True)
+        st.markdown("""<div class="custom-label">Probe / Confirm User's Profession:</div>""", unsafe_allow_html=True)
         probe_confirm_user_profession = st.selectbox("", ["Yes", "No", "NA"])
 
         # Current Profile Stage / Previous Interaction

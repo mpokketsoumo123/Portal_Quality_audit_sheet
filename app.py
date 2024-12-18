@@ -406,10 +406,10 @@ elif selected_page == "Input Form":
         PIP_SFA_Status = st.selectbox("PIP/SFA Status", ["Correct", "Incorrect", "NA"])
         
 
-        dropdown1_values = sheet1.get_all_records(expected_headers=None)
+        
         VOC = st.selectbox("VOC:",list(VOC))
         
-        dropdown1_values = sheet1.get_all_records(expected_headers=None)
+        
 
         AOI = st.selectbox("AOI:",list(AOI))
 

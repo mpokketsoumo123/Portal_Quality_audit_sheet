@@ -147,7 +147,7 @@ if uploaded_file is not None:
     .custom-label {{
         font-weight: bold !important;
         color: black !important;
-        font-size: 50px !important; /* Increase label size */
+        font-size: 18px !important; /* Increase label size */
         display: block;
         margin-bottom: 8px;
     }}
@@ -270,7 +270,7 @@ elif selected_page == "Input Form":
         # Date of Birth input (DOB)
         st.markdown('<div class="custom-label">LOB:</div>', unsafe_allow_html=True)
         LOB = st.selectbox("", ["SE", "SIB", "SIC", "Student"])
-
+        st.write(f"You selected: {LOB}")
         # Center selection
         center = st.selectbox("Select your Center:",
                               ["Bhopal", "Indore", "Vijaywada", "MYS", "Noida", "Kolkata", "Coimbatore", "Ranchi"])

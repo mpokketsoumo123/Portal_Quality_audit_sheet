@@ -1,0 +1,70 @@
+﻿Call Time Slot,Bucket Name,VOC,AOI
+01:01-02:00 PM,AP_Salaried_Onboarding_T0,Aadhar card linked number lost,Aadhar update not informed
+02:01-03:00 PM,AP_Salaried_Onboarding_T1-T3,Aadhar card linked number not available,Active listening missing
+03:01-04:00 PM,AP_Salaried_Onboarding_T4-T7,Aadhar not linked with any number,Agent disconnected call with out responding on call
+04:01-05:00 PM,AP_Salaried_Onboarding_T4-T7 ,Aadhar OTP is not coming,Agent disconnected call with out verbiage
+05:01-06:00 PM,AP_Student _Onboarding_T4-T7,Adhar already exsists issue,Agent disconnected call with verbiage
+06:01-07:00 PM,AP_Student_Onboarding_T0,Age above 30 years,Agent disconnected the call during conversation
+07:01-08:00 PM,AP_Student_Onboarding_T1-T3,Age below 18 years,Agent not responding on call
+08:01-09:00 PM,AP_Student_Onboarding_T4-T7,Already having an approved profile,Agent should avoid to ask open ended question
+09:01-10:00 PM,Greater Than T30_Overall,Already uploaded docs but not approved,Agent should improve voice tone on call
+10:01-11:00 PM,KA_Salaried_Onboarding_T0,App Related Issue Employment section is not showing,Agent sounding unprofessional on call
+11:01-12:00 PM,KA_Salaried_Onboarding_T1-T3,App Related Issue Next button is not working,Alternate option not given
+12:01-01:00 PM,KA_Salaried_Onboarding_T4-T7,App Related Issue Student section is not showing,Benefit should be explained
+01:01-02:00 AM,KA_Student_Onboarding_T0,App Related Issue UAN Issue,Benefit Statement not pitched on call
+02:01-03:00 AM,KA_Student_Onboarding_T1-T3,App Related Issue unable to change the Selfie image,Call back verbiage not pitched
+03:01-04:00 AM,KA_Student_Onboarding_T4-T7,App Related Issue Unable to remove or add new documents,Call closing missing
+04:01-05:00 AM,Onboarding_T0,Asked to call back,Call closing not proper
+05:01-06:00 AM,Onboarding_T1-T7,BALLB Student,Call disconnected by agent
+06:01-07:00 AM,Onboarding_T8-T30,Bank Aggregator issue,Call flow not maintained 
+07:01-08:00 AM,Salaried_Callback,Bank Statement not Available,Call opening not proper - Greetings missing
+08:01-09:00 AM,Salaried_HP,Business proof not available,Call opening not proper - Power statement not used
+09:01-10:00 AM,Salaried_Onboarding_Callback,Duplicate Aadhar,Call opening not proper - Power statement not used
+10:01-11:00 AM,Salaried_Onboarding_HP,Duplicate PAN,Call opening not proper - Self name not confirmed
+11:01-12:00 AM,Salaried_Onboarding_T0,EMI related Queries,Call opening not proper - User name not confirmed
+12:01-01:00 AM,Salaried_Onboarding_T1-T3,First time loan amount too low,DCS cant Build the connect with the user
+,Salaried_T0,Getting numerous calls,Dead air
+,Salaried_T11-T30,Inter student,Documents details not shared on call
+,Salaried_T1-T3,Interest charges related query,Follow up missing
+,Salaried_T1-T5,Language barrier,FTB Closing verbiage not pitched
+,SE_Callback,Meena surname profile,Fumbling on call
+,SE_Onboarding _Ap,No Need for money,High rate of speech
+,SE_Onboarding _KA,Not able to update PAN,Impaitient on call
+,SE_Onboarding _T3,Not happy with the documentation process,Inapp sms missing
+,SE_Onboarding_AP,OTP not coming,Incomplete information shared
+,SE_Onboarding_AP_T3,PAN card not available,Interruption observed
+,SE_Onboarding_Ka_T7,Pass out user,L3 Incorrect
+,SE_Onboarding_KN,Police/Navy/Air force,Lack of attentiveness on call
+,SE_Onboarding_T0,Poor Risk Score,Lack of confidence on call
+,SE_Onboarding_T3,Rate of interest is high,Lack of effective pitching
+,SE_Onboarding_T7,Registered from commercial Ad for money - do not need loan,Lack of effort on call
+,SE_Onboarding_TN,Required First time loan amount 10K,Lack of energy on call
+,SIC_CallBack,Required First time loan amount 15K,Lack of urgency creation
+,SIC_Onboadring_T3,Required First time loan amount 20K,Late opening
+,SIC_Onboarding_ Good score_Ap,Required First time loan amount 25K,Motive of the call not confirmed - Power statement not used
+,SIC_Onboarding_AP_T3,Required First time loan amount 45K,NA
+,SIC_Onboarding_HYD,Required First time loan amount more than 45K,Poor Communication
+,SIC_Onboarding_KA,Required First time loan amount mote than 5K,Poor objection handling
+,SIC_Onboarding_T_T3,Salary Below 9K,Previous interaction not followed
+,SIC_Onboarding_T0,Salary Receive Via UPI,Probable matches not checked
+,SIC_Onboarding_T0_TN,Salary receive weekly/daily,Probing was not proper
+,SIC_Onboarding_T3,Salary received in bank,Profile stage not confirmed
+,SIC_Onboarding_T7,Salary received in cash,"Registration through Web , Details not informed"
+,SIC_Onboarding_T7_AP,Self employed,Speech clarity missing on call
+,SIC_Onboarding_T7_KN,Someone else has registered,Tagging missing
+,SIC_Onboarding_T7_TN,Student documents not available,TAT nor confirmed on call
+,Sic_onboarding_TN,Unable to upload docs due to App issue,Unnecessary call straching
+,Studenr_Onboarding_Active User,Unable to upload docs Due to internet issue,Unnecessary probing on call
+,Student_Callback,User agreed to upload docs in same day but not in TAT,Unnecessary tagging in PIP
+,Student_Onboarding_T0,User agreed to upload docs in TAT,User concern not addressed
+,Student_Onboarding_T1-T7,User disconnected call with out responding on call,User concern not addressed
+,Student_Onboarding_T8-T30,User disconnected the call during conversation,User engagement missing on call
+,TN_Salaried_Onboarding_T0,"User doing own business like painter, carpainter, farmer, electrition",Wrong information shared
+,TN_Salaried_Onboarding_T1-T3,User is doing nothing,Wrong tagging
+,TN_Salaried_Onboarding_T4-T7,User is not having the Doc handy,
+,TN_Student_Onboarding_T0,User need time to upload docs,
+,TN_Student_Onboarding_T1-T3,User not available,
+,TN_Student_Onboarding_T4-T7,User said Sound issue and he is not able to hear,
+,,User was busy,
+,,Using IOS Device,
+,,what is the Rate of interest,

@@ -376,30 +376,30 @@ elif selected_page == "Input Form":
 
         # Motive of the Call (Yes/No validation)
         st.markdown('<div class="custom-label">Motive of the Call:</div>', unsafe_allow_html=True)
-        motive_of_call = st.selectbox("", ["Yes", "No"])
+        motive_of_call = st.selectbox("", ["Yes", "No"],key="motive_of_call")
 
         # Probe / Confirm User's Profession (Yes/No validation)
         st.markdown("""<div class="custom-label">Probe / Confirm User's Profession:</div>""", unsafe_allow_html=True)
-        probe_confirm_user_profession = st.selectbox("", ["Yes", "No", "NA"])
+        probe_confirm_user_profession = st.selectbox("", ["Yes", "No", "NA"],key="probe_confirm_user_profession")
 
         # Current Profile Stage / Previous Interaction
         st.markdown('<div class="custom-label">Current Profile Stage / Previous Interaction:</div>', unsafe_allow_html=True)
         Current_Profile_Stage_Previous_Interaction = st.selectbox("",
-                                                                  ["Yes", "No", "FATAL"])
+                                                                  ["Yes", "No", "FATAL"],key="Current_Profile_Stage_Previous_Interaction")
 
         st.markdown('<div class="custom-label">Probe If User have any doc releated Profession Study Business:</div>', unsafe_allow_html=True)
         Probe_If_User_have_any_doc_releated_Profession_Study_Business = st.selectbox(
-            "", ["Yes", "No", "NA"])
+            "", ["Yes", "No", "NA"],key="Probe_If_User_have_any_doc_releated_Profession_Study_Business")
 
         st.markdown('<div class="custom-label">Current Profile Stage / Previous Interaction:</div>', unsafe_allow_html=True)
         Guide_User_with_required_documents_One_by_one = st.selectbox("",
-                                                                     ["Yes", "Fatal", "NA"])
+                                                                     ["Yes", "Fatal", "NA"],key="Guide_User_with_required_documents_One_by_one")
 
         st.markdown('<div class="custom-label">Urgency:</div>', unsafe_allow_html=True)
-        Urgency = st.selectbox("", ["Yes", "Fatal", "NA"])
+        Urgency = st.selectbox("", ["Yes", "Fatal", "NA"],key="Urgency")
 
         st.markdown('<div class="custom-label">Objection Handling:</div>', unsafe_allow_html=True)
-        Objection_Handling = st.selectbox("", ["Yes", "Fatal", "NA"])
+        Objection_Handling = st.selectbox("", ["Yes", "Fatal", "NA"],key="Objection_Handling")
 
 
 
@@ -407,61 +407,61 @@ elif selected_page == "Input Form":
     with col3:
         st.markdown('<div class="custom-label">Explained user how to take first loan:</div>', unsafe_allow_html=True)
         Explained_user_how_to_take_first_loan = st.selectbox("",
-                                                             ["Yes", "Fatal", "NA"])
+                                                             ["Yes", "Fatal", "NA"],key="Explained_user_how_to_take_first_loan")
 
         st.markdown('<div class="custom-label">Reconfirmation / Call back script:</div>', unsafe_allow_html=True)
-        Reconfirmation_Call_back_script = st.selectbox("", ["Yes", "Fatal", "NA"])
+        Reconfirmation_Call_back_script = st.selectbox("", ["Yes", "Fatal", "NA"],key="Reconfirmation_Call_back_script")
         
         st.markdown('<div class="custom-label">Energetic Tone and Clear articulation:</div>', unsafe_allow_html=True)
-        Energetic_Tone_and_Clear_articulation=st.selectbox("", ["Yes","No"])
+        Energetic_Tone_and_Clear_articulation=st.selectbox("", ["Yes","No"],key="Energetic_Tone_and_Clear_articulation")
 
         st.markdown('<div class="custom-label">Two way communication:</div>', unsafe_allow_html=True)
-        Two_way_communication = st.selectbox("", ["Yes", "NO"])
+        Two_way_communication = st.selectbox("", ["Yes", "NO"],key="Two_way_communication")
         
         st.markdown('<div class="custom-label">Active listening and Dead Air:</div>', unsafe_allow_html=True)
-        Active_listening_and_Dead_Air = st.selectbox("", ["Yes", "NO"])
+        Active_listening_and_Dead_Air = st.selectbox("", ["Yes", "NO"],key="Active_listening_and_Dead_Air")
         
         st.markdown('<div class="custom-label">Professional Communication:</div>', unsafe_allow_html=True)
-        Professional_Communication = st.selectbox("", ["Yes", "NO"])
+        Professional_Communication = st.selectbox("", ["Yes", "NO"],key="Professional_Communication")
 
         st.markdown('<div class="custom-label">Informationr:</div>', unsafe_allow_html=True)
-        Information = st.selectbox("", ["Yes", "NO"])
+        Information = st.selectbox("", ["Yes", "NO"],key="Information")
 
         st.markdown('<div class="custom-label">Follow Up:</div>', unsafe_allow_html=True)
-        Follow_Up = st.selectbox("", ["Yes", "NO"])
+        Follow_Up = st.selectbox("", ["Yes", "NO"],key="Follow_Up")
 
         st.markdown('<div class="custom-label">Tagging:</div>', unsafe_allow_html=True)
-        Tagging = st.selectbox("", ["Yes", "NA", "NO"])
+        Tagging = st.selectbox("", ["Yes", "NA", "NO"],key="Tagging")
 
         st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-        Benefits= st.selectbox("Tagging", ["Informed","Not Informed"])
+        Benefits= st.selectbox("Tagging", ["Informed","Not Informed"],key="Benefits")
 
         st.markdown('<div class="custom-label">Benefits:</div>', unsafe_allow_html=True)
-        Fatal = st.selectbox("", ["Yes", "NO"])
+        Fatal = st.selectbox("", ["Yes", "NO"],key="Fatal")
 
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
         Remarks = st.text_input("",key="Remarks")
 
         st.markdown('<div class="custom-label">Agent Feedback Status:</div>', unsafe_allow_html=True)
-        Agent_Feedback_Status = st.selectbox("", ["Closed", "Open"])
+        Agent_Feedback_Status = st.selectbox("", ["Closed", "Open"],key="Agent_Feedback_Status")
 
 
     with col4:
         st.markdown('<div class="custom-label">Profile completion status prior to call:</div>', unsafe_allow_html=True)
         Profile_completion_status_prior_to_call = st.selectbox("",
                                                                ["Blank profile", "Partially complete",
-                                                                "Almost complete"])
+                                                                "Almost complete"],key="Profile_completion_status_prior_to_call")
 
         st.markdown('<div class="custom-label">PIP/SFA Status:</div>', unsafe_allow_html=True)
-        PIP_SFA_Status = st.selectbox("", ["Correct", "Incorrect", "NA"])
+        PIP_SFA_Status = st.selectbox("", ["Correct", "Incorrect", "NA"],key="PIP_SFA_Status")
         
 
         st.markdown('<div class="custom-label">VOC:</div>', unsafe_allow_html=True)
-        VOC = st.selectbox("",list(VOC))
+        VOC = st.selectbox("",list(VOC),key="VOC")
         
         
         st.markdown('<div class="custom-label">AOI:</div>', unsafe_allow_html=True)
-        AOI = st.selectbox("",list(AOI))
+        AOI = st.selectbox("",list(AOI),key="AOI")
 
         st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
         call_duration = st.text_input("",key="call_duration")

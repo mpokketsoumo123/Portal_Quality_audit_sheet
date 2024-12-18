@@ -176,12 +176,7 @@ if uploaded_file is not None:
     }}
 
     /* Increase logo size */
-    .logo {{
-        width: 500px;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    }}
+
 
     /* Footer text styling */
     .footer {{
@@ -194,12 +189,23 @@ if uploaded_file is not None:
         text-align: center;
         padding: 10px 0;
         font-weight: bold;
+    .logo {{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f8f9fa; /* Optional: Change background color */
+        border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
+    }}
+    .logo img {{
+        max-width: 120px; /* Adjust logo size */
+        height: auto;
     }}
 </style>
 """, unsafe_allow_html=True)
 
 # Display logo
-#st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
+st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
 
 # Display bold header text
 #st.markdown('<div class="header-text">Onboarding Audit Portal</div>', unsafe_allow_html=True)

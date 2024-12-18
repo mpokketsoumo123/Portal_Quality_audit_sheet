@@ -285,7 +285,7 @@ elif selected_page == "Input Form":
 
         # Date of Audit (Date format)
         st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
-        date_of_audit = st.date_input("")
+        date_of_audit = st.date_input()
 
         # Week (List format)
         st.markdown('<div class="custom-label">Select Week:</div>', unsafe_allow_html=True)
@@ -324,7 +324,7 @@ elif selected_page == "Input Form":
             dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
         st.markdown('<div class="custom-label">Enter Agent Name:</div>', unsafe_allow_html=True)
-        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
+        Agent_Name = st.selectbox("", dropdown,index=dropdown.index(selected_Name))
         
 
         
@@ -335,7 +335,7 @@ elif selected_page == "Input Form":
 
         # Audit Name (No validation)
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
-        audit_name = st.text_input("")
+        audit_name = st.text_input()
 
         # Auditor Center (List validation)
         st.markdown('<div class="custom-label">Select Auditor Center:</div>', unsafe_allow_html=True)

@@ -205,10 +205,10 @@ if uploaded_file is not None:
 """, unsafe_allow_html=True)
 
 # Display logo
-st.markdown("""
+st.markdown("""<header>
     <div class="logo">
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo"> 
-    </div>
+    </div></header>
     """, unsafe_allow_html=True)
 #st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
 

@@ -211,15 +211,13 @@ if uploaded_file is not None:
     header img {{
         max-width: 60px; /* Adjust logo size */
         height: 80px;
-        margin-right: 0px; /* Space between logo and text */
+        margin-right: 100px; /* Space between logo and text */
     }}
 
      header h1 {{
         font-size: 24px;
         color: #333; /* Optional: Change text color */
         margin: 0;
-        align-items: center; /* Aligns items to the top */
-        justify-content: center; 
         font-weight: bold;}}
 
 </style>

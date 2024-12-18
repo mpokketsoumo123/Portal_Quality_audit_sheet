@@ -274,15 +274,18 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">LOB:</div>', unsafe_allow_html=True)
         LOB = st.selectbox("", ["SE", "SIB", "SIC", "Student"])
         # Center selection
-        center = st.selectbox("Select your Center:",
+        st.markdown('<div class="custom-label">Select your Center:</div>', unsafe_allow_html=True)
+        center = st.selectbox("",
                               ["Bhopal", "Indore", "Vijaywada", "MYS", "Noida", "Kolkata", "Coimbatore", "Ranchi"])
 
         # Partner Name (List format)
-        partner_name = st.selectbox("Select Partner Name:",
+        st.markdown('<div class="custom-label">Select Partner Name:</div>', unsafe_allow_html=True)
+        partner_name = st.selectbox("",
                                     ["Tarus", "TTBS", "MAGNUM", "ICCS", "INHOUSE", "HRH NEXT", "AYUDA"])
 
         # Date of Audit (Date format)
-        date_of_audit = st.date_input("Enter Date of Audit:")
+        st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
+        date_of_audit = st.date_input("")
 
         # Week (List format)
         week = st.selectbox("Select Week:", ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"])

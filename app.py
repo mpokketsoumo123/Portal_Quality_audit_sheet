@@ -203,8 +203,8 @@ if uploaded_file is not None:
 
     header {{
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        align-items: flex-start; /* Aligns items to the top */
+        justify-content: flex-start; /* Aligns items to the left */
         padding: 10px 20px;
         background-color: #f8f9fa; /* Optional: Change background color */
         border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
@@ -212,6 +212,7 @@ if uploaded_file is not None:
     header img {{
         max-width: 100px; /* Adjust logo size */
         height: auto;
+        margin-right: 10px; /* Space between logo and text */
     }}
 
 </style>

@@ -177,7 +177,7 @@ if uploaded_file is not None:
 
     /* Increase logo size */
     .logo {{
-        width: 250px;
+        width: 500px;
         position: absolute;
         top: 20px;
         left: 20px;

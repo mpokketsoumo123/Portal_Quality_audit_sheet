@@ -302,13 +302,20 @@ elif selected_page == "Input Form":
 
         # Login ID (Numeric validation)
         sheet = spreadsheet.worksheet("Agent_Data")
-
-        Login_ID = st.selectbox("Enter Login ID:",  list(set(row['Ameyo_Id'] for row in dropdown_values )))
+        dropdown=[]
+        for i in dropdown_values:
+            dropdown.append(i['Ameyo_Id'])
+    # Show the dropdown menu with the data fetched from Google Sheets
+        Login_ID = st.selectbox("Enter Login ID:", dropdown,index=dropdown.index(selected_login_id))
 
         # Agent Name (No validation)
-
+        dropdown=[]
+        for i in dropdown_values:
+            dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Agent_Name = st.text_input("Enter Agent Name:")
+        Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
+        
+
         
 
         # Team Leader (No validation)

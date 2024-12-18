@@ -82,8 +82,7 @@ if uploaded_file is not None:
     # Add custom CSS with local image as background
     st.markdown(f"""
 <style>
-    /* Set the uploaded image as the background */
-    .stApp {{
+.stApp {{
         background-image: url('data:image/png;base64,{img_base64}');
         background-size: cover;
         color: black; /* Set default text color to black */
@@ -95,7 +94,7 @@ if uploaded_file is not None:
         font-weight: bold;
         font-size: 50px;
         color: black;
-        padding-top: 10px;
+        padding-top: 20px;
     }}
 
     /* Dropdown container and options styling */
@@ -143,6 +142,7 @@ if uploaded_file is not None:
         font-size: 50px;  /* Adjust font size */
         font-weight: bold;  /* Make text bold */
     }}
+    /* Style for the dropdown label */
     label {{
         font-weight: bold !important;
         color: black !important;
@@ -150,8 +150,6 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
-
-
 
     /* Button styling */
     .stButton button {{
@@ -174,7 +172,12 @@ if uploaded_file is not None:
     }}
 
     /* Increase logo size */
-
+    .logo {{
+        width: 250px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }}
 
     /* Footer text styling */
     .footer {{
@@ -187,24 +190,8 @@ if uploaded_file is not None:
         text-align: center;
         padding: 10px 0;
         font-weight: bold;
-    .header {{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-        background-color: #f8f9fa; /* Optional: Change background color */
-        border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
     }}
-    .header img {{
-        max-width: 120px; /* Adjust logo size */
-        height: auto;
-    }}
-    .header h1 {{
-        font-size: 24px;
-        color: #333; /* Optional: Change text color */
-        margin: 0;
-        font-weight: bold;
-    }}
+
 </style>
 """, unsafe_allow_html=True)
 

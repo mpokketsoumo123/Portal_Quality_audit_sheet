@@ -179,8 +179,8 @@ if uploaded_file is not None:
     .logo {{
         width: 500px;
         position: absolute;
-        top: 20px;
-        left: 20px;
+        top: 5px;
+        left: 5px;
     }}
 
     /* Footer text styling */

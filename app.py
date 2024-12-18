@@ -191,6 +191,15 @@ if uploaded_file is not None:
         padding: 10px 0;
         font-weight: bold;
     }}
+    .custom-lob-label {{
+        font-size: 24px; /* Adjust font size */
+        font-weight: bold; /* Optional: Make it bold */
+        color: #333; /* Optional: Change text color */
+        margin-bottom: 0px; /* Reduce spacing below the label */
+    }}
+    .stSelectbox {{
+        margin-top: -15px; /* Reduce spacing above the dropdown */
+    }}
 
 </style>
 """, unsafe_allow_html=True)

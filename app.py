@@ -335,7 +335,7 @@ elif selected_page == "Input Form":
 
         # Audit Name (No validation)
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
-        audit_name = st.selectbox("",dropdown)
+        audit_name = st.text_input("",key="audit_name")
 
         # Auditor Center (List validation)
         st.markdown('<div class="custom-label">Select Auditor Center:</div>', unsafe_allow_html=True)
@@ -351,11 +351,11 @@ elif selected_page == "Input Form":
         
         # User Register Number (Numeric validation)
         st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-        user_register_number = st.text_input("")
+        user_register_number = st.text_input("",key="user_register_number")
 
         # Calling Number (Numeric validation)
         st.markdown('<div class="custom-label">Enter Calling Number:</div>', unsafe_allow_html=True)
-        calling_number = st.text_input("")
+        calling_number = st.text_input("",key="calling_number")
 
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
@@ -440,7 +440,7 @@ elif selected_page == "Input Form":
         Fatal = st.selectbox("", ["Yes", "NO"])
 
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
-        Remarks = st.text_input("")
+        Remarks = st.text_input("",key="Remarks")
 
         st.markdown('<div class="custom-label">Agent Feedback Status:</div>', unsafe_allow_html=True)
         Agent_Feedback_Status = st.selectbox("", ["Closed", "Open"])
@@ -464,7 +464,7 @@ elif selected_page == "Input Form":
         AOI = st.selectbox("",list(AOI))
 
         st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
-        call_duration = st.text_input("")
+        call_duration = st.text_input("",key="call_duration")
 
         st.markdown('<div class="custom-label">KYC Type:</div>', unsafe_allow_html=True)
         KYC_type = st.selectbox("", ["Not Updated", "OKYC", "VKYC", "CKYC"])
@@ -473,22 +473,22 @@ elif selected_page == "Input Form":
         Disposition_Accuracy = st.selectbox("", ["Correct", "Incorrect", "Not Done"])
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L1:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L1 = st.text_input("")
+        DCS_Tagging_L1 = st.text_input("",key="DCS_Tagging_L1")
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L2:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L2 = st.text_input("")
+        DCS_Tagging_L2 = st.text_input("",key="DCS_Tagging_L2")
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L3:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L3 = st.text_input("")
+        DCS_Tagging_L3 = st.text_input("",key="DCS_Tagging_L3")
 
         st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L1 = st.text_input("")
+        Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1")
 
         st.markdown('<div class="custom-label">Actual Tagging L2:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L2 = st.text_input("")
+        Actual_Tagging_L2 = st.text_input("",key="Actual_Tagging_L2")
 
         st.markdown('<div class="custom-label">Actual Tagging L3:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L3 = st.text_input("")
+        Actual_Tagging_L3 = st.text_input("",key="Actual_Tagging_L3")
 
     # Add Row Button
     error_placeholder = st.empty()

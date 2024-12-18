@@ -462,10 +462,10 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Tagging:</div>', unsafe_allow_html=True)
         Tagging = st.selectbox("", ["Yes", "NA", "NO"],key="Tagging")
 
-        st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-        Benefits= st.selectbox("Tagging", ["Informed","Not Informed"],key="Benefits")
-
         st.markdown('<div class="custom-label">Benefits:</div>', unsafe_allow_html=True)
+        Benefits= st.selectbox("", ["Informed","Not Informed"],key="Benefits")
+
+        st.markdown('<div class="custom-label">Fatal:</div>', unsafe_allow_html=True)
         Fatal = st.selectbox("", ["Yes", "NO"],key="Fatal")
 
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)

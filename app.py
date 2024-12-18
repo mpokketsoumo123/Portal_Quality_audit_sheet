@@ -288,10 +288,12 @@ elif selected_page == "Input Form":
         date_of_audit = st.date_input("")
 
         # Week (List format)
-        week = st.selectbox("Select Week:", ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"])
+        st.markdown('<div class="custom-label">Select Week:</div>', unsafe_allow_html=True)
+        week = st.selectbox("", ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"])
 
         # Audit Category (List format)
-        audit_category = st.selectbox("Select Audit Category:", ["Floor", "RCA"])
+        st.markdown('<div class="custom-label">Select Audit Category:</div>', unsafe_allow_html=True)
+        audit_category = st.selectbox("", ["Floor", "RCA"])
         client = authenticate_google_sheets()
 
 # Open the Google Sheet by its URL or name
@@ -302,7 +304,8 @@ elif selected_page == "Input Form":
         dropdown_values = sheet.get_all_records(expected_headers=None)
 
     # Show the dropdown menu with the data fetched from Google Sheets
-        EMP_ID = st.selectbox("Agent EMP ID", list(set(row['EMP_ID'] for row in dropdown_values )))
+        st.markdown('<div class="custom-label">Agent EMP ID:</div>', unsafe_allow_html=True)
+        EMP_ID = st.selectbox("", list(set(row['EMP_ID'] for row in dropdown_values )))
         selected_login_id = next(item["Ameyo_Id"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
         selected_Name = next(item["Name"] for item in dropdown_values if item["EMP_ID"] == EMP_ID)
 
@@ -312,137 +315,180 @@ elif selected_page == "Input Form":
         for i in dropdown_values:
             dropdown.append(i['Ameyo_Id'])
     # Show the dropdown menu with the data fetched from Google Sheets
-        Login_ID = st.selectbox("Enter Login ID:", dropdown,index=dropdown.index(selected_login_id))
+        st.markdown('<div class="custom-label">Enter Login ID:</div>', unsafe_allow_html=True)
+        Login_ID = st.selectbox("", dropdown,index=dropdown.index(selected_login_id))
 
         # Agent Name (No validation)
         dropdown=[]
         for i in dropdown_values:
             dropdown.append(i['Name'])
     # Show the dropdown menu with the data fetched from Google Sheets
+        st.markdown('<div class="custom-label">Enter Agent Name:</div>', unsafe_allow_html=True)
         Agent_Name = st.selectbox("Enter Agent Name:", dropdown,index=dropdown.index(selected_Name))
         
 
         
 
         # Team Leader (No validation)
-        team_leader = st.text_input("Enter Team Leader Name:")
+        st.markdown('<div class="custom-label">Enter Team Leader Name:</div>', unsafe_allow_html=True)
+        team_leader = st.text_input("")
 
         # Audit Name (No validation)
-        audit_name = st.text_input("Enter Audit Name:")
+        st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
+        audit_name = st.text_input("")
 
         # Auditor Center (List validation)
-        auditor_center = st.selectbox("Select Auditor Center:",
+        st.markdown('<div class="custom-label">Select Auditor Center:</div>', unsafe_allow_html=True)
+        auditor_center = st.selectbox("",
                                       ["Indore", "Vijaywada", "Mysore", "Bhopal", "Noida", "Kolkata", "Coimbatore",
                                        "HYD", "Ranchi"])
 
         # Auditor Designation (List validation)
-        auditor_designation = st.selectbox("Select Auditor Designation:", ["TL", "Trainer"])
+        st.markdown('<div class="custom-label">Select Auditor Designation:</div>', unsafe_allow_html=True)
+        auditor_designation = st.selectbox("", ["TL", "Trainer"])
 
     with col2:
         
         # User Register Number (Numeric validation)
-        user_register_number = st.text_input("Enter User Register Number:")
+        st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
+        user_register_number = st.text_input("")
 
         # Calling Number (Numeric validation)
-        calling_number = st.text_input("Enter Calling Number:")
+        st.markdown('<div class="custom-label">Enter Calling Number:</div>', unsafe_allow_html=True)
+        calling_number = st.text_input("")
 
         # Date of Call (Date format validation)
-        date_of_call = st.date_input("Enter Date of Call:")
+        st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
+        date_of_call = st.date_input("")
         
         # Call Time Slot (Time format validation)
-        
-        call_time_slot = st.selectbox("Call_Time_Slot:",list(call_time_slot))
+        st.markdown('<div class="custom-label">Call_Time_Slot:</div>', unsafe_allow_html=True)
+        call_time_slot = st.selectbox("",list(call_time_slot))
         
         # Bucket (List format)
-        
+        st.markdown('<div class="custom-label">Bucket:</div>', unsafe_allow_html=True)
     # Show the dropdown menu with the data fetched from Google Sheets
-        bucket = st.selectbox("Bucket:",list(Bucket_name))
+        bucket = st.selectbox("",list(Bucket_name))
 
         # Energetic Opening and Closing (Yes/No validation)
-        energetic_opening_closing = st.selectbox("Energetic Opening and Closing?", ["Yes", "No"])
+        st.markdown('<div class="custom-label">Energetic Opening and Closing:</div>', unsafe_allow_html=True)
+        energetic_opening_closing = st.selectbox("", ["Yes", "No"])
 
         # Motive of the Call (Yes/No validation)
-        motive_of_call = st.selectbox("Motive of the Call?", ["Yes", "No"])
+        st.markdown('<div class="custom-label">Motive of the Call:</div>', unsafe_allow_html=True)
+        motive_of_call = st.selectbox("", ["Yes", "No"])
 
         # Probe / Confirm User's Profession (Yes/No validation)
-        probe_confirm_user_profession = st.selectbox("Probe / Confirm User's Profession?", ["Yes", "No", "NA"])
+        st.markdown('<div class="custom-label">Probe / Confirm User's Profession:</div>', unsafe_allow_html=True)
+        probe_confirm_user_profession = st.selectbox("", ["Yes", "No", "NA"])
 
         # Current Profile Stage / Previous Interaction
-        Current_Profile_Stage_Previous_Interaction = st.selectbox("Current Profile Stage / Previous Interaction",
+        st.markdown('<div class="custom-label">Current Profile Stage / Previous Interaction:</div>', unsafe_allow_html=True)
+        Current_Profile_Stage_Previous_Interaction = st.selectbox("",
                                                                   ["Yes", "No", "FATAL"])
 
+        st.markdown('<div class="custom-label">Probe If User have any doc releated Profession Study Business:</div>', unsafe_allow_html=True)
         Probe_If_User_have_any_doc_releated_Profession_Study_Business = st.selectbox(
-            "Current Profile Stage / Previous Interaction", ["Yes", "No", "NA"])
+            "", ["Yes", "No", "NA"])
 
-        Guide_User_with_required_documents_One_by_one = st.selectbox("Current Profile Stage / Previous Interaction",
+        st.markdown('<div class="custom-label">Current Profile Stage / Previous Interaction:</div>', unsafe_allow_html=True)
+        Guide_User_with_required_documents_One_by_one = st.selectbox("",
                                                                      ["Yes", "Fatal", "NA"])
 
-        Urgency = st.selectbox("Urgency", ["Yes", "Fatal", "NA"])
+        st.markdown('<div class="custom-label">Urgency:</div>', unsafe_allow_html=True)
+        Urgency = st.selectbox("", ["Yes", "Fatal", "NA"])
 
-        Objection_Handling = st.selectbox("Objection Handling", ["Yes", "Fatal", "NA"])
+        st.markdown('<div class="custom-label">Objection Handling:</div>', unsafe_allow_html=True)
+        Objection_Handling = st.selectbox("", ["Yes", "Fatal", "NA"])
 
 
 
     # Section 2 (Right Column)
     with col3:
-        Explained_user_how_to_take_first_loan = st.selectbox("Explained user how to take first loan",
+        st.markdown('<div class="custom-label">Explained user how to take first loan:</div>', unsafe_allow_html=True)
+        Explained_user_how_to_take_first_loan = st.selectbox("",
                                                              ["Yes", "Fatal", "NA"])
 
-        Reconfirmation_Call_back_script = st.selectbox("Reconfirmation / Call back script", ["Yes", "Fatal", "NA"])
-        Energetic_Tone_and_Clear_articulation=st.selectbox("Energetic Tone and Clear articulation", ["Yes","No"])
+        st.markdown('<div class="custom-label">Reconfirmation / Call back script:</div>', unsafe_allow_html=True)
+        Reconfirmation_Call_back_script = st.selectbox("", ["Yes", "Fatal", "NA"])
+        
+        st.markdown('<div class="custom-label">Energetic Tone and Clear articulation:</div>', unsafe_allow_html=True)
+        Energetic_Tone_and_Clear_articulation=st.selectbox("", ["Yes","No"])
 
-        Two_way_communication = st.selectbox("Two way communication", ["Yes", "NO"])
+        st.markdown('<div class="custom-label">Two way communication:</div>', unsafe_allow_html=True)
+        Two_way_communication = st.selectbox("", ["Yes", "NO"])
+        
+        st.markdown('<div class="custom-label">Active listening and Dead Air:</div>', unsafe_allow_html=True)
+        Active_listening_and_Dead_Air = st.selectbox("", ["Yes", "NO"])
+        
+        st.markdown('<div class="custom-label">Professional Communication:</div>', unsafe_allow_html=True)
+        Professional_Communication = st.selectbox("", ["Yes", "NO"])
 
-        Active_listening_and_Dead_Air = st.selectbox("Active listening and Dead Air", ["Yes", "NO"])
+        st.markdown('<div class="custom-label">Informationr:</div>', unsafe_allow_html=True)
+        Information = st.selectbox("", ["Yes", "NO"])
 
-        Professional_Communication = st.selectbox("Professional Communication", ["Yes", "NO"])
+        st.markdown('<div class="custom-label">Follow Up:</div>', unsafe_allow_html=True)
+        Follow_Up = st.selectbox("", ["Yes", "NO"])
 
-        Information = st.selectbox("Information", ["Yes", "NO"])
+        st.markdown('<div class="custom-label">Tagging:</div>', unsafe_allow_html=True)
+        Tagging = st.selectbox("", ["Yes", "NA", "NO"])
 
-        Follow_Up = st.selectbox("Follow Up", ["Yes", "NO"])
-
-        Tagging = st.selectbox("Tagging", ["Yes", "NA", "NO"])
+        st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
         Benefits= st.selectbox("Tagging", ["Informed","Not Informed"])
 
-        Fatal = st.selectbox("Fatal", ["Yes", "NO"])
+        st.markdown('<div class="custom-label">Benefits:</div>', unsafe_allow_html=True)
+        Fatal = st.selectbox("", ["Yes", "NO"])
 
-        Remarks = st.text_input("Remarks:")
+        st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
+        Remarks = st.text_input("")
 
-        Agent_Feedback_Status = st.selectbox("Agent Feedback Status", ["Closed", "Open"])
+        st.markdown('<div class="custom-label">Agent Feedback Status:</div>', unsafe_allow_html=True)
+        Agent_Feedback_Status = st.selectbox("", ["Closed", "Open"])
 
 
     with col4:
-        Profile_completion_status_prior_to_call = st.selectbox("Profile completion status prior to call",
+        st.markdown('<div class="custom-label">Profile completion status prior to call:</div>', unsafe_allow_html=True)
+        Profile_completion_status_prior_to_call = st.selectbox("",
                                                                ["Blank profile", "Partially complete",
                                                                 "Almost complete"])
 
-        PIP_SFA_Status = st.selectbox("PIP/SFA Status", ["Correct", "Incorrect", "NA"])
+        st.markdown('<div class="custom-label">PIP/SFA Status:</div>', unsafe_allow_html=True)
+        PIP_SFA_Status = st.selectbox("", ["Correct", "Incorrect", "NA"])
         
 
+        st.markdown('<div class="custom-label">VOC:</div>', unsafe_allow_html=True)
+        VOC = st.selectbox("",list(VOC))
         
-        VOC = st.selectbox("VOC:",list(VOC))
         
-        
+        st.markdown('<div class="custom-label">AOI:</div>', unsafe_allow_html=True)
+        AOI = st.selectbox("",list(AOI))
 
-        AOI = st.selectbox("AOI:",list(AOI))
+        st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
+        call_duration = st.text_input("")
 
-        call_duration = st.text_input("Enter Call Duration (HH:mm:ss):")
+        st.markdown('<div class="custom-label">KYC Type:</div>', unsafe_allow_html=True)
+        KYC_type = st.selectbox("", ["Not Updated", "OKYC", "VKYC", "CKYC"])
 
-        KYC_type = st.selectbox("KYC Type", ["Not Updated", "OKYC", "VKYC", "CKYC"])
+        st.markdown('<div class="custom-label">Disposition Accuracy:</div>', unsafe_allow_html=True)
+        Disposition_Accuracy = st.selectbox("", ["Correct", "Incorrect", "Not Done"])
 
-        Disposition_Accuracy = st.selectbox("Disposition Accuracy", ["Correct", "Incorrect", "Not Done"])
+        st.markdown('<div class="custom-label">Enter DCS Tagging L1:</div>', unsafe_allow_html=True)
+        DCS_Tagging_L1 = st.text_input("")
 
-        DCS_Tagging_L1 = st.text_input("Enter DCS Tagging L1")
+        st.markdown('<div class="custom-label">Enter DCS Tagging L2:</div>', unsafe_allow_html=True)
+        DCS_Tagging_L2 = st.text_input("")
 
-        DCS_Tagging_L2 = st.text_input("Enter DCS Tagging L2")
+        st.markdown('<div class="custom-label">Enter DCS Tagging L3:</div>', unsafe_allow_html=True)
+        DCS_Tagging_L3 = st.text_input("")
 
-        DCS_Tagging_L3 = st.text_input("Enter DCS Tagging L3")
+        st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
+        Actual_Tagging_L1 = st.text_input("")
 
-        Actual_Tagging_L1 = st.text_input("Actual Tagging L1")
+        st.markdown('<div class="custom-label">Actual Tagging L2:</div>', unsafe_allow_html=True)
+        Actual_Tagging_L2 = st.text_input("")
 
-        Actual_Tagging_L2 = st.text_input("Actual Tagging L2")
-
-        Actual_Tagging_L3 = st.text_input("Actual Tagging L3")
+        st.markdown('<div class="custom-label">Actual Tagging L3:</div>', unsafe_allow_html=True)
+        Actual_Tagging_L3 = st.text_input("")
 
     # Add Row Button
     error_placeholder = st.empty()

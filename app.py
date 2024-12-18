@@ -144,7 +144,7 @@ if uploaded_file is not None:
         font-weight: bold;  /* Make text bold */
     }}
     /* Style for the dropdown label */
-    label {{
+    custom-label {{
         font-weight: bold !important;
         color: black !important;
         font-size: 50px !important; /* Increase label size */

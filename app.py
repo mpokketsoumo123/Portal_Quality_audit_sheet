@@ -285,7 +285,7 @@ elif selected_page == "Input Form":
 
         # Date of Audit (Date format)
         st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
-        date_of_audit = st.date_input()
+        date_of_audit = st.date_input("")
 
         # Week (List format)
         st.markdown('<div class="custom-label">Select Week:</div>', unsafe_allow_html=True)

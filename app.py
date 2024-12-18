@@ -193,7 +193,7 @@ if uploaded_file is not None:
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px;
+        padding: 0px 0px;
         background-color: #f8f9fa; /* Optional: Change background color */
         border-bottom: 2px solid #eaeaea; /* Optional: Add a bottom border */
     }}
@@ -206,7 +206,7 @@ if uploaded_file is not None:
 
 # Display logo
 st.markdown("""
-    <div class="header">
+    <div class="logo">
         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo"> 
     </div>
     """, unsafe_allow_html=True)

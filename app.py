@@ -203,15 +203,13 @@ if uploaded_file is not None:
 
     header {{
         display: flex;
-        align-items: flex-start; /* Aligns items to the top */
-        justify-content: flex-start; /* Aligns items to the left */
         padding: 10px 20px;
        
     }}
     header img {{
-        max-width: 60px; /* Adjust logo size */
+        max-width: 100px; /* Adjust logo size */
         height: 80px;
-        margin-right: 100px; /* Space between logo and text */
+        margin-right: 200px; /* Space between logo and text */
     }}
 
      header h1 {{

@@ -268,7 +268,8 @@ elif selected_page == "Input Form":
     with col1:
 
         # Date of Birth input (DOB)
-        LOB = st.selectbox("'<div class="custom-label">LOB:</div>", ["SE", "SIB", "SIC", "Student"])
+        st.markdown('<div class="custom-label">LOB:</div>', unsafe_allow_html=True)
+        LOB = st.selectbox("", ["SE", "SIB", "SIC", "Student"])
 
         # Center selection
         center = st.selectbox("Select your Center:",

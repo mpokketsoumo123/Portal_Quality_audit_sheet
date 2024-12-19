@@ -632,8 +632,8 @@ elif selected_page == "Input Form":
                     updated_row[key] = st.text_input(f"{key}:", value=value)
 
     # Function to update the row
-        def update_row(row_index, updated_row):
-            st.session_state["input_table"][row_index] = updated_row
+        def update_row(adjusted_index, updated_row):
+            st.session_state["input_table"][adjusted_index] = updated_row
 
         if st.button("Save Updated Row"):
             update_row(adjusted_index, updated_row)

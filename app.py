@@ -584,9 +584,9 @@ elif selected_page == "Input Form":
 
     # Display Table
     if st.session_state.get("input_table"):
-    st.write("Your Input Table:")
-    df = pd.DataFrame(st.session_state["input_table"])
-    st.dataframe(df)
+        st.write("Your Input Table:")
+        df = pd.DataFrame(st.session_state["input_table"])
+        st.dataframe(df)
 
     # Delete Row
     def delete_row(row_index):

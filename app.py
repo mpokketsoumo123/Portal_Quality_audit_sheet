@@ -607,6 +607,9 @@ elif selected_page == "Input Form":
         if st.button("Load Row for Update"):
             selected_row = st.session_state["input_table"][adjusted_index]
             updated_row = {}
+        if st.button("Load Row for Update"):
+            selected_row = st.session_state["input_table"][adjusted_index]
+            updated_row = selected_row.copy()  # Copy the selected row to update
     
             # Split input boxes into columns for better readability
             col1, col2, col3, col4 = st.columns(4)
@@ -631,21 +634,21 @@ elif selected_page == "Input Form":
                     if i % 4 == 3:
                         updated_row[key] = st.text_input(f"{key}:", value=value)
     
-        # Function to update the row
-            def update_row(adjusted_index, updated_row):
-                st.session_state["input_table"][adjusted_index] = updated_row
+        # Function to update the row in session state
+        def update_row(row_index, updated_row):
+            st.session_state["input_table"][row_index] = updated_row
     
-            if st.button("Save Updated Row"):
-                if updated_row:
-                    update_row(adjusted_index, updated_row)
-                    st.success("Row updated!")
-
-            # Show the updated dataframe
-                    st.write("Updated Table:")
-                    st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
-                else:
-                    st.error("No row selected for update.")
-
+        # Save Updated Row Button
+        if st.button("Save Updated Row"):
+            if updated_row:
+                update_row(adjusted_index, updated_row)
+                st.success("Row updated!")
+    
+                # Show the updated dataframe
+                st.write("Updated Table:")
+                st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
+            else:
+                st.error("No row selected for update.")
     # Final Submit Button
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:

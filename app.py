@@ -608,27 +608,28 @@ elif selected_page == "Input Form":
             # Adjust for 1-based index
             #st.session_state["input_table"].pop(row_to_delete - 1)
     
-    def update_row(row_index, updated_row):
-        st.session_state["input_table"][row_index] = updated_row
+    def update_row(row_index, column, updated_value):
+        st.session_state["input_table"][row_index][column] = updated_value
 
     row_to_update = st.number_input(
         "Enter Row Number to Update (1-based index):",
-        min_value=0,
+        min_value=1,
         max_value=len(df),
         step=1
     )
-    adjusted_update_index = row_to_update   # Convert to 0-based index
+    adjusted_update_index = row_to_update - 1  # Convert to 0-based index
 
-    if st.button("Load Row for Update"):
+    if st.button("Update Row"):
         selected_row = st.session_state["input_table"][adjusted_update_index]
-        updated_row = {}
-        st.write("Update Selected Row:")
-        for key, value in selected_row.items():
-            updated_row[key] = st.text_input(f"{key}:", value=value)
-        
+        columns = list(selected_row.keys())  # Get column names
+        column_to_update = st.selectbox("Select Column to Update", columns)
+        updated_value = st.text_input(f"Enter updated value for {column_to_update}", value=selected_row[column_to_update])
+
         if st.button("Save Updated Row"):
-            update_row(adjusted_update_index, updated_row)
+            update_row(adjusted_update_index, column_to_update, updated_value)
             st.success("Row updated!")
+            st.write("Updated Table:")
+            st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
 
 
     # Final Submit Button

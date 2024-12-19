@@ -611,9 +611,9 @@ elif selected_page == "Input Form":
 
         updated_row = {}
         if st.button("Load Row for Update"):
-        selected_row = st.session_state["input_table"][adjusted_index]
-        st.session_state["selected_row"] = selected_row.copy()  # Store in session state
-        st.session_state["row_index_to_update"] = adjusted_index
+            selected_row = st.session_state["input_table"][adjusted_index]
+            st.session_state["selected_row"] = selected_row.copy()  # Store in session state
+            st.session_state["row_index_to_update"] = adjusted_index
 
     # If a row is loaded, display input fields for updating
         if "selected_row" in st.session_state:

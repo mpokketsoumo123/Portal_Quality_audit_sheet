@@ -596,8 +596,8 @@ elif selected_page == "Input Form":
         row_to_delete = st.number_input(
                 "Enter Row Number to Delete (1-based index):",
             min_value=0,
-            max_value=len(df),
-                step=1
+            max_value=len(df)-1,
+            step=1
             )
     
         adjusted_index = row_to_delete   # Adjust for 0-based index

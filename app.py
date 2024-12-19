@@ -584,71 +584,71 @@ elif selected_page == "Input Form":
             st.session_state["input_table"].append(data)
 
     # Display Table
-        if st.session_state.get("input_table"):
-            st.write("Your Input Table:")
-            df = pd.DataFrame(st.session_state["input_table"])
-            st.dataframe(df)
+    if st.session_state.get("input_table"):
+        st.write("Your Input Table:")
+        df = pd.DataFrame(st.session_state["input_table"])
+        st.dataframe(df)
     
         # Delete Row
-            def delete_row(row_index):
-                st.session_state["input_table"].pop(row_index)
+        def delete_row(row_index):
+            st.session_state["input_table"].pop(row_index)
     
             row_to_delete = st.number_input(
                 "Enter Row Number to Delete (1-based index):",
-                min_value=0,
-                max_value=len(df),
+            min_value=0,
+            max_value=len(df),
                 step=1
             )
     
-            adjusted_index = row_to_delete   # Adjust for 0-based index
+        adjusted_index = row_to_delete   # Adjust for 0-based index
         
-            if st.button("Delete Row"):
-                delete_row(adjusted_index)
+        if st.button("Delete Row"):
+            delete_row(adjusted_index)
         
             # Load Row for Update
-            updated_row = {}
-            if st.button("Load Row for Update"):
-                selected_row = st.session_state["input_table"][adjusted_index]
-                updated_row = selected_row.copy()  # Copy the selected row to update
+        updated_row = {}
+        if st.button("Load Row for Update"):
+            selected_row = st.session_state["input_table"][adjusted_index]
+            updated_row = selected_row.copy()  # Copy the selected row to update
         
                 # Split input boxes into columns for better readability
-                col1, col2, col3, col4 = st.columns(4)
+            col1, col2, col3, col4 = st.columns(4)
         
-                with col1:
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 0:
-                            updated_row[key] = st.text_input(f"{key}:", value=value)
+            with col1:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 0:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
         
-                with col2:
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 1:
-                            updated_row[key] = st.text_input(f"{key}:", value=value)
+            with col2:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 1:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
                 
-                with col3:
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 2:
-                            updated_row[key] = st.text_input(f"{key}:", value=value)
+            with col3:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 2:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
                 
-                with col4:
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 3:
-                            updated_row[key] = st.text_input(f"{key}:", value=value)
+            with col4:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 3:
+                         updated_row[key] = st.text_input(f"{key}:", value=value)
         
             # Function to update the row in session state
-                def update_row(row_index, updated_row):
-                    input_table[row_index] = updated_row
+            def update_row(row_index, updated_row):
+                input_table[row_index] = updated_row
         
             # Save Updated Row Button
-                if st.button("Save Updated Row"):
-                    if updated_row:
-                        update_row(adjusted_index, updated_row)
-                        st.success("Row updated!")
+            if st.button("Save Updated Row"):
+                if updated_row:
+                    update_row(adjusted_index, updated_row)
+                    st.success("Row updated!")
         
                     # Show the updated dataframe
-                        st.write("Updated Table:")
-                        st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
-                    else:
-                        st.error("No row selected for update.")
+                    st.write("Updated Table:")
+                    st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
+                else:
+                    st.error("No row selected for update.")
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:

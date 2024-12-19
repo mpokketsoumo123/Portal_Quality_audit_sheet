@@ -606,49 +606,51 @@ elif selected_page == "Input Form":
             delete_row(adjusted_index)
         
             # Load Row for Update
+        def update_row(row_index, updated_row):
+            st.session_state["input_table"][row_index] = updated_row
+
         updated_row = {}
         if st.button("Load Row for Update"):
-            selected_row = st.session_state["input_table"][adjusted_index]
-            updated_row = selected_row.copy()  # Copy the selected row to update
-        
-                # Split input boxes into columns for better readability
+        selected_row = st.session_state["input_table"][adjusted_index]
+        st.session_state["selected_row"] = selected_row.copy()  # Store in session state
+        st.session_state["row_index_to_update"] = adjusted_index
+
+    # If a row is loaded, display input fields for updating
+        if "selected_row" in st.session_state:
+            selected_row = st.session_state["selected_row"]
+
+            # Split input fields into 4 columns
             col1, col2, col3, col4 = st.columns(4)
-        
-            with col1:
-                for i, (key, value) in enumerate(selected_row.items()):
-                    if i % 4 == 0:
+            updated_row = {}
+    
+            # Populate input fields
+            for i, (key, value) in enumerate(selected_row.items()):
+                if i % 4 == 0:
+                    with col1:
                         updated_row[key] = st.text_input(f"{key}:", value=value)
-        
-            with col2:
-                for i, (key, value) in enumerate(selected_row.items()):
-                    if i % 4 == 1:
+                elif i % 4 == 1:
+                    with col2:
                         updated_row[key] = st.text_input(f"{key}:", value=value)
-                
-            with col3:
-                for i, (key, value) in enumerate(selected_row.items()):
-                    if i % 4 == 2:
+                elif i % 4 == 2:
+                    with col3:
                         updated_row[key] = st.text_input(f"{key}:", value=value)
-                
-            with col4:
-                for i, (key, value) in enumerate(selected_row.items()):
-                    if i % 4 == 3:
-                         updated_row[key] = st.text_input(f"{key}:", value=value)
-        
-            # Function to update the row in session state
-            def update_row(row_index, updated_row):
-                input_table[row_index] = updated_row
-        
+                elif i % 4 == 3:
+                    with col4:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+    
             # Save Updated Row Button
             if st.button("Save Updated Row"):
-                if updated_row:
-                    update_row(adjusted_index, updated_row)
-                    st.success("Row updated!")
-        
-                    # Show the updated dataframe
-                    st.write("Updated Table:")
-                    st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
-                else:
-                    st.error("No row selected for update.")
+                row_index = st.session_state["row_index_to_update"]
+                update_row(row_index, updated_row)
+                st.success("Row updated!")
+    
+                # Refresh the updated DataFrame
+                st.write("Updated Table:")
+                st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+    
+                # Clear session state for row update
+                del st.session_state["selected_row"]
+                del st.session_state["row_index_to_update"]
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:

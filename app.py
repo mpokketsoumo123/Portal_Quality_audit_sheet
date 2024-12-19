@@ -637,6 +637,7 @@ elif selected_page == "Input Form":
             st.session_state["input_table"][row_index] = updated_row
     
         # Save Updated Row Button
+        adjusted_index = row_to_delete
         if st.button("Save Updated Row"):
             if updated_row:
                 update_row(adjusted_index, updated_row)

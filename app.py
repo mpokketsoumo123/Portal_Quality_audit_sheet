@@ -656,13 +656,13 @@ elif selected_page == "Input Form":
 
 
         # Organize update inputs into columns if desired, or use more columns if there are more keys
-        if st.button("Save Updated Row"):
-            update_row(adjusted_update_index, updated_row)
-            st.success("Row updated!")
+            if st.button("Save Updated Row"):
+                update_row(adjusted_update_index, updated_row)
+                st.success("Row updated!")
 
             # Show the updated dataframe
-            st.write("Updated Table:")
-            st.dataframe(pd.DataFrame(st.session_state["input_table"])) 
+                st.write("Updated Table:")
+                st.dataframe(pd.DataFrame(st.session_state["input_table"])) 
 
 
     # Final Submit Button

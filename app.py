@@ -593,7 +593,7 @@ elif selected_page == "Input Form":
         def delete_row(row_index):
             st.session_state["input_table"].pop(row_index)
 
-        row_to_delete = st.text_box()
+        row_to_delete = st.text_box("",key="row_to_delete")
         adjusted_index = row_to_delete   # Adjust for 0-based index
     
         if st.button("Delete Row"):

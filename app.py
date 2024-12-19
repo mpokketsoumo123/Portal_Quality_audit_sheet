@@ -19,6 +19,12 @@ def authenticate_google_sheets():
     )
     client = gspread.authorize(credentials)
     return client
+def image_to_base64(file_path):
+    with open(file_path, "rb") as file:
+        return base64.b64encode(file.read()).decode()
+
+image_base64 = image_to_base64("logo.png")
+
 @st.cache_data(ttl=1200)
 def fetch_data_from_gsheet(sheet_name):
     client = authenticate_google_sheets()
@@ -225,7 +231,7 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header style="display: flex">
-        <img src="logo.png" alt="Logo"> 
+        <img src="data:image/png;base64,{image_base64}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)

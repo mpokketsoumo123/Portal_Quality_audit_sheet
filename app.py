@@ -609,7 +609,7 @@ elif selected_page == "Input Form":
             #st.session_state["input_table"].pop(row_to_delete - 1)
     
         if st.button("Load Row for Update"):
-            selected_row = st.session_state["input_table"][adjusted_update_index]
+            selected_row = st.session_state["input_table"][adjusted_index]
             updated_row = {}
 
         # Split input boxes into columns for better readability
@@ -621,7 +621,7 @@ elif selected_page == "Input Form":
 
         # Organize update inputs into columns if desired, or use more columns if there are more keys
             if st.button("Save Updated Row"):
-                update_row(adjusted_update_index, updated_row)
+                update_row(adjusted_index, updated_row)
                 st.success("Row updated!")
 
             # Show the updated dataframe

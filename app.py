@@ -613,11 +613,27 @@ elif selected_page == "Input Form":
             updated_row = {}
 
         # Split input boxes into columns for better readability
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3, col4 = st.columns(4)
 
             with col1:
-                for key in selected_row.keys():
-                    updated_row[key] = st.text_input(f"{key}:", value=selected_row[key])
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 0:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+
+            with col2:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 1:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+            
+            with col3:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 2:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+            
+            with col4:
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 3:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
 
         # Organize update inputs into columns if desired, or use more columns if there are more keys
             if st.button("Save Updated Row"):

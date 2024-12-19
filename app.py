@@ -224,8 +224,8 @@ if uploaded_file is not None:
 
 # Display logo
 st.markdown("""
-    <header>
-        <img src="./logo.png"> 
+    <header style="display: flex">
+        <img src="logo.png" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)
@@ -233,7 +233,7 @@ st.markdown("""
 
 # Display bold header text
 #st.markdown('<div class="header-text">Onboarding Audit Portal</div>', unsafe_allow_html=True)
-st.image("logo.png")
+#st.image("logo.png")
 # Session State Initialization
 if "login_email" not in st.session_state:
     st.session_state["login_email"] = None

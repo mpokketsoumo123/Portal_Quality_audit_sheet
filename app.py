@@ -636,13 +636,16 @@ elif selected_page == "Input Form":
                         updated_row[key] = st.text_input(f"{key}:", value=value)
 
         # Organize update inputs into columns if desired, or use more columns if there are more keys
+            def update_row(row_index, updated_row):
+                st.session_state["input_table"][row_index] = updated_row
+
             if st.button("Save Updated Row"):
                 update_row(adjusted_index, updated_row)
                 st.success("Row updated!")
 
-            # Show the updated dataframe
+        # Show the updated dataframe
                 st.write("Updated Table:")
-                st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
+                st.dataframe(pd.DataFrame(st.session_state["input_table"])) 
 
 
     # Final Submit Button

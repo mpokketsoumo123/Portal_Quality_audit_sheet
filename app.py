@@ -611,13 +611,7 @@ elif selected_page == "Input Form":
     def update_row(row_index, column, updated_value):
         st.session_state["input_table"][row_index][column] = updated_value
 
-    row_to_update = st.number_input(
-        "Enter Row Number to Update (1-based index):",
-        min_value=1,
-        max_value=len(df),
-        step=1
-    )
-    adjusted_update_index = row_to_update - 1  # Convert to 0-based index
+    adjusted_update_index = row_to_delete   # Convert to 0-based index
 
     if st.button("Update Row"):
         selected_row = st.session_state["input_table"][adjusted_update_index]

@@ -612,18 +612,56 @@ elif selected_page == "Input Form":
         st.session_state["input_table"][row_index][column] = updated_value
 
     adjusted_update_index = row_to_delete   # Convert to 0-based index
+    def generate_dropdowns():
+        dropdown_data = [f"Option {i}" for i in range(1, 6)]  # Placeholder dropdown options, replace as needed
+        dropdowns = []
+    
+    # Create 3 columns for the dropdowns
+        col1, col2, col3,col4 = st.columns(4)
+    
+    # Number of dropdowns per column
+        dropdowns_per_column = 53 // 4  # Integer division for first 2 columns
+        remainder = 53 % 4  # Remainder will go to the third column
+    
+    # Column 1 (18 dropdowns)
+        with col1:
+            for i in range(dropdowns_per_column):
+                dropdowns.append(st.selectbox(f"Dropdown {i + 1}", dropdown_data))
+    
+    # Column 2 (18 dropdowns)
+        with col2:
+            for i in range(dropdowns_per_column, dropdowns_per_column * 2):
+                dropdowns.append(st.selectbox(f"Dropdown {i + 1}", dropdown_data))
+    
+    # Column 3 (17 dropdowns)
+        with col3:
+            for i in range(dropdowns_per_column * 2, dropdowns_per_column * 3):
+                dropdowns.append(st.selectbox(f"Dropdown {i + 1}", dropdown_data))
 
-    if st.button("Update Row"):
+        with col4:
+            for i in range(dropdowns_per_column * 3, dropdowns_per_column * 3 + remainder):
+                dropdowns.append(st.selectbox(f"Dropdown {i + 1}", dropdown_data))
+    
+        return dropdowns
+
+
+    if st.button("Load Row for Update"):
         selected_row = st.session_state["input_table"][adjusted_update_index]
-        columns = list(selected_row.keys())  # Get column names
-        column_to_update = st.selectbox("Select Column to Update", columns)
-        updated_value = st.text_input(f"Enter updated value for {column_to_update}", value=selected_row[column_to_update])
+        updated_row = {}
+        dropdowns = generate_dropdowns()
+        # Split input boxes into columns for better readability
+        for i, key in enumerate(selected_row.keys()):
+            updated_row[key] = dropdowns[i]  # Use the corresponding dropdown value for each field
 
+
+        # Organize update inputs into columns if desired, or use more columns if there are more keys
         if st.button("Save Updated Row"):
-            update_row(adjusted_update_index, column_to_update, updated_value)
+            update_row(adjusted_update_index, updated_row)
             st.success("Row updated!")
+
+            # Show the updated dataframe
             st.write("Updated Table:")
-            st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
+            st.dataframe(pd.DataFrame(st.session_state["input_table"])) 
 
 
     # Final Submit Button

@@ -594,7 +594,7 @@ elif selected_page == "Input Form":
             st.session_state["input_table"].pop(row_index)
 
         row_to_delete = st.text_input("Enter the Row number for delete",key="row_to_delete")
-        adjusted_index = row_to_delete   # Adjust for 0-based index
+        adjusted_index = int(row_to_delete)   # Adjust for 0-based index
     
         if st.button("Delete Row"):
             delete_row(adjusted_index)

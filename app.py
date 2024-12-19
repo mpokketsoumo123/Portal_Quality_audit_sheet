@@ -636,13 +636,15 @@ elif selected_page == "Input Form":
                 st.session_state["input_table"][adjusted_index] = updated_row
     
             if st.button("Save Updated Row"):
-                update_row(adjusted_index, updated_row)
-                st.success("Row updated!")
-    
+                if updated_row:
+                    update_row(adjusted_index, updated_row)
+                    st.success("Row updated!")
+
             # Show the updated dataframe
-                st.write("Updated Table:")
-                st.dataframe(pd.DataFrame(st.session_state["input_table"])) 
-    
+                    st.write("Updated Table:")
+                    st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
+                else:
+                    st.error("No row selected for update.")
 
     # Final Submit Button
     if st.session_state["input_table"] and st.button("Final Submit"):

@@ -1,3 +1,4 @@
+
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -634,10 +635,9 @@ elif selected_page == "Input Form":
     
         # Function to update the row in session state
             def update_row(row_index, updated_row):
-                st.session_state["input_table"][row_index] = updated_row
+                input_table[row_index] = updated_row
     
         # Save Updated Row Button
-            adjusted_index = row_to_delete
             if st.button("Save Updated Row"):
                 if updated_row:
                     update_row(adjusted_index, updated_row)

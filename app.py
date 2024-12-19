@@ -633,21 +633,21 @@ elif selected_page == "Input Form":
                         updated_row[key] = st.text_input(f"{key}:", value=value)
     
         # Function to update the row in session state
-        def update_row(row_index, updated_row):
-            st.session_state["input_table"][row_index] = updated_row
+            def update_row(row_index, updated_row):
+                st.session_state["input_table"][row_index] = updated_row
     
         # Save Updated Row Button
-        adjusted_index = row_to_delete
-        if st.button("Save Updated Row"):
-            if updated_row:
-                update_row(adjusted_index, updated_row)
-                st.success("Row updated!")
+            adjusted_index = row_to_delete
+            if st.button("Save Updated Row"):
+                if updated_row:
+                    update_row(adjusted_index, updated_row)
+                    st.success("Row updated!")
     
                 # Show the updated dataframe
-                st.write("Updated Table:")
-                st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
-            else:
-                st.error("No row selected for update.")
+                    st.write("Updated Table:")
+                    st.dataframe(pd.DataFrame(st.session_state["input_table"]))  # Display the updated table
+                else:
+                    st.error("No row selected for update.")
     # Final Submit Button
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:

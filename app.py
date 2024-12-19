@@ -604,9 +604,7 @@ elif selected_page == "Input Form":
             delete_row(adjusted_index)
     
         # Load Row for Update
-        if st.button("Load Row for Update"):
-            selected_row = st.session_state["input_table"][adjusted_index]
-            updated_row = {}
+        updated_row = {}
         if st.button("Load Row for Update"):
             selected_row = st.session_state["input_table"][adjusted_index]
             updated_row = selected_row.copy()  # Copy the selected row to update

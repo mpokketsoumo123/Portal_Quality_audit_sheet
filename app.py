@@ -607,6 +607,29 @@ elif selected_page == "Input Form":
         #if st.button("Delete Row"):
             # Adjust for 1-based index
             #st.session_state["input_table"].pop(row_to_delete - 1)
+    
+    def update_row(row_index, updated_row):
+        st.session_state["input_table"][row_index] = updated_row
+
+    row_to_update = st.number_input(
+        "Enter Row Number to Update (1-based index):",
+        min_value=0,
+        max_value=len(df),
+        step=1
+    )
+    adjusted_update_index = row_to_update   # Convert to 0-based index
+
+    if st.button("Load Row for Update"):
+        selected_row = st.session_state["input_table"][adjusted_update_index]
+        updated_row = {}
+        st.write("Update Selected Row:")
+        for key, value in selected_row.items():
+            updated_row[key] = st.text_input(f"{key}:", value=value)
+        
+        if st.button("Save Updated Row"):
+            update_row(adjusted_update_index, updated_row)
+            st.success("Row updated!")
+
 
     # Final Submit Button
     if st.session_state["input_table"] and st.button("Final Submit"):

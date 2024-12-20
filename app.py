@@ -527,6 +527,8 @@ elif selected_page == "Input Form":
 
         st.markdown('<div class="custom-label">Actual Tagging L3:</div>', unsafe_allow_html=True)
         Actual_Tagging_L3 = st.text_input("",key="Actual_Tagging_L3")
+    if "edit_row_index" not in st.session_state:
+        st.session_state["edit_row_index"] = None
 
     # Add Row Button
     error_placeholder = st.empty()
@@ -591,99 +593,100 @@ elif selected_page == "Input Form":
         else:
             st.session_state["input_table"].append(data)
 
-    # Display Table
-    df = pd.DataFrame(st.session_state["input_table"])
 
-    # AgGrid setup
-    gb = GridOptionsBuilder.from_dataframe(df)
+    # Display Table
+        df = pd.DataFrame(st.session_state["input_table"])
     
-    # JavaScript code for the Update and Delete buttons
-    update_button = JsCode(
-        """
-        function(params) {
-            return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;">Update</button>`;
-        }
-        """
-    )
-    final_submit_button = JsCode(
-        """
-        function(params) {
-            return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;">Final Submit</button>`;
-        }
-        """
-    )
-    delete_button = JsCode(
-        """
-        function(params) {
-            return `<button style="color:white; background-color:red; padding:3px; border:none; border-radius:5px; cursor:pointer;">Delete</button>`;
-        }
-        """
-    )
-    
-    # Add Delete and Update columns
-    df["Action"] = [
-        "Final Submit" if i == st.session_state["edit_row_index"] else "Update"
-        for i in range(len(df))
-    ]
-    df["Delete"] = ""
-    
-    # Configure columns for AgGrid
-    gb.configure_column("Action", cellRenderer=update_button if "Update" in df["Action"].values else final_submit_button, editable=False)
-    gb.configure_column("Delete", cellRenderer=delete_button, editable=False)
-    gb.configure_grid_options(domLayout="normal", editable=True)
-    
-    # Add text wrapping for headers
-    gb.configure_default_column(wrapHeaderText=True)
-    gb.configure_pagination(enabled=True, paginationPageSize=5)
-    
-    grid_options = gb.build()
-    
-    # Display AgGrid
-    response = AgGrid(
-        df,
-        gridOptions=grid_options,
-        update_mode=GridUpdateMode.MODEL_CHANGED,
-        allow_unsafe_jscode=True,
-        theme="material",
-        height=400,
-    )
-    
-    # Handle row edits
-    selected_rows = response.get("selected_rows", [])
-    
-    if selected_rows:
-        selected_row_index = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
-    
-        if st.session_state["edit_row_index"] is None:  # If not editing, load for edit
-            st.session_state["edit_row_index"] = selected_row_index
-            st.write(f"Row {selected_row_index + 1} is now editable.")
-        elif selected_row_index == st.session_state["edit_row_index"]:  # Final submit
-            st.write(f"Row {selected_row_index + 1} submitted with updates.")
-            st.session_state["input_table"][selected_row_index] = response["data"][selected_row_index]
-            st.session_state["edit_row_index"] = None  # Reset edit mode
-    
-    # Handle delete button
-    if selected_rows and st.button("Delete Selected Row"):
-        row_to_delete = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
-        st.session_state["input_table"].pop(row_to_delete)
-        st.experimental_rerun()
-    
-    # Display DataFrame
-    st.write("Updated Table:")
-    st.dataframe(pd.DataFrame(st.session_state["input_table"]))
-            # Final Submit Button
-    if st.session_state["input_table"] and st.button("Final Submit"):
-        try:
-            for row in st.session_state["input_table"]:
-                write_to_sheet(
-                    "Quality_Requirment",
-                    list(row.values()),
-                    st.session_state["login_email"]
-                )
-            st.success("Data successfully written to Google Sheets!")
-            st.session_state["input_table"] = []  # Clear after submission
-        except Exception as e:
-                st.error(f"An error occurred: {e}")
+        # AgGrid setup
+        gb = GridOptionsBuilder.from_dataframe(df)
+        
+        # JavaScript code for the Update and Delete buttons
+        update_button = JsCode(
+            """
+            function(params) {
+                return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;">Update</button>`;
+            }
+            """
+        )
+        final_submit_button = JsCode(
+            """
+            function(params) {
+                return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;">Final Submit</button>`;
+            }
+            """
+        )
+        delete_button = JsCode(
+            """
+            function(params) {
+                return `<button style="color:white; background-color:red; padding:3px; border:none; border-radius:5px; cursor:pointer;">Delete</button>`;
+            }
+            """
+        )
+        
+        # Add Delete and Update columns
+        df["Action"] = [
+            "Final Submit" if i == st.session_state["edit_row_index"] else "Update"
+            for i in range(len(df))
+        ]
+        df["Delete"] = ""
+        
+        # Configure columns for AgGrid
+        gb.configure_column("Action", cellRenderer=update_button if "Update" in df["Action"].values else final_submit_button, editable=False)
+        gb.configure_column("Delete", cellRenderer=delete_button, editable=False)
+        gb.configure_grid_options(domLayout="normal", editable=True)
+        
+        # Add text wrapping for headers
+        gb.configure_default_column(wrapHeaderText=True)
+        gb.configure_pagination(enabled=True, paginationPageSize=5)
+        
+        grid_options = gb.build()
+        
+        # Display AgGrid
+        response = AgGrid(
+            df,
+            gridOptions=grid_options,
+            update_mode=GridUpdateMode.MODEL_CHANGED,
+            allow_unsafe_jscode=True,
+            theme="material",
+            height=400,
+        )
+        
+        # Handle row edits
+        selected_rows = response.get("selected_rows", [])
+        
+        if selected_rows:
+            selected_row_index = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
+        
+            if st.session_state["edit_row_index"] is None:  # If not editing, load for edit
+                st.session_state["edit_row_index"] = selected_row_index
+                st.write(f"Row {selected_row_index + 1} is now editable.")
+            elif selected_row_index == st.session_state["edit_row_index"]:  # Final submit
+                st.write(f"Row {selected_row_index + 1} submitted with updates.")
+                st.session_state["input_table"][selected_row_index] = response["data"][selected_row_index]
+                st.session_state["edit_row_index"] = None  # Reset edit mode
+        
+        # Handle delete button
+        if selected_rows and st.button("Delete Selected Row"):
+            row_to_delete = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
+            st.session_state["input_table"].pop(row_to_delete)
+            st.experimental_rerun()
+        
+        # Display DataFrame
+        st.write("Updated Table:")
+        st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+                # Final Submit Button
+        if st.session_state["input_table"] and st.button("Final Submit"):
+            try:
+                for row in st.session_state["input_table"]:
+                    write_to_sheet(
+                        "Quality_Requirment",
+                        list(row.values()),
+                        st.session_state["login_email"]
+                    )
+                st.success("Data successfully written to Google Sheets!")
+                st.session_state["input_table"] = []  # Clear after submission
+            except Exception as e:
+                    st.error(f"An error occurred: {e}")
 st.markdown("""
     <div class="footer">
         Developed by MIS Team<br>

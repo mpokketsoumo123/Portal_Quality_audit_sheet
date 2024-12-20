@@ -632,36 +632,14 @@ elif selected_page == "Input Form":
         )
     
         st.markdown("### Your Input Table:")
-        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
-    
-        # Add headers
-        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
-        table_html += "".join(f"<th>{header}</th>" for header in headers) + "</tr></thead><tbody>"
-    
-        # Add rows
         for index, row in enumerate(st.session_state["input_table"][:10]):  # Limit display to 10 rows
-            table_html += "<tr>"
-            table_html += "".join(f"<td>{value}</td>" for value in row.values())
-            table_html += f"""
-            <td>
-                <form action="#" method="post">
-                    <button name="delete_row_{index}" type="submit" style="margin-right: 10px;">Delete</button>
-                    <button name="update_row_{index}" type="submit">Update</button>
-                </form>
-            </td>
-            </tr>
-            """
-        table_html += "</tbody></table></div>"
-    
-        # Display the styled table
-        st.markdown(table_html, unsafe_allow_html=True)
-    
-        # Process button clicks
-        for index in range(len(st.session_state["input_table"][:10])):
-            if st.session_state.get(f"delete_row_{index}"):
+            cols = st.columns(len(row) + 1)
+            for i, (key, value) in enumerate(row.items()):
+                cols[i].write(value)
+            if cols[-1].button("Delete", key=f"delete_{index}"):
                 delete_row(index)
                 st.experimental_rerun()
-            if st.session_state.get(f"update_row_{index}"):
+            if cols[-1].button("Update", key=f"update_{index}"):
                 st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
                 st.session_state["row_index_to_update"] = index
                 st.experimental_rerun()

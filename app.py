@@ -599,31 +599,27 @@ elif selected_page == "Input Form":
     
         # AgGrid setup
         gb = GridOptionsBuilder.from_dataframe(df)
-        
-        # JavaScript code for the Update and Delete buttons
-        update_button = JsCode(
-            """
+
+# JavaScript code for the Update, Final Submit, and Delete buttons
+        update_button = JsCode("""
             function(params) {
                 return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;">Update</button>`;
             }
-            """
-        )
-        final_submit_button = JsCode(
-            """
+        """)
+        
+        final_submit_button = JsCode("""
             function(params) {
                 return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;">Final Submit</button>`;
             }
-            """
-        )
-        delete_button = JsCode(
-            """
+        """)
+        
+        delete_button = JsCode("""
             function(params) {
                 return `<button style="color:white; background-color:red; padding:3px; border:none; border-radius:5px; cursor:pointer;">Delete</button>`;
             }
-            """
-        )
+        """)
         
-        # Add Delete and Update columns
+        # Add Action and Delete columns
         df["Action"] = [
             "Final Submit" if i == st.session_state["edit_row_index"] else "Update"
             for i in range(len(df))
@@ -633,11 +629,26 @@ elif selected_page == "Input Form":
         # Configure columns for AgGrid
         gb.configure_column("Action", cellRenderer=update_button if "Update" in df["Action"].values else final_submit_button, editable=False)
         gb.configure_column("Delete", cellRenderer=delete_button, editable=False)
-        gb.configure_grid_options(domLayout="normal", editable=True)
         
-        # Add text wrapping for headers
+        # Style grid header and enable pagination
+        gb.configure_grid_options(domLayout="normal", editable=True)
         gb.configure_default_column(wrapHeaderText=True)
+        gb.configure_column("Action", width=120)
         gb.configure_pagination(enabled=True, paginationPageSize=5)
+        
+        # Custom CSS for header style
+        st.markdown("""
+            <style>
+                .ag-header-cell-label {
+                    background-color: #4CAF50;
+                    color: white;
+                    font-weight: bold;
+                }
+                .ag-cell {
+                    font-size: 12px;
+                }
+            </style>
+        """, unsafe_allow_html=True)
         
         grid_options = gb.build()
         
@@ -670,9 +681,9 @@ elif selected_page == "Input Form":
             row_to_delete = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
             st.session_state["input_table"].pop(row_to_delete)
             st.experimental_rerun()
-        
-        # Display DataFrame
-                # Final Submit Button
+                
+                # Display DataFrame
+                        # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:
                 for row in st.session_state["input_table"]:

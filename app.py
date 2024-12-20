@@ -591,7 +591,7 @@ elif selected_page == "Input Form":
 
     # Display Table
     def delete_row(row_index):
-    st.session_state["input_table"].pop(row_index)
+        st.session_state["input_table"].pop(row_index)
 
 # Function to update a row
     def update_row(row_index, updated_row):

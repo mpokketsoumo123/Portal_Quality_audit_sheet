@@ -632,7 +632,7 @@ elif selected_page == "Input Form":
         )
     
         st.markdown("### Your Input Table:")
-        for index, row in enumerate(st.session_state["input_table"][:10]):  # Limit display to 10 rows
+        for index, row in enumerate(st.session_state["input_table"]):  # Limit display to 10 rows
             cols = st.columns(len(row) + 1)
             for i, (key, value) in enumerate(row.items()):
                 cols[i].write(value)
@@ -650,8 +650,27 @@ elif selected_page == "Input Form":
             selected_row = st.session_state["selected_row"]
             updated_row = {}
     
-            for key, value in selected_row.items():
-                updated_row[key] = st.text_input(f"{key}:", value=value)
+            for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 0:
+                        with col1:
+                            updated_row[key] = st.text_input(
+                                label=f"Edit {key} (Column 1)", value=value, label_visibility="hidden"
+                            )
+                    elif i % 4 == 1:
+                        with col2:
+                            updated_row[key] = st.text_input(
+                                label=f"Edit {key} (Column 2)", value=value, label_visibility="hidden"
+                            )
+                    elif i % 4 == 2:
+                        with col3:
+                            updated_row[key] = st.text_input(
+                                label=f"Edit {key} (Column 3)", value=value, label_visibility="hidden"
+                            )
+                    elif i % 4 == 3:
+                        with col4:
+                            updated_row[key] = st.text_input(
+                                label=f"Edit {key} (Column 4)", value=value, label_visibility="hidden"
+                            )
     
             if st.button("Save Updated Row"):
                 row_index = st.session_state["row_index_to_update"]

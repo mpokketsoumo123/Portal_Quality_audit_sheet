@@ -649,6 +649,15 @@ elif selected_page == "Input Form":
     
         # Render the table
         st.markdown(table_html, unsafe_allow_html=True)
+        new_row = {}  # Get the new row from user input (this part should be handled based on your specific requirements)
+
+    # Check if the row already exists in the table
+        if new_row in st.session_state["input_table"]:
+            st.warning("This row already exists. Please don't add the same row.")
+        else:
+            # If the row doesn't exist, add it to the table
+            st.session_state["input_table"].append(new_row)
+            st.success("Row added successfully!")
     
         # Delete Row
         def delete_row(row_index):

@@ -594,6 +594,11 @@ elif selected_page == "Input Form":
         st.markdown(
             """
             <style>
+            .scrollable-table {
+                    max-height: 300px;
+                    border: 1px solid #ddd;
+                    margin-bottom: 20px;
+                }
             .styled-table {
                 border-collapse: collapse;
                 margin: 25px 0;

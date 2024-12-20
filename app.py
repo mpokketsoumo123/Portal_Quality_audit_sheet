@@ -632,8 +632,6 @@ elif selected_page == "Input Form":
         )
     
         st.markdown("### Your Input Table:")
-    
-        # HTML for the table
         table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
     
         # Add headers
@@ -641,13 +639,15 @@ elif selected_page == "Input Form":
         table_html += "".join(f"<th>{header}</th>" for header in headers) + "</tr></thead><tbody>"
     
         # Add rows
-        for index, row in enumerate(st.session_state["input_table"]):
+        for index, row in enumerate(st.session_state["input_table"][:10]):  # Limit display to 10 rows
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
             table_html += f"""
             <td>
-                <button onclick="document.querySelector('#delete_row_{index}').click()">Delete</button>
-                <button onclick="document.querySelector('#update_row_{index}').click()">Update</button>
+                <form action="#" method="post">
+                    <button name="delete_row_{index}" type="submit" style="margin-right: 10px;">Delete</button>
+                    <button name="update_row_{index}" type="submit">Update</button>
+                </form>
             </td>
             </tr>
             """
@@ -656,14 +656,15 @@ elif selected_page == "Input Form":
         # Display the styled table
         st.markdown(table_html, unsafe_allow_html=True)
     
-        # Add buttons for each row in Streamlit (hidden for rendering control)
-        for index in range(len(st.session_state["input_table"])):
-            if st.button(f"Delete Row {index+1}", key=f"delete_row_{index}", help="Delete this row"):
+        # Process button clicks
+        for index in range(len(st.session_state["input_table"][:10])):
+            if st.session_state.get(f"delete_row_{index}"):
                 delete_row(index)
-    
-            if st.button(f"Update Row {index+1}", key=f"update_row_{index}", help="Update this row"):
+                st.experimental_rerun()
+            if st.session_state.get(f"update_row_{index}"):
                 st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
                 st.session_state["row_index_to_update"] = index
+                st.experimental_rerun()
     
         # If a row is loaded for updating
         if "selected_row" in st.session_state:
@@ -680,6 +681,7 @@ elif selected_page == "Input Form":
                 st.success("Row updated!")
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
+                st.experimental_rerun()
     
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):

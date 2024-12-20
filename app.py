@@ -590,102 +590,113 @@ elif selected_page == "Input Form":
             st.session_state["input_table"].append(data)
 
     # Display Table
-    def delete_row(row_index):
-        st.session_state["input_table"].pop(row_index)
-    
-    # Function to update a row
-    def update_row(row_index, updated_row):
-        st.session_state["input_table"][row_index] = updated_row
-    
-    # Display the input table with delete and update buttons beside each row
-    if st.session_state["input_table"]:
+    if st.session_state.get("input_table"):
         st.markdown(
-            """
-            <style>
-            .scrollable-table {
-                max-height: 300px;
-                overflow-y: auto;
-                border: 1px solid #ddd;
-                margin-bottom: 20px;
-            }
-            .styled-table {
-                border-collapse: collapse;
-                width: 100%;
-                margin: 0;
-                font-size: 18px;
-                min-width: 400px;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-            }
-            .styled-table thead tr {
-                background-color: #009879;
-                color: #ffffff;
-                text-align: left;
-                font-weight: bold;
-            }
-            .styled-table th, .styled-table td {
-                border: 1px solid #dddddd;
-                padding: 8px 12px;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
+        """
+        <style>
+        .scrollable-table {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .styled-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0;
+            font-size: 18px;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+        .styled-table th, .styled-table td {
+            border: 1px solid #dddddd;
+            padding: 8px 12px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+        st.write("Your Input Table:")
+        df = pd.DataFrame(st.session_state["input_table"])
+        st.dataframe(df)
     
-        st.markdown("### Your Input Table:")
-        for index, row in enumerate(st.session_state["input_table"]):  # Limit display to 10 rows
-            cols = st.columns(len(row) + 1)
-            for i, (key, value) in enumerate(row.items()):
-                cols[i].write(value)
-            if cols[-1].button("Delete", key=f"delete_{index}"):
-                delete_row(index)
-                st.experimental_rerun()
-            if cols[-1].button("Update", key=f"update_{index}"):
-                st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
-                st.session_state["row_index_to_update"] = index
-                st.experimental_rerun()
+        # Delete Row
+        def delete_row(row_index):
+            st.session_state["input_table"].pop(row_index)
     
-        # If a row is loaded for updating
+        row_to_delete = st.number_input(
+                "Enter Row Number to Delete (1-based index):",
+            min_value=0,
+            max_value=len(df)-1,
+            step=1
+            )
+    
+        adjusted_index = row_to_delete   # Adjust for 0-based index
+        
+        if st.button("Delete Row"):
+            delete_row(adjusted_index)
+        
+            # Load Row for Update
+        def update_row(row_index, updated_row):
+            st.session_state["input_table"][row_index] = updated_row
+
+        updated_row = {}
+        if st.button("Load Row for Update"):
+            selected_row = st.session_state["input_table"][adjusted_index]
+            st.session_state["selected_row"] = selected_row.copy()  # Store in session state
+            st.session_state["row_index_to_update"] = adjusted_index
+
+    # If a row is loaded, display input fields for updating
         if "selected_row" in st.session_state:
-            st.markdown("### Update Row")
             selected_row = st.session_state["selected_row"]
+
+            # Split input fields into 4 columns
+            col1, col2, col3, col4 = st.columns(4)
             updated_row = {}
     
+            # Populate input fields
             for i, (key, value) in enumerate(selected_row.items()):
-                    if i % 4 == 0:
-                        with col1:
-                            updated_row[key] = st.text_input(
-                                label=f"Edit {key} (Column 1)", value=value, label_visibility="hidden"
-                            )
-                    elif i % 4 == 1:
-                        with col2:
-                            updated_row[key] = st.text_input(
-                                label=f"Edit {key} (Column 2)", value=value, label_visibility="hidden"
-                            )
-                    elif i % 4 == 2:
-                        with col3:
-                            updated_row[key] = st.text_input(
-                                label=f"Edit {key} (Column 3)", value=value, label_visibility="hidden"
-                            )
-                    elif i % 4 == 3:
-                        with col4:
-                            updated_row[key] = st.text_input(
-                                label=f"Edit {key} (Column 4)", value=value, label_visibility="hidden"
-                            )
+                if i % 4 == 0:
+                    with col1:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 1:
+                    with col2:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 2:
+                    with col3:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 3:
+                    with col4:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
     
+            # Save Updated Row Button
             if st.button("Save Updated Row"):
                 row_index = st.session_state["row_index_to_update"]
                 update_row(row_index, updated_row)
                 st.success("Row updated!")
+    
+                # Refresh the updated DataFrame
+                st.write("Updated Table:")
+                st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+    
+                # Clear session state for row update
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
-                st.experimental_rerun()
-    
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:
                 for row in st.session_state["input_table"]:
-                    # Replace write_to_sheet with your implementation
-                    pass
+                    write_to_sheet(
+                        "Quality_Requirment",
+                        list(row.values()),
+                        st.session_state["login_email"]
+                    )
                 st.success("Data successfully written to Google Sheets!")
                 st.session_state["input_table"] = []  # Clear after submission
             except Exception as e:

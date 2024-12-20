@@ -584,10 +584,16 @@ elif selected_page == "Input Form":
             "Actual Tagging L3": Actual_Tagging_L3
         }
         missing_fields = [key for key, value in data.items() if not value or value == ""]
+        new_row = {}
         if missing_fields:
             error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
+          # Get the new row from user input (this part should be handled based on your specific requirements)
+        elif new_row in st.session_state["input_table"]:
+            st.warning("This row already exists. Please don't add the same row.")
         else:
-            st.session_state["input_table"].append(data)
+            # If the row doesn't exist, add it to the table
+            st.session_state["input_table"].append(new_row)
+            st.success("Row added successfully!")
 
     # Display Table
     if st.session_state["input_table"]:
@@ -649,15 +655,7 @@ elif selected_page == "Input Form":
     
         # Render the table
         st.markdown(table_html, unsafe_allow_html=True)
-        new_row = {}  # Get the new row from user input (this part should be handled based on your specific requirements)
-
-    # Check if the row already exists in the table
-        if new_row in st.session_state["input_table"]:
-            st.warning("This row already exists. Please don't add the same row.")
-        else:
-            # If the row doesn't exist, add it to the table
-            st.session_state["input_table"].append(new_row)
-            st.success("Row added successfully!")
+        
     
         # Delete Row
         def delete_row(row_index):

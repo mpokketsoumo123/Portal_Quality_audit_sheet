@@ -704,10 +704,7 @@ elif selected_page == "Input Form":
                 row_index = st.session_state["row_index_to_update"]
                 update_row(row_index, updated_row)
                 st.success("Row updated!")
-    
-                # Refresh the updated DataFrame
-                st.write("Updated Table:")
-                st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+
     
                 # Clear session state for row update
                 del st.session_state["selected_row"]

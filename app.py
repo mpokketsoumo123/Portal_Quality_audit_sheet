@@ -641,10 +641,17 @@ elif selected_page == "Input Form":
     
                     if st.button("Save Updated Row",key="Save Updated Row"):
                             row_index = st.session_state["row_index_to_update"]
-                            st.session_state["input_table"][row_index] = updated_row
+                            update_row(row_index, updated_row)
                             st.success("Row updated!")
+                
+                            # Refresh the updated DataFrame
+                            st.write("Updated Table:")
+                            st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+                
+                            # Clear session state for row update
                             del st.session_state["selected_row"]
-                            del st.session_state["row_index_to_update"]  # Refresh the app
+                            del st.session_state["row_index_to_update"]
+
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:
             for row in st.session_state["input_table"]:

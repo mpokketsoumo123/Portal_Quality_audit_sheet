@@ -672,8 +672,6 @@ elif selected_page == "Input Form":
             st.experimental_rerun()
         
         # Display DataFrame
-        st.write("Updated Table:")
-        st.dataframe(pd.DataFrame(st.session_state["input_table"]))
                 # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:

@@ -584,14 +584,18 @@ elif selected_page == "Input Form":
             "Actual Tagging L3": Actual_Tagging_L3
         }
         missing_fields = [key for key, value in data.items() if not value or value == ""]
-        new_row = {}
+        new_row = data.copy()  # Create a copy of the data as new row
+    
+        # Handle missing fields
         if missing_fields:
             error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
-          # Get the new row from user input (this part should be handled based on your specific requirements)
-        elif new_row in st.session_state["input_table"]:
+        # Handle duplicate row check
+        elif new_row in st.session_state.get("input_table", []):
             st.warning("This row already exists. Please don't add the same row.")
         else:
-            # If the row doesn't exist, add it to the table
+            # If no missing fields and no duplicate, add the new row to the table
+            if "input_table" not in st.session_state:
+                st.session_state["input_table"] = []
             st.session_state["input_table"].append(new_row)
             st.success("Row added successfully!")
 

@@ -595,7 +595,7 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                max-height: 300px;
+                max-height: 1000px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
                 margin-bottom: 20px;
@@ -632,17 +632,6 @@ elif selected_page == "Input Form":
         headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
         table_html += "".join(f"<th>{header}</th>" for header in headers) + "</tr></thead><tbody>"
     
-        # Add rows
-        for index, row in enumerate(st.session_state["input_table"]):
-            table_html += "<tr>"
-            table_html += "".join(f"<td>{value}</td>" for value in row.values())
-            table_html += f"""
-            <td>
-                <button onclick="document.querySelector('#delete_row_{index}').click()">Delete</button>
-                <button onclick="document.querySelector('#update_row_{index}').click()">Update</button>
-            </td>
-            </tr>
-            """
         table_html += "</tbody></table></div>"
     
         # Display the styled table

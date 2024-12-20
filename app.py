@@ -598,7 +598,7 @@ elif selected_page == "Input Form":
 
         def delete_row(row_index):
             st.session_state["input_table"].pop(row_index)
-            st.query_params  # Refresh the app
+
     
         def load_row_for_update(row_index):
             st.session_state["selected_row"] = df.iloc[row_index].to_dict()
@@ -616,36 +616,35 @@ elif selected_page == "Input Form":
                 load_row_for_update(index)
     
         # Handle Row Update
-        if "selected_row" in st.session_state:
-            st.write("Update Row:")
-            selected_row = st.session_state["selected_row"]
-            col1, col2, col3, col4 = st.columns(4)
+                if "selected_row" in st.session_state:
+                    st.write("Update Row:")
+                    selected_row = st.session_state["selected_row"]
+                    col1, col2, col3, col4 = st.columns(4)
 
-            updated_row = {}
+                    updated_row = {}
     
-            for i, (key, value) in enumerate(selected_row.items()):
-                if i % 4 == 0:
-                    with col1:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
-                elif i % 4 == 1:
-                    with col2:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
-                elif i % 4 == 2:
-                    with col3:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
-                elif i % 4 == 3:
-                    with col4:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                    for i, (key, value) in enumerate(selected_row.items()):
+                        if i % 4 == 0:
+                            with col1:
+                                updated_row[key] = st.text_input(f"{key}:", value=value)
+                        elif i % 4 == 1:
+                            with col2:
+                                updated_row[key] = st.text_input(f"{key}:", value=value)
+                        elif i % 4 == 2:
+                            with col3:
+                                updated_row[key] = st.text_input(f"{key}:", value=value)
+                        elif i % 4 == 3:
+                            with col4:
+                                updated_row[key] = st.text_input(f"{key}:", value=value)
     
 
     
-            if st.button("Save Updated Row"):
-                row_index = st.session_state["row_index_to_update"]
-                st.session_state["input_table"][row_index] = updated_row
-                st.success("Row updated!")
-                del st.session_state["selected_row"]
-                del st.session_state["row_index_to_update"]
-                st.query_params()  # Refresh the app
+                    if st.button("Save Updated Row"):
+                        row_index = st.session_state["row_index_to_update"]
+                        st.session_state["input_table"][row_index] = updated_row
+                        st.success("Row updated!")
+                        del st.session_state["selected_row"]
+                        del st.session_state["row_index_to_update"]  # Refresh the app
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:
             for row in st.session_state["input_table"]:

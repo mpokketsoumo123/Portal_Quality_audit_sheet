@@ -604,7 +604,7 @@ elif selected_page == "Input Form":
         gb = GridOptionsBuilder.from_dataframe(df)
         
         # JavaScript code for the Update, Final Submit, and Delete buttons
-       update_button = JsCode("""function(params) {return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;" onclick="handleUpdate(${params.rowIndex})">Update</button>`; }""")
+        update_button = JsCode("""function(params) {return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;" onclick="handleUpdate(${params.rowIndex})">Update</button>`; }""")
 
         final_submit_button = JsCode("""function(params) {return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;" onclick="handleFinalSubmit(${params.rowIndex})">Final Submit</button>`;}""")
         

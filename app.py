@@ -622,9 +622,11 @@ elif selected_page == "Input Form":
         """,
         unsafe_allow_html=True,
     )
-        st.write("Your Input Table:")
-        df = pd.DataFrame(st.session_state["input_table"])
-        st.dataframe(df)
+        st.markdown("### Your Input Table:")
+        for index, row in enumerate(st.session_state["input_table"]):  # Limit display to 10 rows
+            cols = st.columns(len(row) + 1)
+            for i, (key, value) in enumerate(row.items()):
+                cols[i].write(value)
     
         # Delete Row
         def delete_row(row_index):

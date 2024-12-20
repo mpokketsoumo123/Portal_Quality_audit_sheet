@@ -592,48 +592,44 @@ elif selected_page == "Input Form":
     # Display Table
     if st.session_state.get("input_table"):
         st.write("Your Input Table:")
-        
-        # Create a DataFrame from the session state data
         df = pd.DataFrame(st.session_state["input_table"])
-        
-        # Display the DataFrame with wrap-text style for headers
-        st.dataframe(df.style.set_table_styles(
-            [{'selector': 'th', 'props': [('white-space', 'normal'), ('word-wrap', 'break-word')]}]
-        ))
-        
-        # Display the table rows with buttons beside them
-        for i, row in df.iterrows():
-            # Create columns for row data and buttons
-            col1, col2, col3 = st.columns([5, 1, 1])  # Adjust width ratio
-            
-            # Display row data
-            with col1:
-                st.write(f"Row {i+1}:")
-                st.write(row.to_dict())  # Display the row data as a dictionary
-            
-            # Delete Row Button
-            with col2:
-                if st.button(f"Delete Row {i+1}", key=f"delete_{i}"):
-                    st.session_state["input_table"].pop(i)
-                    st.experimental_rerun()  # Refresh the page to show updated table
-            
-            # Update Row Button
-            with col3:
-                if st.button(f"Update Row {i+1}", key=f"update_{i}"):
-                    # Store the row to be updated in session state
-                    st.session_state["selected_row"] = row.to_dict()
-                    st.session_state["row_index_to_update"] = i
+        st.dataframe(df)
     
-        # If a row is selected for update, display input fields for that row
+        # Delete Row
+        def delete_row(row_index):
+            st.session_state["input_table"].pop(row_index)
+    
+        row_to_delete = st.number_input(
+                "Enter Row Number to Delete (1-based index):",
+            min_value=0,
+            max_value=len(df)-1,
+            step=1
+            )
+    
+        adjusted_index = row_to_delete   # Adjust for 0-based index
+        
+        if st.button("Delete Row"):
+            delete_row(adjusted_index)
+        
+            # Load Row for Update
+        def update_row(row_index, updated_row):
+            st.session_state["input_table"][row_index] = updated_row
+
+        updated_row = {}
+        if st.button("Load Row for Update"):
+            selected_row = st.session_state["input_table"][adjusted_index]
+            st.session_state["selected_row"] = selected_row.copy()  # Store in session state
+            st.session_state["row_index_to_update"] = adjusted_index
+
+    # If a row is loaded, display input fields for updating
         if "selected_row" in st.session_state:
             selected_row = st.session_state["selected_row"]
-            row_index = st.session_state["row_index_to_update"]
-    
-            # Display input fields in a 4-column layout for row editing
+
+            # Split input fields into 4 columns
             col1, col2, col3, col4 = st.columns(4)
             updated_row = {}
     
-            # Populate input fields with the selected row's values
+            # Populate input fields
             for i, (key, value) in enumerate(selected_row.items()):
                 if i % 4 == 0:
                     with col1:
@@ -650,8 +646,8 @@ elif selected_page == "Input Form":
     
             # Save Updated Row Button
             if st.button("Save Updated Row"):
-                # Update the row in session state
-                st.session_state["input_table"][row_index] = updated_row
+                row_index = st.session_state["row_index_to_update"]
+                update_row(row_index, updated_row)
                 st.success("Row updated!")
     
                 # Refresh the updated DataFrame
@@ -661,7 +657,7 @@ elif selected_page == "Input Form":
                 # Clear session state for row update
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
-            # Final Submit Button
+        # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:
                 for row in st.session_state["input_table"]:

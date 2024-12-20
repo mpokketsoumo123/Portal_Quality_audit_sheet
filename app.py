@@ -604,24 +604,26 @@ elif selected_page == "Input Form":
         gb = GridOptionsBuilder.from_dataframe(df)
         
         # JavaScript code for the Update, Final Submit, and Delete buttons
-        update_button = JsCode("""
+       update_button = JsCode("""
             function(params) {
-                return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;">Update</button>`;
+                return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;" 
+                        onclick="handleUpdate(${params.rowIndex})">Update</button>`;
             }
         """)
-        
+
         final_submit_button = JsCode("""
             function(params) {
-                return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;">Final Submit</button>`;
+                return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;" 
+                        onclick="handleFinalSubmit(${params.rowIndex})">Final Submit</button>`;
             }
         """)
         
         delete_button = JsCode("""
             function(params) {
-                return `<button style="color:white; background-color:red; padding:3px; border:none; border-radius:5px; cursor:pointer;">Delete</button>`;
+                return `<button style="color:white; background-color:red; padding:3px; border:none; border-radius:5px; cursor:pointer;" 
+                        onclick="handleDelete(${params.rowIndex})">Delete</button>`;
             }
         """)
-        
         # Add Action and Delete columns
         df["Action"] = [
             "Final Submit" if i == st.session_state["edit_row_index"] else "Update"

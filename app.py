@@ -639,7 +639,7 @@ elif selected_page == "Input Form":
     
 
     
-                        if st.button("Save Updated Row",key="Save Updated Row"):
+                    if st.button("Save Updated Row",key="Save Updated Row"):
                             row_index = st.session_state["row_index_to_update"]
                             st.session_state["input_table"][row_index] = updated_row
                             st.success("Row updated!")

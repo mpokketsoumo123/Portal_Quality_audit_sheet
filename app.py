@@ -231,7 +231,7 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header style="display: flex">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo"> 
+        <img src=f"data:image/png;base64,{image_base64}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)

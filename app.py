@@ -598,7 +598,7 @@ elif selected_page == "Input Form":
 
         def delete_row(row_index):
             st.session_state["input_table"].pop(row_index)
-            st.query_params()  # Refresh the app
+            st.experimental_rerun()  # Refresh the app
     
         def load_row_for_update(row_index):
             st.session_state["selected_row"] = df.iloc[row_index].to_dict()
@@ -619,10 +619,25 @@ elif selected_page == "Input Form":
         if "selected_row" in st.session_state:
             st.write("Update Row:")
             selected_row = st.session_state["selected_row"]
+            col1, col2, col3, col4 = st.columns(4)
+
             updated_row = {}
     
-            for key, value in selected_row.items():
-                updated_row[key] = st.text_input(f"{key}:", value=value)
+            for i, (key, value) in enumerate(selected_row.items()):
+                if i % 4 == 0:
+                    with col1:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 1:
+                    with col2:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 2:
+                    with col3:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 3:
+                    with col4:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+    
+
     
             if st.button("Save Updated Row"):
                 row_index = st.session_state["row_index_to_update"]

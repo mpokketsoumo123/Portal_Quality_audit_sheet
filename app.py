@@ -8,6 +8,8 @@ import base64
 from PIL import Image
 import io
 from google.oauth2.service_account import Credentials
+from st_aggrid import AgGrid, GridOptionsBuilder, JsCode
+from st_aggrid.shared import GridUpdateMode
 # Google Sheets Authentication
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(
@@ -590,86 +592,98 @@ elif selected_page == "Input Form":
             st.session_state["input_table"].append(data)
 
     # Display Table
-    if st.session_state.get("input_table"):
-        st.write("Your Input Table:")
-        df = pd.DataFrame(st.session_state["input_table"])
-        st.dataframe(df)
-    
-        # Delete Row
-        def delete_row(row_index):
-            st.session_state["input_table"].pop(row_index)
-    
-        row_to_delete = st.number_input(
-                "Enter Row Number to Delete (1-based index):",
-            min_value=0,
-            max_value=len(df)-1,
-            step=1
-            )
-    
-        adjusted_index = row_to_delete   # Adjust for 0-based index
-        
-        if st.button("Delete Row"):
-            delete_row(adjusted_index)
-        
-            # Load Row for Update
-        def update_row(row_index, updated_row):
-            st.session_state["input_table"][row_index] = updated_row
+    df = pd.DataFrame(st.session_state["input_table"])
 
-        updated_row = {}
-        if st.button("Load Row for Update"):
-            selected_row = st.session_state["input_table"][adjusted_index]
-            st.session_state["selected_row"] = selected_row.copy()  # Store in session state
-            st.session_state["row_index_to_update"] = adjusted_index
-
-    # If a row is loaded, display input fields for updating
-        if "selected_row" in st.session_state:
-            selected_row = st.session_state["selected_row"]
-
-            # Split input fields into 4 columns
-            col1, col2, col3, col4 = st.columns(4)
-            updated_row = {}
+    # AgGrid setup
+    gb = GridOptionsBuilder.from_dataframe(df)
     
-            # Populate input fields
-            for i, (key, value) in enumerate(selected_row.items()):
-                if i % 4 == 0:
-                    with col1:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
-                elif i % 4 == 1:
-                    with col2:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
-                elif i % 4 == 2:
-                    with col3:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
-                elif i % 4 == 3:
-                    with col4:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
+    # JavaScript code for the Update and Delete buttons
+    update_button = JsCode(
+        """
+        function(params) {
+            return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;">Update</button>`;
+        }
+        """
+    )
+    final_submit_button = JsCode(
+        """
+        function(params) {
+            return `<button style="color:white; background-color:green; padding:3px; border:none; border-radius:5px; cursor:pointer;">Final Submit</button>`;
+        }
+        """
+    )
+    delete_button = JsCode(
+        """
+        function(params) {
+            return `<button style="color:white; background-color:red; padding:3px; border:none; border-radius:5px; cursor:pointer;">Delete</button>`;
+        }
+        """
+    )
     
-            # Save Updated Row Button
-            if st.button("Save Updated Row"):
-                row_index = st.session_state["row_index_to_update"]
-                update_row(row_index, updated_row)
-                st.success("Row updated!")
+    # Add Delete and Update columns
+    df["Action"] = [
+        "Final Submit" if i == st.session_state["edit_row_index"] else "Update"
+        for i in range(len(df))
+    ]
+    df["Delete"] = ""
     
-                # Refresh the updated DataFrame
-                st.write("Updated Table:")
-                st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+    # Configure columns for AgGrid
+    gb.configure_column("Action", cellRenderer=update_button if "Update" in df["Action"].values else final_submit_button, editable=False)
+    gb.configure_column("Delete", cellRenderer=delete_button, editable=False)
+    gb.configure_grid_options(domLayout="normal", editable=True)
     
-                # Clear session state for row update
-                del st.session_state["selected_row"]
-                del st.session_state["row_index_to_update"]
-        # Final Submit Button
-        if st.session_state["input_table"] and st.button("Final Submit"):
-            try:
-                for row in st.session_state["input_table"]:
-                    write_to_sheet(
-                        "Quality_Requirment",
-                        list(row.values()),
-                        st.session_state["login_email"]
-                    )
-                st.success("Data successfully written to Google Sheets!")
-                st.session_state["input_table"] = []  # Clear after submission
-            except Exception as e:
-                st.error(f"An error occurred: {e}")
+    # Add text wrapping for headers
+    gb.configure_default_column(wrapHeaderText=True)
+    gb.configure_pagination(enabled=True, paginationPageSize=5)
+    
+    grid_options = gb.build()
+    
+    # Display AgGrid
+    response = AgGrid(
+        df,
+        gridOptions=grid_options,
+        update_mode=GridUpdateMode.MODEL_CHANGED,
+        allow_unsafe_jscode=True,
+        theme="material",
+        height=400,
+    )
+    
+    # Handle row edits
+    selected_rows = response.get("selected_rows", [])
+    
+    if selected_rows:
+        selected_row_index = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
+    
+        if st.session_state["edit_row_index"] is None:  # If not editing, load for edit
+            st.session_state["edit_row_index"] = selected_row_index
+            st.write(f"Row {selected_row_index + 1} is now editable.")
+        elif selected_row_index == st.session_state["edit_row_index"]:  # Final submit
+            st.write(f"Row {selected_row_index + 1} submitted with updates.")
+            st.session_state["input_table"][selected_row_index] = response["data"][selected_row_index]
+            st.session_state["edit_row_index"] = None  # Reset edit mode
+    
+    # Handle delete button
+    if selected_rows and st.button("Delete Selected Row"):
+        row_to_delete = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
+        st.session_state["input_table"].pop(row_to_delete)
+        st.experimental_rerun()
+    
+    # Display DataFrame
+    st.write("Updated Table:")
+    st.dataframe(pd.DataFrame(st.session_state["input_table"]))
+            # Final Submit Button
+            if st.session_state["input_table"] and st.button("Final Submit"):
+                try:
+                    for row in st.session_state["input_table"]:
+                        write_to_sheet(
+                            "Quality_Requirment",
+                            list(row.values()),
+                            st.session_state["login_email"]
+                        )
+                    st.success("Data successfully written to Google Sheets!")
+                    st.session_state["input_table"] = []  # Clear after submission
+                except Exception as e:
+                    st.error(f"An error occurred: {e}")
 st.markdown("""
     <div class="footer">
         Developed by MIS Team<br>

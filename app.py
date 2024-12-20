@@ -592,8 +592,8 @@ elif selected_page == "Input Form":
     # Display Table
     def delete_row(row_index):
         st.session_state["input_table"].pop(row_index)
-
-# Function to update a row
+    
+    # Function to update a row
     def update_row(row_index, updated_row):
         st.session_state["input_table"][row_index] = updated_row
     
@@ -602,9 +602,16 @@ elif selected_page == "Input Form":
         st.markdown(
             """
             <style>
+            .scrollable-table {
+                max-height: 300px;
+                overflow-y: auto;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+            }
             .styled-table {
                 border-collapse: collapse;
-                margin: 25px 0;
+                width: 100%;
+                margin: 0;
                 font-size: 18px;
                 min-width: 400px;
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -615,8 +622,7 @@ elif selected_page == "Input Form":
                 text-align: left;
                 font-weight: bold;
             }
-            .styled-table th,
-            .styled-table td {
+            .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
             }
@@ -626,31 +632,38 @@ elif selected_page == "Input Form":
         )
     
         st.markdown("### Your Input Table:")
-        table_html = "<table class='styled-table'><thead><tr>"
+    
+        # HTML for the table
+        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
     
         # Add headers
-        headers = st.session_state["input_table"][0].keys()
-        table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "<th>Actions</th></tr></thead><tbody>"
+        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
+        table_html += "".join(f"<th>{header}</th>" for header in headers) + "</tr></thead><tbody>"
     
         # Add rows
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
-            col1, col2 = st.columns([1, 1])
-            with col1:
-                if st.button(f"Delete Row {index+1}", key=f"delete_{index}"):
-                    delete_row(index)
-            with col2:
-                if st.button(f"Update Row {index+1}", key=f"update_{index}"):
-                    st.session_state["selected_row"] = row.copy()
-                    st.session_state["row_index_to_update"] = index
-    
-            table_html += "</tr>"
-        table_html += "</tbody></table>"
+            table_html += f"""
+            <td>
+                <button onclick="document.querySelector('#delete_row_{index}').click()">Delete</button>
+                <button onclick="document.querySelector('#update_row_{index}').click()">Update</button>
+            </td>
+            </tr>
+            """
+        table_html += "</tbody></table></div>"
     
         # Display the styled table
         st.markdown(table_html, unsafe_allow_html=True)
+    
+        # Add buttons for each row in Streamlit (hidden for rendering control)
+        for index in range(len(st.session_state["input_table"])):
+            if st.button(f"Delete Row {index+1}", key=f"delete_row_{index}", help="Delete this row"):
+                delete_row(index)
+    
+            if st.button(f"Update Row {index+1}", key=f"update_row_{index}", help="Update this row"):
+                st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
+                st.session_state["row_index_to_update"] = index
     
         # If a row is loaded for updating
         if "selected_row" in st.session_state:

@@ -636,6 +636,10 @@ elif selected_page == "Input Form":
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
+            table_html += f"""
+                <td>
+                </td>
+                </tr>"""
         table_html += "</tbody></table></div>"
         # Display the styled table
         st.markdown(table_html, unsafe_allow_html=True)

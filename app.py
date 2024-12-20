@@ -598,7 +598,7 @@ elif selected_page == "Input Form":
 
         def delete_row(row_index):
             st.session_state["input_table"].pop(row_index)
-            st.st.query_params  # Refresh the app
+            st.query_params  # Refresh the app
     
         def load_row_for_update(row_index):
             st.session_state["selected_row"] = df.iloc[row_index].to_dict()

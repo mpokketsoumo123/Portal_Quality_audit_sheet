@@ -593,45 +593,44 @@ elif selected_page == "Input Form":
     if st.session_state.get("input_table"):
         st.write("Your Input Table:")
 
-    # Create a table-like layout with columns for each row
+    # Create a DataFrame for better formatting
         df = pd.DataFrame(st.session_state["input_table"])
 
-    for index, row in df.iterrows():
-        cols = st.columns(len(row) + 2)  # Add extra columns for buttons
-
-        # Display row data in individual columns
-        for i, (key, value) in enumerate(row.items()):
-            cols[i].write(value)
-
-        # Add Delete button
-        if cols[-2].button("Delete", key=f"delete_{index}"):
-            st.session_state["input_table"].pop(index)
-            st.experimental_set_query_params()  # Refresh the app
-
-        # Add Update button
-        if cols[-1].button("Update", key=f"update_{index}"):
-            st.session_state["selected_row"] = row.to_dict()
-            st.session_state["row_index_to_update"] = index
-
-    # Handle Row Update
-    if "selected_row" in st.session_state:
-        st.write("Update Row:")
-        selected_row = st.session_state["selected_row"]
-        updated_row = {}
-
-        # Display input fields for each column
-        for key, value in selected_row.items():
-            updated_row[key] = st.text_input(f"{key}:", value=value)
-
-        # Save Updated Row Button
-        if st.button("Save Updated Row"):
-            row_index = st.session_state["row_index_to_update"]
-            st.session_state["input_table"][row_index] = updated_row
-            st.success("Row updated!")
-            # Clear session state for update
-            del st.session_state["selected_row"]
-            del st.session_state["row_index_to_update"]
-            st.experimental_set_query_params()  # Refresh the app
+        def delete_row(row_index):
+            st.session_state["input_table"].pop(row_index)
+            st.query_params()  # Refresh the app
+    
+        def load_row_for_update(row_index):
+            st.session_state["selected_row"] = df.iloc[row_index].to_dict()
+            st.session_state["row_index_to_update"] = row_index
+    
+        # Display the table with buttons
+        for index, row in df.iterrows():
+            row_data = pd.DataFrame([row])  # Display row data
+            st.table(row_data)
+    
+            col1, col2 = st.columns(2)
+            if col1.button("Delete", key=f"delete_{index}"):
+                delete_row(index)
+            if col2.button("Update", key=f"update_{index}"):
+                load_row_for_update(index)
+    
+        # Handle Row Update
+        if "selected_row" in st.session_state:
+            st.write("Update Row:")
+            selected_row = st.session_state["selected_row"]
+            updated_row = {}
+    
+            for key, value in selected_row.items():
+                updated_row[key] = st.text_input(f"{key}:", value=value)
+    
+            if st.button("Save Updated Row"):
+                row_index = st.session_state["row_index_to_update"]
+                st.session_state["input_table"][row_index] = updated_row
+                st.success("Row updated!")
+                del st.session_state["selected_row"]
+                del st.session_state["row_index_to_update"]
+                st.query_params()  # Refresh the app
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:
             for row in st.session_state["input_table"]:

@@ -595,17 +595,17 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                    max-height: 1000px;
-                    overflow-y: auto;
-                    border: 1px solid #ddd;
-                    margin-bottom: 20px;
-                }
+                max-height: 300px; /* Adjust the height as needed */
+                overflow-y: auto;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+            }
             .styled-table {
                 border-collapse: collapse;
                 margin: 25px 0;
                 font-size: 18px;
                 min-width: 400px;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                width: 100%;
             }
             .styled-table thead tr {
                 background-color: #009879;
@@ -618,12 +618,20 @@ elif selected_page == "Input Form":
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
             }
+            /* Sticky header styling */
+            .styled-table thead th {
+                position: sticky;
+                top: 0;
+                background-color: #009879; /* Keep header background color */
+                z-index: 1; /* Ensure header stays on top */
+            }
             </style>
             """,
             unsafe_allow_html=True,
         )
     
         st.markdown("### Your Input Table:")
+        
         # Create the table
         table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
     

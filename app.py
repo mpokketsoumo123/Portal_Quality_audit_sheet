@@ -640,24 +640,24 @@ elif selected_page == "Input Form":
             unsafe_allow_html=True,
         )
     
-            st.markdown("### Your Input Table:")
+        st.markdown("### Your Input Table:")
             
-            # Create the table
-            table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
+        # Create the table
+        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
         
-            # Add headers
-            headers = st.session_state["input_table"][0].keys()
-            table_html += "".join(f"<th>{header}</th>" for header in headers)
-            table_html += "</tr></thead><tbody>"
+        # Add headers
+        headers = st.session_state["input_table"][0].keys()
+        table_html += "".join(f"<th>{header}</th>" for header in headers)
+        table_html += "</tr></thead><tbody>"
         
-            for row in st.session_state["input_table"]:
-                table_html += "<tr>"
-                table_html += "".join(f"<td>{value}</td>" for value in row.values())
-                table_html += "</tr>"
+        for row in st.session_state["input_table"]:
+            table_html += "<tr>"
+            table_html += "".join(f"<td>{value}</td>" for value in row.values())
+            table_html += "</tr>"
         
-            table_html += "</tbody></table></div>"
+        table_html += "</tbody></table></div>"
         
-            st.markdown(table_html, unsafe_allow_html=True)
+        st.markdown(table_html, unsafe_allow_html=True)
         
     
         # Delete Row

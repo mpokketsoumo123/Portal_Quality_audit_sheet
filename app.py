@@ -624,21 +624,22 @@ elif selected_page == "Input Form":
         )
     
         st.markdown("### Your Input Table:")
-        table_html = "<table class='styled-table'><thead><tr>"
+        # Create the table
+        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
     
         # Add headers
         headers = st.session_state["input_table"][0].keys()
         table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "<th>Actions</th></tr></thead><tbody>"
+        table_html += "</tr></thead><tbody>"
     
         # Add rows
-        for index, row in enumerate(st.session_state["input_table"]):
+        for row in st.session_state["input_table"]:
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
-    
             table_html += "</tr>"
-        table_html += "</tbody></table>"
-
+        table_html += "</tbody></table></div>"
+    
+        # Render the table
         st.markdown(table_html, unsafe_allow_html=True)
     
         # Delete Row

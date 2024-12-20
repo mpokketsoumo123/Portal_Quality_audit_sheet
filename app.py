@@ -590,22 +590,23 @@ elif selected_page == "Input Form":
             st.session_state["input_table"].append(data)
 
     # Display Table
-if st.session_state.get("input_table"):
-    st.write("Your Input Table:")
-    df = pd.DataFrame(st.session_state["input_table"])
+    if st.session_state.get("input_table"):
+        st.write("Your Input Table:")
 
-    # Iterate through rows and display Delete/Update buttons
+    # Create a table-like layout with columns for each row
+        df = pd.DataFrame(st.session_state["input_table"])
+
     for index, row in df.iterrows():
         cols = st.columns(len(row) + 2)  # Add extra columns for buttons
 
-        # Display row data
+        # Display row data in individual columns
         for i, (key, value) in enumerate(row.items()):
             cols[i].write(value)
 
         # Add Delete button
         if cols[-2].button("Delete", key=f"delete_{index}"):
             st.session_state["input_table"].pop(index)
-            st.experimental_rerun()  # Refresh the app after deletion
+            st.experimental_set_query_params()  # Refresh the app
 
         # Add Update button
         if cols[-1].button("Update", key=f"update_{index}"):
@@ -630,8 +631,7 @@ if st.session_state.get("input_table"):
             # Clear session state for update
             del st.session_state["selected_row"]
             del st.session_state["row_index_to_update"]
-            st.experimental_rerun()  # Refresh the app
-        # Final Submit Button
+            st.experimental_set_query_params()  # Refresh the app
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:
             for row in st.session_state["input_table"]:

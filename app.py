@@ -592,41 +592,61 @@ elif selected_page == "Input Form":
     # Display Table
     if st.session_state.get("input_table"):
         st.markdown(
-        """
-        <style>
-        .scrollable-table {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        .styled-table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 0;
-            font-size: 18px;
-            min-width: 400px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        }
-        .styled-table thead tr {
-            background-color: #009879;
-            color: #ffffff;
-            text-align: left;
-            font-weight: bold;
-        }
-        .styled-table th, .styled-table td {
-            border: 1px solid #dddddd;
-            padding: 8px 12px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+            """
+            <style>
+            .scrollable-table {
+                max-height: 300px;
+                overflow-y: auto;
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+            }
+            .styled-table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 0;
+                font-size: 18px;
+                min-width: 400px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+            .styled-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: left;
+                font-weight: bold;
+            }
+            .styled-table th, .styled-table td {
+                border: 1px solid #dddddd;
+                padding: 8px 12px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+    
         st.markdown("### Your Input Table:")
-        for index, row in enumerate(st.session_state["input_table"]):  # Limit display to 10 rows
-            cols = st.columns(len(row) + 1)
-            for i, (key, value) in enumerate(row.items()):
-                cols[i].write(value)
+    
+        # HTML for the table
+        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
+    
+        # Add headers
+        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
+        table_html += "".join(f"<th>{header}</th>" for header in headers) + "</tr></thead><tbody>"
+    
+        # Add rows
+        for index, row in enumerate(st.session_state["input_table"]):
+            table_html += "<tr>"
+            table_html += "".join(f"<td>{value}</td>" for value in row.values())
+            table_html += f"""
+            <td>
+                <button onclick="document.querySelector('#delete_row_{index}').click()">Delete</button>
+                <button onclick="document.querySelector('#update_row_{index}').click()">Update</button>
+            </td>
+            </tr>
+            """
+        table_html += "</tbody></table></div>"
+    
+        # Display the styled table
+        st.markdown(table_html, unsafe_allow_html=True)
     
         # Delete Row
         def delete_row(row_index):

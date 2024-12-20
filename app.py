@@ -639,12 +639,12 @@ elif selected_page == "Input Form":
     
 
     
-                    if st.button("Save Updated Row"):
-                        row_index = st.session_state["row_index_to_update"]
-                        st.session_state["input_table"][row_index] = updated_row
-                        st.success("Row updated!")
-                        del st.session_state["selected_row"]
-                        del st.session_state["row_index_to_update"]  # Refresh the app
+                        if st.button("Save Updated Row"):
+                            row_index = st.session_state["row_index_to_update"]
+                            st.session_state["input_table"][row_index] = updated_row
+                            st.success("Row updated!")
+                            del st.session_state["selected_row"]
+                            del st.session_state["row_index_to_update"]  # Refresh the app
     if st.session_state["input_table"] and st.button("Final Submit"):
         try:
             for row in st.session_state["input_table"]:

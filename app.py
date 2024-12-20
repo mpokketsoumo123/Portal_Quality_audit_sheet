@@ -596,6 +596,7 @@ elif selected_page == "Input Form":
             <style>
             .scrollable-table {
                     max-height: 300px;
+                    overflow-y: auto;
                     border: 1px solid #ddd;
                     margin-bottom: 20px;
                 }

@@ -598,9 +598,12 @@ elif selected_page == "Input Form":
         df = pd.DataFrame(st.session_state["input_table"])
     
         # AgGrid setup
-        gb = GridOptionsBuilder.from_dataframe(df)
+        df = pd.DataFrame(st.session_state["input_table"])
 
-# JavaScript code for the Update, Final Submit, and Delete buttons
+# AgGrid setup
+        gb = GridOptionsBuilder.from_dataframe(df)
+        
+        # JavaScript code for the Update, Final Submit, and Delete buttons
         update_button = JsCode("""
             function(params) {
                 return `<button style="color:white; background-color:blue; padding:3px; border:none; border-radius:5px; cursor:pointer;">Update</button>`;
@@ -627,8 +630,8 @@ elif selected_page == "Input Form":
         df["Delete"] = ""
         
         # Configure columns for AgGrid
-        gb.configure_column("Action", cellRenderer=update_button if "Update" in df["Action"].values else final_submit_button, editable=False)
-        gb.configure_column("Delete", cellRenderer=delete_button, editable=False)
+        gb.configure_column("Action", cellRenderer=update_button if "Update" in df["Action"].values else final_submit_button, editable=False, pinned="left")
+        gb.configure_column("Delete", cellRenderer=delete_button, editable=False, pinned="left")
         
         # Style grid header and enable pagination
         gb.configure_grid_options(domLayout="normal", editable=True)
@@ -681,9 +684,7 @@ elif selected_page == "Input Form":
             row_to_delete = selected_rows[0]["_selectedRowNodeInfo"]["nodeRowIndex"]
             st.session_state["input_table"].pop(row_to_delete)
             st.experimental_rerun()
-                
-                # Display DataFrame
-                        # Final Submit Button
+
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:
                 for row in st.session_state["input_table"]:

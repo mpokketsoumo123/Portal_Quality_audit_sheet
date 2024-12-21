@@ -739,7 +739,7 @@ elif selected_page == "Input Form":
                          )
                     st.success("Data successfully written to Google Sheets!")
                     st.session_state["input_table"] = []  # Clear after submission
-                except Exception as e:
+                 except Exception as e:
                     st.error(f"An error occurred: {e}")
             
                 # Refresh Button

@@ -694,13 +694,13 @@ elif selected_page == "Input Form":
                 if st.button(f"Delete Row {index+1}"):
                     st.session_state["input_table"].pop(index)
                     st.success(f"Row {index+1} deleted!")
-                    st.experimental_rerun()
+                    st.rerun()
         
                 # Update Button
                 if st.button(f"Update Row {index+1}"):
                     st.session_state["selected_row"] = row.copy()
                     st.session_state["row_index_to_update"] = index
-                    st.experimental_rerun()
+                    st.rerun()
                         
                     # If a row is loaded for update, display the update form
                 if "selected_row" in st.session_state:

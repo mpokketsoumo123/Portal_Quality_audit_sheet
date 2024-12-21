@@ -1,4 +1,5 @@
 
+
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -602,12 +603,12 @@ elif selected_page == "Input Form":
             st.success("Row added successfully!")
 
     # Display Table
-        if st.session_state["input_table"]:
-            st.markdown(
+    if st.session_state["input_table"]:
+        st.markdown(
             """
             <style>
             .scrollable-table {
-                max-height: 800px;
+                max-height: 800px; /* Adjust the height as needed */
                 overflow-y: auto;
                 margin-bottom: 20px;
                 border: 1px solid #ddd;
@@ -624,64 +625,54 @@ elif selected_page == "Input Form":
                 color: #ffffff;
                 text-align: left;
                 font-weight: bold;
-            }
+             }
             .styled-table th,
             .styled-table td {
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
-                word-wrap: break-word;
-                max-width: 200px;  /* Control text wrapping */
-                overflow: hidden;
-                text-overflow: ellipsis;
             }
-            .styled-table th {
-                background-color: #007b5e;
+            /* Sticky header styling */
+            .styled-table thead th {
+                position: sticky;
+                top: 0;
+                background-color: #009879; /* Keep header background color */
+                z-index: 1; /* Ensure header stays on top */
             }
             .button-cell {
                 display: flex;
                 justify-content: space-around;
-                width: 120px;
             }
             .delete-button {
                 background-color: #FF4C4C;
                 color: white;
                 border: none;
                 border-radius: 5px;
-                padding: 8px;
+                padding: 4px 8px;
                 cursor: pointer;
-                width: 40px;
-                text-align: center;
             }
             .update-button {
                 background-color: #28a745;
                 color: white;
                 border: none;
                 border-radius: 5px;
-                padding: 8px;
+                padding: 4px 8px;
                 cursor: pointer;
-                width: 40px;
-                text-align: center;
-            }
-            .button-column {
-                position: sticky;
-                left: 0;
-                background-color: #f4f4f4;
             }
             </style>
             """,
             unsafe_allow_html=True,
         )
-    
-        st.markdown("### Your Input Table:")
         
-        # Generate the table with Delete and Update buttons for each row
+        st.markdown("### Your Input Table:")
+            
+            # Generate the table with Delete and Update buttons for each row
         table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
-    
-        # Add headers
+            
+            # Add headers
         headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead><tbody>"
-    
+            
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
@@ -696,62 +687,63 @@ elif selected_page == "Input Form":
             )
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
-    
+            
         st.markdown(table_html, unsafe_allow_html=True)
-    
-        # Define row-specific actions
+            
+            # Define row-specific actions
         for index in range(len(st.session_state["input_table"])):
             delete_button_key = f"delete_{index}"
             update_button_key = f"update_{index}"
-    
+                    
             if st.session_state.get(delete_button_key):
                 st.session_state["input_table"].pop(index)
-                st.rerun()  # Refresh the app after deletion
-    
+                st.rerun()
+                    
             if st.session_state.get(update_button_key):
                 st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
                 st.session_state["row_index_to_update"] = index
-                st.rerun()  # Load the selected row into the update form
-    
-        # If a row is loaded for update, display the update form
-                if "selected_row" in st.session_state:
-                    selected_row = st.session_state["selected_row"]
-                    col1, col2, col3, col4 = st.columns(4)
-                    updated_row = {}
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 0:
-                            with col1:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 1:
-                            with col2:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 2:
-                            with col3:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 3:
-                            with col4:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
+                st.rerun()
             
-                    if st.button("Save Updated Row"):
-                        st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                        del st.session_state["selected_row"]
-                        del st.session_state["row_index_to_update"]
-                        st.success("Row updated!")
-                        st.rerun()  # Refresh the app after update
+                # If a row is loaded for update, display the update form
+            if "selected_row" in st.session_state:
+                selected_row = st.session_state["selected_row"]
+                    
+                col1, col2, col3, col4 = st.columns(4)
+                updated_row = {}
+                for i, (key, value) in enumerate(selected_row.items()):
+                    if i % 4 == 0:
+                        with col1:
+                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                    elif i % 4 == 1:
+                        with col2:
+                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                    elif i % 4 == 2:
+                        with col3:
+                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                    elif i % 4 == 3:
+                        with col4:
+                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                            
+                if st.button("Save Updated Row"):
+                    st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                    del st.session_state["selected_row"]
+                    del st.session_state["row_index_to_update"]
+                    st.success("Row updated!")
+                    st.experimental_rerun()
         
             # Final Submit Button
-            if st.session_state["input_table"] and st.button("Final Submit"):
-                try:
-                    for row in st.session_state["input_table"]:
-                        write_to_sheet(
-                            "Quality_Requirment",
-                            list(row.values()),
-                            st.session_state["login_email"]
-                        )
-                        st.success("Data successfully written to Google Sheets!")
-                        st.session_state["input_table"] = []  # Clear after submission
-                except Exception as e:
-                    st.error(f"An error occurred: {e}")
+        if st.session_state["input_table"] and st.button("Final Submit"):
+            try:
+                for row in st.session_state["input_table"]:
+                    write_to_sheet(
+                        "Quality_Requirment",
+                        list(row.values()),
+                        st.session_state["login_email"]
+                    )
+                    st.success("Data successfully written to Google Sheets!")
+                    st.session_state["input_table"] = []  # Clear after submission
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
             
             # Refresh Button
 st.markdown("""

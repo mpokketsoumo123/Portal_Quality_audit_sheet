@@ -10,9 +10,7 @@ import io
 import time
 from google.oauth2.service_account import Credentials
 # Google Sheets Authentication
-def trigger_rerun():
-    # Use a unique timestamp for the query parameter to trigger a refresh
-    st.query_params(rerun=str(time.time()))
+
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(
         st.secrets["gcp_service_account"],
@@ -747,8 +745,6 @@ elif selected_page == "Input Form":
                 st.error(f"An error occurred: {e}")
             
             # Refresh Button
-        if st.button("Refresh"):
-            trigger_rerun()
 st.markdown("""
     <div class="footer">
         Developed by MIS Team<br>

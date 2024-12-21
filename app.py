@@ -663,7 +663,7 @@ elif selected_page == "Input Form":
         st.markdown("### Your Input Table:")
             
             # Generate the table with Delete and Update buttons for each row
-         table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
+        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
             
             # Add headers
         headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]

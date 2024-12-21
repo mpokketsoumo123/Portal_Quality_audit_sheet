@@ -614,12 +614,12 @@ elif selected_page == "Input Form":
             # Add Delete and Update buttons
             if cols[len(row)].button("Delete", key=f"delete_{index}"):
                 st.session_state["input_table"].pop(index)
-                st.experimental_rerun()  # Refresh the app after deletion
+                st.rerun()  # Refresh the app after deletion
     
             if cols[len(row) + 1].button("Update", key=f"update_{index}"):
                 st.session_state["selected_row"] = row.copy()
                 st.session_state["row_index_to_update"] = index
-                st.experimental_rerun()  # Load the selected row into the update form
+                st.rerun()  # Load the selected row into the update form
     
     # Update form
         if "selected_row" in st.session_state:

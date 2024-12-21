@@ -7,6 +7,7 @@ import datetime
 import base64
 from PIL import Image
 import io
+import time
 from google.oauth2.service_account import Credentials
 # Google Sheets Authentication
 def trigger_rerun():

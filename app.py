@@ -702,31 +702,31 @@ elif selected_page == "Input Form":
                     st.experimental_rerun()
             
                 # If a row is loaded for update, display the update form
-                if "selected_row" in st.session_state:
-                    selected_row = st.session_state["selected_row"]
-                
-                    col1, col2, col3, col4 = st.columns(4)
-                    updated_row = {}
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 0:
-                            with col1:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 1:
-                            with col2:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 2:
-                            with col3:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 3:
-                            with col4:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        
-                    if st.button("Save Updated Row"):
-                        st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                        del st.session_state["selected_row"]
-                        del st.session_state["row_index_to_update"]
-                        st.success("Row updated!")
-                        st.experimental_rerun()
+                    if "selected_row" in st.session_state:
+                        selected_row = st.session_state["selected_row"]
+                    
+                        col1, col2, col3, col4 = st.columns(4)
+                        updated_row = {}
+                        for i, (key, value) in enumerate(selected_row.items()):
+                            if i % 4 == 0:
+                                with col1:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            elif i % 4 == 1:
+                                with col2:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            elif i % 4 == 2:
+                                with col3:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            elif i % 4 == 3:
+                                with col4:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            
+                        if st.button("Save Updated Row"):
+                            st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                            del st.session_state["selected_row"]
+                            del st.session_state["row_index_to_update"]
+                            st.success("Row updated!")
+                            st.experimental_rerun()
         
             # Final Submit Button
             if st.session_state["input_table"] and st.button("Final Submit"):

@@ -729,18 +729,18 @@ elif selected_page == "Input Form":
                             st.experimental_rerun()
         
             # Final Submit Button
-            if st.session_state["input_table"] and st.button("Final Submit"):
-                try:
-                    for row in st.session_state["input_table"]:
-                        write_to_sheet(
-                            "Quality_Requirment",
-                            list(row.values()),
-                            st.session_state["login_email"]
-                        )
-                    st.success("Data successfully written to Google Sheets!")
-                    st.session_state["input_table"] = []  # Clear after submission
-                except Exception as e:
-                    st.error(f"An error occurred: {e}")
+                if st.session_state["input_table"] and st.button("Final Submit"):
+                    try:
+                        for row in st.session_state["input_table"]:
+                            write_to_sheet(
+                                "Quality_Requirment",
+                                list(row.values()),
+                                st.session_state["login_email"]
+                            )
+                        st.success("Data successfully written to Google Sheets!")
+                        st.session_state["input_table"] = []  # Clear after submission
+                    except Exception as e:
+                        st.error(f"An error occurred: {e}")
         
             # Refresh Button
             if st.button("Refresh"):

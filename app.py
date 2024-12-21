@@ -603,7 +603,7 @@ elif selected_page == "Input Form":
 
     # Display Table
     if st.session_state["input_table"]:
-            st.markdown(
+        st.markdown(
         """
         <style>
         .scrollable-table {

@@ -10,8 +10,8 @@ import io
 from google.oauth2.service_account import Credentials
 # Google Sheets Authentication
 def trigger_rerun():
-    # Update query parameters with a unique value to trigger a refresh
-    st.experimental_set_query_params(rerun=str(hash(st.session_state)))
+    # Use a unique timestamp for the query parameter to trigger a refresh
+    st.experimental_set_query_params(rerun=str(time.time()))
 def authenticate_google_sheets():
     credentials = Credentials.from_service_account_info(
         st.secrets["gcp_service_account"],

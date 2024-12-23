@@ -652,7 +652,7 @@ elif selected_page == "Input Form":
                 background-color: yellow !important; /* Yellow background */
                 color: black !important; /* Black text */
                 border: 2px solid #f9a825; /* Border to match select box */
-                padding: 10px 20px;
+                padding: 20px 20px;
                 font-weight: bold;
                 font-size: 14px;
                 display: block;

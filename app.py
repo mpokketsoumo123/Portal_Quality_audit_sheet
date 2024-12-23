@@ -683,7 +683,7 @@ elif selected_page == "Input Form":
         st.markdown(table_html, unsafe_allow_html=True)
     
         # Handle delete action
-        query_params = st.experimental_get_query_params()
+        query_params = st.query_params
         if "delete" in query_params:
             index_to_delete = int(query_params["delete"][0])
             st.session_state["input_table"].pop(index_to_delete)
@@ -722,7 +722,7 @@ elif selected_page == "Input Form":
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
                 st.success("Row updated!")
-                st.experimental_rerun()
+                st.rerun()
     
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):

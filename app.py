@@ -632,17 +632,23 @@ elif selected_page == "Input Form":
                 flex-direction: column;
                 gap: 1px;  /* Decrease the gap between buttons */
             }
-            .custom-button {
-                background-color: #28a745; /* Default color */
-                color: white;
-                padding: 12px 30px;  /* Increase padding */
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                text-align: center;
-                display: inline-block;
-                width: 100%;  /* Full width */
-                margin-top: 20px; /* Add margin to align with rows */
+            .custom-column {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 20px; /* Increase padding for alignment */
+            }
+            .custom-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 5px; /* Reduce gap between buttons */
+            }
+            .custom-line {
+                width: 80%;
+                height: 1px;
+                background-color: #ddd;
+                margin: 5px 0; /* Adjust spacing for the line */
             }
             .delete-button {
                 background-color: #FF4C4C; /* Delete button color */

@@ -630,12 +630,12 @@ elif selected_page == "Input Form":
             .action-buttons {
                 display: flex;
                 flex-direction: column;
-                gap: 2px;  /* Decrease the gap between buttons */
+                gap: 1px;  /* Decrease the gap between buttons */
             }
             .custom-button {
                 background-color: #28a745; /* Default color */
                 color: white;
-                padding: 12px 15px;  /* Increase padding */
+                padding: 12px 10px;  /* Increase padding */
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

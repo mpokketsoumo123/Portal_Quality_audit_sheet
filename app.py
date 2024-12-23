@@ -665,41 +665,58 @@ elif selected_page == "Input Form":
     
         # Generate the HTML table
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
-        headers = list(st.session_state["input_table"][0].keys())
+        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]  # Add Actions header
         
         # Create the table header row
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead>"
-    
+        
         # Create the table body rows
         table_html += "<tbody>"
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
             for value in row.values():
                 table_html += f"<td>{value}</td>"
+            
+            # Add buttons in the last two cells of the row
+            table_html += "<td class='action-buttons'>"
+            table_html += f"<button class='delete-button' onclick='deleteRow({index})'>Delete</button>"
+            table_html += f"<button class='update-button' onclick='updateRow({index})'>Update</button>"
+            table_html += "</td>"
+            
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
-    
+        
         # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
-    
-        # Now place the Delete and Update buttons beside each row
+        
+        # JavaScript functions to handle button clicks
+        st.markdown("""
+        <script>
+        function deleteRow(index) {
+            const deleteButton = document.querySelector(`button[onclick='deleteRow(${index})']`);
+            deleteButton.click();
+        }
+        
+        function updateRow(index) {
+            const updateButton = document.querySelector(`button[onclick='updateRow(${index})']`);
+            updateButton.click();
+        }
+        </script>
+        """, unsafe_allow_html=True)
+        
+        # Handle the button clicks in the Streamlit app
         for index, row in enumerate(st.session_state["input_table"]):
-            cols = st.columns([6 , 1, 1])  # Adjusted for buttons
-    
-            # Display buttons beside the row
-            with cols[1]:
-                if st.button("Delete", key=f"delete_{index}"):
-                    st.session_state["input_table"].pop(index)
-                    st.rerun()
-    
-            with cols[2]:
-                if st.button("Update", key=f"update_{index}"):
-                    st.session_state["selected_row"] = row.copy()
-                    st.session_state["row_index_to_update"] = index
-                    st.rerun()
-    
+            if st.button("Delete", key=f"delete_{index}"):
+                st.session_state["input_table"].pop(index)
+                st.rerun()
+        
+            if st.button("Update", key=f"update_{index}"):
+                st.session_state["selected_row"] = row.copy()
+                st.session_state["row_index_to_update"] = index
+                st.rerun()
+        
         # Handle the update form
         if "selected_row" in st.session_state:
             st.markdown("### Update Row:")
@@ -708,7 +725,7 @@ elif selected_page == "Input Form":
             for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
                 with cols[i % 4]:
                     updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
-    
+        
             if st.button("Save Updated Row"):
                 st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
                 del st.session_state["selected_row"]

@@ -657,62 +657,66 @@ elif selected_page == "Input Form":
             """,
             unsafe_allow_html=True,
         )
-        col1, col2 = st.columns([3, 1])
+    
         # Generate the HTML table
-        with col1:
-            table_html = "<div class='scrollable-table'><table class='styled-table'>"
-            headers = list(st.session_state["input_table"][0].keys())  # No Actions header
+        
+        table_html = "<div class='scrollable-table'><table class='styled-table'>"
+        headers = list(st.session_state["input_table"][0].keys())  # No Actions header
             
             # Create the table header row
-            table_html += "<thead><tr>"
-            table_html += "".join(f"<th>{header}</th>" for header in headers)
-            table_html += "</tr></thead>"
+        table_html += "<thead><tr>"
+        table_html += "".join(f"<th>{header}</th>" for header in headers)
+        table_html += "</tr></thead>"
             
             # Create the table body rows
-            table_html += "<tbody>"
-            for index, row in enumerate(st.session_state["input_table"]):
-                table_html += "<tr>"
-                for value in row.values():
-                    table_html += f"<td>{value}</td>"
-                table_html += "</tr>"
-            table_html += "</tbody></table></div>"
+        table_html += "<tbody>"
+        for index, row in enumerate(st.session_state["input_table"]):
+            table_html += "<tr>"
+            for value in row.values():
+                table_html += f"<td>{value}</td>"
+            table_html += "</tr>"
+        table_html += "</tbody></table></div>"
             
             # Display the table
-            st.markdown(table_html, unsafe_allow_html=True)
+        st.markdown(table_html, unsafe_allow_html=True)
             
             # Create a column layout for buttons
           # Adjust the width as needed
         
         # Place buttons beside the table
-        with col2:
+        with st.form("row_operations_form"):
+            st.markdown("## Update or Delete a Row")
+            user_register_number_input = st.text_input("Enter User Register Number:")
+            emp_id_input = st.text_input("Enter EMP ID:")
+            operation = st.radio("Select Operation:", ["Update Row", "Delete Row"])
+            submit_button = st.form_submit_button("Submit")
+        
+        if submit_button:
+            matching_index = None
             for index, row in enumerate(st.session_state["input_table"]):
-                if st.button(f"Delete {index}", key=f"delete_{index}"):
-                    st.session_state["input_table"].pop(index)
+                if (row.get("User Register Number") == user_register_number_input
+                        and row.get("EMP ID") == emp_id_input):
+                    matching_index = index
+                    break
+        
+            if matching_index is None:
+                st.error("No matching row found. Please check the inputs.")
+            else:
+                if operation == "Delete Row":
+                    st.session_state["input_table"].pop(matching_index)
+                    st.success("Row deleted successfully!")
                     st.rerun()
-        
-                if st.button(f"Update {index}", key=f"update_{index}"):
-                    st.session_state["selected_row"] = row.copy()
-                    st.session_state["row_index_to_update"] = index
-                    st.session_state["show_update_form"] = True  # Set flag to show update form
-                    st.rerun()
-
-        
-        # Handle the update form
-        if st.session_state.get("show_update_form", False):
-            st.markdown("### Update Row:")
-            updated_row = {}
-            cols = st.columns(4)
-            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                with cols[i % 4]:
-                    updated_row[key] = st.text_input(f"{key}:", value=value)
-        
-            if st.button("Save Updated Row"):
-                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                del st.session_state["selected_row"]
-                del st.session_state["row_index_to_update"]
-                st.session_state["show_update_form"] = False  # Hide update form after saving
-                st.success("Row updated!")
-                st.rerun()
+                elif operation == "Update Row":
+                    st.markdown("### Update Row")
+                    updated_row = {}
+                    cols = st.columns(2)  # Adjust column layout as needed
+                    for i, (key, value) in enumerate(st.session_state["input_table"][matching_index].items()):
+                        with cols[i % 2]:  # Adjust layout for the update form
+                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                    if st.button("Save Updated Row"):
+                        st.session_state["input_table"][matching_index] = updated_row
+                        st.success("Row updated successfully!")
+                        st.rerun()
 
     
         # Final Submit Button

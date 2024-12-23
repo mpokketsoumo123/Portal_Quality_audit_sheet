@@ -713,19 +713,16 @@ elif selected_page == "Input Form":
                     st.success("Row deleted successfully!")
                     st.rerun()
                 elif operation == "Update Row":
-                    st.markdown("### Update Row")
-                    
                     st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
+
+                    # Generate the update form dynamically
+                    st.markdown("### Update Row")
                     updated_row = {}
-                    cols = st.columns(4)  # Adjust column layout as needed
-                    for i, (key, value) in enumerate(st.session_state["update_form_values"].items()):
-                        with cols[i % 4]:  # Adjust layout for the update form
-                            st.session_state["update_form_values"][key] = st.text_input(
-                                f"{key}:", value=value, key=f"update_{key}"
-                            )
+                    for key, value in st.session_state["update_form_values"].items():
+                        updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_{key}")
         
                     if st.button("Save Updated Row"):
-                        # Save the updated values back to the table
+                        # Update the matching row with the updated data
                         st.session_state["input_table"][matching_index] = updated_row
                         st.session_state["update_form_values"] = {}  # Clear the update form state
                         st.success("Row updated successfully!")

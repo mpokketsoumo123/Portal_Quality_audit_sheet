@@ -715,15 +715,17 @@ elif selected_page == "Input Form":
                 elif operation == "Update Row":
                     st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
 
-                    # Generate the update form dynamically
+            # Generate the update form dynamically with 4 columns layout
                     st.markdown("### Update Row")
                     updated_row = {}
-                    for key, value in st.session_state["update_form_values"].items():
-                        updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_{key}")
+                    cols = st.columns(4)  # Divide the inputs into 4 columns
+                    for i, (key, value) in enumerate(st.session_state["update_form_values"].items()):
+                        updated_row[key] = cols[i % 4].text_input(f"{key}:", value=value, key=f"update_{key}")
         
                     if st.button("Save Updated Row"):
                         # Update the matching row with the updated data
-                        st.session_state["input_table"][matching_index] = updated_row
+                        for key in updated_row:
+                            st.session_state["input_table"][matching_index][key] = updated_row[key]
                         st.session_state["update_form_values"] = {}  # Clear the update form state
                         st.success("Row updated successfully!")
                         st.rerun()

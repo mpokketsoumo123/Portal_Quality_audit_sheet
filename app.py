@@ -696,19 +696,31 @@ elif selected_page == "Input Form":
     
         # Update Form
                     if "selected_row" in st.session_state:
-                        st.markdown("### Update Row:")
+                        selected_row = st.session_state["selected_row"]
+                            
+                        col1, col2, col3, col4 = st.columns(4)
                         updated_row = {}
-                        cols = st.columns(4)
-                        for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                            with cols[i % 4]:
-                                updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
-                
+                        for i, (key, value) in enumerate(selected_row.items()):
+                            if i % 4 == 0:
+                                with col1:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            elif i % 4 == 1:
+                                with col2:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            elif i % 4 == 2:
+                                with col3:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                            elif i % 4 == 3:
+                                with col4:
+                                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                                    
                         if st.button("Save Updated Row"):
                             st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
                             del st.session_state["selected_row"]
                             del st.session_state["row_index_to_update"]
                             st.success("Row updated!")
                             st.rerun()
+
 
     
         # Final Submit Button

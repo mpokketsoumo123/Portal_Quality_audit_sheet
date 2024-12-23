@@ -693,11 +693,11 @@ elif selected_page == "Input Form":
         
         # Handle button clicks in the Streamlit app
         for index, row in enumerate(st.session_state["input_table"]):
-            if st.button("Delete", key=f"delete_{index}"):
+            if st.button(f"Delete {index}", key=f"delete_{index}"):
                 st.session_state["input_table"].pop(index)
                 st.rerun()
         
-            if st.button("Update", key=f"update_{index}"):
+            if st.button(f"Update {index}", key=f"update_{index}"):
                 st.session_state["selected_row"] = row.copy()
                 st.session_state["row_index_to_update"] = index
                 st.rerun()

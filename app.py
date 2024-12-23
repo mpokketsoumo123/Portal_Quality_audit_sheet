@@ -615,7 +615,7 @@ elif selected_page == "Input Form":
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 20%;
+                width: 100%;
                 font-size: 16px;
                 text-align: left;
                 margin-top: 20px;
@@ -678,37 +678,37 @@ elif selected_page == "Input Form":
         # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
     
-        # Place the Update and Delete buttons outside the table
+        # Use a separate layout to add buttons next to each row
         for index, row in enumerate(st.session_state["input_table"]):
-            delete_clicked = st.button("Delete", key=f"delete_{index}")
-            update_clicked = st.button("Update", key=f"update_{index}")
+            cols = st.columns([8, 1, 1])  # Two buttons next to the row, adjusting columns width
     
-            # Handle Delete Button Click
-            if delete_clicked:
-                st.session_state["input_table"].pop(index)
-                st.rerun()
+            # Display buttons beside the row
+            with cols[1]:
+                if st.button("Delete", key=f"delete_{index}"):
+                    st.session_state["input_table"].pop(index)
+                    st.rerun()
     
-            # Handle Update Button Click
-            if update_clicked:
-                st.session_state["selected_row"] = row.copy()
-                st.session_state["row_index_to_update"] = index
-                st.rerun()
+            with cols[2]:
+                if st.button("Update", key=f"update_{index}"):
+                    st.session_state["selected_row"] = row.copy()
+                    st.session_state["row_index_to_update"] = index
+                    st.rerun()
     
         # Update Form
-                if "selected_row" in st.session_state:
-                    st.markdown("### Update Row:")
-                    updated_row = {}
-                    cols = st.columns(4)
-                    for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                        with cols[i % 4]:
-                            updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
-            
-                    if st.button("Save Updated Row"):
-                        st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                        del st.session_state["selected_row"]
-                        del st.session_state["row_index_to_update"]
-                        st.success("Row updated!")
-                        st.rerun()
+                    if "selected_row" in st.session_state:
+                        st.markdown("### Update Row:")
+                        updated_row = {}
+                        cols = st.columns(4)
+                        for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
+                            with cols[i % 4]:
+                                updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
+                
+                        if st.button("Save Updated Row"):
+                            st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                            del st.session_state["selected_row"]
+                            del st.session_state["row_index_to_update"]
+                            st.success("Row updated!")
+                            st.rerun()
 
     
         # Final Submit Button

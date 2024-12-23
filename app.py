@@ -535,7 +535,7 @@ elif selected_page == "Input Form":
     
     # Initialize session state for the update form values
     if "update_form_values" not in st.session_state:
-        st.session_state["update_form_values"] = None
+        st.session_state["update_form_values"] = {}
     error_placeholder = st.empty()
     if st.button("Add Row"):
         data = {
@@ -715,8 +715,7 @@ elif selected_page == "Input Form":
                 elif operation == "Update Row":
                     st.markdown("### Update Row")
                     
-                    if "update_form_values" not in st.session_state:
-                        st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
+                    st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
                     updated_row = {}
                     cols = st.columns(4)  # Adjust column layout as needed
                     for i, (key, value) in enumerate(st.session_state["update_form_values"].items()):
@@ -727,11 +726,10 @@ elif selected_page == "Input Form":
         
                     if st.button("Save Updated Row"):
                         # Save the updated values back to the table
-                        st.session_state["input_table"][matching_index] = st.session_state["update_form_values"].copy()
-                        del st.session_state["update_form_values"]
+                        st.session_state["input_table"][matching_index] = updated_row
+                        st.session_state["update_form_values"] = {}  # Clear the update form state
                         st.success("Row updated successfully!")
                         st.rerun()
-
 
     
         # Final Submit Button

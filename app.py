@@ -712,9 +712,14 @@ elif selected_page == "Input Form":
                     cols = st.columns(4)  # Adjust column layout as needed
                     for i, (key, value) in enumerate(st.session_state["input_table"][matching_index].items()):
                         with cols[i % 4]:  # Adjust layout for the update form
-                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                            st.session_state["update_form_values"][key] = st.text_input(
+                                f"{key}:", value=value, key=f"update_{key}"
+                            )
+        
                     if st.button("Save Updated Row"):
-                        st.session_state["input_table"][matching_index] = updated_row
+                        # Save the updated values back to the table
+                        st.session_state["input_table"][matching_index] = st.session_state["update_form_values"].copy()
+                        del st.session_state["update_form_values"]
                         st.success("Row updated successfully!")
                         st.rerun()
 

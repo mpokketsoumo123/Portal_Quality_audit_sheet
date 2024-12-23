@@ -694,7 +694,7 @@ elif selected_page == "Input Form":
     
         # Handle delete and update actions
         for index, row in enumerate(st.session_state["input_table"]):
-        cols = st.columns(len(row) + 1)  # Create columns for each row's data + actions
+            cols = st.columns(len(row) + 1)  # Create columns for each row's data + actions
         
         # Display row data
             for i, (key, value) in enumerate(row.items()):

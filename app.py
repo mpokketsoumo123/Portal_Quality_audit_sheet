@@ -655,7 +655,7 @@ elif selected_page == "Input Form":
     
         # Generate the HTML table
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
-        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]  # Add Actions header
+        headers = list(st.session_state["input_table"][0].keys())  # No Actions header
         
         # Create the table header row
         table_html += "<thead><tr>"
@@ -668,37 +668,34 @@ elif selected_page == "Input Form":
             table_html += "<tr>"
             for value in row.values():
                 table_html += f"<td>{value}</td>"
-            
-            # Add buttons in the last cell of the row
-            table_html += "<td class='action-buttons'>"
-            table_html += f"<button class='delete-button' onclick='deleteRow({index})'>Delete</button>"
-            table_html += f"<button class='update-button' onclick='updateRow({index})'>Update</button>"
-            table_html += "</td>"
-            
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
         
         # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
         
-        # Handle button clicks in the Streamlit app
-        for index, row in enumerate(st.session_state["input_table"]):
-            if st.button(f"Delete {index}", key=f"delete_{index}"):
-                st.session_state["input_table"].pop(index)
-                st.rerun()
+        # Create a column layout for buttons
+        col1, col2 = st.columns([3, 1])  # Adjust the width as needed
         
-            if st.button(f"Update {index}", key=f"update_{index}"):
-                st.session_state["selected_row"] = row.copy()
-                st.session_state["row_index_to_update"] = index
-                st.rerun()
+        # Place buttons beside the table
+        with col2:
+            for index, row in enumerate(st.session_state["input_table"]):
+                if st.button(f"Delete {index}", key=f"delete_{index}"):
+                    st.session_state["input_table"].pop(index)
+                    st.rerun()
+        
+                if st.button(f"Update {index}", key=f"update_{index}"):
+                    st.session_state["selected_row"] = row.copy()
+                    st.session_state["row_index_to_update"] = index
+                    st.rerun()
         
         # Handle the update form
         if "selected_row" in st.session_state:
             st.markdown("### Update Row:")
             updated_row = {}
-            cols = st.columns(2)
+            cols = st.columns(4)
             for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                with cols[i % 2]:
+                with cols[i % 4]:
                     updated_row[key] = st.text_input(f"{key}:", value=value)
         
             if st.button("Save Updated Row"):

@@ -608,10 +608,10 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                max-height: 500px;
+                max-height: 400px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
-                width: 100%;  /* Set a specific width for the table */
+                width: 60%;  /* Set a specific width for the table */
                 display: inline-block;  /* Allow buttons to be beside the table */
             }
             .styled-table {
@@ -631,12 +631,12 @@ elif selected_page == "Input Form":
             .action-buttons {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px;  /* Decrease the gap between buttons */
             }
             .delete-button {
                 background-color: #FF4C4C;
                 color: white;
-                padding: 20px 10px;
+                padding: 10px 15px;  /* Increase padding */
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
@@ -644,7 +644,7 @@ elif selected_page == "Input Form":
             .update-button {
                 background-color: #28a745;
                 color: white;
-                padding: 3px 5px;
+                padding: 10px 15px;  /* Increase padding */
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

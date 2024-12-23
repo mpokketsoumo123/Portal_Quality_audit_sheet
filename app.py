@@ -608,10 +608,10 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                max-height: 400px;
+                max-height: 500px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
-                width: 60%;  /* Set a specific width for the table */
+                width: 80%;  /* Set a specific width for the table */
                 display: inline-block;  /* Allow buttons to be beside the table */
             }
             .styled-table {

@@ -680,7 +680,7 @@ elif selected_page == "Input Form":
     
         # Use a separate layout to add buttons next to each row
         for index, row in enumerate(st.session_state["input_table"]):
-            cols = st.columns([10, 0, 0])  # Two buttons next to the row, adjusting columns width
+            cols = st.columns([10, 1, 1])  # Two buttons next to the row, adjusting columns width
     
             # Display buttons beside the row
             with cols[1]:

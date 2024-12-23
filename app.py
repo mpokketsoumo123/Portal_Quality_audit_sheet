@@ -642,12 +642,49 @@ elif selected_page == "Input Form":
                 justify-content: center;
                 gap: 10px;
             }
+            .update-button {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 4px 8px;
+                cursor: pointer;
+            }
+            .delete-button {
+                background-color: #FF4C4C;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 4px 8px;
+                cursor: pointer;
+            }
             </style>
             """,
             unsafe_allow_html=True,
         )
     
         st.markdown("### Your Input Table:")
+    
+        # Generate the table with headers
+        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
+        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
+        table_html += "".join(f"<th>{header}</th>" for header in headers)
+        table_html += "</tr></thead><tbody>"
+    
+        # Add rows with data and buttons
+        for index, row in enumerate(st.session_state["input_table"]):
+            table_html += "<tr>"
+            table_html += "".join(f"<td>{value}</td>" for value in row.values())
+            table_html += (
+                f"<td class='action-cell'>"
+                f"<button class='update-button' onclick='window.location.reload();'>Update</button>"
+                f"<button class='delete-button' onclick='window.location.reload();'>Delete</button>"
+                f"</td>"
+            )
+            table_html += "</tr>"
+        table_html += "</tbody></table></div>"
+    
+        st.markdown(table_html, unsafe_allow_html=True)
     
         for index, row in enumerate(st.session_state["input_table"]):
             cols = st.columns(len(row) + 1)

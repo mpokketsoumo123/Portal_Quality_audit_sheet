@@ -615,7 +615,7 @@ elif selected_page == "Input Form":
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 100%;
+                width: 80%;  /* Adjusted width for the table */
                 font-size: 16px;
                 text-align: left;
                 margin-top: 20px;
@@ -630,6 +630,12 @@ elif selected_page == "Input Form":
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
                 text-align: center;
+            }
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+            .styled-table tbody tr:hover {
+                background-color: #f1f1f1;
             }
             .action-buttons {
                 display: flex;
@@ -664,6 +670,7 @@ elif selected_page == "Input Form":
         headers = list(st.session_state["input_table"][0].keys())
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
+        table_html += "<th>Actions</th>"  # Added header for the action buttons
         table_html += "</tr></thead>"
     
         # Add table rows
@@ -678,9 +685,9 @@ elif selected_page == "Input Form":
         # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
     
-        # Use a separate layout to add buttons next to each row
+        # Now place the Delete and Update buttons beside each row
         for index, row in enumerate(st.session_state["input_table"]):
-            cols = st.columns([10, 1, 1])  # Two buttons next to the row, adjusting columns width
+            cols = st.columns([8, 1, 1])  # Adjusted for buttons
     
             # Display buttons beside the row
             with cols[1]:
@@ -690,23 +697,25 @@ elif selected_page == "Input Form":
     
             with cols[2]:
                 if st.button("Update", key=f"update_{index}"):
-                    st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
+                    st.session_state["selected_row"] = row.copy()
                     st.session_state["row_index_to_update"] = index
                     st.rerun()
-                    if "selected_row" in st.session_state:
-                        st.markdown("### Update Row:")
-                        updated_row = {}
-                        cols = st.columns(4)
-                        for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                            with cols[i % 4]:
-                                updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
-                
-                        if st.button("Save Updated Row"):
-                            st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                            del st.session_state["selected_row"]
-                            del st.session_state["row_index_to_update"]
-                            st.success("Row updated!")
-                            st.rerun()
+    
+        # Handle the update form
+        if "selected_row" in st.session_state:
+            st.markdown("### Update Row:")
+            updated_row = {}
+            cols = st.columns(4)
+            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
+                with cols[i % 4]:
+                    updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
+    
+            if st.button("Save Updated Row"):
+                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                del st.session_state["selected_row"]
+                del st.session_state["row_index_to_update"]
+                st.success("Row updated!")
+                st.rerun()
 
 
     

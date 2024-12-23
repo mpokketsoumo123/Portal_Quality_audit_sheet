@@ -604,6 +604,7 @@ elif selected_page == "Input Form":
 
     # Display Table
     if st.session_state["input_table"]:
+    # Add CSS for table styling
         st.markdown(
             """
             <style>
@@ -614,98 +615,74 @@ elif selected_page == "Input Form":
             }
             .styled-table {
                 border-collapse: collapse;
-                margin: 25px 0;
-                font-size: 16px;
-                min-width: 600px;
                 width: 100%;
+                font-size: 16px;
+                text-align: left;
+                margin-top: 20px;
             }
-            .styled-table thead tr {
+            .styled-table th {
                 background-color: #009879;
                 color: white;
-                text-align: left;
-                font-weight: bold;
+                padding: 8px 12px;
+                border: 1px solid #dddddd;
             }
-            .styled-table th,
             .styled-table td {
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
-                text-align: center;
-            }
-            .styled-table tbody tr:nth-of-type(even) {
-                background-color: #f3f3f3;
-            }
-            .styled-table tbody tr:hover {
-                background-color: #f1f1f1;
             }
             .action-cell {
-                display: flex;
-                justify-content: center;
-                gap: 10px;
-            }
-            .update-button {
-                background-color: #28a745;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 4px 8px;
-                cursor: pointer;
-            }
-            .delete-button {
-                background-color: #FF4C4C;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 4px 8px;
-                cursor: pointer;
+                text-align: center;
             }
             </style>
             """,
             unsafe_allow_html=True,
         )
     
-        st.markdown("### Your Input Table:")
+        # Generate the HTML table
+        table_html = "<div class='scrollable-table'><table class='styled-table'>"
     
-        # Generate the table with headers
-        table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
+        # Add table headers
         headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
+        table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "</tr></thead><tbody>"
+        table_html += "</tr></thead>"
     
-        # Add rows with data and buttons
+        # Add table rows
+        table_html += "<tbody>"
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
-            table_html += "".join(f"<td>{value}</td>" for value in row.values())
+            for value in row.values():
+                table_html += f"<td>{value}</td>"
+    
+            # Add action buttons
+            delete_button_key = f"delete_{index}"
+            update_button_key = f"update_{index}"
             table_html += (
                 f"<td class='action-cell'>"
-                f"<button class='update-button' onclick='window.location.reload();'>Update</button>"
-                f"<button class='delete-button' onclick='window.location.reload();'>Delete</button>"
+                f"<button style='background-color: #FF4C4C; color: white; padding: 5px 10px; border: none; border-radius: 5px;' "
+                f"onclick='window.location.reload();' id='{delete_button_key}'>Delete</button>"
+                f"<button style='background-color: #28a745; color: white; padding: 5px 10px; border: none; border-radius: 5px;' "
+                f"onclick='window.location.reload();' id='{update_button_key}'>Update</button>"
                 f"</td>"
             )
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
     
+        # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
     
-        for index, row in enumerate(st.session_state["input_table"]):
-            cols = st.columns(len(row) + 1)
-            for i, (key, value) in enumerate(row.items()):
-                cols[i].write(value)
+        # Handle Button Actions
+        for index in range(len(st.session_state["input_table"])):
+            if st.button("Delete", key=f"delete_{index}"):
+                st.session_state["input_table"].pop(index)
+                st.experimental_rerun()
     
-            # Action Buttons for Update and Delete
-            with cols[len(row)]:
-                delete_clicked = st.button("Delete", key=f"delete_{index}")
-                update_clicked = st.button("Update", key=f"update_{index}")
+            if st.button("Update", key=f"update_{index}"):
+                st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
+                st.session_state["row_index_to_update"] = index
+                st.experimental_rerun()
     
-                if delete_clicked:
-                    st.session_state["input_table"].pop(index)
-                    st.rerun()
-    
-                if update_clicked:
-                    st.session_state["selected_row"] = row.copy()
-                    st.session_state["row_index_to_update"] = index
-                    st.rerun()
-    
-        # Handle Update Form
+        # Update Form
         if "selected_row" in st.session_state:
             st.markdown("### Update Row:")
             updated_row = {}
@@ -719,7 +696,7 @@ elif selected_page == "Input Form":
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
                 st.success("Row updated!")
-                st.rerun()
+                st.experimental_rerun()
     
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):

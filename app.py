@@ -611,17 +611,17 @@ elif selected_page == "Input Form":
                 max-height: 400px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
-                width: 100%;  /* Set a specific width for the table */
+                width: 110%;  /* Set a specific width for the table */
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 100%;
+                width: 80%;
                 font-size: 16px;
                 text-align: left;
             }
             .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;
-                padding: 8px;
+                padding: 4px;
             }
             .styled-table th {
                 background-color: #009879;

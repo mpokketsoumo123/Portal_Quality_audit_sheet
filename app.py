@@ -679,7 +679,7 @@ elif selected_page == "Input Form":
             for value in row.values():
                 table_html += f"<td>{value}</td>"
             
-            # Add buttons in the last two cells of the row
+            # Add buttons in the last cell of the row
             table_html += "<td class='action-buttons'>"
             table_html += f"<button class='delete-button' onclick='deleteRow({index})'>Delete</button>"
             table_html += f"<button class='update-button' onclick='updateRow({index})'>Update</button>"
@@ -691,22 +691,7 @@ elif selected_page == "Input Form":
         # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
         
-        # JavaScript functions to handle button clicks
-        st.markdown("""
-        <script>
-        function deleteRow(index) {
-            const deleteButton = document.querySelector(`button[onclick='deleteRow(${index})']`);
-            deleteButton.click();
-        }
-        
-        function updateRow(index) {
-            const updateButton = document.querySelector(`button[onclick='updateRow(${index})']`);
-            updateButton.click();
-        }
-        </script>
-        """, unsafe_allow_html=True)
-        
-        # Handle the button clicks in the Streamlit app
+        # Handle button clicks in the Streamlit app
         for index, row in enumerate(st.session_state["input_table"]):
             if st.button("Delete", key=f"delete_{index}"):
                 st.session_state["input_table"].pop(index)
@@ -721,10 +706,10 @@ elif selected_page == "Input Form":
         if "selected_row" in st.session_state:
             st.markdown("### Update Row:")
             updated_row = {}
-            cols = st.columns(4)
+            cols = st.columns(2)
             for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                with cols[i % 4]:
-                    updated_row[key] = st.text_input(f"{key}:", value=value, key=f"update_input_{key}")
+                with cols[i % 2]:
+                    updated_row[key] = st.text_input(f"{key}:", value=value)
         
             if st.button("Save Updated Row"):
                 st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row

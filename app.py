@@ -686,28 +686,26 @@ elif selected_page == "Input Form":
                     st.session_state["input_table"].pop(index)
                     st.rerun()
         
-                if st.button(f"Update {index}", key=f"update_{index}"):
+                elif st.button(f"Update {index}", key=f"update_{index}"):
                     st.session_state["selected_row"] = row.copy()
                     st.session_state["row_index_to_update"] = index
                     st.rerun()
         
         # Handle the update form
-            if "selected_row" in st.session_state:
-                st.markdown("### Update Row:")
-                updated_row = {}
-                cols = st.columns(4)
-                for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                    with cols[i % 4]:
-                        updated_row[key] = st.text_input(f"{key}:", value=value)
+        if "selected_row" in st.session_state:
+            st.markdown("### Update Row:")
+            updated_row = {}
+            cols = st.columns(4)
+            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
+                with cols[i % 4]:
+                    updated_row[key] = st.text_input(f"{key}:", value=value)
             
-                if st.button("Save Updated Row"):
-                    st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                    del st.session_state["selected_row"]
-                    del st.session_state["row_index_to_update"]
-                    st.success("Row updated!")
-                    st.rerun()
-
-
+            if st.button("Save Updated Row"):
+                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                del st.session_state["selected_row"]
+                del st.session_state["row_index_to_update"]
+                st.success("Row updated!")
+                st.rerun()
 
     
         # Final Submit Button

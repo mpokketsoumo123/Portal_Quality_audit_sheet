@@ -615,7 +615,7 @@ elif selected_page == "Input Form":
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 100%;
+                width: 75%;
                 font-size: 16px;
                 text-align: left;
                 margin-top: 20px;

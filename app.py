@@ -692,10 +692,14 @@ elif selected_page == "Input Form":
         # Place buttons beside the table
         with st.form("row_operations_form"):
             st.markdown("## Update or Delete a Row")
-            user_register_number_input = st.text_input("Enter User Register Number:")
-            emp_id_input = st.text_input("Enter EMP ID:")
-            operation = st.radio("Select Operation:", ["Update Row", "Delete Row"])
-            submit_button = st.form_submit_button("Submit")
+        
+            # Using 4 columns for inputs
+            cols = st.columns(4)  
+            user_register_number_input = cols[0].text_input("Enter User Register Number:")
+            emp_id_input = cols[1].text_input("Enter EMP ID:")
+            
+            operation = cols[2].radio("Select Operation:", ["Update Row", "Delete Row"])
+            submit_button = cols[3].form_submit_button("Submit")
         
         if submit_button:
             matching_index = None
@@ -713,22 +717,30 @@ elif selected_page == "Input Form":
                     st.success("Row deleted successfully!")
                     st.rerun()
                 elif operation == "Update Row":
-                    st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
-
-            # Generate the update form dynamically with 4 columns layout
-                    st.markdown("### Update Row")
-                    updated_row = {}
-                    cols = st.columns(4)  # Divide the inputs into 4 columns
-                    for i, (key, value) in enumerate(st.session_state["update_form_values"].items()):
-                        updated_row[key] = cols[i % 4].text_input(f"{key}:", value=value, key=f"update_{key}")
+                    st.session_state["row_index_to_update"] = matching_index
+                    st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
+                    st.session_state["show_update_form"] = True
+                    st.experimental_rerun()
         
-                    if st.button("Save Updated Row"):
-                        # Update the matching row with the updated data
-                        for key in updated_row:
-                            st.session_state["input_table"][matching_index][key] = updated_row[key]
-                        st.session_state["update_form_values"] = {}  # Clear the update form state
-                        st.success("Row updated successfully!")
-                        st.rerun()
+        # Show update form if selected
+        if st.session_state.get("show_update_form", False):
+            st.markdown("### Update Row:")
+            updated_row = {}
+            cols = st.columns(4)
+        
+            # Populate the update form with existing values
+            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
+                with cols[i % 4]:
+                    updated_row[key] = st.text_input(f"{key}:", value=value)
+        
+            # Save updated row
+            if st.button("Save Updated Row"):
+                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                del st.session_state["selected_row"]
+                del st.session_state["row_index_to_update"]
+                st.session_state["show_update_form"] = False  # Hide update form after saving
+                st.success("Row updated!")
+                st.rerun()
 
     
         # Final Submit Button

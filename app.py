@@ -659,43 +659,42 @@ elif selected_page == "Input Form":
         )
         col1, col2 = st.columns([3, 1])
         # Generate the HTML table
-        for index, row in enumerate(st.session_state["input_table"]):
-            with col1:
-                table_html = "<div class='scrollable-table'><table class='styled-table'>"
-                headers = list(st.session_state["input_table"][0].keys())  # No Actions header
-                
-                # Create the table header row
-                table_html += "<thead><tr>"
-                table_html += "".join(f"<th>{header}</th>" for header in headers)
-                table_html += "</tr></thead>"
-                
-                # Create the table body rows
-                table_html += "<tbody>"
+        with col1:
+            table_html = "<div class='scrollable-table'><table class='styled-table'>"
+            headers = list(st.session_state["input_table"][0].keys())  # No Actions header
             
+            # Create the table header row
+            table_html += "<thead><tr>"
+            table_html += "".join(f"<th>{header}</th>" for header in headers)
+            table_html += "</tr></thead>"
+            
+            # Create the table body rows
+            table_html += "<tbody>"
+            for index, row in enumerate(st.session_state["input_table"]):
                 table_html += "<tr>"
                 for value in row.values():
                     table_html += f"<td>{value}</td>"
                 table_html += "</tr>"
-                table_html += "</tbody></table></div>"
-                
-                # Display the table
-                st.markdown(table_html, unsafe_allow_html=True)
-                
-                # Create a column layout for buttons
-              # Adjust the width as needed
+            table_html += "</tbody></table></div>"
+            
+            # Display the table
+            st.markdown(table_html, unsafe_allow_html=True)
+            
+            # Create a column layout for buttons
+          # Adjust the width as needed
         
         # Place buttons beside the table
         with col2:
-            
-            if st.button(f"Delete {index}", key=f"delete_{index}"):
-                st.session_state["input_table"].pop(index)
-                st.rerun()
+            for index, row in enumerate(st.session_state["input_table"]):
+                if st.button(f"Delete {index}", key=f"delete_{index}"):
+                    st.session_state["input_table"].pop(index)
+                    st.rerun()
         
-            if st.button(f"Update {index}", key=f"update_{index}"):
-                st.session_state["selected_row"] = row.copy()
-                st.session_state["row_index_to_update"] = index
-                st.session_state["show_update_form"] = True  # Set flag to show update form
-                st.rerun()
+                if st.button(f"Update {index}", key=f"update_{index}"):
+                    st.session_state["selected_row"] = row.copy()
+                    st.session_state["row_index_to_update"] = index
+                    st.session_state["show_update_form"] = True  # Set flag to show update form
+                    st.rerun()
 
         
         # Handle the update form

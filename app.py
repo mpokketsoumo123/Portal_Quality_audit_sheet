@@ -629,9 +629,28 @@ elif selected_page == "Input Form":
             .styled-table td {
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
-            }
-            .action-cell {
                 text-align: center;
+            }
+            .action-buttons {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            }
+            .delete-button {
+                background-color: #FF4C4C;
+                color: white;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .update-button {
+                background-color: #28a745;
+                color: white;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
             }
             </style>
             """,
@@ -642,9 +661,10 @@ elif selected_page == "Input Form":
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
     
         # Add table headers
-        headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
+        headers = list(st.session_state["input_table"][0].keys())
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
+        table_html += "<th>Actions</th>"
         table_html += "</tr></thead>"
     
         # Add table rows
@@ -654,15 +674,11 @@ elif selected_page == "Input Form":
             for value in row.values():
                 table_html += f"<td>{value}</td>"
     
-            # Add action buttons
-            delete_button_key = f"delete_{index}"
-            update_button_key = f"update_{index}"
+            # Add action buttons beside the row
             table_html += (
-                f"<td class='action-cell'>"
-                f"<button style='background-color: #FF4C4C; color: white; padding: 5px 10px; border: none; border-radius: 5px;' "
-                f"onclick='window.location.reload();' id='{delete_button_key}'>Delete</button>"
-                f"<button style='background-color: #28a745; color: white; padding: 5px 10px; border: none; border-radius: 5px;' "
-                f"onclick='window.location.reload();' id='{update_button_key}'>Update</button>"
+                f"<td class='action-buttons'>"
+                f"<button class='delete-button' id='delete_{index}'>Delete</button>"
+                f"<button class='update-button' id='update_{index}'>Update</button>"
                 f"</td>"
             )
             table_html += "</tr>"
@@ -673,11 +689,14 @@ elif selected_page == "Input Form":
     
         # Handle Button Actions
         for index in range(len(st.session_state["input_table"])):
-            if st.button("Delete", key=f"delete_{index}"):
+            delete_button_key = f"delete_{index}"
+            update_button_key = f"update_{index}"
+    
+            if st.button("Delete", key=delete_button_key):
                 st.session_state["input_table"].pop(index)
                 st.rerun()
     
-            if st.button("Update", key=f"update_{index}"):
+            if st.button("Update", key=update_button_key):
                 st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
                 st.session_state["row_index_to_update"] = index
                 st.rerun()

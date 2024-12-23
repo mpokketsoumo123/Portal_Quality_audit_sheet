@@ -608,21 +608,20 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                max-height: 800px; /* Adjust the height as needed */
+                max-height: 800px;
                 overflow-y: auto;
-                margin-bottom: 20px;
                 border: 1px solid #ddd;
             }
             .styled-table {
                 border-collapse: collapse;
                 margin: 25px 0;
-                font-size: 18px;
-                min-width: 400px;
+                font-size: 16px;
+                min-width: 600px;
                 width: 100%;
             }
             .styled-table thead tr {
                 background-color: #009879;
-                color: #ffffff;
+                color: white;
                 text-align: left;
                 font-weight: bold;
             }
@@ -630,87 +629,74 @@ elif selected_page == "Input Form":
             .styled-table td {
                 border: 1px solid #dddddd;
                 padding: 8px 12px;
+                text-align: center;
             }
-            /* Sticky header styling */
-            .styled-table thead th {
-                position: sticky;
-                top: 0;
-                background-color: #009879; /* Keep header background color */
-                z-index: 1; /* Ensure header stays on top */
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
             }
-            .button-cell {
-                display: flex;
-                justify-content: space-around;
+            .styled-table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+            .action-button {
+                display: inline-block;
+                margin: 0 5px;
+                padding: 4px 8px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
             }
             .delete-button {
                 background-color: #FF4C4C;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 4px 8px;
-                cursor: pointer;
             }
             .update-button {
                 background-color: #28a745;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 4px 8px;
-                cursor: pointer;
             }
             </style>
             """,
             unsafe_allow_html=True,
         )
-        
+    
         st.markdown("### Your Input Table:")
-        
+    
         # Generate the table with Delete and Update buttons for each row
         table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
-        
+    
         # Add headers
         headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead><tbody>"
-        
+    
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
             # Add buttons in the last column
-            delete_button_key = f"delete_{index}"
-            update_button_key = f"update_{index}"
             table_html += (
-                f"<td class='button-cell'>"
-                f"<form action='' method='post'>"
-                f"<button name='action' value='delete_{index}' class='delete-button'>D</button>"
-                f"<button name='action' value='update_{index}' class='update-button'>U</button>"
-                f"</form>"
+                f"<td>"
+                f"<button class='action-button delete-button' onclick=\"window.location.href='?delete={index}'\">Delete</button>"
+                f"<button class='action-button update-button' onclick=\"window.location.href='?update={index}'\">Update</button>"
                 f"</td>"
             )
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
-        
+    
         st.markdown(table_html, unsafe_allow_html=True)
     
-        # Handle delete and update actions
-        for index, row in enumerate(st.session_state["input_table"]):
-            cols = st.columns(len(row) + 1)  # Create columns for each row's data + actions
-        
-        # Display row data
-            for i, (key, value) in enumerate(row.items()):
-                cols[i].write(value)
-            
-            # Add buttons for Delete and Update
-            if cols[-1].button("Delete", key=f"delete_{index}"):
-                st.session_state["input_table"].pop(index)
-                st.experimental_rerun()
+        # Handle delete action
+        query_params = st.experimental_get_query_params()
+        if "delete" in query_params:
+            index_to_delete = int(query_params["delete"][0])
+            st.session_state["input_table"].pop(index_to_delete)
+            st.experimental_rerun()
     
-            if cols[-1].button("Update", key=f"update_{index}"):
-                st.session_state["selected_row"] = row.copy()
-                st.session_state["row_index_to_update"] = index
-                st.experimental_rerun()
-
-    # If a row is selected for update, show update form
+        # Handle update action
+        if "update" in query_params:
+            index_to_update = int(query_params["update"][0])
+            st.session_state["selected_row"] = st.session_state["input_table"][index_to_update].copy()
+            st.session_state["row_index_to_update"] = index_to_update
+            st.experimental_rerun()
+    
+        # If a row is loaded for update, display the update form
         if "selected_row" in st.session_state:
             st.markdown("### Update Row:")
             selected_row = st.session_state["selected_row"]

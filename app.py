@@ -611,7 +611,7 @@ elif selected_page == "Input Form":
                 max-height: 400px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
-                width: 120%;  /* Set a specific width for the table */
+                width: 100%;  /* Set a specific width for the table */
             }
             .styled-table {
                 border-collapse: collapse;
@@ -635,7 +635,7 @@ elif selected_page == "Input Form":
             .delete-button {
                 background-color: #FF4C4C;
                 color: white;
-                padding: 10px 15px;  /* Increase padding */
+                padding: 20px 15px;  /* Increase padding */
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

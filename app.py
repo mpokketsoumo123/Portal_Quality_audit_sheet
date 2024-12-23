@@ -687,14 +687,14 @@ elif selected_page == "Input Form":
         if "delete" in query_params:
             index_to_delete = int(query_params["delete"][0])
             st.session_state["input_table"].pop(index_to_delete)
-            st.rerun()
+            st.experimental_rerun()
     
         # Handle update action
         if "update" in query_params:
             index_to_update = int(query_params["update"][0])
             st.session_state["selected_row"] = st.session_state["input_table"][index_to_update].copy()
             st.session_state["row_index_to_update"] = index_to_update
-            st.rerun()
+            st.experimental_rerun()
     
         # If a row is loaded for update, display the update form
         if "selected_row" in st.session_state:
@@ -722,7 +722,7 @@ elif selected_page == "Input Form":
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
                 st.success("Row updated!")
-                st.rerun()
+                st.experimental_rerun()
     
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):

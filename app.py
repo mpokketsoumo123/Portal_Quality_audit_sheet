@@ -665,14 +665,14 @@ elif selected_page == "Input Form":
     
         # Generate the HTML table
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
-    
-        # Add table headers
         headers = list(st.session_state["input_table"][0].keys())
+        
+        # Create the table header row
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead>"
     
-        # Add table rows
+        # Create the table body rows
         table_html += "<tbody>"
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"

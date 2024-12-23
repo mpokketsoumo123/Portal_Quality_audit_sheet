@@ -661,12 +661,12 @@ elif selected_page == "Input Form":
     
                 if delete_clicked:
                     st.session_state["input_table"].pop(index)
-                    st.experimental_rerun()
+                    st.rerun()
     
                 if update_clicked:
                     st.session_state["selected_row"] = row.copy()
                     st.session_state["row_index_to_update"] = index
-                    st.experimental_rerun()
+                    st.rerun()
     
         # Handle Update Form
         if "selected_row" in st.session_state:
@@ -682,7 +682,7 @@ elif selected_page == "Input Form":
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
                 st.success("Row updated!")
-                st.experimental_rerun()
+                st.rerun()
     
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):

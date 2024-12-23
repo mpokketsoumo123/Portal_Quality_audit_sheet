@@ -670,7 +670,6 @@ elif selected_page == "Input Form":
         headers = list(st.session_state["input_table"][0].keys())
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "<th>Actions</th>"  # Added header for the action buttons
         table_html += "</tr></thead>"
     
         # Add table rows

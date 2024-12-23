@@ -635,7 +635,7 @@ elif selected_page == "Input Form":
             .custom-button {
                 background-color: #28a745; /* Default color */
                 color: white;
-                padding: 12px 10px;  /* Increase padding */
+                padding: 12px 30px;  /* Increase padding */
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

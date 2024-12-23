@@ -611,8 +611,7 @@ elif selected_page == "Input Form":
                 max-height: 400px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
-                width: 60%;  /* Set a specific width for the table */
-                display: inline-block;  /* Allow buttons to be beside the table */
+                width: 120%;  /* Set a specific width for the table */
             }
             .styled-table {
                 border-collapse: collapse;

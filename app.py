@@ -642,7 +642,7 @@ elif selected_page == "Input Form":
                 text-align: center;
                 display: inline-block;
                 width: 100%;  /* Full width */
-                margin-top: 10px; /* Add margin to align with rows */
+                margin-top: 20px; /* Add margin to align with rows */
             }
             .delete-button {
                 background-color: #FF4C4C; /* Delete button color */

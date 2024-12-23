@@ -686,7 +686,7 @@ elif selected_page == "Input Form":
     
         # Now place the Delete and Update buttons beside each row
         for index, row in enumerate(st.session_state["input_table"]):
-            cols = st.columns([100, 1, 1])  # Adjusted for buttons
+            cols = st.columns([50, 20, 20])  # Adjusted for buttons
     
             # Display buttons beside the row
             with cols[1]:

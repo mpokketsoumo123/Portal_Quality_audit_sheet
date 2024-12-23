@@ -608,7 +608,7 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                max-height: 400px;
+                max-height: 800px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
                 width: 110%;  /* Set a specific width for the table */
@@ -647,6 +647,18 @@ elif selected_page == "Input Form":
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
+            }
+            .stButton button {
+                background-color: yellow !important; /* Yellow background */
+                color: black !important; /* Black text */
+                border: 2px solid #f9a825; /* Border to match select box */
+                padding: 10px 20px;
+                font-weight: bold;
+                font-size: 14px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 20px; /* Centering the button */
             }
             </style>
             """,

@@ -636,7 +636,7 @@ elif selected_page == "Input Form":
             .delete-button {
                 background-color: #FF4C4C;
                 color: white;
-                padding: 5px 10px;
+                padding: 20px 10px;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

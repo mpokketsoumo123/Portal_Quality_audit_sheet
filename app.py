@@ -604,7 +604,7 @@ elif selected_page == "Input Form":
 
     # Display Table
     if st.session_state["input_table"]:
-        st.markdown(
+            st.markdown(
             """
             <style>
             .scrollable-table {
@@ -625,7 +625,7 @@ elif selected_page == "Input Form":
                 color: #ffffff;
                 text-align: left;
                 font-weight: bold;
-             }
+            }
             .styled-table th,
             .styled-table td {
                 border: 1px solid #dddddd;
@@ -664,15 +664,15 @@ elif selected_page == "Input Form":
         )
         
         st.markdown("### Your Input Table:")
-            
-            # Generate the table with Delete and Update buttons for each row
+        
+        # Generate the table with Delete and Update buttons for each row
         table_html = "<div class='scrollable-table'><table class='styled-table'><thead><tr>"
-            
-            # Add headers
+        
+        # Add headers
         headers = list(st.session_state["input_table"][0].keys()) + ["Actions"]
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead><tbody>"
-            
+        
         for index, row in enumerate(st.session_state["input_table"]):
             table_html += "<tr>"
             table_html += "".join(f"<td>{value}</td>" for value in row.values())
@@ -681,57 +681,58 @@ elif selected_page == "Input Form":
             update_button_key = f"update_{index}"
             table_html += (
                 f"<td class='button-cell'>"
-                f"<button class='delete-button' id='{delete_button_key}'>D</button>"
-                f"<button class='update-button' id='{update_button_key}'>U</button>"
+                f"<form action='' method='post'>"
+                f"<button name='action' value='delete_{index}' class='delete-button'>D</button>"
+                f"<button name='action' value='update_{index}' class='update-button'>U</button>"
+                f"</form>"
                 f"</td>"
             )
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
-            
-        st.markdown(table_html, unsafe_allow_html=True)
-            
-            # Define row-specific actions
-        for index in range(len(st.session_state["input_table"])):
-            delete_button_key = f"delete_{index}"
-            update_button_key = f"update_{index}"
-                    
-            if st.session_state.get(delete_button_key):
-                st.session_state["input_table"].pop(index)
-                st.experimental_rerun()
-                    
-            if st.session_state.get(update_button_key):
-                st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
-                st.session_state["row_index_to_update"] = index
-                st.experimental_rerun()
-            
-                # If a row is loaded for update, display the update form
-                if "selected_row" in st.session_state:
-                    selected_row = st.session_state["selected_row"]
-                        
-                    col1, col2, col3, col4 = st.columns(4)
-                    updated_row = {}
-                    for i, (key, value) in enumerate(selected_row.items()):
-                        if i % 4 == 0:
-                            with col1:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 1:
-                            with col2:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 2:
-                            with col3:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                        elif i % 4 == 3:
-                            with col4:
-                                updated_row[key] = st.text_input(f"{key}:", value=value)
-                                
-                    if st.button("Save Updated Row"):
-                        st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                        del st.session_state["selected_row"]
-                        del st.session_state["row_index_to_update"]
-                        st.success("Row updated!")
-                        st.experimental_rerun()
         
-            # Final Submit Button
+        st.markdown(table_html, unsafe_allow_html=True)
+    
+        # Handle delete and update actions
+        action = st.experimental_get_query_params().get("action")
+        if action:
+            if action[0].startswith("delete_"):
+                index_to_delete = int(action[0].split("_")[1])
+                st.session_state["input_table"].pop(index_to_delete)
+                st.experimental_rerun()
+            elif action[0].startswith("update_"):
+                index_to_update = int(action[0].split("_")[1])
+                st.session_state["selected_row"] = st.session_state["input_table"][index_to_update].copy()
+                st.session_state["row_index_to_update"] = index_to_update
+                st.experimental_rerun()
+    
+        # If a row is loaded for update, display the update form
+        if "selected_row" in st.session_state:
+            selected_row = st.session_state["selected_row"]
+            
+            col1, col2, col3, col4 = st.columns(4)
+            updated_row = {}
+            for i, (key, value) in enumerate(selected_row.items()):
+                if i % 4 == 0:
+                    with col1:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 1:
+                    with col2:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 2:
+                    with col3:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                elif i % 4 == 3:
+                    with col4:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                        
+            if st.button("Save Updated Row"):
+                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                del st.session_state["selected_row"]
+                del st.session_state["row_index_to_update"]
+                st.success("Row updated!")
+                st.experimental_rerun()
+    
+        # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:
                 for row in st.session_state["input_table"]:
@@ -740,8 +741,8 @@ elif selected_page == "Input Form":
                         list(row.values()),
                         st.session_state["login_email"]
                     )
-                    st.success("Data successfully written to Google Sheets!")
-                    st.session_state["input_table"] = []  # Clear after submission
+                st.success("Data successfully written to Google Sheets!")
+                st.session_state["input_table"] = []  # Clear after submission
             except Exception as e:
                 st.error(f"An error occurred: {e}")
             

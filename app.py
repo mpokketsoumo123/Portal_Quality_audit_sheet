@@ -709,8 +709,11 @@ elif selected_page == "Input Form":
                 elif operation == "Update Row":
                     st.markdown("### Update Row")
                     updated_row = {}
+                    if "update_form_values" not in st.session_state:
+                        st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
+                    
                     cols = st.columns(4)  # Adjust column layout as needed
-                    for i, (key, value) in enumerate(st.session_state["input_table"][matching_index].items()):
+                    for i, (key, value) in enumerate(st.session_state["update_form_values"].items()):
                         with cols[i % 4]:  # Adjust layout for the update form
                             st.session_state["update_form_values"][key] = st.text_input(
                                 f"{key}:", value=value, key=f"update_{key}"

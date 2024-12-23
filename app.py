@@ -664,7 +664,6 @@ elif selected_page == "Input Form":
         headers = list(st.session_state["input_table"][0].keys())
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "<th>Actions</th>"
         table_html += "</tr></thead>"
     
         # Add table rows
@@ -673,31 +672,25 @@ elif selected_page == "Input Form":
             table_html += "<tr>"
             for value in row.values():
                 table_html += f"<td>{value}</td>"
-    
-            # Add action buttons beside the row
-            table_html += (
-                f"<td class='action-buttons'>"
-                f"<button class='delete-button' id='delete_{index}'>Delete</button>"
-                f"<button class='update-button' id='update_{index}'>Update</button>"
-                f"</td>"
-            )
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
     
         # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
     
-        # Handle Button Actions
-        for index in range(len(st.session_state["input_table"])):
-            delete_button_key = f"delete_{index}"
-            update_button_key = f"update_{index}"
+        # Place the Update and Delete buttons outside the table
+        for index, row in enumerate(st.session_state["input_table"]):
+            delete_clicked = st.button("Delete", key=f"delete_{index}")
+            update_clicked = st.button("Update", key=f"update_{index}")
     
-            if st.button("Delete", key=delete_button_key):
+            # Handle Delete Button Click
+            if delete_clicked:
                 st.session_state["input_table"].pop(index)
                 st.rerun()
     
-            if st.button("Update", key=update_button_key):
-                st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
+            # Handle Update Button Click
+            if update_clicked:
+                st.session_state["selected_row"] = row.copy()
                 st.session_state["row_index_to_update"] = index
                 st.rerun()
     
@@ -716,6 +709,7 @@ elif selected_page == "Input Form":
                         del st.session_state["row_index_to_update"]
                         st.success("Row updated!")
                         st.rerun()
+
     
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):

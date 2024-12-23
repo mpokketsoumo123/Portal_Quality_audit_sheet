@@ -530,6 +530,12 @@ elif selected_page == "Input Form":
         Actual_Tagging_L3 = st.text_input("",key="Actual_Tagging_L3")
 
     # Add Row Button
+    if "input_table" not in st.session_state:
+        st.session_state["input_table"] = []
+    
+    # Initialize session state for the update form values
+    if "update_form_values" not in st.session_state:
+        st.session_state["update_form_values"] = None
     error_placeholder = st.empty()
     if st.button("Add Row"):
         data = {
@@ -708,10 +714,10 @@ elif selected_page == "Input Form":
                     st.rerun()
                 elif operation == "Update Row":
                     st.markdown("### Update Row")
-                    updated_row = {}
+                    
                     if "update_form_values" not in st.session_state:
                         st.session_state["update_form_values"] = st.session_state["input_table"][matching_index]
-                    
+                    updated_row = {}
                     cols = st.columns(4)  # Adjust column layout as needed
                     for i, (key, value) in enumerate(st.session_state["update_form_values"].items()):
                         with cols[i % 4]:  # Adjust layout for the update form

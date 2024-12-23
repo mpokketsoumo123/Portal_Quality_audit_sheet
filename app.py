@@ -630,35 +630,22 @@ elif selected_page == "Input Form":
             .action-buttons {
                 display: flex;
                 flex-direction: column;
-                gap: 0px;  /* Decrease the gap between buttons */
+                gap: 2px;  /* Decrease the gap between buttons */
+            }
+            .custom-button {
+                background-color: #28a745; /* Default color */
+                color: white;
+                padding: 12px 15px;  /* Increase padding */
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-align: center;
+                display: inline-block;
+                width: 100%;  /* Full width */
+                margin-top: 10px; /* Add margin to align with rows */
             }
             .delete-button {
-                background-color: #FF4C4C;
-                color: white;
-                padding: 20px 25px;  /* Increase padding */
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            .update-button {
-                background-color: #28a745;
-                color: white;
-                padding: 10px 15px;  /* Increase padding */
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            .stButton button {
-                background-color: yellow !important; /* Yellow background */
-                color: black !important; /* Black text */
-                border: 2px solid #f9a825; /* Border to match select box */
-                padding: 5px 20px;
-                font-weight: bold;
-                font-size: 14px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 20px; /* Centering the button */
+                background-color: #FF4C4C; /* Delete button color */
             }
             </style>
             """,

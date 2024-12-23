@@ -693,24 +693,30 @@ elif selected_page == "Input Form":
         st.markdown(table_html, unsafe_allow_html=True)
     
         # Handle delete and update actions
-        action = st.experimental_get_query_params().get("action")
-        if action:
-            if action[0].startswith("delete_"):
-                index_to_delete = int(action[0].split("_")[1])
-                st.session_state["input_table"].pop(index_to_delete)
-                st.experimental_rerun()
-            elif action[0].startswith("update_"):
-                index_to_update = int(action[0].split("_")[1])
-                st.session_state["selected_row"] = st.session_state["input_table"][index_to_update].copy()
-                st.session_state["row_index_to_update"] = index_to_update
+        for index, row in enumerate(st.session_state["input_table"]):
+        cols = st.columns(len(row) + 1)  # Create columns for each row's data + actions
+        
+        # Display row data
+            for i, (key, value) in enumerate(row.items()):
+                cols[i].write(value)
+            
+            # Add buttons for Delete and Update
+            if cols[-1].button("Delete", key=f"delete_{index}"):
+                st.session_state["input_table"].pop(index)
                 st.experimental_rerun()
     
-        # If a row is loaded for update, display the update form
+            if cols[-1].button("Update", key=f"update_{index}"):
+                st.session_state["selected_row"] = row.copy()
+                st.session_state["row_index_to_update"] = index
+                st.experimental_rerun()
+
+    # If a row is selected for update, show update form
         if "selected_row" in st.session_state:
+            st.markdown("### Update Row:")
             selected_row = st.session_state["selected_row"]
-            
-            col1, col2, col3, col4 = st.columns(4)
             updated_row = {}
+    
+            col1, col2, col3, col4 = st.columns(4)
             for i, (key, value) in enumerate(selected_row.items()):
                 if i % 4 == 0:
                     with col1:
@@ -724,7 +730,7 @@ elif selected_page == "Input Form":
                 elif i % 4 == 3:
                     with col4:
                         updated_row[key] = st.text_input(f"{key}:", value=value)
-                        
+    
             if st.button("Save Updated Row"):
                 st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
                 del st.session_state["selected_row"]

@@ -644,7 +644,7 @@ elif selected_page == "Input Form":
             .update-button {
                 background-color: #28a745;
                 color: white;
-                padding: 5px 10px;
+                padding: 3px 5px;
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

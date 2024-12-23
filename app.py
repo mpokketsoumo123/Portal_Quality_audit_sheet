@@ -609,38 +609,28 @@ elif selected_page == "Input Form":
             """
             <style>
             .scrollable-table {
-                max-height: 800px;
+                max-height: 400px;
                 overflow-y: auto;
                 border: 1px solid #ddd;
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 60%;  /* Reduced the width of the table */
+                width: 100%;
                 font-size: 16px;
                 text-align: left;
-                margin-top: 20px;
+            }
+            .styled-table th, .styled-table td {
+                border: 1px solid #dddddd;
+                padding: 8px;
             }
             .styled-table th {
                 background-color: #009879;
                 color: white;
-                padding: 8px 12px;
-                border: 1px solid #dddddd;
-            }
-            .styled-table td {
-                border: 1px solid #dddddd;
-                padding: 8px 12px;
-                text-align: center;
-            }
-            .styled-table tbody tr:nth-of-type(even) {
-                background-color: #f3f3f3;
-            }
-            .styled-table tbody tr:hover {
-                background-color: #f1f1f1;
             }
             .action-buttons {
                 display: flex;
+                flex-direction: column;
                 gap: 10px;
-                justify-content: center;
             }
             .delete-button {
                 background-color: #FF4C4C;

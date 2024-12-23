@@ -630,12 +630,12 @@ elif selected_page == "Input Form":
             .action-buttons {
                 display: flex;
                 flex-direction: column;
-                gap: 5px;  /* Decrease the gap between buttons */
+                gap: 2px;  /* Decrease the gap between buttons */
             }
             .delete-button {
                 background-color: #FF4C4C;
                 color: white;
-                padding: 20px 15px;  /* Increase padding */
+                padding: 20px 25px;  /* Increase padding */
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;

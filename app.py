@@ -690,10 +690,9 @@ elif selected_page == "Input Form":
     
             with cols[2]:
                 if st.button("Update", key=f"update_{index}"):
-                    st.session_state["selected_row"] = row.copy()
+                    st.session_state["selected_row"] = st.session_state["input_table"][index].copy()
                     st.session_state["row_index_to_update"] = index
                     st.rerun()
-    
         # Update Form
                     if "selected_row" in st.session_state:
                         selected_row = st.session_state["selected_row"]

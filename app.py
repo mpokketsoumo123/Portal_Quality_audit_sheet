@@ -599,8 +599,8 @@ elif selected_page == "Input Form":
         if missing_fields:
             error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
         # Handle duplicate row check
-        elif new_row in st.session_state.get("input_table", []):
-            st.warning("This row already exists. Please don't add the same row.")
+        elif any(row["EMP ID"] == EMP_ID or row["User Register Number"] == user_register_number or row["Call Time Slot"] == call_time_slot for row in st.session_state.get("input_table", [])):
+            st.warning("A row with the same EMP ID, User Register Number, or Call Time already exists. Please verify the input.")
         else:
             # If no missing fields and no duplicate, add the new row to the table
             if "input_table" not in st.session_state:

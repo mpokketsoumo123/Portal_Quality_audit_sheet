@@ -687,7 +687,7 @@ elif selected_page == "Input Form":
             }
         
             /* Remove gray parts around widgets */
-            .stTextInput, .stRadio {
+            .stRadio {
                 background-color: white;
                 border-radius: 5px;
             }

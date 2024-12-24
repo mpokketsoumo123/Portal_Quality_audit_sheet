@@ -701,12 +701,12 @@ elif selected_page == "Input Form":
                 user_register_number_input = st.text_input("",key="1")
             with col2:
                 st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)  
-                emp_id_input = st.text_input("",key="2")
+                emp_id_input = st.text_input("",key="emp_id_input")
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)  
-                operation = st.radio("", ["Update Row", "Delete Row"],key="3")
+                operation = st.radio("", ["Update Row", "Delete Row"],key="operation")
             with col4:
-                submit_button = st.form_submit_button("Submit")
+                submit_button = form_submit_button("Submit")
 
         
         if submit_button:

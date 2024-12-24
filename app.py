@@ -664,48 +664,45 @@ elif selected_page == "Input Form":
                 color: white;
             }
             .stForm {
-                background-color: #87CEEB; /* Light blue */
-                padding: 10px;
-                border-radius: 8px;
+                background-color: #ADD8E6; /* Light blue */
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             }
-        
+            /* Custom labels for text input boxes */
             .custom-label {
-                font-weight: bold;
-                font-size: 20px; /* Increased font size */
-                margin-bottom: 2px;
+                font-size: 16px;
+                margin-bottom: 4px; /* Decreased padding between label and input */
+                color: #333333; /* Dark gray */
             }
-        
-            /* Bold and styled radio buttons */
-            .st-radio label {
-                font-weight: bold;
-                font-size: 16px; /* Increased font size */
+            /* Text input box styling */
+            .stTextInput > div {
+                padding: 0 !important; /* Reduce padding around input box */
             }
-        
+            /* Increase radio button size and text */
+            .stRadio > label {
+                font-size: 18px; /* Larger text */
+            }
+            .stRadio div[role="radio"] {
+                transform: scale(1.2); /* Increase button size */
+                margin-right: 10px; /* Space between buttons */
+            }
             /* Center the form header */
-            .form-header {
+            .stMarkdown h2 {
                 text-align: center;
                 font-weight: bold;
-                font-size: 40px; /* Increased font size */
-                margin-bottom: 10px;
             }
-        
-            /* Remove gray parts around widgets */
-            .stRadio {
-                background-color: #87CEEB;
-                border-radius: 5px;
-                font-size: 20px;
-            }
-            div.stButton > button {
-                background-color: #007BFF; /* Blue button */
-                color: white;
-                font-size: 16px; /* Increased button font size */
-                font-weight: bold; /* Bold button text */
-                padding: 10px 20px; /* Increased button size */
-                border-radius: 5px;
+            /* Custom submit button styling */
+            .stButton > button {
+                background-color: #1E90FF !important; /* Dodger blue */
+                color: white !important;
+                font-size: 18px !important; /* Larger button text */
+                padding: 10px 20px !important; /* Increased button size */
+                border-radius: 8px;
                 border: none;
             }
-            div.stButton > button:hover {
-                background-color: #0056b3; /* Darker blue on hover */
+            .stButton > button:hover {
+                background-color: #0059b3 !important; /* Darker blue on hover */
             }
             </style>
             """,

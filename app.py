@@ -686,13 +686,14 @@ elif selected_page == "Input Form":
                 text-align: center;
                 font-weight: bold;
                 font-size: 40px; /* Increased font size */
-                margin-bottom: 15px;
+                margin-bottom: 10px;
             }
         
             /* Remove gray parts around widgets */
             .stRadio {
                 background-color: #87CEEB;
                 border-radius: 5px;
+                font-size: 20px;
             }
             div.stButton > button {
                 background-color: #007BFF; /* Blue button */

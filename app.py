@@ -712,7 +712,7 @@ elif selected_page == "Input Form":
         )
     
         # Generate the HTML table
-        
+        st.write("Data Table")
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
         headers = list(st.session_state["input_table"][0].keys())  # No Actions header
             

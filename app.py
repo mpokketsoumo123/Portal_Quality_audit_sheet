@@ -718,7 +718,7 @@ elif selected_page == "Input Form":
             cols = st.columns(4) 
             cols[0].st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
             user_register_number_input = cols[0].text_input("")
-            cols[1]st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
+            cols[1].st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
             emp_id_input = cols[1].text_input("")
             
             operation = cols[2].radio("Select Operation:", ["Update Row", "Delete Row"])

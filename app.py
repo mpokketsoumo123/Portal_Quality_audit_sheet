@@ -382,10 +382,6 @@ elif selected_page == "Input Form":
         audit_name = st.text_input("",key="audit_name")
 
     with col2:
-        
-        # Calling Number (Numeric validation)
-        st.markdown('<div class="custom-label">Enter Calling Number:</div>', unsafe_allow_html=True)
-        calling_number = st.text_input("",key="calling_number")
 
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
@@ -434,9 +430,14 @@ elif selected_page == "Input Form":
         # User Register Number (Numeric validation)
         st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
         user_register_number = st.text_input("",key="user_register_number")
+
+        st.markdown('<div class="custom-label">Enter Calling Number:</div>', unsafe_allow_html=True)
+        calling_number = st.text_input("",key="calling_number")
         #remarks
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
         Remarks = st.text_input("",key="Remarks")
+
+        
 
     # Section 2 (Right Column)
     with col3:
@@ -482,7 +483,9 @@ elif selected_page == "Input Form":
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L2:</div>', unsafe_allow_html=True)
         DCS_Tagging_L2 = st.text_input("",key="DCS_Tagging_L2")
-
+        
+        st.markdown('<div class="custom-label">Enter DCS Tagging L3:</div>', unsafe_allow_html=True)
+        DCS_Tagging_L3 = st.text_input("",key="DCS_Tagging_L3")
 
     with col4:
         st.markdown('<div class="custom-label">Profile completion status prior to call:</div>', unsafe_allow_html=True)
@@ -510,8 +513,7 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Disposition Accuracy:</div>', unsafe_allow_html=True)
         Disposition_Accuracy = st.selectbox("", ["Correct", "Incorrect", "Not Done"])
 
-        st.markdown('<div class="custom-label">Enter DCS Tagging L3:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L3 = st.text_input("",key="DCS_Tagging_L3")
+        
 
         st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
         Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1")

@@ -695,15 +695,17 @@ elif selected_page == "Input Form":
             st.markdown("## Update or Delete a Row")
         
             # Using 4 columns for inputs
-            cols = st.columns(4) 
-            user_register_number_input = cols[0].text_input('Enter User Register Number:')
+            col1,col2,col3,col4 = st.columns(4) 
+            with col1:
+                st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
+                user_register_number_input = st.text_input('Enter User Register Number:')
 
             with col2:
                 st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-                emp_id_input = text_input("Enter EMP ID:")
+                emp_id_input = st.text_input("Enter EMP ID:")
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
-                operation = radio("Select Operation:", ["Update Row", "Delete Row"])
+                operation = st.radio("Select Operation:", ["Update Row", "Delete Row"])
             with col4:
                 
                 submit_button = st.button("Submit")

@@ -685,7 +685,7 @@ elif selected_page == "Input Form":
             .form-header {
                 text-align: center;
                 font-weight: bold;
-                font-size: 20px; /* Increased font size */
+                font-size: 40px; /* Increased font size */
                 margin-bottom: 15px;
             }
         

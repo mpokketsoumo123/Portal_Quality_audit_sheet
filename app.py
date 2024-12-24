@@ -728,7 +728,7 @@ elif selected_page == "Input Form":
         )
     
         # Generate the HTML table
-         st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
+        st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
         headers = list(st.session_state["input_table"][0].keys())  # No Actions header
             

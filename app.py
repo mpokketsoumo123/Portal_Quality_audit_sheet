@@ -676,13 +676,14 @@ elif selected_page == "Input Form":
             /* Bold and styled radio buttons */
             .st-radio label {
                 font-weight: bold;
+                font-size: 10px;
             }
         
             /* Center the form header */
             .form-header {
                 text-align: center;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 24px;
                 margin-bottom: 10px;
             }
         

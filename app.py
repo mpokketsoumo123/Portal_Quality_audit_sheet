@@ -138,7 +138,6 @@ if uploaded_file is not None:
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         width: 300px !important;
-        padding: 5px !important;
         height:50px !important;
     }}
 
@@ -324,8 +323,7 @@ elif selected_page == "Input Form":
                                     ["Tarus", "TTBS", "MAGNUM", "ICCS", "INHOUSE", "HRH NEXT", "AYUDA"])
 
         # Date of Audit (Date format)
-        st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
-        date_of_audit = st.date_input("",key="date_of_audit")
+        
 
         # Week (List format)
         st.markdown('<div class="custom-label">Select Week:</div>', unsafe_allow_html=True)
@@ -385,6 +383,8 @@ elif selected_page == "Input Form":
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
         date_of_call = st.date_input("",key="date_of_call")
+
+        
 
     with col2:
 
@@ -473,11 +473,9 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Benefits:</div>', unsafe_allow_html=True)
         Benefits= st.selectbox("", ["Informed","Not Informed"],key="Benefits")
 
-        st.markdown('<div class="custom-label">Fatal:</div>', unsafe_allow_html=True)
-        Fatal = st.selectbox("", ["Yes", "NO"],key="Fatal")
+        
 
-        st.markdown('<div class="custom-label">Agent Feedback Status:</div>', unsafe_allow_html=True)
-        Agent_Feedback_Status = st.selectbox("", ["Closed", "Open"],key="Agent_Feedback_Status")
+        
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L1:</div>', unsafe_allow_html=True)
         DCS_Tagging_L1 = st.text_input("",key="DCS_Tagging_L1")
@@ -489,6 +487,12 @@ elif selected_page == "Input Form":
         DCS_Tagging_L3 = st.text_input("",key="DCS_Tagging_L3")
 
     with col4:
+        st.markdown('<div class="custom-label">Fatal:</div>', unsafe_allow_html=True)
+        Fatal = st.selectbox("", ["Yes", "NO"],key="Fatal")
+
+        st.markdown('<div class="custom-label">Agent Feedback Status:</div>', unsafe_allow_html=True)
+        Agent_Feedback_Status = st.selectbox("", ["Closed", "Open"],key="Agent_Feedback_Status")
+        
         st.markdown('<div class="custom-label">Profile completion status prior to call:</div>', unsafe_allow_html=True)
         Profile_completion_status_prior_to_call = st.selectbox("",
                                                                ["Blank profile", "Partially complete",
@@ -505,8 +509,7 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">AOI:</div>', unsafe_allow_html=True)
         AOI = st.selectbox("",list(AOI),key="AOI")
 
-        st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
-        call_duration = st.text_input("",key="call_duration")
+        
 
         st.markdown('<div class="custom-label">KYC Type:</div>', unsafe_allow_html=True)
         KYC_type = st.selectbox("", ["Not Updated", "OKYC", "VKYC", "CKYC"])
@@ -514,7 +517,8 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Disposition Accuracy:</div>', unsafe_allow_html=True)
         Disposition_Accuracy = st.selectbox("", ["Correct", "Incorrect", "Not Done"])
 
-        
+        st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
+        call_duration = st.text_input("",key="call_duration")
 
         st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
         Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1")
@@ -524,6 +528,9 @@ elif selected_page == "Input Form":
 
         st.markdown('<div class="custom-label">Actual Tagging L3:</div>', unsafe_allow_html=True)
         Actual_Tagging_L3 = st.text_input("",key="Actual_Tagging_L3")
+        
+        st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
+        date_of_audit = st.date_input("",key="date_of_audit")
 
     # Add Row Button
     if "input_table" not in st.session_state:

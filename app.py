@@ -381,12 +381,12 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
         audit_name = st.text_input("",key="audit_name")
 
-    with col2:
-
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
         date_of_call = st.date_input("",key="date_of_call")
-        
+
+    with col2:
+
         # Call Time Slot (Time format validation)
         st.markdown('<div class="custom-label">Call_Time_Slot:</div>', unsafe_allow_html=True)
         call_time_slot = st.selectbox("",list(call_time_slot))

@@ -656,9 +656,53 @@ elif selected_page == "Input Form":
                 background-color: #ddd;
                 margin: 5px 0; /* Adjust spacing for the line */
             }
-            .delete-button {
-                background-color: #FF4C4C; /* Delete button color */
-            }
+            /* Change background color */
+        .stApp {
+            background-color: #f5f5f5; /* Light gray */
+        }
+    
+        /* Style the submit button */
+        .stButton>button {
+            background-color: #009879;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .stButton>button:hover {
+            background-color: #007b5e; /* Darker green on hover */
+        }
+    
+        /* Bold update and delete text */
+        .st-radio label, .st-checkbox label {
+            font-weight: bold;
+        }
+    
+        /* Table styling */
+        .scrollable-table {
+            max-height: 800px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+        .styled-table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 14px;
+            text-align: left;
+        }
+        .styled-table th, .styled-table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .styled-table th {
+            background-color: #009879;
+            color: white;
+        }
             </style>
             """,
             unsafe_allow_html=True,

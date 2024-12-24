@@ -712,7 +712,7 @@ elif selected_page == "Input Form":
                 background-color: #0059b3 !important; /* Darker blue on hover */
             }
             .stForm button {
-                background-color: #1E90FF !important; /* Dodger blue */
+                background-color: #FFD700 !important; /* Dodger blue */
                 color: white !important;
                 font-size: 18px !important; /* Larger button text */
                 padding: 10px 20px !important; /* Increased button size */

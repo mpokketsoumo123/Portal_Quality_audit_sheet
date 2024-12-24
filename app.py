@@ -705,8 +705,7 @@ elif selected_page == "Input Form":
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)  
                 operation = st.radio("", ["Update Row", "Delete Row"],key="operation")
-            with col4:
-                submit_button = form_submit_button("Submit")
+            submit_button = col4.form_submit_button("Submit")
 
         
         if submit_button:

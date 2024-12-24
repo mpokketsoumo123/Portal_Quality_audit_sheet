@@ -633,77 +633,54 @@ elif selected_page == "Input Form":
                 background-color: #009879;
                 color: white;
             }
-            .action-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 1px;  /* Decrease the gap between buttons */
-            }
-            .custom-column {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                padding-top: 20px; /* Increase padding for alignment */
-            }
-            .custom-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 5px; /* Reduce gap between buttons */
-            }
-            .custom-line {
-                width: 80%;
-                height: 1px;
-                background-color: #ddd;
-                margin: 5px 0; /* Adjust spacing for the line */
-            }
             /* Change background color */
-        .stApp {
-            background-color: #f5f5f5; /* Light gray */
-        }
-    
-        /* Style the submit button */
-        .stButton>button {
-            background-color: #009879;
-            color: white;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .stButton>button:hover {
-            background-color: #007b5e; /* Darker green on hover */
-        }
-    
-        /* Bold update and delete text */
-        .st-radio label, .st-checkbox label {
-            font-weight: bold;
-        }
-    
-        /* Table styling */
-        .scrollable-table {
-            max-height: 800px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            width: 100%;
-        }
-        .styled-table {
-            border-collapse: collapse;
-            width: 100%;
-            font-size: 14px;
-            text-align: left;
-        }
-        .styled-table th, .styled-table td {
-            border: 1px solid #dddddd;
-            padding: 8px;
-            white-space: nowrap; /* Prevent text wrapping */
-        }
-        .styled-table th {
-            background-color: #009879;
-            color: white;
-        }
-            </style>
+            .stApp {
+                background-color: #f5f5f5; /* Light gray */
+            }
+        
+            /* Style the submit button */
+            .stButton>button {
+                background-color: #009879;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                padding: 8px 16px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .stButton>button:hover {
+                background-color: #007b5e; /* Darker green on hover */
+            }
+        
+            /* Bold update and delete text */
+            .st-radio label, .st-checkbox label {
+                font-weight: bold;
+            }
+        
+            /* Table styling */
+            .scrollable-table {
+                max-height: 800px;
+                overflow-y: auto;
+                border: 1px solid #ddd;
+                width: 100%;
+            }
+            .styled-table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 14px;
+                text-align: left;
+            }
+            .styled-table th, .styled-table td {
+                border: 1px solid #dddddd;
+                padding: 8px;
+                white-space: nowrap; /* Prevent text wrapping */
+            }
+            .styled-table th {
+                background-color: #009879;
+                color: white;
+            }
+                </style>
             """,
             unsafe_allow_html=True,
         )
@@ -738,8 +715,10 @@ elif selected_page == "Input Form":
             st.markdown("## Update or Delete a Row")
         
             # Using 4 columns for inputs
-            cols = st.columns(4)  
+            cols = st.columns(4) 
+            #st.markdown('<div class="custom-label">LOB:</div>', unsafe_allow_html=True)
             user_register_number_input = cols[0].text_input("Enter User Register Number:")
+            #st.markdown('<div class="custom-label">LOB:</div>', unsafe_allow_html=True)
             emp_id_input = cols[1].text_input("Enter EMP ID:")
             
             operation = cols[2].radio("Select Operation:", ["Update Row", "Delete Row"])

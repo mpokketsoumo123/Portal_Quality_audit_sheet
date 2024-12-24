@@ -664,7 +664,7 @@ elif selected_page == "Input Form":
                 color: white;
             }
             .stForm {
-                background-color: #00BFFF; /* Light blue */
+                background-color: #87CEEB; /* Light blue */
                 padding: 20px;
                 border-radius: 8px;
             }

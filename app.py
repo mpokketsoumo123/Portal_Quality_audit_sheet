@@ -669,6 +669,13 @@ elif selected_page == "Input Form":
                 border-radius: 10px;
                 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             }
+            .form-header {
+                text-align: center;
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: #333333; /* Dark gray */
+            }
             /* Custom labels for text input boxes */
             .custom-label {
                 font-size: 16px;
@@ -702,6 +709,17 @@ elif selected_page == "Input Form":
                 border: none;
             }
             .stButton > button:hover {
+                background-color: #0059b3 !important; /* Darker blue on hover */
+            }
+            .stForm button {
+                background-color: #1E90FF !important; /* Dodger blue */
+                color: white !important;
+                font-size: 18px !important; /* Larger button text */
+                padding: 10px 20px !important; /* Increased button size */
+                border-radius: 8px;
+                border: none;
+            }
+            .stForm button:hover {
                 background-color: #0059b3 !important; /* Darker blue on hover */
             }
             </style>

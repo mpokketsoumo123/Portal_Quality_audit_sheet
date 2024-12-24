@@ -707,7 +707,7 @@ elif selected_page == "Input Form":
                 operation = radio("Select Operation:", ["Update Row", "Delete Row"])
             with col4:
                 
-                submit_button = form_submit_button("Submit")
+                submit_button = st.button("Submit")
         
         if submit_button:
             matching_index = None

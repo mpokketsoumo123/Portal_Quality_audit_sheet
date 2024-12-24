@@ -672,7 +672,7 @@ elif selected_page == "Input Form":
             /* Custom labels for text input boxes */
             .custom-label {
                 font-size: 16px;
-                margin-bottom: 4px; /* Decreased padding between label and input */
+                margin-bottom: 0px; /* Decreased padding between label and input */
                 color: #333333; /* Dark gray */
             }
             /* Text input box styling */

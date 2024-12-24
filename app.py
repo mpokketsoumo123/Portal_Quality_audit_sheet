@@ -665,14 +665,14 @@ elif selected_page == "Input Form":
             }
             .stForm {
                 background-color: #87CEEB; /* Light blue */
-                padding: 20px;
+                padding: 10px;
                 border-radius: 8px;
             }
         
             .custom-label {
                 font-weight: bold;
-                font-size: 16px; /* Increased font size */
-                margin-bottom: 5px;
+                font-size: 20px; /* Increased font size */
+                margin-bottom: 2px;
             }
         
             /* Bold and styled radio buttons */
@@ -691,7 +691,7 @@ elif selected_page == "Input Form":
         
             /* Remove gray parts around widgets */
             .stRadio {
-                background-color: white;
+                background-color: #87CEEB;
                 border-radius: 5px;
             }
             div.stButton > button {

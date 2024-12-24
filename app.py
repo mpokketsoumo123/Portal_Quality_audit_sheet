@@ -611,28 +611,8 @@ elif selected_page == "Input Form":
     # Display Table
     if st.session_state["input_table"]:
         st.markdown(
-            """
+                """
             <style>
-            .scrollable-table {
-                max-height: 800px;
-                overflow-y: auto;
-                border: 1px solid #ddd;
-                width: 100%;  /* Set a specific width for the table */
-            }
-            .styled-table {
-                border-collapse: collapse;
-                width: 80%;
-                font-size: 16px;
-                text-align: left;
-            }
-            .styled-table th, .styled-table td {
-                border: 1px solid #dddddd;
-                padding: 4px;
-            }
-            .styled-table th {
-                background-color: #009879;
-                color: white;
-            }
             /* Change background color */
             .stApp {
                 background-color: #f5f5f5; /* Light gray */
@@ -680,7 +660,7 @@ elif selected_page == "Input Form":
                 background-color: #009879;
                 color: white;
             }
-                </style>
+            </style>
             """,
             unsafe_allow_html=True,
         )
@@ -716,10 +696,9 @@ elif selected_page == "Input Form":
         
             # Using 4 columns for inputs
             cols = st.columns(4) 
-            cols[0].st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-            user_register_number_input = cols[0].text_input("")
-            cols[1].st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-            emp_id_input = cols[1].text_input("")
+            
+            user_register_number_input = cols[0].text_input("Enter User Register Number:")
+            emp_id_input = cols[1].text_input("Enter EMP ID:")
             
             operation = cols[2].radio("Select Operation:", ["Update Row", "Delete Row"])
             submit_button = cols[3].form_submit_button("Submit")

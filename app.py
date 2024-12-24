@@ -666,31 +666,42 @@ elif selected_page == "Input Form":
                 border-radius: 8px;
             }
         
-            /* Custom label styling */
             .custom-label {
                 font-weight: bold;
-                font-size: 14px;
+                font-size: 16px; /* Increased font size */
                 margin-bottom: 5px;
             }
         
             /* Bold and styled radio buttons */
             .st-radio label {
                 font-weight: bold;
-                font-size: 10px;
+                font-size: 16px; /* Increased font size */
             }
         
             /* Center the form header */
             .form-header {
                 text-align: center;
                 font-weight: bold;
-                font-size: 24px;
-                margin-bottom: 10px;
+                font-size: 20px; /* Increased font size */
+                margin-bottom: 15px;
             }
         
             /* Remove gray parts around widgets */
             .stTextInput, .stRadio {
                 background-color: white;
                 border-radius: 5px;
+            }
+            div.stButton > button {
+                background-color: #007BFF; /* Blue button */
+                color: white;
+                font-size: 16px; /* Increased button font size */
+                font-weight: bold; /* Bold button text */
+                padding: 10px 20px; /* Increased button size */
+                border-radius: 5px;
+                border: none;
+            }
+            div.stButton > button:hover {
+                background-color: #0056b3; /* Darker blue on hover */
             }
             </style>
             """,

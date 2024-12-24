@@ -696,8 +696,7 @@ elif selected_page == "Input Form":
         
             # Using 4 columns for inputs
             cols = st.columns(4) 
-            #st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-            user_register_number_input = cols[0].text_input('<div class="custom-label">Enter User Register Number:</div>')
+            user_register_number_input = cols[0].text_input('Enter User Register Number:')
 
             with col2:
                 st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)

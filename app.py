@@ -234,7 +234,7 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header style="display: flex">
-        <img src=f"data:image/png;base64,{image_base64}" alt="Logo"> 
+        <img src=f"https://newsmantra.in/wp-content/uploads/2024/03/mPokket-logo-1.png" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)

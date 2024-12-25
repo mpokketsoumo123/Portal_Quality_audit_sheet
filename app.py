@@ -730,24 +730,25 @@ elif selected_page == "Input Form":
         # Generate the HTML table
         st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
-        headers = list(st.session_state["input_table"][0].keys())  # No Actions header
-            
-            # Create the table header row
+        headers = list(st.session_state["input_table"][0].keys())
+    
+        # Create the table header row
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead>"
-            
-            # Create the table body rows
+    
+        # Create the table body rows
         table_html += "<tbody>"
-        for index, row in enumerate(st.session_state["input_table"]):
+        for row in st.session_state["input_table"]:
             table_html += "<tr>"
             for value in row.values():
                 table_html += f"<td>{value}</td>"
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
-            
-            # Display the table
-        st.markdown(table_html, unsafe_allow_html=True)
+
+    # Display the table
+    st.markdown(table_html, unsafe_allow_html=True)
+
             
             # Create a column layout for buttons
           # Adjust the width as needed

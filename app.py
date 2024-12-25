@@ -90,7 +90,7 @@ if uploaded_file is not None:
     img_base64 = base64.b64encode(img_bytes.read()).decode()
 
     # Add custom CSS with local image as background
-    st.markdown(f"""
+st.markdown(f"""
 <style>
 .stApp {{
         background-image: url('data:image/png;base64,{img_base64}');
@@ -227,7 +227,6 @@ if uploaded_file is not None:
         color: #333; /* Optional: Change text color */
         margin: 0;
         font-weight: bold;}}
-
 </style>
 """, unsafe_allow_html=True)
 

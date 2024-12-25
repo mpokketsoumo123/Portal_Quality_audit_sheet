@@ -772,7 +772,7 @@ elif selected_page == "Input Form":
                 operation = st.radio("", ["Update Row", "Delete Row"], key="operation")
         
             with col4:  # Alignment adjustment
-                submit_button = st.form_submit_button("Submit")"
+                submit_button = st.form_submit_button("Submit")
 
         
         if submit_button:

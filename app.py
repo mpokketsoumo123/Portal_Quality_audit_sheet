@@ -612,7 +612,7 @@ elif selected_page == "Input Form":
             st.success("Row added successfully!")
 
     # Display Table
-     if st.session_state["input_table"]:
+    if st.session_state["input_table"]:
         st.markdown(
                 """
             <style>

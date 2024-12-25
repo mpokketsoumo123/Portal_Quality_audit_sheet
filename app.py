@@ -688,7 +688,7 @@ elif selected_page == "Input Form":
             }
             /* Increase radio button size and text */
             .stRadio > label {
-                font-size: 18px; /* Larger text */
+                font-size: 25px; /* Larger text */
             }
             .stRadio div[role="radio"] {
                 transform: scale(1.2); /* Increase button size */

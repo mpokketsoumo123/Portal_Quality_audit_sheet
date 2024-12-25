@@ -1,3 +1,4 @@
+
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -708,13 +709,13 @@ elif selected_page == "Input Form":
                 border: none;
             }
             .stButton > button:hover {
-                background-color: #0059b3 !important; /* Darker blue on hover */
+                background-color: #DAA520 !important; /* Darker blue on hover */
             }
             .stForm button {
                 background-color: #FFD700 !important; /* Dodger blue */
                 color: white !important;
-                font-size: 18px !important; /* Larger button text */
-                padding: 10px 20px !important; /* Increased button size */
+                font-size: 20px !important; /* Larger button text */
+                padding: 20px 30px !important; /* Increased button size */
                 border-radius: 8px;
                 border: none;
             }

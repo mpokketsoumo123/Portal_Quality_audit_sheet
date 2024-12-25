@@ -374,16 +374,16 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Select Auditor Designation:</div>', unsafe_allow_html=True)
         auditor_designation = st.selectbox("", ["TL", "Trainer"])
         
-        st.markdown('<div class="custom-label">Enter Team Leader Name:</div>', unsafe_allow_html=True)
-        team_leader = st.text_input("")
-        
-        st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
-        audit_name = st.text_input("",key="audit_name")
+        st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
+        call_duration = st.text_input("",key="call_duration")
+
+        st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
+        Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1")
 
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)
         date_of_call = st.date_input("",key="date_of_call")
-
+        
         
 
     with col2:
@@ -517,11 +517,11 @@ elif selected_page == "Input Form":
         st.markdown('<div class="custom-label">Disposition Accuracy:</div>', unsafe_allow_html=True)
         Disposition_Accuracy = st.selectbox("", ["Correct", "Incorrect", "Not Done"])
 
-        st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
-        call_duration = st.text_input("",key="call_duration")
-
-        st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1")
+        st.markdown('<div class="custom-label">Enter Team Leader Name:</div>', unsafe_allow_html=True)
+        team_leader = st.selectbox("", ["1", "2"])
+        
+        st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
+        audit_name = st.selectbox("", ["1", "2"])
 
         st.markdown('<div class="custom-label">Actual Tagging L2:</div>', unsafe_allow_html=True)
         Actual_Tagging_L2 = st.text_input("",key="Actual_Tagging_L2")

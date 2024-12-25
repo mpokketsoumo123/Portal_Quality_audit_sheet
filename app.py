@@ -747,7 +747,7 @@ elif selected_page == "Input Form":
         table_html += "</tbody></table></div>"
 
     # Display the table
-    st.markdown(table_html, unsafe_allow_html=True)
+        st.markdown(table_html, unsafe_allow_html=True)
 
             
             # Create a column layout for buttons

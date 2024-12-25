@@ -614,33 +614,13 @@ elif selected_page == "Input Form":
     # Display Table
     if st.session_state["input_table"]:
         st.markdown(
-                """
+            """
             <style>
             /* Change background color */
             .stApp {
                 background-color: #f5f5f5; /* Light gray */
             }
-        
-            /* Style the submit button */
-            .stButton>button {
-                background-color: #009879;
-                color: white;
-                font-weight: bold;
-                border: none;
-                border-radius: 5px;
-                padding: 8px 16px;
-                font-size: 16px;
-                cursor: pointer;
-            }
-            .stButton>button:hover {
-                background-color: #007b5e; /* Darker green on hover */
-            }
-        
-            /* Bold update and delete text */
-            .st-radio label, .st-checkbox label {
-                font-weight: bold;
-            }
-        
+            
             /* Table styling */
             .scrollable-table {
                 max-height: 800px;
@@ -653,6 +633,7 @@ elif selected_page == "Input Form":
                 width: 100%;
                 font-size: 14px;
                 text-align: left;
+                background-color: #f5f5f5; /* Light gray background */
             }
             .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;
@@ -663,6 +644,18 @@ elif selected_page == "Input Form":
                 background-color: #009879;
                 color: white;
             }
+    
+            /* Radio button styling */
+            .stRadio > label {
+                font-size: 25px; /* Larger text */
+                font-weight: bold;
+            }
+            .stRadio div[role="radio"] {
+                transform: scale(1.5); /* Increase button size */
+                margin-right: 15px; /* Space between buttons */
+            }
+    
+            /* Custom form styling */
             .stForm {
                 background-color: #ADD8E6; /* Light blue */
                 padding: 20px;
@@ -676,56 +669,26 @@ elif selected_page == "Input Form":
                 margin-bottom: 20px;
                 color: #333333; /* Dark gray */
             }
-            /* Custom labels for text input boxes */
             .custom-label {
                 font-size: 20px;
-                margin-bottom: 0px; /* Decreased padding between label and input */
+                margin-bottom: 0px;
                 color: #333333; /* Dark gray */
             }
-            /* Text input box styling */
-            .stTextInput > div {
-                padding: 0 !important; /* Reduce padding around input box */
-            }
-            /* Increase radio button size and text */
-            .stRadio > label {
-                font-size: 25px; /* Larger text */
-            }
-            .stRadio div[role="radio"] {
-                transform: scale(1.2); /* Increase button size */
-                margin-right: 10px; /* Space between buttons */
-            }
-            /* Center the form header */
-            .stMarkdown h2 {
-                text-align: center;
-                font-weight: bold;
-            }
-            /* Custom submit button styling */
             .stButton > button {
                 background-color: #1E90FF !important; /* Dodger blue */
                 color: white !important;
-                font-size: 18px !important; /* Larger button text */
-                padding: 30px 40px !important; /* Increased button size */
+                font-size: 18px !important;
+                padding: 10px 20px !important;
                 border-radius: 8px;
                 border: none;
             }
             .stButton > button:hover {
                 background-color: #0059b3 !important; /* Darker blue on hover */
             }
-            .stForm button {
-                background-color: #FFD700 !important; /* Dodger blue */
-                color: white !important;
-                font-size: 20px !important; /* Larger button text */
-                padding: 20px 30px !important; /* Increased button size */
-                border-radius: 8px;
-                border: none;
-            }
-            .stForm button:hover {
-                background-color: #DAA520 !important; /* Darker blue on hover */
-            }
             </style>
             """,
-            unsafe_allow_html=True,
-        )
+        unsafe_allow_html=True,
+            )
     
         # Generate the HTML table
         st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)

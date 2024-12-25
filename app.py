@@ -614,33 +614,13 @@ elif selected_page == "Input Form":
     # Display Table
     if st.session_state["input_table"]:
         st.markdown(
-                """
+            """
             <style>
             /* Change background color */
             .stApp {
                 background-color: #f5f5f5; /* Light gray */
             }
-        
-            /* Style the submit button */
-            .stButton>button {
-                background-color: #009879;
-                color: white;
-                font-weight: bold;
-                border: none;
-                border-radius: 5px;
-                padding: 8px 16px;
-                font-size: 16px;
-                cursor: pointer;
-            }
-            .stButton>button:hover {
-                background-color: #007b5e; /* Darker green on hover */
-            }
-        
-            /* Bold update and delete text */
-            .st-radio label, .st-checkbox label {
-                font-weight: bold;
-            }
-        
+            
             /* Table styling */
             .scrollable-table {
                 max-height: 800px;
@@ -653,6 +633,7 @@ elif selected_page == "Input Form":
                 width: 100%;
                 font-size: 14px;
                 text-align: left;
+                background-color: #f5f5f5; /* Light gray background */
             }
             .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;
@@ -663,6 +644,18 @@ elif selected_page == "Input Form":
                 background-color: #009879;
                 color: white;
             }
+    
+            /* Radio button styling */
+            .stRadio > label {
+                font-size: 25px; /* Larger text */
+                font-weight: bold;
+            }
+            .stRadio div[role="radio"] {
+                transform: scale(1.5); /* Increase button size */
+                margin-right: 15px; /* Space between buttons */
+            }
+    
+            /* Custom form styling */
             .stForm {
                 background-color: #ADD8E6; /* Light blue */
                 padding: 20px;
@@ -676,51 +669,21 @@ elif selected_page == "Input Form":
                 margin-bottom: 20px;
                 color: #333333; /* Dark gray */
             }
-            /* Custom labels for text input boxes */
             .custom-label {
                 font-size: 20px;
-                margin-bottom: 0px; /* Decreased padding between label and input */
+                margin-bottom: 0px;
                 color: #333333; /* Dark gray */
             }
-            /* Text input box styling */
-            .stTextInput > div {
-                padding: 0 !important; /* Reduce padding around input box */
-            }
-            /* Increase radio button size and text */
-            .stRadio > label {
-                font-size: 25px; /* Larger text */
-            }
-            .stRadio div[role="radio"] {
-                transform: scale(1.2); /* Increase button size */
-                margin-right: 10px; /* Space between buttons */
-            }
-            /* Center the form header */
-            .stMarkdown h2 {
-                text-align: center;
-                font-weight: bold;
-            }
-            /* Custom submit button styling */
             .stButton > button {
                 background-color: #1E90FF !important; /* Dodger blue */
                 color: white !important;
-                font-size: 18px !important; /* Larger button text */
-                padding: 30px 40px !important; /* Increased button size */
+                font-size: 18px !important;
+                padding: 10px 20px !important;
                 border-radius: 8px;
                 border: none;
             }
             .stButton > button:hover {
                 background-color: #0059b3 !important; /* Darker blue on hover */
-            }
-            .stForm button {
-                background-color: #FFD700 !important; /* Dodger blue */
-                color: white !important;
-                font-size: 20px !important; /* Larger button text */
-                padding: 20px 30px !important; /* Increased button size */
-                border-radius: 8px;
-                border: none;
-            }
-            .stForm button:hover {
-                background-color: #DAA520 !important; /* Darker blue on hover */
             }
             </style>
             """,
@@ -730,47 +693,44 @@ elif selected_page == "Input Form":
         # Generate the HTML table
         st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
         table_html = "<div class='scrollable-table'><table class='styled-table'>"
-        headers = list(st.session_state["input_table"][0].keys())  # No Actions header
-            
-            # Create the table header row
+        headers = list(st.session_state["input_table"][0].keys())
+    
+        # Create the table header row
         table_html += "<thead><tr>"
         table_html += "".join(f"<th>{header}</th>" for header in headers)
         table_html += "</tr></thead>"
-            
-            # Create the table body rows
+    
+        # Create the table body rows
         table_html += "<tbody>"
-        for index, row in enumerate(st.session_state["input_table"]):
+        for row in st.session_state["input_table"]:
             table_html += "<tr>"
             for value in row.values():
                 table_html += f"<td>{value}</td>"
             table_html += "</tr>"
         table_html += "</tbody></table></div>"
-            
-            # Display the table
+    
+        # Display the table
         st.markdown(table_html, unsafe_allow_html=True)
-            
-            # Create a column layout for buttons
-          # Adjust the width as needed
-        
-        # Place buttons beside the table
+    
+        # Create a form for update/delete operations
         with st.form("row_operations_form"):
             st.markdown('<div class="form-header">Update or Delete a Row</div>', unsafe_allow_html=True)
-
+    
             # Using 4 columns for inputs
             col1, col2, col3, col4 = st.columns(4)
-        
+    
             with col1:
                 st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-                user_register_number_input = st.text_input("", key="1")
-        
+                user_register_number_input = st.text_input("", key="user_register_number")
+    
             with col2:
                 st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-                emp_id_input = st.text_input("", key="emp_id_input")
-        
+                emp_id_input = st.text_input("", key="emp_id")
+    
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
                 operation = st.radio("", ["Update Row", "Delete Row"], key="operation")
-        
+    
             with col4:  # Alignment adjustment
                 submit_button = st.form_submit_button("Submit")
 

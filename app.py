@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -89,9 +87,8 @@ if uploaded_file is not None:
     import base64
     img_base64 = base64.b64encode(img_bytes.read()).decode()
 
-
     # Add custom CSS with local image as background
-st.markdown(f"""
+    st.markdown(f"""
 <style>
 .stApp {{
         background-image: url('data:image/png;base64,{img_base64}');
@@ -212,29 +209,30 @@ st.markdown(f"""
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
 
-    .header {{
+    header {{
         display: flex;
         padding: 5px 10px;
        
     }}
-    .header img {{
+    header img {{
         max-width: 200px; /* Adjust logo size */
         height: 80px;
         margin-right: 350px; /* Space between logo and text */
     }}
 
-    .header h1 {{
+     header h1 {{
         font-size: 24px;
         color: #333; /* Optional: Change text color */
         margin: 0;
         font-weight: bold;}}
+
 </style>
 """, unsafe_allow_html=True)
 
 # Display logo
 st.markdown("""
     <header style="display: flex">
-        <img src=f"https://newsmantra.in/wp-content/uploads/2024/03/mPokket-logo-1.png" alt="Logo"> 
+        <img src=f"data:image/png;base64,{image_base64}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)
@@ -243,6 +241,7 @@ st.markdown("""
 # Display bold header text
 #st.markdown('<div class="header-text">Onboarding Audit Portal</div>', unsafe_allow_html=True)
 #st.image("logo.png")
+
 # Session State Initialization
 if "login_email" not in st.session_state:
     st.session_state["login_email"] = None

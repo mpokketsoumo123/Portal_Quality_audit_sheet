@@ -685,6 +685,17 @@ elif selected_page == "Input Form":
             .stButton > button:hover {
                 background-color: #0059b3 !important; /* Darker blue on hover */
             }
+            .stForm button {
+                background-color: #FFD700 !important; /* Dodger blue */
+                color: white !important;
+                font-size: 20px !important; /* Larger button text */
+                padding: 20px 30px !important; /* Increased button size */
+                border-radius: 8px;
+                border: none;
+            }
+            .stForm button:hover {
+                background-color: #DAA520 !important; /* Darker blue on hover */
+            }
             </style>
             """,
         unsafe_allow_html=True,

@@ -75,19 +75,13 @@ call_time_slot=df['Call Time Slot'].dropna()
 Bucket_name=df['Bucket Name'].dropna()
 VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
-if uploaded_file is not None:
-    # Convert uploaded image to Image object
-    image = Image.open(uploaded_file)
-    
-    
-    # Convert image to bytes
-    img_bytes = io.BytesIO()
-    image.save(img_bytes, format='PNG')
-    img_bytes.seek(0)
+def get_image_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode("utf-8")
 
-    # Encode image to base64
-    import base64
-    img_base64 = base64.b64encode(img_bytes.read()).decode()
+# Path to your local image
+image_path = "logo.png"
+image_base64 = get_image_base64(image_path)
 
     # Add custom CSS with local image as background
 st.markdown(f"""
@@ -227,6 +221,10 @@ st.markdown(f"""
         color: #333; /* Optional: Change text color */
         margin: 0;
         font-weight: bold;}}
+    <div class="header">
+        <img src="data:image/png;base64,{image_base64}" alt="Logo">
+        <h1>Onboarding Audit Portal</h1>
+    </div>
 </style>
 """, unsafe_allow_html=True)
 

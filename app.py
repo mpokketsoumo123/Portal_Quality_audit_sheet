@@ -518,7 +518,7 @@ elif selected_page == "Input Form":
         Disposition_Accuracy = st.selectbox("", ["Correct", "Incorrect", "Not Done"])
 
         st.markdown('<div class="custom-label">Enter Team Leader Name:</div>', unsafe_allow_html=True)
-        team_leader = st.selectbox("", ["1", "2"],key="team_leader')
+        team_leader = st.selectbox("", ["1", "2"],key="team_leader")
         
         st.markdown('<div class="custom-label">Enter Audit Name:</div>', unsafe_allow_html=True)
         audit_name = st.selectbox("", ["1", "2"],key="audit_name")

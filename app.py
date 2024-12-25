@@ -205,26 +205,22 @@ st.markdown(f"""
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
 
-    header {{
+    .header {{
         display: flex;
         padding: 5px 10px;
        
     }}
-    header img {{
+    .header img {{
         max-width: 200px; /* Adjust logo size */
         height: 80px;
         margin-right: 350px; /* Space between logo and text */
     }}
 
-     header h1 {{
+    .header h1 {{
         font-size: 24px;
         color: #333; /* Optional: Change text color */
         margin: 0;
         font-weight: bold;}}
-    <div class="header">
-        <img src="data:image/png;base64,{image_base64}" alt="Logo">
-        <h1>Onboarding Audit Portal</h1>
-    </div>
 </style>
 """, unsafe_allow_html=True)
 

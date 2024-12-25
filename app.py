@@ -75,13 +75,20 @@ call_time_slot=df['Call Time Slot'].dropna()
 Bucket_name=df['Bucket Name'].dropna()
 VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
-def get_image_base64(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode("utf-8")
+if uploaded_file is not None:
+    # Convert uploaded image to Image object
+    image = Image.open(uploaded_file)
+    
+    
+    # Convert image to bytes
+    img_bytes = io.BytesIO()
+    image.save(img_bytes, format='PNG')
+    img_bytes.seek(0)
 
-# Path to your local image
-image_path = "logo.png"
-image_base64 = get_image_base64(image_path)
+    # Encode image to base64
+    import base64
+    img_base64 = base64.b64encode(img_bytes.read()).decode()
+
 
     # Add custom CSS with local image as background
 st.markdown(f"""

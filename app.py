@@ -704,7 +704,7 @@ elif selected_page == "Input Form":
                 background-color: #1E90FF !important; /* Dodger blue */
                 color: white !important;
                 font-size: 18px !important; /* Larger button text */
-                padding: 10px 20px !important; /* Increased button size */
+                padding: 40px 30px !important; /* Increased button size */
                 border-radius: 8px;
                 border: none;
             }
@@ -715,7 +715,7 @@ elif selected_page == "Input Form":
                 background-color: #FFD700 !important; /* Dodger blue */
                 color: white !important;
                 font-size: 20px !important; /* Larger button text */
-                padding: 45px 30px !important; /* Increased button size */
+                padding: 30px 20px !important; /* Increased button size */
                 border-radius: 8px;
                 border: none;
             }

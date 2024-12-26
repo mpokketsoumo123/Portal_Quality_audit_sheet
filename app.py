@@ -75,6 +75,7 @@ call_time_slot=df['Call Time Slot'].dropna()
 Bucket_name=df['Bucket Name'].dropna()
 VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
+Logo_img = "logo.png"
 if uploaded_file is not None:
     # Convert uploaded image to Image object
     image = Image.open(uploaded_file)
@@ -251,7 +252,7 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header>
-        <img src="logo.png" alt="Logo"> 
+        <img src=f"{Logo_img}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)

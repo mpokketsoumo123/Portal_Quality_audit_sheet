@@ -261,7 +261,7 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header>
-        <img src="data:image/png;base64,{image_base64}" alt="Logo"> 
+        <img src=f"data:image/png;base64,{image_base64}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     """, unsafe_allow_html=True)
 #st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)

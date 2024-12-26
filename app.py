@@ -75,7 +75,14 @@ call_time_slot=df['Call Time Slot'].dropna()
 Bucket_name=df['Bucket Name'].dropna()
 VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
-Logo_img = "logo.png"
+st.image("logo.png", width=50)
+
+if not os.path.exists("static/logo.png"):
+    st.error("Image not found. Ensure logo.png is in the 'static' folder.")
+
+# Use the full path to serve the image
+image_path = "static/logo.png"
+
 if uploaded_file is not None:
     # Convert uploaded image to Image object
     image = Image.open(uploaded_file)
@@ -252,7 +259,7 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header>
-        <img src="static/logo.png" alt="Logo"> 
+        <img src="{image_path}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
     </header>
     """, unsafe_allow_html=True)

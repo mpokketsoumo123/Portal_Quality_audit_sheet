@@ -76,13 +76,14 @@ call_time_slot=df['Call Time Slot'].dropna()
 Bucket_name=df['Bucket Name'].dropna()
 VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
-st.image("logo.png", width=50)
-
-if not os.path.exists("logo.png"):
-    st.error("Image not found. Ensure logo.png is in the 'static' folder.")
-
-# Use the full path to serve the image
 image_path = "logo.png"
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode("utf-8")
+
+image_base64 = get_base64_image("logo.png")
+
 
 if uploaded_file is not None:
     # Convert uploaded image to Image object
@@ -260,9 +261,8 @@ if uploaded_file is not None:
 # Display logo
 st.markdown("""
     <header>
-        <img src=f"{image_path}" alt="Logo"> 
+        <img src="data:image/png;base64,{image_base64}" alt="Logo"> 
         <h1>Onboarding Audit Portal</h1>
-    </header>
     """, unsafe_allow_html=True)
 #st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
 

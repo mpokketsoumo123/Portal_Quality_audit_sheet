@@ -76,13 +76,9 @@ call_time_slot=df['Call Time Slot'].dropna()
 Bucket_name=df['Bucket Name'].dropna()
 VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
-image_path = "logo.png"
 
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode("utf-8")
 
-image_base64 = get_base64_image("logo.png")
+
 
 
 if uploaded_file is not None:
@@ -238,32 +234,52 @@ if uploaded_file is not None:
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
 
-    header {{
-        display: flex;
-        padding: 5px 10px;
-       
-    }}
-    header img {{
-        max-width: 200px; /* Adjust logo size */
-        height: 80px;
-        margin-right: 350px; /* Space between logo and text */
-    }}
-
-     header h1 {{
-        font-size: 24px;
-        color: #333; /* Optional: Change text color */
-        margin: 0;
-        font-weight: bold;}}
+   
 
 </style>
 """, unsafe_allow_html=True)
 
 # Display logo
-st.markdown("""
-    <header>
-        <img src=f"data:image/png;base64,{image_base64}" alt="Logo"> 
-        <h1>Onboarding Audit Portal</h1>
-    """, unsafe_allow_html=True)
+def encode_image_to_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode("utf-8")
+
+# Path to your image file
+image_path = "logo.png"
+
+try:
+    # Encode the image as Base64
+    encoded_image = encode_image_to_base64(image_path)
+    
+    # Inject the header with the image
+    st.markdown(f"""
+        <style>
+        header {{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+        }}
+        header img {{
+            height: 50px;
+            margin-right: 15px;
+        }}
+        header h1 {{
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }}
+        </style>
+        <header>
+            <img src="data:image/png;base64,{encoded_image}" alt="Logo">
+            <h1>Onboarding Audit Portal</h1>
+        </header>
+        """, unsafe_allow_html=True)
+except FileNotFoundError:
+    st.error("Image file not found. Please check the file path.")
+
 #st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
 
 # Display bold header text

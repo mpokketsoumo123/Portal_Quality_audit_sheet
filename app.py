@@ -678,7 +678,7 @@ elif selected_page == "Input Form":
                 color: #333333; /* Dark gray */
             }
             .custom-label {
-                font-size: 25px;
+                font-size: 20px;
                 margin-bottom: 0px;
                 color: #333333; /* Dark gray */
             }

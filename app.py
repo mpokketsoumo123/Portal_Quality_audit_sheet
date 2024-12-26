@@ -92,12 +92,18 @@ if uploaded_file is not None:
     # Add custom CSS with local image as background
     st.markdown(f"""
 <style>
-.stApp {{
-        background-image: url('data:image/png;base64,{img_base64}');
-        background-size: cover;
-        color: black; /* Set default text color to black */
-    }}
-    
+    .stApp {{
+            background-image: url('data:image/png;base64,{img_base64}');
+            background-size: cover;
+            color: black; /* Set default text color to black */
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }}
+
+    /* Make tables responsive */
+        
     /* Center the bold text in the header */
     .header-text {{
         text-align: center;

@@ -644,7 +644,7 @@ elif selected_page == "Input Form":
                 background-color: #FFFFFF; /* Light gray background */
             }
             .styled-table th, .styled-table td {
-                border: 1px solid #dddddd;
+                border: 1px solid #000000;
                 padding: 8px;
                 white-space: nowrap; /* Prevent text wrapping */
             }
@@ -672,13 +672,13 @@ elif selected_page == "Input Form":
             }
             .form-header {
                 text-align: center;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: bold;
                 margin-bottom: 20px;
                 color: #333333; /* Dark gray */
             }
             .custom-label {
-                font-size: 20px;
+                font-size: 25px;
                 margin-bottom: 0px;
                 color: #333333; /* Dark gray */
             }

@@ -145,8 +145,8 @@ if uploaded_file is not None:
         color: #000000 !important; /* White text for dropdown and select options */
     }}
     .stTextInput>div>div>input {{
-        width: 300px;  /* Set width */
-        height: 50px;  /* Set height */
+        width: auto;  /* Set width */
+        height: auto;  /* Set height */
     }}
     .stTextInput label {{
         font-size: 50px;  /* Adjust font size */

@@ -78,7 +78,7 @@ VOC=df['VOC'].dropna()
 AOI=df['AOI'].dropna()
 st.image("logo.png", width=50)
 
-if not os.path.exists("static/logo.png"):
+if not os.path.exists("logo.png"):
     st.error("Image not found. Ensure logo.png is in the 'static' folder.")
 
 # Use the full path to serve the image

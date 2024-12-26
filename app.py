@@ -267,7 +267,7 @@ try:
         }}
         header h1 {{
             margin: 0;
-            font-size: 34px;
+            font-size: 50px;
             color: #333;
         }}
         </style>

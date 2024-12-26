@@ -8,6 +8,7 @@ import base64
 from PIL import Image
 import io
 import time
+import re
 from google.oauth2.service_account import Credentials
 # Google Sheets Authentication
 

@@ -653,16 +653,7 @@ elif selected_page == "Input Form":
                 color: white;
             }
     
-            /* Radio button styling */
-            .stRadio > label {
-                font-size: 25px; /* Larger text */
-                font-weight: bold;
-            }
-            .stRadio div[role="radio"] {
-                transform: scale(1.5); /* Increase button size */
-                margin-right: 15px; /* Space between buttons */
-            }
-    
+            
             /* Custom form styling */
             .stForm {
                 background-color: #ADD8E6; /* Light blue */
@@ -682,6 +673,16 @@ elif selected_page == "Input Form":
                 margin-bottom: 0px;
                 color: #333333; /* Dark gray */
             }
+            /* Radio button styling */
+            .stRadio > label {
+                font-size: 25px; /* Larger text */
+                font-weight: bold;
+            }
+            .stRadio div[role="radio"] {
+                transform: scale(1.5); /* Increase button size */
+                margin-right: 15px; /* Space between buttons */
+            }
+    
             .stButton > button {
                 background-color: #1E90FF !important; /* Dodger blue */
                 color: white !important;

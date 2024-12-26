@@ -641,7 +641,7 @@ elif selected_page == "Input Form":
                 width: 100%;
                 font-size: 14px;
                 text-align: left;
-                background-color: #87CEEB; /* Light gray background */
+                background-color: #FFFFFF; /* Light gray background */
             }
             .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;

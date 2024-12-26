@@ -685,8 +685,8 @@ elif selected_page == "Input Form":
             .stButton > button {
                 background-color: #1E90FF !important; /* Dodger blue */
                 color: white !important;
-                font-size: 18px !important;
-                padding: 10px 20px !important;
+                font-size: 24px !important;
+                padding: 30px 40px !important;
                 border-radius: 8px;
                 border: none;
             }
@@ -696,7 +696,7 @@ elif selected_page == "Input Form":
             .stForm button {
                 background-color: #FFD700 !important; /* Dodger blue */
                 color: white !important;
-                font-size: 28px !important; /* Larger button text */
+                font-size: 24px !important; /* Larger button text */
                 padding: 20px 30px !important; /* Increased button size */
                 border-radius: 8px;
                 border: none;

@@ -258,13 +258,12 @@ try:
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            background-color: #f8f9fa;
             padding: 10px;
-            border-bottom: 2px solid #ddd;
+          
         }}
         header img {{
             height: 50px;
-            margin-right: 15px;
+            margin-right: 150px;
         }}
         header h1 {{
             margin: 0;

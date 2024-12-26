@@ -641,7 +641,7 @@ elif selected_page == "Input Form":
                 width: 100%;
                 font-size: 14px;
                 text-align: left;
-                background-color: #FFFFE0; /* Light gray background */
+                background-color: #FFD700; /* Light gray background */
             }
             .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;
@@ -696,10 +696,11 @@ elif selected_page == "Input Form":
             .stForm button {
                 background-color: #FFD700 !important; /* Dodger blue */
                 color: white !important;
-                font-size: 20px !important; /* Larger button text */
+                font-size: 28px !important; /* Larger button text */
                 padding: 20px 30px !important; /* Increased button size */
                 border-radius: 8px;
                 border: none;
+                font-weight: bold;
             }
             .stForm button:hover {
                 background-color: #DAA520 !important; /* Darker blue on hover */

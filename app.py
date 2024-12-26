@@ -92,6 +92,17 @@ if uploaded_file is not None:
     # Add custom CSS with local image as background
     st.markdown(f"""
 <style>
+    .main {{
+        overflow: auto; /* Enable scrolling */
+        width: 100vw; /* Set viewport width */
+        height: 100vh; /* Set viewport height */
+        white-space: nowrap; /* Prevent wrapping */
+    }}
+    /* Ensure columns and content don't wrap */
+    .block-container {{
+        display: flex; 
+        flex-wrap: nowrap; /* Disable wrapping */
+    }}
     .stApp {{
             background-image: url('data:image/png;base64,{img_base64}');
             background-size: cover;

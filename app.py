@@ -641,7 +641,7 @@ elif selected_page == "Input Form":
                 width: 100%;
                 font-size: 14px;
                 text-align: left;
-                background-color: #FFD700; /* Light gray background */
+                background-color: #FFFFE0; /* Light gray background */
             }
             .styled-table th, .styled-table td {
                 border: 1px solid #dddddd;
@@ -695,7 +695,7 @@ elif selected_page == "Input Form":
             }
             .stForm button {
                 background-color: #FFD700 !important; /* Dodger blue */
-                color: white !important;
+                color: black !important;
                 font-size: 24px !important; /* Larger button text */
                 padding: 20px 30px !important; /* Increased button size */
                 border-radius: 8px;

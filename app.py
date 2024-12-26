@@ -262,7 +262,7 @@ try:
           
         }}
         header img {{
-            height: 80px;
+            height: 100px;
             margin-right: 150px;
         }}
         header h1 {{

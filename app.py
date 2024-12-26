@@ -258,6 +258,7 @@ try:
             display: flex;
             align-items: center;
             justify-content: flex-start;
+            background-color: #f8f9fa;
             padding: 10px;
           
         }}

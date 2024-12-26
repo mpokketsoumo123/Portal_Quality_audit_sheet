@@ -258,16 +258,16 @@ try:
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            padding: 10px;
+            padding: 30px;
           
         }}
         header img {{
             height: 100px;
-            margin-right: 150px;
+            margin-right: 300px;
         }}
         header h1 {{
             margin: 0;
-            font-size: 24px;
+            font-size: 34px;
             color: #333;
         }}
         </style>

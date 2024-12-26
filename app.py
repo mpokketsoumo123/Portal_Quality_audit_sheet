@@ -125,7 +125,7 @@ if uploaded_file is not None:
     .header-text {{
         text-align: center;
         font-weight: bold;
-        font-size: 50px;
+        font-size: 80px;
         color: black;
         padding-top: 20px;
     }}

@@ -82,7 +82,7 @@ if not os.path.exists("static/logo.png"):
     st.error("Image not found. Ensure logo.png is in the 'static' folder.")
 
 # Use the full path to serve the image
-image_path = "static/logo.png"
+image_path = "logo.png"
 
 if uploaded_file is not None:
     # Convert uploaded image to Image object

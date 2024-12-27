@@ -369,6 +369,7 @@ if selected_page == "Login":
             st.session_state["login_email"] = email
             st.session_state["selected_page"] = "How to Use"
             st.success("Login successful! Redirecting to 'How to Use'...")
+            st.rerun()
         else:
             st.error("Invalid email or password. Please try again.")
     st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
@@ -385,6 +386,7 @@ elif selected_page == "How to Use":
 
     if st.button("Next"):
         st.session_state["selected_page"] = "Input Form"
+        st.rerun()
 
 # Input Form Page
 elif selected_page == "Input Form":

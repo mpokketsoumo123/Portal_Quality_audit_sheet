@@ -229,7 +229,22 @@ if uploaded_file is not None:
     .stTextInput div[role="textbox"]::after {{
             content: none;
         }}
+    .stTextInput input {{
+            background-color: #f0f0f0 !important; /* Light grey background */
+            color: #333 !important; /* Dark text */
+            border: 2px solid #000000 !important; /* Black border */
+            font-size: 16px !important; /* Larger text */
+            border-radius: 5px !important; /* Rounded corners */
+            padding: 10px !important;
+            width: 300px !important; /* Set a fixed width */
+            height: 40px !important; /* Adjust input height */
+            margin: 5px 0; /* Reduced margin */
+        }}
 
+    .stTextInput input:focus {{
+            border-color: #ff6347 !important; /* Focus border color */
+            background-color: #fff !important; /* White background on focus */
+        }}
     </style>
 """, unsafe_allow_html=True)
 

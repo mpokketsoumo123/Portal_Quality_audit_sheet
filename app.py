@@ -163,27 +163,9 @@ if uploaded_file is not None:
         width: 300px !important;
         height:50px !important;
     }}
-    .stTextInput {{
-        height: 50px !important; /* Adjust the height */
-        padding: 10px !important; /* Add padding for better appearance */
-    }}
-    
-    /* Remove the gray part (scrollbar container) */
-    .stTextInput > div {{
-        overflow: hidden !important; /* Hide any overflow */
-        box-shadow: none !important; /* Remove unnecessary box shadow */
-    }}
 
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
-    }}
-    .stTextInput>div>div>input {{
-        width: auto;  /* Set width */
-        height: auto;  /* Set height */
-    }}
-    .stTextInput label {{
-        font-size: 50px;  /* Adjust font size */
-        font-weight: bold;  /* Make text bold */
     }}
     /* Style for the dropdown label */
     label {{

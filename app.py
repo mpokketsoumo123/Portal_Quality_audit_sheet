@@ -247,8 +247,9 @@ if uploaded_file is not None:
             color: #000000 !important;
             padding: 10px !important;
             font-size: 16px !important;
-            width: 100% !important;
+            width: 300px !important;
             border-radius: 5px !important;
+            height: 50px
         }}
     </style>
 """, unsafe_allow_html=True)

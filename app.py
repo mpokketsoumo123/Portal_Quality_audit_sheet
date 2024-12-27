@@ -232,10 +232,7 @@ if uploaded_file is not None:
     .stTextInput input {{
             background-color: #ffffff !important; /* Light grey background */
             color: #000000 !important; /* Dark text */
-            border: 2px solid #000000 !important; /* Black border */
             font-size: 16px !important; /* Larger text */
-            border-radius: 5px !important; /* Rounded corners */
-            padding: 0px !important;
             width: 300px !important; /* Set a fixed width */
             height: 40px !important; /* Adjust input height */
         }}

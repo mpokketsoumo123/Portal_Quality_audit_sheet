@@ -184,8 +184,8 @@ if uploaded_file is not None:
     .stButton button {{
         background-color: yellow !important; /* Yellow background */
         color: black !important; /* Black text */
-        border: 2px solid #f9a825; /* Border to match select box */
-        padding: 10px 20px;
+        border: 2px solid #000000; /* Border to match select box */
+        padding: 20px 30px;
         font-weight: bold;
         font-size: 14px;
         display: block;

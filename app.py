@@ -241,29 +241,6 @@ if uploaded_file is not None:
             border-color: #ff6347 !important; /* Focus border color */
             background-color: #fff !important; /* White background on focus */
         }}
-    .stTextInput div[role="textbox"] {{
-            padding-right: 0 !important;  /* Remove padding to the right */
-        }}
-    .stTextInput input {{
-        background-color: #FFFFFF !important;  /* Set the background color to white */
-        color: #000000 !important; /* Black text color */
-        border-right: none !important;  /* Remove the border on the right side */
-    }}
-
-    /* Hide the gray part attached to st.date_input */
-    .stDateInput div[data-baseweb="input"] {{
-        padding-right: 0 !important;  /* Remove padding to the right */
-    }}
-    .stDateInput input {{
-        background-color: #FFFFFF !important;  /* Set the background color to white */
-        color: #000000 !important; /* Black text color */
-        border-right: none !important;  /* Remove the border on the right side */
-    }}
-
-    /* Optional: Ensure no unwanted background color or icon */
-    .stDateInput div[data-baseweb="input"] div[role="button"] {{
-        display: none !important; /* Hide calendar icon if present */
-        }}
     </style>
 """, unsafe_allow_html=True)
 

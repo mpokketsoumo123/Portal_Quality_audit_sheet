@@ -225,6 +225,9 @@ if uploaded_file is not None:
     .stSelectbox {{
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
+    .stTextInput div[role="textbox"] {{
+        margin-top: -20px; /* Reduce spacing above the dropdown */
+    }}
     .stTextInput div[role="textbox"]::after {{
             content: none;
         }}

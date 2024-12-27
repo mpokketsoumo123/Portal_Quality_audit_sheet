@@ -224,7 +224,7 @@ if uploaded_file is not None:
         /* Hide "Press Enter to submit" message */
         .stTextInput div[role="textbox"]::after {
             display: none;
-        }
+        }}
     </style>
 """, unsafe_allow_html=True)
 

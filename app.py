@@ -633,6 +633,7 @@ elif selected_page == "Input Form":
         new_row = data.copy()  # Create a copy of the data as new row
     
         # Handle missing fields
+        time_pattern = r"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$"
         if missing_fields:
             error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
         # Handle duplicate row check
@@ -642,7 +643,7 @@ elif selected_page == "Input Form":
             st.error("User Register Number must be exactly 10 digits.")
         elif not calling_number.isdigit() or len(calling_number) != 10:
             st.error("Calling Number must be exactly 10 digits.")
-        time_pattern = r"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$"
+        
         elif not re.match(time_pattern, call_duration):
             st.error("Invalid time format! Please enter the time in HH:mm:ss format (e.g., 02:30:45).")
         else:

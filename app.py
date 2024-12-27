@@ -249,7 +249,7 @@ if uploaded_file is not None:
             font-size: 16px !important;
             width: 300px !important;
             border-radius: 5px !important;
-            height: 50px
+            height: 35px
         }}
     </style>
 """, unsafe_allow_html=True)

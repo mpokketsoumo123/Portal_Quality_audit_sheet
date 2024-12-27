@@ -322,8 +322,7 @@ if selected_page == "Login":
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            height: 80vh; /* Adjust height as needed */
+            align-items: center; /* Adjust height as needed */
         }
         .login-input-box {
             width: 300px; /* Adjust width as needed */

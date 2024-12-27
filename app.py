@@ -154,7 +154,7 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
-    div[data-baseweb="date_input"] > div {{
+    div[data-baseweb="input"] > div {{
         background-color: #FFFFFF !important; /* Black dropdown background */
         color: #000000 !important; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
@@ -230,15 +230,14 @@ if uploaded_file is not None:
             content: none;
         }}
     .stTextInput input {{
-            background-color: #f0f0f0 !important; /* Light grey background */
-            color: #333 !important; /* Dark text */
+            background-color: #ffffff !important; /* Light grey background */
+            color: #000000 !important; /* Dark text */
             border: 2px solid #000000 !important; /* Black border */
             font-size: 16px !important; /* Larger text */
             border-radius: 5px !important; /* Rounded corners */
-            padding: 10px !important;
+            padding: 0px !important;
             width: 300px !important; /* Set a fixed width */
             height: 40px !important; /* Adjust input height */
-            margin: 5px 0; /* Reduced margin */
         }}
 
     .stTextInput input:focus {{

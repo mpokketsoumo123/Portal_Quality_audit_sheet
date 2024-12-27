@@ -317,17 +317,18 @@ if selected_page == "Login":
     st.markdown(
         """
         <style>
-        .center-container {
+        /* Center-aligned container for the Login Page */
+        .login-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 80vh; /* Adjust height as needed */
         }
-        .input-box {
+        .login-input-box {
             width: 300px; /* Adjust width as needed */
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px; /* Add spacing between inputs */
         }
         .login-title {
             font-size: 24px;
@@ -345,14 +346,25 @@ if selected_page == "Login":
     )
 
     # Center-aligned container
-    st.markdown('<div class="center-container">', unsafe_allow_html=True)
+    st.markdown('<div class="login-container">', unsafe_allow_html=True)
     st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
 
-    # Input fields for email and password
-    email = st.text_input("Email ID", key="email_input", placeholder="Enter your email ID")
-    password = st.text_input("Password", type="password", key="password_input", placeholder="Enter your password")
+    # Input fields for email and password (scoped CSS class applied)
+    email = st.text_input(
+        "Email ID",
+        key="email_input",
+        placeholder="Enter your email ID",
+        label_visibility="collapsed",
+    )
+    password = st.text_input(
+        "Password",
+        type="password",
+        key="password_input",
+        placeholder="Enter your password",
+        label_visibility="collapsed",
+    )
 
-
+    # Login button
     if st.button("Login"):
         if email in allowed_credentials and allowed_credentials[email] == password:
             st.session_state["login_email"] = email
@@ -360,6 +372,7 @@ if selected_page == "Login":
             st.success("Login successful! Redirecting to 'How to Use'...")
         else:
             st.error("Invalid email or password. Please try again.")
+    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
 
 # How to Use Page
 elif selected_page == "How to Use":

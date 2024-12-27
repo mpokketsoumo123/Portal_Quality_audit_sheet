@@ -672,7 +672,7 @@ elif selected_page == "Input Form":
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 100%;
+                width: 80%;
                 font-size: 14px;
                 text-align: left;
                 background-color: #FFFFFF; /* Light gray background */
@@ -713,7 +713,7 @@ elif selected_page == "Input Form":
                 font-weight: bold;
             }
             .stRadio div[role="radio"] {
-                transform: scale(1.5); /* Increase button size */
+                transform: scale(4); /* Increase button size */
                 margin-right: 15px; /* Space between buttons */
             }
     

@@ -104,11 +104,16 @@ if uploaded_file is not None:
             height: 100vh; /* Set viewport height */
             white-space: nowrap; /* Prevent wrapping */
         }}
+
         /* Ensure columns and content don't wrap */
         .block-container {{
             display: flex;
-            flex-wrap: nowrap; /* Disable wrapping */
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: 20px; /* Add spacing between elements */
+            justify-content: center; /* Center align the content */
+            padding: 20px; /* Add padding to the container */
         }}
+
         .stApp {{
             background-image: url('data:image/png;base64,{img_base64}');
             background-size: cover;
@@ -136,13 +141,23 @@ if uploaded_file is not None:
             border: 2px solid #000000 !important; /* Black border */
             font-size: 16px !important; /* Larger text */
             border-radius: 5px !important; /* Rounded corners */
-            padding: 5px !important;
-            width: 300px !important;
+            padding: 10px !important;
+            width: 300px !important; /* Set a fixed width */
             height: 50px !important;
+            margin: 10px 0; /* Add margin between dropdowns */
         }}
 
-        div[data-baseweb="select"] > div {{
-            color: #000000 !important; /* Black text for dropdown and select options */
+        /* Dropdown container for text inputs */
+        div[data-baseweb="input"] > div {{
+            background-color: #FFFFFF !important; /* White background */
+            color: #000000 !important; /* Black text */
+            border: 2px solid #000000 !important; /* Black border */
+            font-size: 16px !important; /* Larger text */
+            border-radius: 5px !important; /* Rounded corners */
+            width: 300px !important;
+            height: 60px !important;
+            padding: 10px !important; /* Adjust padding for better spacing */
+            margin: 10px 0; /* Margin for spacing between inputs */
         }}
 
         /* Style for the dropdown label */
@@ -152,21 +167,6 @@ if uploaded_file is not None:
             font-size: 18px !important; /* Increase label size */
             display: block;
             margin-bottom: 8px;
-        }}
-
-        div[data-baseweb="input"] > div {{
-            background-color: #FFFFFF !important; /* White background */
-            color: #000000 !important; /* Black text */
-            border: 2px solid #000000 !important; /* Black border */
-            font-size: 16px !important; /* Larger text */
-            border-radius: 5px !important; /* Rounded corners */
-            width: 300px !important;
-            height: 60px !important;
-            padding: 5px !important;
-        }}
-
-        div[data-baseweb="input"] > div {{
-            color: #000000 !important; /* Black text */
         }}
 
         /* Button styling */
@@ -223,7 +223,7 @@ if uploaded_file is not None:
 
         /* Hide "Press Enter to submit" message */
         .stTextInput div[role="textbox"]::after {{
-            display: none;
+            content: none;
         }}
     </style>
 """, unsafe_allow_html=True)

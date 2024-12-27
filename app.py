@@ -176,7 +176,9 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
-
+    .stTextInput div[role="textbox"]::after {{
+            display: none;
+        }}
     /* Button styling */
     .stButton button {{
         background-color: yellow !important; /* Yellow background */

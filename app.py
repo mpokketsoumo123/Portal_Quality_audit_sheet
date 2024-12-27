@@ -490,7 +490,7 @@ elif selected_page == "Input Form":
         user_register_number = st.text_input("",key="user_register_number")
 
         st.markdown('<div class="custom-label">Enter Calling Number:</div>', unsafe_allow_html=True)
-        calling_number = st.text_input("",key="calling_number")
+        calling_number = st.text_input("",key="calling_number",label_visibility="collapsed")
         #remarks
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
         Remarks = st.text_area("",key="remarks")

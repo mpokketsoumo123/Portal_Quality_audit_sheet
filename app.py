@@ -154,7 +154,7 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
-    div[data-baseweb="input"] > div {{
+    div[data-baseweb="date_input"] > div {{
         background-color: #FFFFFF !important; /* Black dropdown background */
         color: #000000 !important; /* White text */
         border: 2px solid #000000 !important; /* Orange border */

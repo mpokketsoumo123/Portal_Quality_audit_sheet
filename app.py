@@ -816,24 +816,24 @@ elif selected_page == "Input Form":
                     st.rerun()
                 
                 # Show update form if selected
-        if st.session_state.get("show_update_form", False):
-            st.markdown("### Update Row:")
-            updated_row = {}
-            cols = st.columns(4)
-                
-                    # Populate the update form with existing values
-            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                with cols[i % 4]:
-                    updated_row[key] = st.text_input(f"{key}:", value=value)
-                
-                    # Save updated row
-            if st.button("Save Updated Row"):
-                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                del st.session_state["selected_row"]
-                del st.session_state["row_index_to_update"]
-                st.session_state["show_update_form"] = False  # Hide update form after saving
-                st.success("Row updated!")
-                st.rerun()
+            if st.session_state.get("show_update_form", False):
+                st.markdown("### Update Row:")
+                updated_row = {}
+                cols = st.columns(4)
+                    
+                        # Populate the update form with existing values
+                for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
+                    with cols[i % 4]:
+                        updated_row[key] = st.text_input(f"{key}:", value=value)
+                    
+                        # Save updated row
+                if st.button("Save Updated Row"):
+                    st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                    del st.session_state["selected_row"]
+                    del st.session_state["row_index_to_update"]
+                    st.session_state["show_update_form"] = False  # Hide update form after saving
+                    st.success("Row updated!")
+                    st.rerun()
 
     
         # Final Submit Button

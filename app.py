@@ -161,7 +161,7 @@ if uploaded_file is not None:
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         width: 300px !important;
-        height:60px !important;
+        height:70px !important;
         padding: 5px !important;
         margin: 5px 0;
     }}

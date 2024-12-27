@@ -154,7 +154,7 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
-    div[data-baseweb="input"] > div {{
+    div[data-testid="stTextInput"] > div {{
         background-color: #FFFFFF !important; /* Black dropdown background */
         color: #000000 !important; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
@@ -164,7 +164,10 @@ if uploaded_file is not None:
         height:60px !important;
         padding: 5px !important;
     }}
-    div[data-baseweb="select"] > div {{
+    div[data-testid="stTextInput"] > div:nth-child(2) {{
+        display: none;
+    }}
+    div[data-testid="stTextInput"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
     /* Style for the dropdown label */

@@ -139,7 +139,7 @@ if uploaded_file is not None:
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
         width: 300px !important;
-        height:50px !important;
+        height:60px !important;
     }}
 
     div[data-baseweb="select"] > div {{
@@ -493,7 +493,7 @@ elif selected_page == "Input Form":
         calling_number = st.text_input("",key="calling_number",label_visibility="collapsed")
         #remarks
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
-        Remarks = st.text_area("",key="remarks",height=30)
+        Remarks = st.text_area("",key="remarks",height=60)
 
         
 

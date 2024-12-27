@@ -811,7 +811,7 @@ elif selected_page == "Input Form":
         
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
-                operation = st.radio("", ["Update Row", "Delete Row"], key="operation",label_visibility="collapsed")
+                operation = st.radio("", ["Update Row", "Delete Row"], key="operation")
         
             with col4:  # Alignment adjustment
                 submit_button = st.form_submit_button("Submit")

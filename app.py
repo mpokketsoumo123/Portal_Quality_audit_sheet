@@ -161,7 +161,7 @@ if uploaded_file is not None:
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         width: 300px !important;
-        height:70px !important;
+        height:60px !important;
         padding: 5px !important;
         margin: 5px 0;
     }}
@@ -224,9 +224,6 @@ if uploaded_file is not None:
         margin-bottom: 0px; /* Reduce spacing below the label */
     }}
     .stSelectbox {{
-        margin-top: -20px; /* Reduce spacing above the dropdown */
-    }}
-    .stTextInput div[role="textbox"] {{
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
     .stTextInput div[role="textbox"]::after {{

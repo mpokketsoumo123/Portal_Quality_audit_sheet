@@ -672,7 +672,7 @@ elif selected_page == "Input Form":
             }
             .styled-table {
                 border-collapse: collapse;
-                width: 80%;
+                width: 100%;
                 font-size: 14px;
                 text-align: left;
                 background-color: #FFFFFF; /* Light gray background */

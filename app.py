@@ -653,201 +653,201 @@ elif selected_page == "Input Form":
             st.success("Row added successfully!")
 
     # Display Table
-    if st.session_state["input_table"]:
-        st.markdown(
-            """
-            <style>
-            /* Change background color */
-            .stApp {
-                background-color: #f5f5f5; /* Light gray */
-            }
+            if st.session_state["input_table"]:
+                st.markdown(
+                    """
+                    <style>
+                    /* Change background color */
+                    .stApp {
+                        background-color: #f5f5f5; /* Light gray */
+                    }
+                    
+                    /* Table styling */
+                    .scrollable-table {
+                        max-height: 800px;
+                        overflow-y: auto;
+                        border: 1px solid #ddd;
+                        width: 100%;
+                    }
+                    .styled-table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        font-size: 14px;
+                        text-align: left;
+                        background-color: #FFFFFF; /* Light gray background */
+                    }
+                    .styled-table th, .styled-table td {
+                        border: 1px solid #000000;
+                        padding: 8px;
+                        white-space: nowrap; /* Prevent text wrapping */
+                    }
+                    .styled-table th {
+                        background-color: #009879;
+                        color: white;
+                    }
             
-            /* Table styling */
-            .scrollable-table {
-                max-height: 800px;
-                overflow-y: auto;
-                border: 1px solid #ddd;
-                width: 100%;
-            }
-            .styled-table {
-                border-collapse: collapse;
-                width: 100%;
-                font-size: 14px;
-                text-align: left;
-                background-color: #FFFFFF; /* Light gray background */
-            }
-            .styled-table th, .styled-table td {
-                border: 1px solid #000000;
-                padding: 8px;
-                white-space: nowrap; /* Prevent text wrapping */
-            }
-            .styled-table th {
-                background-color: #009879;
-                color: white;
-            }
-    
+                    
+                    /* Custom form styling */
+                    .stForm {
+                        background-color: #ADD8E6; /* Light blue */
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                    }
+                    .form-header {
+                        text-align: center;
+                        font-size: 30px;
+                        font-weight: bold;
+                        margin-bottom: 20px;
+                        color: #333333; /* Dark gray */
+                    }
+                    .custom-label {
+                        font-size: 20px;
+                        margin-bottom: 0px;
+                        color: #333333; /* Dark gray */
+                    }
+                    /* Radio button styling */
+                    .stRadio > label {
+                        font-size: 25px; /* Larger text */
+                        font-weight: bold;
+                    }
+                    .stRadio div[role="radio"] {
+                        transform: scale(1.5); /* Increase button size */
+                        margin-right: 15px; /* Space between buttons */
+                    }
             
-            /* Custom form styling */
-            .stForm {
-                background-color: #ADD8E6; /* Light blue */
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .form-header {
-                text-align: center;
-                font-size: 30px;
-                font-weight: bold;
-                margin-bottom: 20px;
-                color: #333333; /* Dark gray */
-            }
-            .custom-label {
-                font-size: 20px;
-                margin-bottom: 0px;
-                color: #333333; /* Dark gray */
-            }
-            /* Radio button styling */
-            .stRadio > label {
-                font-size: 25px; /* Larger text */
-                font-weight: bold;
-            }
-            .stRadio div[role="radio"] {
-                transform: scale(1.5); /* Increase button size */
-                margin-right: 15px; /* Space between buttons */
-            }
-    
-            .stButton > button {
-                background-color: #1E90FF !important; /* Dodger blue */
-                color: white !important;
-                font-size: 24px !important;
-                padding: 30px 40px !important;
-                border-radius: 8px;
-                border: none;
-            }
-            .stButton > button:hover {
-                background-color: #0059b3 !important; /* Darker blue on hover */
-            }
-            .stForm button {
-                background-color: #FFD700 !important; /* Dodger blue */
-                color: black !important;
-                font-size: 24px !important; /* Larger button text */
-                padding: 20px 30px !important; /* Increased button size */
-                border-radius: 8px;
-                border: none;
-                font-weight: bold;
-            }
-            .stForm button:hover {
-                background-color: #DAA520 !important; /* Darker blue on hover */
-            }
-            </style>
-            """,
-        unsafe_allow_html=True,
-            )
-    
-        # Generate the HTML table
-        st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
-        table_html = "<div class='scrollable-table'><table class='styled-table'>"
-        headers = list(st.session_state["input_table"][0].keys())
-    
-        # Create the table header row
-        table_html += "<thead><tr>"
-        table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "</tr></thead>"
-    
-        # Create the table body rows
-        table_html += "<tbody>"
-        for row in st.session_state["input_table"]:
-            table_html += "<tr>"
-            for value in row.values():
-                table_html += f"<td>{value}</td>"
-            table_html += "</tr>"
-        table_html += "</tbody></table></div>"
-
-    # Display the table
-        st.markdown(table_html, unsafe_allow_html=True)
-
-            
-            # Create a column layout for buttons
-          # Adjust the width as needed
-        
-        # Place buttons beside the table
-        with st.form("row_operations_form"):
-            st.markdown('<div class="form-header">Update or Delete a Row</div>', unsafe_allow_html=True)
-
-            # Using 4 columns for inputs
-            col1, col2, col3, col4 = st.columns(4)
-        
-            with col1:
-                st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-                user_register_number_input = st.text_input("", key="1")
-        
-            with col2:
-                st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-                emp_id_input = st.text_input("", key="emp_id_input")
-        
-            with col3:
-                st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
-                operation = st.radio("", ["Update Row", "Delete Row"], key="operation")
-        
-            with col4:  # Alignment adjustment
-                submit_button = st.form_submit_button("Submit")
-
-        
-        if submit_button:
-            matching_index = None
-            for index, row in enumerate(st.session_state["input_table"]):
-                if (row.get("User Register Number") == user_register_number_input
-                        and row.get("EMP ID") == emp_id_input):
-                    matching_index = index
-                    break
-                
-            if matching_index is None:
-                st.error("No matching row found. Please check the inputs.")
-            else:
-                if operation == "Delete Row":
-                    st.session_state["input_table"].pop(matching_index)
-                    st.success("Row deleted successfully!")
-                    st.rerun()
-                elif operation == "Update Row":
-                    st.session_state["row_index_to_update"] = matching_index
-                    st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
-                    st.session_state["show_update_form"] = True
-                    st.rerun()
-                
-                # Show update form if selected
-        if st.session_state.get("show_update_form", False):
-            st.markdown("### Update Row:")
-            updated_row = {}
-            cols = st.columns(4)
-                
-                    # Populate the update form with existing values
-            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                with cols[i % 4]:
-                    updated_row[key] = st.text_input(f"{key}:", value=value)
-                
-                    # Save updated row
-            if st.button("Save Updated Row"):
-                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                del st.session_state["selected_row"]
-                del st.session_state["row_index_to_update"]
-                st.session_state["show_update_form"] = False  # Hide update form after saving
-                st.success("Row updated!")
-                st.rerun()
-
-    
-        # Final Submit Button
-        if st.session_state["input_table"] and st.button("Final Submit"):
-            try:
-                for row in st.session_state["input_table"]:
-                    write_to_sheet(
-                        "Quality_Requirment",
-                        list(row.values()),
-                        st.session_state["login_email"]
+                    .stButton > button {
+                        background-color: #1E90FF !important; /* Dodger blue */
+                        color: white !important;
+                        font-size: 24px !important;
+                        padding: 30px 40px !important;
+                        border-radius: 8px;
+                        border: none;
+                    }
+                    .stButton > button:hover {
+                        background-color: #0059b3 !important; /* Darker blue on hover */
+                    }
+                    .stForm button {
+                        background-color: #FFD700 !important; /* Dodger blue */
+                        color: black !important;
+                        font-size: 24px !important; /* Larger button text */
+                        padding: 20px 30px !important; /* Increased button size */
+                        border-radius: 8px;
+                        border: none;
+                        font-weight: bold;
+                    }
+                    .stForm button:hover {
+                        background-color: #DAA520 !important; /* Darker blue on hover */
+                    }
+                    </style>
+                    """,
+                unsafe_allow_html=True,
                     )
-                st.success("Data successfully written to Google Sheets!")
-                st.session_state["input_table"] = []  # Clear after submission
-            except Exception as e:
-                st.error(f"An error occurred: {e}")
+            
+                # Generate the HTML table
+                st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
+                table_html = "<div class='scrollable-table'><table class='styled-table'>"
+                headers = list(st.session_state["input_table"][0].keys())
+            
+                # Create the table header row
+                table_html += "<thead><tr>"
+                table_html += "".join(f"<th>{header}</th>" for header in headers)
+                table_html += "</tr></thead>"
+            
+                # Create the table body rows
+                table_html += "<tbody>"
+                for row in st.session_state["input_table"]:
+                    table_html += "<tr>"
+                    for value in row.values():
+                        table_html += f"<td>{value}</td>"
+                    table_html += "</tr>"
+                table_html += "</tbody></table></div>"
+        
+            # Display the table
+                st.markdown(table_html, unsafe_allow_html=True)
+        
+                    
+                    # Create a column layout for buttons
+                  # Adjust the width as needed
+                
+                # Place buttons beside the table
+                with st.form("row_operations_form"):
+                    st.markdown('<div class="form-header">Update or Delete a Row</div>', unsafe_allow_html=True)
+        
+                    # Using 4 columns for inputs
+                    col1, col2, col3, col4 = st.columns(4)
+                
+                    with col1:
+                        st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
+                        user_register_number_input = st.text_input("", key="1")
+                
+                    with col2:
+                        st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
+                        emp_id_input = st.text_input("", key="emp_id_input")
+                
+                    with col3:
+                        st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
+                        operation = st.radio("", ["Update Row", "Delete Row"], key="operation")
+                
+                    with col4:  # Alignment adjustment
+                        submit_button = st.form_submit_button("Submit")
+        
+                
+                if submit_button:
+                    matching_index = None
+                    for index, row in enumerate(st.session_state["input_table"]):
+                        if (row.get("User Register Number") == user_register_number_input
+                                and row.get("EMP ID") == emp_id_input):
+                            matching_index = index
+                            break
+                        
+                    if matching_index is None:
+                        st.error("No matching row found. Please check the inputs.")
+                    else:
+                        if operation == "Delete Row":
+                            st.session_state["input_table"].pop(matching_index)
+                            st.success("Row deleted successfully!")
+                            st.rerun()
+                        elif operation == "Update Row":
+                            st.session_state["row_index_to_update"] = matching_index
+                            st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
+                            st.session_state["show_update_form"] = True
+                            st.rerun()
+                        
+                        # Show update form if selected
+                if st.session_state.get("show_update_form", False):
+                    st.markdown("### Update Row:")
+                    updated_row = {}
+                    cols = st.columns(4)
+                        
+                            # Populate the update form with existing values
+                    for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
+                        with cols[i % 4]:
+                            updated_row[key] = st.text_input(f"{key}:", value=value)
+                        
+                            # Save updated row
+                    if st.button("Save Updated Row"):
+                        st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
+                        del st.session_state["selected_row"]
+                        del st.session_state["row_index_to_update"]
+                        st.session_state["show_update_form"] = False  # Hide update form after saving
+                        st.success("Row updated!")
+                        st.rerun()
+        
+            
+                # Final Submit Button
+                if st.session_state["input_table"] and st.button("Final Submit"):
+                    try:
+                        for row in st.session_state["input_table"]:
+                            write_to_sheet(
+                                "Quality_Requirment",
+                                list(row.values()),
+                                st.session_state["login_email"]
+                            )
+                        st.success("Data successfully written to Google Sheets!")
+                        st.session_state["input_table"] = []  # Clear after submission
+                    except Exception as e:
+                        st.error(f"An error occurred: {e}")
             
             # Refresh Button
 st.markdown("""

@@ -154,18 +154,20 @@ if uploaded_file is not None:
         display: block;
         margin-bottom: 8px;
     }}
-    div[data-baseweb="input"] > div {{
-        background-color: #FFFFFF !important; /* Black dropdown background */
-        color: #000000 !important; /* White text */
-        border: 2px solid #000000 !important; /* Orange border */
-        font-size: 16px !important; /* Larger text */
+    .stTextInput > div > div > input {{
+        background-color: yellow !important; /* Yellow background */
+        color: black !important; /* Black text */
+        border: 2px solid #f9a825 !important; /* Matching border color */
+        padding: 10px 20px !important; /* Adjust padding */
+        font-weight: bold !important; /* Bold font */
+        font-size: 14px !important; /* Adjust font size */
         border-radius: 5px !important; /* Rounded corners */
-        width: 300px !important;
-        height:60px !important;
-        padding: 5px !important;
-        box-shadow: none !important;
+        display: block; /* Ensure the element behaves as a block */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 20px !important; /* Add space at the top */
+        width: 80% !important; /* Center and adjust width */
     }}
-
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}

@@ -784,7 +784,7 @@ elif selected_page == "Input Form":
         
             with col2:
                 st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-                emp_id_input = st.text_input("", key="emp_id_input",label_visibility="hidden")
+                emp_id_input = st.text_input("", key="emp_id_input",label_visibility="hidden",placeholder="Type here...", class_="custom-text-input")
         
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)

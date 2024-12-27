@@ -241,6 +241,19 @@ if uploaded_file is not None:
             border-color: #ff6347 !important; /* Focus border color */
             background-color: #fff !important; /* White background on focus */
         }}
+    .stTextInput div[role="textbox"]::-webkit-contacts-auto-fill-button {{
+            display: none !important;
+        }}
+
+        /* Hide the right side clear button for st.text_input */
+    .stTextInput input::-webkit-clear-button {{
+            display: none !important;
+        }}
+
+        /* Hide the calendar dropdown in st.date_input */
+    .stDateInput div[data-baseweb="input"] div[role="button"] {{
+            display: none !important;
+        }}
     </style>
 """, unsafe_allow_html=True)
 

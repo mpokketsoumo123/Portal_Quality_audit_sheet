@@ -326,12 +326,18 @@ if selected_page == "Login":
         }
         .input-box {
             width: 300px; /* Adjust width as needed */
+            text-align: center;
+            margin-bottom: 10px;
         }
         .login-title {
             font-size: 24px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;
+        }
+        .stButton button {
+            width: 100px;
+            margin-top: 10px;
         }
         </style>
         """,
@@ -343,15 +349,8 @@ if selected_page == "Login":
     st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
 
     # Input fields for email and password
-    email = st.text_input("Enter your email ID", key="email_input", label_visibility="collapsed")
-    password = st.text_input("Enter your password", type="password", key="password_input", label_visibility="collapsed")
-
-    # Add placeholders for labels
-    st.markdown('<div class="input-box">Email ID</div>', unsafe_allow_html=True)
-    st.text_input("Email ID", key="email", label_visibility="collapsed", placeholder="Enter your email ID")
-
-    st.markdown('<div class="input-box">Password</div>', unsafe_allow_html=True)
-    st.text_input("Password", key="password", type="password", label_visibility="collapsed", placeholder="Enter your password")
+    email = st.text_input("Email ID", key="email_input", placeholder="Enter your email ID")
+    password = st.text_input("Password", type="password", key="password_input", placeholder="Enter your password")
 
 
     if st.button("Login"):

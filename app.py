@@ -162,6 +162,7 @@ if uploaded_file is not None:
         border-radius: 5px !important; /* Rounded corners */
         width: 300px !important;
         height:50px !important;
+        box-shadow: none !important;
     }}
 
     div[data-baseweb="select"] > div {{

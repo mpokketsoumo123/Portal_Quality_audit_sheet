@@ -163,6 +163,7 @@ if uploaded_file is not None:
         width: 300px !important;
         height:60px !important;
         padding: 5px !important;
+        margin: 5px 0;
     }}
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */

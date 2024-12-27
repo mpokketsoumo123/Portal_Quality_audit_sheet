@@ -155,7 +155,7 @@ if uploaded_file is not None:
         margin-bottom: 8px;
     }}
     .stTextInput > div > div > input {{
-        background-color: yellow !important; /* Yellow background */
+        background-color: white !important; /* Yellow background */
         color: black !important; /* Black text */
         border: 2px solid #f9a825 !important; /* Matching border color */
         padding: 10px 20px !important; /* Adjust padding */
@@ -163,9 +163,9 @@ if uploaded_file is not None:
         font-size: 14px !important; /* Adjust font size */
         border-radius: 5px !important; /* Rounded corners */
         display: block; /* Ensure the element behaves as a block */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-top: 20px !important; /* Add space at the top */
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: auto !important; /* Add space at the top */
         width: 80% !important; /* Center and adjust width */
     }}
     div[data-baseweb="select"] > div {{

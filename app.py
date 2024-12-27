@@ -741,6 +741,9 @@ elif selected_page == "Input Form":
             .stForm button:hover {
                 background-color: #DAA520 !important; /* Darker blue on hover */
             }
+            .stTextInput div[role="textbox"]::after {
+                display: none;
+            }
             </style>
             """,
         unsafe_allow_html=True,

@@ -713,7 +713,7 @@ elif selected_page == "Input Form":
                 font-weight: bold;
             }
             .stRadio div[role="radio"] {
-                transform: scale(4); /* Increase button size */
+                transform: scale(10); /* Increase button size */
                 margin-right: 15px; /* Space between buttons */
             }
     

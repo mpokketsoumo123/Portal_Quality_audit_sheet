@@ -493,7 +493,7 @@ elif selected_page == "Input Form":
         calling_number = st.text_input("",key="calling_number",label_visibility="collapsed")
         #remarks
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
-        Remarks = st.text_area("",key="remarks",height=60)
+        Remarks = st.text_area("",key="remarks",height=68)
 
         
 

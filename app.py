@@ -241,6 +241,15 @@ if uploaded_file is not None:
             border-color: #ff6347 !important; /* Focus border color */
             background-color: #fff !important; /* White background on focus */
         }}
+    .stTextArea textarea {{
+            background-color: #FFFFFF !important;
+            border: 2px solid #000000 !important;
+            color: #000000 !important;
+            padding: 10px !important;
+            font-size: 16px !important;
+            width: 100% !important;
+            border-radius: 5px !important;
+        }}
     </style>
 """, unsafe_allow_html=True)
 

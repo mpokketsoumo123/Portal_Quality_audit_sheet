@@ -151,7 +151,6 @@ try:
             color: #333;
             text-align: center;
         }}
-        </style>
     .stButton button {{
         background-color: yellow !important; /* Yellow background */
         color: black !important; /* Black text */

@@ -368,7 +368,6 @@ if selected_page == "Login":
         )
         password = st.text_area(
             "Password",
-            type="password",
             key="password_input",
             placeholder="Enter your password",
             label_visibility="collapsed",

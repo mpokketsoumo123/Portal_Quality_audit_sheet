@@ -96,6 +96,152 @@ if uploaded_file is not None:
     img_base64 = base64.b64encode(img_bytes.read()).decode()
 
     # Add custom CSS with local image as background
+    
+
+# Display logo
+def encode_image_to_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode("utf-8")
+
+# Path to your image file
+image_path = "logo.png"
+
+try:
+    # Encode the image as Base64
+    encoded_image = encode_image_to_base64(image_path)
+    
+    # Inject the header with the image
+    st.markdown(f"""
+        <style>
+        header {{
+            display: flex;
+            padding: 0px;
+          
+        }}
+        header img {{
+                height: 110px; 
+                width:300px;
+                margin-right: 300px;
+               
+        }}
+        .H {{
+            padding: 15px;
+            font-size: 50px;
+            color: #333;
+            text-align: center;
+        }}
+        </style>
+        <header>
+            <img src="data:image/png;base64,{encoded_image}" alt="Logo">
+        </header>
+        <div class="H" ><h1>Onboarding Audit Portal</h1></div>
+        """, unsafe_allow_html=True)
+except FileNotFoundError:
+    st.error("Image file not found. Please check the file path.")
+
+#st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
+
+# Display bold header text
+#st.markdown('<div class="header-text">Onboarding Audit Portal</div>', unsafe_allow_html=True)
+#st.image("logo.png")
+
+# Session State Initialization
+if "login_email" not in st.session_state:
+    st.session_state["login_email"] = None
+if "selected_page" not in st.session_state:
+    st.session_state["selected_page"] = "Login"
+
+# Page Navigation
+selected_page = st.session_state["selected_page"]
+
+# Define allowed emails and passwords (this is for demonstration; never hardcode credentials in production!)
+allowed_credentials = {"mis.operations@mpokket.com": "password123"}
+
+# Login Page
+if selected_page == "Login":
+    st.markdown(
+        """
+        <style>
+            /* Center-aligned container for the Login Page */
+        .login-container {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             flex-direction: column;
+        }
+        .login-input-box {
+            width: 300px; /* Adjust width as needed */
+            text-align: center;
+            align-items: center;
+            margin-bottom: 15px; /* Add spacing between inputs */
+        }
+        .stTextInput {
+        width: 300px;
+        height: 45px;
+        
+        }
+        
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .stButton button {
+            width: 200px;
+            margin-top: 10px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Center-aligned container
+    st.markdown('<div class="login-container">', unsafe_allow_html=True)
+    st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
+
+    # Input fields for email and password (scoped CSS class applied)
+    email = st.text_input(
+        "Email ID",
+        key="email_input",
+        placeholder="Enter your email ID",
+        label_visibility="collapsed",
+    )
+    password = st.text_input(
+        "Password",
+        type="password",
+        key="password_input",
+        placeholder="Enter your password",
+        label_visibility="collapsed",
+    )
+
+    # Login button
+    if st.button("Login"):
+        if email in allowed_credentials and allowed_credentials[email] == password:
+            st.session_state["login_email"] = email
+            st.session_state["selected_page"] = "How to Use"
+            st.success("Login successful! Redirecting to 'How to Use'...")
+            st.rerun()
+        else:
+            st.error("Invalid email or password. Please try again.")
+    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
+
+# How to Use Page
+elif selected_page == "How to Use":
+    st.title("How to Use the App")
+    st.markdown(
+        """
+        1. Review the **How to Use** section below.
+        2. Once ready, click **Next** to proceed to the **Input Form**.
+        """
+    )
+
+    if st.button("Next"):
+        st.session_state["selected_page"] = "Input Form"
+        st.rerun()
+
+# Input Form Page
+elif selected_page == "Input Form":
     st.markdown(f"""
     <style>
         .main {{
@@ -253,151 +399,6 @@ if uploaded_file is not None:
         }}
     </style>
 """, unsafe_allow_html=True)
-
-# Display logo
-def encode_image_to_base64(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode("utf-8")
-
-# Path to your image file
-image_path = "logo.png"
-
-try:
-    # Encode the image as Base64
-    encoded_image = encode_image_to_base64(image_path)
-    
-    # Inject the header with the image
-    st.markdown(f"""
-        <style>
-        header {{
-            display: flex;
-            padding: 0px;
-          
-        }}
-        header img {{
-                height: 110px; 
-                width:300px;
-                margin-right: 300px;
-               
-        }}
-        .H {{
-            padding: 15px;
-            font-size: 50px;
-            color: #333;
-            text-align: center;
-        }}
-        </style>
-        <header>
-            <img src="data:image/png;base64,{encoded_image}" alt="Logo">
-        </header>
-        <div class="H" ><h1>Onboarding Audit Portal</h1></div>
-        """, unsafe_allow_html=True)
-except FileNotFoundError:
-    st.error("Image file not found. Please check the file path.")
-
-#st.markdown('<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/302bf6105854045.5f82a86549930.png" class="logo">', unsafe_allow_html=True)
-
-# Display bold header text
-#st.markdown('<div class="header-text">Onboarding Audit Portal</div>', unsafe_allow_html=True)
-#st.image("logo.png")
-
-# Session State Initialization
-if "login_email" not in st.session_state:
-    st.session_state["login_email"] = None
-if "selected_page" not in st.session_state:
-    st.session_state["selected_page"] = "Login"
-
-# Page Navigation
-selected_page = st.session_state["selected_page"]
-
-# Define allowed emails and passwords (this is for demonstration; never hardcode credentials in production!)
-allowed_credentials = {"mis.operations@mpokket.com": "password123"}
-
-# Login Page
-if selected_page == "Login":
-    st.markdown(
-        """
-        <style>
-            /* Center-aligned container for the Login Page */
-        .login-container {
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             flex-direction: column;
-        }
-        .login-input-box {
-            width: 300px; /* Adjust width as needed */
-            text-align: center;
-            align-items: center;
-            margin-bottom: 15px; /* Add spacing between inputs */
-        }
-        .stTextInput {
-        width: 300px;
-        height: 45px;
-        
-        }
-        
-        .login-title {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .stButton button {
-            width: 200px;
-            margin-top: 10px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # Center-aligned container
-    st.markdown('<div class="login-container">', unsafe_allow_html=True)
-    st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
-
-    # Input fields for email and password (scoped CSS class applied)
-    email = st.text_input(
-        "Email ID",
-        key="email_input",
-        placeholder="Enter your email ID",
-        label_visibility="collapsed",
-    )
-    password = st.text_input(
-        "Password",
-        type="password",
-        key="password_input",
-        placeholder="Enter your password",
-        label_visibility="collapsed",
-    )
-
-    # Login button
-    if st.button("Login"):
-        if email in allowed_credentials and allowed_credentials[email] == password:
-            st.session_state["login_email"] = email
-            st.session_state["selected_page"] = "How to Use"
-            st.success("Login successful! Redirecting to 'How to Use'...")
-            st.rerun()
-        else:
-            st.error("Invalid email or password. Please try again.")
-    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
-
-# How to Use Page
-elif selected_page == "How to Use":
-    st.title("How to Use the App")
-    st.markdown(
-        """
-        1. Review the **How to Use** section below.
-        2. Once ready, click **Next** to proceed to the **Input Form**.
-        """
-    )
-
-    if st.button("Next"):
-        st.session_state["selected_page"] = "Input Form"
-        st.rerun()
-
-# Input Form Page
-elif selected_page == "Input Form":
 
     # Data storage
     if "input_table" not in st.session_state:
@@ -631,7 +632,7 @@ elif selected_page == "Input Form":
         
         st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
         date_of_audit = st.date_input("",key="date_of_audit",label_visibility="collapsed")
-
+    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
     # Add Row Button
     if "input_table" not in st.session_state:
         st.session_state["input_table"] = []

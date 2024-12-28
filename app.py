@@ -152,7 +152,7 @@ try:
             text-align: center;
         }}
         </style>
-        .stButton button {{
+    .stButton button {{
         background-color: yellow !important; /* Yellow background */
         color: black !important; /* Black text */
         border: 2px solid #000000; /* Border to match select box */

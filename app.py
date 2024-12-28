@@ -343,6 +343,16 @@ if selected_page == "Login":
         margin-top: 10px;
     }
         </style>
+          <div class="login-container">
+        <div class="login-title">Login to Your Account</div>
+        <div class="login-input-box">
+            <label for="username">Username:</label>
+        </div>
+        <div class="login-input-box">
+            <label for="password">Password:</label>
+        </div>
+    </div>
+
         """,
         unsafe_allow_html=True,
     )

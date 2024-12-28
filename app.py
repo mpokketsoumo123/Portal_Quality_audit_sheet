@@ -334,7 +334,7 @@ if selected_page == "Login":
         }
         .stTextInput {
         width: 300px; /* Set a fixed width for input boxes */
-        hight:100%;
+        hight: 200px;
         margin-bottom: 15px;
         }
         

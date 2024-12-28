@@ -244,7 +244,7 @@ elif selected_page == "How to Use":
 elif selected_page == "Input Form":
     st.markdown(f"""
     <style>
-        .main {{
+    .main {{
         overflow: auto; /* Enable scrolling */
         width: 100vw; /* Set viewport width */
         height: 100vh; /* Set viewport height */
@@ -291,32 +291,6 @@ elif selected_page == "Input Form":
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
-    div[data-baseweb="input"] > div {{
-        background-color: #FFFFFF; /* Black dropdown background */
-        color: #000000; /* White text */
-        border: 2px solid #000000 !important; /* Orange border */
-        font-size: 16px; /* Larger text */
-        border-radius: 5px; /* Rounded corners */
-        width: 300px;
-        height:60px;
-        padding: 5px;
-        margin: 5px 0;
-    }}
-    .stTextArea {{
-        width: 300px;
-        height: 60px;
-        
-        }}
-    .stTextArea {{
-            background-color: #FFFFFF !important;
-            border: 2px solid #000000 !important;
-            color: #000000 !important;
-            padding: 10px !important;
-            font-size: 16px !important;
-            width: 300px ;
-            border-radius: 5px ;
-            height: 35px;
-        }}
 
     /* Style for the dropdown label */
     label {{
@@ -326,7 +300,28 @@ elif selected_page == "Input Form":
         display: block;
         margin-bottom: 8px;
     }}
+    div[data-baseweb="input"] > div {{
+        background-color: #FFFFFF !important; /* Black dropdown background */
+        color: #000000 !important; /* White text */
+        border: 2px solid #000000 !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
+        border-radius: 5px !important; /* Rounded corners */
+        width: 300px !important;
+        height:60px !important;
+        padding: 5px !important;
+        margin: 5px 0;
+    }}
+    div[data-baseweb="select"] > div {{
+        color: #000000 !important; /* White text for dropdown and select options */
+    }}
     /* Style for the dropdown label */
+    label {{
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 18px !important; /* Increase label size */
+        display: block;
+        margin-bottom: 8px;
+    }}
 
     /* Button styling */
     .stButton button {{
@@ -377,6 +372,31 @@ elif selected_page == "Input Form":
     .stSelectbox {{
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
+    .stTextInput div[role="textbox"]::after {{
+            content: none;
+        }}
+    .stTextInput input {{
+            background-color: #ffffff !important; /* Light grey background */
+            color: #000000 !important; /* Dark text */
+            font-size: 16px !important; /* Larger text */
+            width: 300px !important; /* Set a fixed width */
+            height: 40px !important; /* Adjust input height */
+        }}
+
+    .stTextInput input:focus {{
+            border-color: #ff6347 !important; /* Focus border color */
+            background-color: #fff !important; /* White background on focus */
+        }}
+    .stTextArea textarea {{
+            background-color: #FFFFFF !important;
+            border: 2px solid #000000 !important;
+            color: #000000 !important;
+            padding: 10px !important;
+            font-size: 16px !important;
+            width: 300px ;
+            border-radius: 5px ;
+            height: 35px;
+        }}
     </style>
 """, unsafe_allow_html=True)
 

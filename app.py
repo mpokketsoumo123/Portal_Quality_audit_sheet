@@ -317,6 +317,8 @@ allowed_credentials = {"mis.operations@mpokket.com": "password123"}
 
 # Login Page
 if selected_page == "Login":
+    col1,col2,col3=st.columns(3)
+    
     st.markdown(
         """
         <style>
@@ -353,25 +355,25 @@ if selected_page == "Login":
         """,
         unsafe_allow_html=True,
     )
-
+    with col2:
     # Center-aligned container
-    st.markdown('<div class="login-container">', unsafe_allow_html=True)
-    st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
-
-    # Input fields for email and password (scoped CSS class applied)
-    email = st.text_input(
-        "Email ID",
-        key="email_input",
-        placeholder="Enter your email ID",
-        label_visibility="collapsed",
-    )
-    password = st.text_input(
-        "Password",
-        type="password",
-        key="password_input",
-        placeholder="Enter your password",
-        label_visibility="collapsed",
-    )
+        st.markdown('<div class="login-container">', unsafe_allow_html=True)
+        st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
+    
+        # Input fields for email and password (scoped CSS class applied)
+        email = st.text_input(
+            "Email ID",
+            key="email_input",
+            placeholder="Enter your email ID",
+            label_visibility="collapsed",
+        )
+        password = st.text_input(
+            "Password",
+            type="password",
+            key="password_input",
+            placeholder="Enter your password",
+            label_visibility="collapsed",
+        )
 
     # Login button
     if st.button("Login"):

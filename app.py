@@ -281,10 +281,10 @@ try:
         }}
         .H {{
             padding: 15px;
-            margin:300px:
+            
             font-size: 50px;
             color: #333;
-            align-items:center;
+            text-align: center;
         }}
         </style>
         <header>

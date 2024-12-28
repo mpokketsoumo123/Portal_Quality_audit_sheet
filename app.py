@@ -334,7 +334,7 @@ if selected_page == "Login":
         }
         .stTextInput {
         width: 300px;
-        height: 40px;
+        height: 50px;
         align-items: center;
         margin-bottom: 15px;
         }

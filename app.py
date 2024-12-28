@@ -291,7 +291,7 @@ elif selected_page == "Input Form":
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
-    div[data-baseweb="input"] > div {{
+    div[data-baseweb="area"] > div {{
         background-color: #FFFFFF; /* Black dropdown background */
         color: #000000; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
@@ -302,7 +302,7 @@ elif selected_page == "Input Form":
         padding: 5px;
         margin: 5px 0;
     }}
-    .stTextInput {{
+    .stTextArea {{
         width: 300px;
         height: 100px;
         
@@ -446,7 +446,7 @@ elif selected_page == "Input Form":
         auditor_designation = st.selectbox("", ["TL", "Trainer"])
         
         st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
-        call_duration = st.text_input("",key="call_duration",label_visibility="collapsed")
+        call_duration = st.text_area("",key="call_duration",label_visibility="collapsed")
 
         st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
         Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1",label_visibility="collapsed")

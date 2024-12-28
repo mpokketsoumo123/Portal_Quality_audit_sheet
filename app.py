@@ -380,23 +380,12 @@ elif selected_page == "Input Form":
             color: #000000 !important; /* Dark text */
             font-size: 16px !important; /* Larger text */
             width: 300px !important; /* Set a fixed width */
-            height: 40px !important; /* Adjust input height */
+            height: 60px !important; /* Adjust input height */
         }}
 
     .stTextInput input:focus {{
             border-color: #ff6347 !important; /* Focus border color */
             background-color: #fff !important; /* White background on focus */
-        }}
-    .stTextArea {{
-        background-color: #FFFFFF !important; /* Black dropdown background */
-        color: #000000 !important; /* White text */
-        border: 2px solid #000000 !important; /* Orange border */
-        font-size: 16px !important; /* Larger text */
-        border-radius: 5px !important; /* Rounded corners */
-        width: 300px !important;
-        height:60px !important;
-        padding: 5px !important;
-        margin: 5px 0;
         }}
     </style>
 """, unsafe_allow_html=True)
@@ -477,7 +466,7 @@ elif selected_page == "Input Form":
         auditor_designation = st.selectbox("", ["TL", "Trainer"])
         
         st.markdown('<div class="custom-label">Enter Call Duration (HH:mm:ss):</div>', unsafe_allow_html=True)
-        call_duration = st.text_area("",key="call_duration",label_visibility="collapsed")
+        call_duration = st.text_input("",key="call_duration",label_visibility="collapsed")
 
         st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
         Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1",label_visibility="collapsed")
@@ -532,13 +521,13 @@ elif selected_page == "Input Form":
 
         # User Register Number (Numeric validation)
         st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-        user_register_number = st.text_area("",key="user_register_number",label_visibility="collapsed")
+        user_register_number = st.text_input("",key="user_register_number",label_visibility="collapsed")
 
         st.markdown('<div class="custom-label">Enter Calling Number:</div>', unsafe_allow_html=True)
-        calling_number = st.text_area("",key="calling_number",label_visibility="collapsed")
+        calling_number = st.text_input("",key="calling_number",label_visibility="collapsed")
         #remarks
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
-        Remarks = st.text_area("",key="remarks",height=68,label_visibility="collapsed")
+        Remarks = st.text_input("",key="remarks",height=68,label_visibility="collapsed")
 
         
 
@@ -580,13 +569,13 @@ elif selected_page == "Input Form":
         
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L1:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L1 = st.text_area("",key="DCS_Tagging_L1",label_visibility="collapsed")
+        DCS_Tagging_L1 = st.text_input("",key="DCS_Tagging_L1",label_visibility="collapsed")
 
         st.markdown('<div class="custom-label">Enter DCS Tagging L2:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L2 = st.text_area("",key="DCS_Tagging_L2",label_visibility="collapsed")
+        DCS_Tagging_L2 = st.text_input("",key="DCS_Tagging_L2",label_visibility="collapsed")
         
         st.markdown('<div class="custom-label">Enter DCS Tagging L3:</div>', unsafe_allow_html=True)
-        DCS_Tagging_L3 = st.text_area("",key="DCS_Tagging_L3",label_visibility="collapsed")
+        DCS_Tagging_L3 = st.text_input("",key="DCS_Tagging_L3",label_visibility="collapsed")
 
     with col4:
         st.markdown('<div class="custom-label">Fatal:</div>', unsafe_allow_html=True)
@@ -626,10 +615,10 @@ elif selected_page == "Input Form":
         audit_name = st.selectbox("", ["1", "2"],key="audit_name")
 
         st.markdown('<div class="custom-label">Actual Tagging L2:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L2 = st.text_area("",key="Actual_Tagging_L2",label_visibility="collapsed")
+        Actual_Tagging_L2 = st.text_input("",key="Actual_Tagging_L2",label_visibility="collapsed")
 
         st.markdown('<div class="custom-label">Actual Tagging L3:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L3 = st.text_area("",key="Actual_Tagging_L3",label_visibility="collapsed")
+        Actual_Tagging_L3 = st.text_input("",key="Actual_Tagging_L3",label_visibility="collapsed")
         
         st.markdown('<div class="custom-label">Enter Date of Audit:</div>', unsafe_allow_html=True)
         date_of_audit = st.date_input("",key="date_of_audit",label_visibility="collapsed")

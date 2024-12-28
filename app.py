@@ -304,7 +304,7 @@ elif selected_page == "Input Form":
     }}
     .stTextInput {{
         width: 300px;
-        height: 45px;
+        height: 100px;
         
         }}
 

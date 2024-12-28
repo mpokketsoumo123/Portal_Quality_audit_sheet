@@ -113,27 +113,6 @@ try:
     # Inject the header with the image
     st.markdown(f"""
         <style>
-        .main {{
-        overflow: auto; /* Enable scrolling */
-        width: 100vw; /* Set viewport width */
-        height: 100vh; /* Set viewport height */
-        white-space: nowrap; /* Prevent wrapping */
-    }}
-    /* Ensure columns and content don't wrap */
-    .block-container {{
-        display: flex; 
-        flex-wrap: nowrap; /* Disable wrapping */
-    }}
-    .stApp {{
-            background-image: url('data:image/png;base64,{img_base64}');
-            background-size: cover;
-            color: black; /* Set default text color to black */
-            max-width: 100%;
-            padding: 0;
-            margin: 0;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-        }}
-
         header {{
             display: flex;
             padding: 0px;
@@ -151,56 +130,12 @@ try:
             color: #333;
             text-align: center;
         }}
-    .stButton button {{
-        background-color: yellow !important; /* Yellow background */
-        color: black !important; /* Black text */
-        border: 2px solid #000000; /* Border to match select box */
-        padding: 20px 30px;
-        font-weight: bold;
-        font-size: 14px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 20px; /* Centering the button */
-    }}
-    
-    /* Button hover effect */
-    .stButton button:hover {{
-        background-color: #f9a825 !important;
-        color: black !important;
-    }}
-
-    /* Increase logo size */
-    .logo {{
-        width: 250px;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-    }}
-
-    /* Footer text styling */
-    .footer {{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #1E90FF;
-        color: black;
-        text-align: center;
-        padding: 10px 0;
-        font-weight: bold;
-    }}
-    .custom-label {{
-        font-size: 18px; /* Adjust font size */
-        font-weight: bold; /* Optional: Make it bold */
-        color: #333; /* Optional: Change text color */
-        margin-bottom: 0px; /* Reduce spacing below the label */
-    }}
-    </style>
+        </style>
         <header>
             <img src="data:image/png;base64,{encoded_image}" alt="Logo">
         </header>
         <div class="H" ><h1>Onboarding Audit Portal</h1></div>
+
         """, unsafe_allow_html=True)
 except FileNotFoundError:
     st.error("Image file not found. Please check the file path.")

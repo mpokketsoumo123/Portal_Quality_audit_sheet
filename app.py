@@ -375,7 +375,7 @@ elif selected_page == "Input Form":
     .stTextInput div[role="textbox"]::after {{
             content: none;
         }}
-    .stTextInput input {{
+    .stTextInput{{
             background-color: #ffffff !important; /* Light grey background */
             color: #000000 !important; /* Dark text */
             font-size: 16px !important; /* Larger text */
@@ -480,7 +480,7 @@ elif selected_page == "Input Form":
         call_duration = st.text_area("",key="call_duration",label_visibility="collapsed")
 
         st.markdown('<div class="custom-label">Actual Tagging L1:</div>', unsafe_allow_html=True)
-        Actual_Tagging_L1 = st.text_area("",key="Actual_Tagging_L1",label_visibility="collapsed")
+        Actual_Tagging_L1 = st.text_input("",key="Actual_Tagging_L1",label_visibility="collapsed")
 
         # Date of Call (Date format validation)
         st.markdown('<div class="custom-label">Enter Date of Call:</div>', unsafe_allow_html=True)

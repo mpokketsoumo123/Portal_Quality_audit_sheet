@@ -329,8 +329,14 @@ if selected_page == "Login":
         .login-input-box {
             width: 300px; /* Adjust width as needed */
             text-align: center;
+            align-items: center;
             margin-bottom: 15px; /* Add spacing between inputs */
         }
+        .stTextInput {
+        width: 300px; /* Set a fixed width for input boxes */
+        margin-bottom: 15px;
+        }
+        
         .login-title {
             font-size: 24px;
             font-weight: bold;

@@ -382,11 +382,6 @@ elif selected_page == "Input Form":
             width: 300px !important; /* Set a fixed width */
             height: 60px !important; /* Adjust input height */
         }}
-
-    .stTextInput input:focus {{
-            border-color: #ff6347 !important; /* Focus border color */
-            background-color: #fff !important; /* White background on focus */
-        }}
     </style>
 """, unsafe_allow_html=True)
 
@@ -527,7 +522,7 @@ elif selected_page == "Input Form":
         calling_number = st.text_input("",key="calling_number",label_visibility="collapsed")
         #remarks
         st.markdown('<div class="custom-label">Remarks:</div>', unsafe_allow_html=True)
-        Remarks = st.text_input("",key="remarks",height=68,label_visibility="collapsed")
+        Remarks = st.text_input("",key="remarks",label_visibility="collapsed")
 
         
 

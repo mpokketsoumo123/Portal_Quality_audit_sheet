@@ -339,7 +339,9 @@ if selected_page == "Login":
         width: 300px;
         
         }
-        
+        .stTextInput{
+        width:300px;
+        }
         .login-title {
             font-size: 30px;
             font-weight: bold;
@@ -366,8 +368,9 @@ if selected_page == "Login":
             placeholder="Enter your email ID",
             label_visibility="collapsed",
         )
-        password = st.text_area(
+        password = st.text_input(
             "Password",
+            type="password"
             key="password_input",
             placeholder="Enter your password",
             label_visibility="collapsed",

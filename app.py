@@ -275,9 +275,10 @@ try:
           
         }}
         header img {{
-            height: 100px;
-            margin-right: 300px;
-            align-items: top;
+                height: 110px; 
+                width:300px;
+                margin-right: 300px;
+               
         }}
         .H {{
             padding: 15px;

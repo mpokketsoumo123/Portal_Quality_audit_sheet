@@ -388,14 +388,15 @@ elif selected_page == "Input Form":
             background-color: #fff !important; /* White background on focus */
         }}
     .stTextArea {{
-            background-color: #FFFFFF !important;
-            border: 2px solid #000000 !important;
-            color: #000000 !important;
-            padding: 10px !important;
-            font-size: 16px !important;
-            width: 300px ;
-            border-radius: 5px ;
-            height: 35px;
+        background-color: #FFFFFF !important; /* Black dropdown background */
+        color: #000000 !important; /* White text */
+        border: 2px solid #000000 !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
+        border-radius: 5px !important; /* Rounded corners */
+        width: 300px !important;
+        height:60px !important;
+        padding: 5px !important;
+        margin: 5px 0;
         }}
     </style>
 """, unsafe_allow_html=True)

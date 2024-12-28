@@ -387,7 +387,7 @@ elif selected_page == "Input Form":
             border-color: #ff6347 !important; /* Focus border color */
             background-color: #fff !important; /* White background on focus */
         }}
-    .stTextArea textarea {{
+    .stTextArea {{
             background-color: #FFFFFF !important;
             border: 2px solid #000000 !important;
             color: #000000 !important;

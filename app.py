@@ -282,7 +282,6 @@ try:
         }}
         .H {{
             padding: 15px;
-            
             font-size: 50px;
             color: #333;
             text-align: center;
@@ -334,8 +333,7 @@ if selected_page == "Login":
         }
         .stTextInput {
         width: 300px;
-        height: 100px;
-        align-items: center;
+        height: 45px;
         margin-bottom: 15px;
         }
         

@@ -337,12 +337,12 @@ if selected_page == "Login":
         }
         .stTextInput {
         width: 300px;
-        height: 70px;
+        height: 60px;
         
         }
         
         .login-title {
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 20px;

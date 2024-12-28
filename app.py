@@ -319,40 +319,29 @@ if selected_page == "Login":
     st.markdown(
         """
         <style>
-         /* Center-aligned container for the Login Page */
-    .login-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh; /* Makes the container fill the full viewport height */
-    }
-    .login-input-box {
-        width: 300px; /* Adjust width as needed */
-        text-align: center;
-        margin-bottom: 15px; /* Add spacing between inputs */
-    }
-    .login-title {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .stButton button {
-        width: 200px;
-        margin-top: 10px;
-    }
+            /* Center-aligned container for the Login Page */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Adjust height as needed */  
+        }
+        .login-input-box {
+            width: 300px; /* Adjust width as needed */
+            text-align: center;
+            margin-bottom: 15px; /* Add spacing between inputs */
+        }
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .stButton button {
+            width: 200px;
+            margin-top: 10px;
+        }
         </style>
-          <div class="login-container">
-        <div class="login-title">Login to Your Account</div>
-        <div class="login-input-box">
-            <label for="username">Username:</label>
-        </div>
-        <div class="login-input-box">
-            <label for="password">Password:</label>
-        </div>
-    </div>
-
         """,
         unsafe_allow_html=True,
     )

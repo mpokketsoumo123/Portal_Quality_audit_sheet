@@ -291,7 +291,7 @@ elif selected_page == "Input Form":
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
     }}
-    div[data-baseweb="area"] > div {{
+    div[data-baseweb="input"] > div {{
         background-color: #FFFFFF; /* Black dropdown background */
         color: #000000; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
@@ -304,7 +304,7 @@ elif selected_page == "Input Form":
     }}
     .stTextArea {{
         width: 300px;
-        height: 100px;
+        height: 60px;
         
         }}
 

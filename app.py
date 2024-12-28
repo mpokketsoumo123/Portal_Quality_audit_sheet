@@ -271,9 +271,9 @@ try:
         <style>
         header {{
             display: flex;
-            align-items: center;
+            
             justify-content: flex-start;
-            padding: 30px;
+            padding: 10px;
           
         }}
         header img {{

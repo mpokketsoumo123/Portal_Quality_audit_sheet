@@ -271,7 +271,7 @@ try:
         <style>
         header {{
             display: flex;
-            padding: 10px;
+            padding: 0px;
           
         }}
         header img {{
@@ -280,10 +280,11 @@ try:
             align-items: top;
         }}
         .H {{
-            padding: 10px;
+            padding: 15px;
+            margin:300px:
             font-size: 50px;
             color: #333;
-             align-items:center;
+            align-items:center;
         }}
         </style>
         <header>

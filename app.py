@@ -97,6 +97,163 @@ if uploaded_file is not None:
 
     # Add custom CSS with local image as background
     
+    st.markdown(f"""
+    <style>
+        .main {{
+        overflow: auto; /* Enable scrolling */
+        width: 100vw; /* Set viewport width */
+        height: 100vh; /* Set viewport height */
+        white-space: nowrap; /* Prevent wrapping */
+    }}
+    /* Ensure columns and content don't wrap */
+    .block-container {{
+        display: flex; 
+        flex-wrap: nowrap; /* Disable wrapping */
+    }}
+    .stApp {{
+            background-image: url('data:image/png;base64,{img_base64}');
+            background-size: cover;
+            color: black; /* Set default text color to black */
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }}
+
+    /* Make tables responsive */
+        
+    /* Center the bold text in the header */
+    .header-text {{
+        text-align: center;
+        font-weight: bold;
+        font-size: 80px;
+        color: black;
+        padding-top: 20px;
+    }}
+
+    /* Dropdown container and options styling */
+    div[data-baseweb="select"] > div {{
+        background-color: #ffffff !important; /* Black dropdown background */
+        color: #000000 !important; /* White text */
+        border: 2px solid #000000 !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
+        border-radius: 5px !important; /* Rounded corners */
+        padding: 5px !important;
+        width: 300px !important;
+        height:60px !important;
+    }}
+
+    div[data-baseweb="select"] > div {{
+        color: #000000 !important; /* White text for dropdown and select options */
+    }}
+
+    /* Style for the dropdown label */
+    label {{
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 18px !important; /* Increase label size */
+        display: block;
+        margin-bottom: 8px;
+    }}
+    div[data-baseweb="input"] > div {{
+        background-color: #FFFFFF !important; /* Black dropdown background */
+        color: #000000 !important; /* White text */
+        border: 2px solid #000000 !important; /* Orange border */
+        font-size: 16px !important; /* Larger text */
+        border-radius: 5px !important; /* Rounded corners */
+        width: 300px !important;
+        height:60px !important;
+        padding: 5px !important;
+        margin: 5px 0;
+    }}
+    div[data-baseweb="select"] > div {{
+        color: #000000 !important; /* White text for dropdown and select options */
+    }}
+    /* Style for the dropdown label */
+    label {{
+        font-weight: bold !important;
+        color: black !important;
+        font-size: 18px !important; /* Increase label size */
+        display: block;
+        margin-bottom: 8px;
+    }}
+
+    /* Button styling */
+    .stButton button {{
+        background-color: yellow !important; /* Yellow background */
+        color: black !important; /* Black text */
+        border: 2px solid #000000; /* Border to match select box */
+        padding: 20px 30px;
+        font-weight: bold;
+        font-size: 14px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px; /* Centering the button */
+    }}
+    
+    /* Button hover effect */
+    .stButton button:hover {{
+        background-color: #f9a825 !important;
+        color: black !important;
+    }}
+
+    /* Increase logo size */
+    .logo {{
+        width: 250px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }}
+
+    /* Footer text styling */
+    .footer {{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1E90FF;
+        color: black;
+        text-align: center;
+        padding: 10px 0;
+        font-weight: bold;
+    }}
+    .custom-label {{
+        font-size: 18px; /* Adjust font size */
+        font-weight: bold; /* Optional: Make it bold */
+        color: #333; /* Optional: Change text color */
+        margin-bottom: 0px; /* Reduce spacing below the label */
+    }}
+    .stSelectbox {{
+        margin-top: -20px; /* Reduce spacing above the dropdown */
+    }}
+    .stTextInput div[role="textbox"]::after {{
+            content: none;
+        }}
+    .stTextInput input {{
+            background-color: #ffffff !important; /* Light grey background */
+            color: #000000 !important; /* Dark text */
+            font-size: 16px !important; /* Larger text */
+            width: 300px !important; /* Set a fixed width */
+            height: 40px !important; /* Adjust input height */
+        }}
+
+    .stTextInput input:focus {{
+            border-color: #ff6347 !important; /* Focus border color */
+            background-color: #fff !important; /* White background on focus */
+        }}
+    .stTextArea textarea {{
+            background-color: #FFFFFF !important;
+            border: 2px solid #000000 !important;
+            color: #000000 !important;
+            padding: 10px !important;
+            font-size: 16px !important;
+            width: 300px ;
+            border-radius: 5px ;
+            height: 35px;
+        }}
+    </style>
+""", unsafe_allow_html=True)
 
 # Display logo
 def encode_image_to_base64(image_path):

@@ -335,9 +335,8 @@ if selected_page == "Login":
             align-items: center;
             margin-bottom: 15px; /* Add spacing between inputs */
         }
-        .stTextInput {
+        .stTextArea {
         width: 300px;
-        height: 60px;
         
         }
         
@@ -361,13 +360,13 @@ if selected_page == "Login":
         st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
     
         # Input fields for email and password (scoped CSS class applied)
-        email = st.text_input(
+        email = st.text_area(
             "Email ID",
             key="email_input",
             placeholder="Enter your email ID",
             label_visibility="collapsed",
         )
-        password = st.text_input(
+        password = st.text_area(
             "Password",
             type="password",
             key="password_input",

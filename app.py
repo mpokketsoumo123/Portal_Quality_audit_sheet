@@ -307,6 +307,16 @@ elif selected_page == "Input Form":
         height: 60px;
         
         }}
+    .stTextArea {{
+            background-color: #FFFFFF !important;
+            border: 2px solid #000000 !important;
+            color: #000000 !important;
+            padding: 10px !important;
+            font-size: 16px !important;
+            width: 300px ;
+            border-radius: 5px ;
+            height: 35px;
+        }}
 
     /* Style for the dropdown label */
     label {{

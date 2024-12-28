@@ -271,8 +271,6 @@ try:
         <style>
         header {{
             display: flex;
-            
-            justify-content: flex-start;
             padding: 10px;
           
         }}

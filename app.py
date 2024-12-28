@@ -280,9 +280,10 @@ try:
             align-items: top;
         }}
         .H {{
-            margin: 0;
+            padding: 10px;
             font-size: 50px;
             color: #333;
+             align-items:center;
         }}
         </style>
         <header>

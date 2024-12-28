@@ -302,6 +302,11 @@ elif selected_page == "Input Form":
         padding: 5px;
         margin: 5px 0;
     }}
+    .stTextInput {{
+        width: 300px;
+        height: 45px;
+        
+        }}
 
     /* Style for the dropdown label */
     label {{
@@ -312,13 +317,6 @@ elif selected_page == "Input Form":
         margin-bottom: 8px;
     }}
     /* Style for the dropdown label */
-    label {{
-        font-weight: bold !important;
-        color: black !important;
-        font-size: 18px !important; /* Increase label size */
-        display: block;
-        margin-bottom: 8px;
-    }}
 
     /* Button styling */
     .stButton button {{

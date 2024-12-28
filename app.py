@@ -338,8 +338,8 @@ if selected_page == "Login":
             margin-bottom: 20px;
         }
         .stButton button {
-            width: 200px;
-            margin-top: 10px;
+            width: 100px;
+            margin-top: 50px;
         }
         </style>
         """,

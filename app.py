@@ -317,7 +317,7 @@ allowed_credentials = {"mis.operations@mpokket.com": "password123"}
 
 # Login Page
 if selected_page == "Login":
-    col1,col2,col3=st.columns(3)
+    col1,col2,col3,col4,col5=st.columns(5)
     
     st.markdown(
         """
@@ -355,7 +355,7 @@ if selected_page == "Login":
         """,
         unsafe_allow_html=True,
     )
-    with col2:
+    with col3:
     # Center-aligned container
         st.markdown('<div class="login-container">', unsafe_allow_html=True)
         st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)

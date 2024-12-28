@@ -337,7 +337,7 @@ if selected_page == "Login":
         }
         .stTextInput {
         width: 300px;
-        height: 45px;
+        height: 70px;
         
         }
         

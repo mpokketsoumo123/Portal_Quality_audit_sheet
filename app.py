@@ -321,10 +321,11 @@ if selected_page == "Login":
         <style>
             /* Center-aligned container for the Login Page */
         .login-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* Adjust height as needed */  
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 100vh; /* Full viewport height */
+             flex-direction: column;
         }
         .login-input-box {
             width: 300px; /* Adjust width as needed */

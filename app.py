@@ -334,7 +334,7 @@ if selected_page == "Login":
         .stTextInput {
         width: 300px;
         height: 45px;
-        margin-bottom: 15px;
+        
         }
         
         .login-title {

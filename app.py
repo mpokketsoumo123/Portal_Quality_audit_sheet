@@ -333,7 +333,8 @@ if selected_page == "Login":
             margin-bottom: 15px; /* Add spacing between inputs */
         }
         .stTextInput {
-        width: 300px; /* Set a fixed width for input boxes */
+        width: 300px;
+        height: 40px;
         align-items: center;
         margin-bottom: 15px;
         }

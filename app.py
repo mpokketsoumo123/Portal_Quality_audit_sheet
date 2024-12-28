@@ -279,6 +279,7 @@ try:
         header img {{
             height: 100px;
             margin-right: 300px;
+            align-items: top;
         }}
         header h1 {{
             margin: 0;

@@ -370,7 +370,7 @@ if selected_page == "Login":
         )
         password = st.text_input(
             "Password",
-            type="password"
+            type="password",
             key="password_input",
             placeholder="Enter your password",
             label_visibility="collapsed",

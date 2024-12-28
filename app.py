@@ -279,7 +279,7 @@ try:
             margin-right: 300px;
             align-items: top;
         }}
-        header h1 {{
+        .H {{
             margin: 0;
             font-size: 50px;
             color: #333;
@@ -287,8 +287,8 @@ try:
         </style>
         <header>
             <img src="data:image/png;base64,{encoded_image}" alt="Logo">
-            <h1>Onboarding Audit Portal</h1>
         </header>
+        <div class="H" ><h1>Onboarding Audit Portal</h1></div>
         """, unsafe_allow_html=True)
 except FileNotFoundError:
     st.error("Image file not found. Please check the file path.")

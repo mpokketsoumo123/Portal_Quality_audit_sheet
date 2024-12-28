@@ -292,14 +292,14 @@ elif selected_page == "Input Form":
         color: #000000 !important; /* White text for dropdown and select options */
     }}
     div[data-baseweb="input"] > div {{
-        background-color: #FFFFFF !important; /* Black dropdown background */
-        color: #000000 !important; /* White text */
+        background-color: #FFFFFF; /* Black dropdown background */
+        color: #000000; /* White text */
         border: 2px solid #000000 !important; /* Orange border */
-        font-size: 16px !important; /* Larger text */
-        border-radius: 5px !important; /* Rounded corners */
-        width: 300px !important;
-        height:60px !important;
-        padding: 5px !important;
+        font-size: 16px; /* Larger text */
+        border-radius: 5px; /* Rounded corners */
+        width: 300px;
+        height:60px;
+        padding: 5px;
         margin: 5px 0;
     }}
 

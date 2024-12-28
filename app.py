@@ -197,7 +197,7 @@ try:
         color: #333; /* Optional: Change text color */
         margin-bottom: 0px; /* Reduce spacing below the label */
     }}
-
+    </style>
         <header>
             <img src="data:image/png;base64,{encoded_image}" alt="Logo">
         </header>

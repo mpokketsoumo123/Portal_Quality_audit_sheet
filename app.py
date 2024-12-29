@@ -333,7 +333,7 @@ if selected_page == "Login":
             width: 300px; /* Adjust width as needed */
             text-align: center;
             align-items: center;
-            margin-bottom: 15px; /* Add spacing between inputs */
+             /* Add spacing between inputs */
         }
         .stTextArea {
         width: 300px;

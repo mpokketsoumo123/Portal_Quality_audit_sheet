@@ -1044,6 +1044,7 @@ elif selected_page == "Input Form":
                     st.session_state["row_index_to_update"] = matching_index
                     st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
                     st.session_state["show_update_form"] = True
+                    components.html("<script>scrollToBottom();</script>", heigh=20, width=0)
                     st.rerun()
                 
                 # Show update form if selected

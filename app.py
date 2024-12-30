@@ -1,3 +1,4 @@
+
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
@@ -790,14 +791,10 @@ elif selected_page == "Input Form":
     # Add Row Button
     if "input_table" not in st.session_state:
         st.session_state["input_table"] = []
-    if "show_update_form" not in st.session_state:
-        st.session_state["show_update_form"] = False
     
-    if "selected_row" not in st.session_state:
-        st.session_state["selected_row"] = {}
-    
-    if "row_index_to_update" not in st.session_state:
-        st.session_state["row_index_to_update"] = None
+    # Initialize session state for the update form values
+    if "update_form_values" not in st.session_state:
+        st.session_state["update_form_values"] = {}
     error_placeholder = st.empty()
     if st.button("Add Row"):
         data = {
@@ -1005,11 +1002,11 @@ elif selected_page == "Input Form":
         
             with col1:
                 st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-                user_register_number_input = st.text_input("", key="1",label_visibility="collapsed")
+                user_register_number_input = st.text_area("", key="1",label_visibility="collapsed")
         
             with col2:
                 st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-                emp_id_input = st.text_input("", key="emp_id_input",placeholder="Type here...",label_visibility="collapsed")
+                emp_id_input = st.text_area("", key="emp_id_input",placeholder="Type here...",label_visibility="collapsed")
         
             with col3:
                 st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
@@ -1026,7 +1023,7 @@ elif selected_page == "Input Form":
                         and row.get("EMP ID") == emp_id_input):
                     matching_index = index
                     break
-        
+                
             if matching_index is None:
                 st.error("No matching row found. Please check the inputs.")
             else:
@@ -1039,26 +1036,28 @@ elif selected_page == "Input Form":
                     st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
                     st.session_state["show_update_form"] = True
                     st.rerun()
-        
-        # Show update form if selected
+                
+                # Show update form if selected
         if st.session_state.get("show_update_form", False):
             st.markdown("### Update Row:")
             updated_row = {}
             cols = st.columns(4)
-        
-            # Populate the update form with existing values
+                
+                    # Populate the update form with existing values
             for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
                 with cols[i % 4]:
                     updated_row[key] = st.text_input(f"{key}:", value=value)
-        
+                
+                    # Save updated row
             if st.button("Save Updated Row"):
                 st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
-                st.session_state["show_update_form"] = False
+                st.session_state["show_update_form"] = False  # Hide update form after saving
                 st.success("Row updated!")
                 st.rerun()
-            
+
+    
         # Final Submit Button
         if st.session_state["input_table"] and st.button("Final Submit"):
             try:

@@ -1032,6 +1032,14 @@ elif selected_page == "Input Form":
                     st.success("Row deleted successfully!")
                     st.rerun()
                 elif operation == "Update Row":
+                    scroll_js = """
+                                    <script>
+                                        function scrollToBottom() {
+                                            window.scrollTo(0, document.body.scrollHeight);
+                                        }
+                                    </script>
+                                    """
+                    components.html(scroll_js, height=0, width=0)
                     st.session_state["row_index_to_update"] = matching_index
                     st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
                     st.session_state["show_update_form"] = True

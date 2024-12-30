@@ -364,11 +364,11 @@ if selected_page == "Login":
         """,
         unsafe_allow_html=True,
     )
-
+    st.markdown('<div class="login-container">', unsafe_allow_html=True)
+    st.markdown('<div class="login-box">', unsafe_allow_html=True)
     with col3:
         # Center-aligned login form
-        st.markdown('<div class="login-container">', unsafe_allow_html=True)
-        st.markdown('<div class="login-box">', unsafe_allow_html=True)
+        
         st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
 
         # Input fields for email and password
@@ -395,8 +395,8 @@ if selected_page == "Login":
                 st.rerun()
             else:
                 st.error("Invalid email or password. Please try again.")
-        st.markdown('</div>', unsafe_allow_html=True)  # Close the login-box div
-        st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
+    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-box div
+    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
 
 # How to Use Page
 elif selected_page == "How to Use":

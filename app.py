@@ -1009,7 +1009,7 @@ elif selected_page == "Input Form":
                     if st.button(f"Update Row {index + 1}", key=f"update_button_{index}"):
                         st.session_state["row_index_to_update"] = index
                         st.session_state["selected_row"] = row
-                        st.query_params = {"page": "update"}
+                        st.query_params["page"] = "update"
                         st.rerun()
                 with col3:
                     if st.button(f"Delete Row {index + 1}", key=f"delete_button_{index}"):
@@ -1046,7 +1046,7 @@ elif selected_page == "Input Form":
                 st.session_state["input_table"][index] = updated_row
                 st.success("Row updated successfully!")
                 time.sleep(1)  # Delay for user to see success message
-                st.query_params={"page":"main"}
+                st.query_params["page"]="main"
                 st.rerun()
             
             # Refresh Button

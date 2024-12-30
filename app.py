@@ -800,6 +800,7 @@ elif selected_page == "Input Form":
     if "row_index_to_update" not in st.session_state:
         st.session_state["row_index_to_update"] = None
         error_placeholder = st.empty()
+    error_placeholder = st.empty()
     if current_page == "main":
         st.title("Data Table Management")
         if st.button("Add Row"):

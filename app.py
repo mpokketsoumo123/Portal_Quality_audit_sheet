@@ -317,51 +317,61 @@ allowed_credentials = {"mis.operations@mpokket.com": "password123"}
 
 # Login Page
 if selected_page == "Login":
-    col1,col2,col3,col4,col5=st.columns(5)
-    
+    col1, col2, col3, col4, col5 = st.columns(5)
+
     st.markdown(
         """
         <style>
-            /* Center-aligned container for the Login Page */
-        .login-container {
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             flex-direction: column;
-        }
-        .login-input-box {
-            width: 300px; /* Adjust width as needed */
-            text-align: center;
-            align-items: center;
-             /* Add spacing between inputs */
-        }
-        .stTextArea {
-        width: 300px;
-        
-        }
-        .stTextInput{
-        width:300px;
-        }
-        .login-title {
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .stButton button {
-            width: 200px;
-            margin-top: 10px;
-        }
+            /* Style for the entire login form container */
+            .login-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh; /* Full-screen height */
+                background-color: #f7f7f7; /* Light gray background */
+            }
+            .login-box {
+                background-color: #ffffff; /* White background */
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+                text-align: center;
+                width: 350px;
+            }
+            .login-title {
+                font-size: 30px;
+                font-weight: bold;
+                color: #333333; /* Dark gray color */
+                margin-bottom: 20px;
+            }
+            .stTextArea, .stTextInput {
+                width: 100%; /* Full width inside the login box */
+                margin-bottom: 15px; /* Spacing between input fields */
+            }
+            .stButton button {
+                width: 100%; /* Full width button */
+                background-color: #007bff; /* Bootstrap primary color */
+                color: #ffffff;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                padding: 10px;
+            }
+            .stButton button:hover {
+                background-color: #0056b3; /* Darker shade on hover */
+            }
         </style>
         """,
         unsafe_allow_html=True,
     )
+
     with col3:
-    # Center-aligned container
+        # Center-aligned login form
         st.markdown('<div class="login-container">', unsafe_allow_html=True)
+        st.markdown('<div class="login-box">', unsafe_allow_html=True)
         st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
-    
-        # Input fields for email and password (scoped CSS class applied)
+
+        # Input fields for email and password
         email = st.text_area(
             "Email ID",
             key="email_input",
@@ -376,16 +386,17 @@ if selected_page == "Login":
             label_visibility="collapsed",
         )
 
-    # Login button
-    if st.button("Login"):
-        if email in allowed_credentials and allowed_credentials[email] == password:
-            st.session_state["login_email"] = email
-            st.session_state["selected_page"] = "How to Use"
-            st.success("Login successful! Redirecting to 'How to Use'...")
-            st.rerun()
-        else:
-            st.error("Invalid email or password. Please try again.")
-    st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
+        # Login button
+        if st.button("Login"):
+            if email in allowed_credentials and allowed_credentials[email] == password:
+                st.session_state["login_email"] = email
+                st.session_state["selected_page"] = "How to Use"
+                st.success("Login successful! Redirecting to 'How to Use'...")
+                st.rerun()
+            else:
+                st.error("Invalid email or password. Please try again.")
+        st.markdown('</div>', unsafe_allow_html=True)  # Close the login-box div
+        st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
 
 # How to Use Page
 elif selected_page == "How to Use":

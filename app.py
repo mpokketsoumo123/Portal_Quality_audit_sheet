@@ -161,7 +161,7 @@ if uploaded_file is not None:
         border: 2px solid #000000 !important; /* Orange border */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
-        width: 290px !important;
+        width: 295px !important;
         height:38px !important;
     }}
     div[data-baseweb="select"] > div {{
@@ -356,7 +356,7 @@ if selected_page == "Login":
         st.markdown('<div class="login-title">Login Page</div>', unsafe_allow_html=True)
     
         # Input fields for email and password (scoped CSS class applied)
-        email = st.text_area(
+        email = st.text_input(
             "Email ID",
             key="email_input",
             placeholder="Enter your email ID",

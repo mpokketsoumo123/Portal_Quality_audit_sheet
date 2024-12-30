@@ -163,8 +163,6 @@ if uploaded_file is not None:
         border-radius: 5px !important; /* Rounded corners */
         width: 300px !important;
         height:60px !important;
-        padding: 5px !important;
-        margin: 5px 0;
     }}
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */
@@ -175,7 +173,6 @@ if uploaded_file is not None:
         color: black !important;
         font-size: 18px !important; /* Increase label size */
         display: block;
-        margin-bottom: 8px;
     }}
 
     /* Button styling */
@@ -213,7 +210,7 @@ if uploaded_file is not None:
         left: 0;
         width: 100%;
         background-color: #1E90FF;
-        color: black;
+        color: White;
         text-align: center;
         padding: 10px 0;
         font-weight: bold;
@@ -341,6 +338,7 @@ if selected_page == "Login":
         }
         .stTextInput{
         width:300px;
+        height:
         }
         .login-title {
             font-size: 30px;

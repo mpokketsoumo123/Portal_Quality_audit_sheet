@@ -790,10 +790,14 @@ elif selected_page == "Input Form":
     # Add Row Button
     if "input_table" not in st.session_state:
         st.session_state["input_table"] = []
+    if "show_update_form" not in st.session_state:
+        st.session_state["show_update_form"] = False
     
-    # Initialize session state for the update form values
-    if "update_form_values" not in st.session_state:
-        st.session_state["update_form_values"] = {}
+    if "selected_row" not in st.session_state:
+        st.session_state["selected_row"] = {}
+    
+    if "row_index_to_update" not in st.session_state:
+        st.session_state["row_index_to_update"] = None
     error_placeholder = st.empty()
     if st.button("Add Row"):
         data = {
@@ -1022,7 +1026,7 @@ elif selected_page == "Input Form":
                         and row.get("EMP ID") == emp_id_input):
                     matching_index = index
                     break
-            
+        
             if matching_index is None:
                 st.error("No matching row found. Please check the inputs.")
             else:
@@ -1047,12 +1051,11 @@ elif selected_page == "Input Form":
                 with cols[i % 4]:
                     updated_row[key] = st.text_input(f"{key}:", value=value)
         
-            # Save updated row
             if st.button("Save Updated Row"):
                 st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
                 del st.session_state["selected_row"]
                 del st.session_state["row_index_to_update"]
-                st.session_state["show_update_form"] = False  # Hide update form after saving
+                st.session_state["show_update_form"] = False
                 st.success("Row updated!")
                 st.rerun()
             

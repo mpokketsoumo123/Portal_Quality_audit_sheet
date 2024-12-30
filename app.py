@@ -224,15 +224,11 @@ if uploaded_file is not None:
     .stSelectbox {{
         margin-top: -20px; /* Reduce spacing above the dropdown */
     }}
-    .stTextInput div[role="textbox"]::after {{
-            content: none;
-        }}
     .stTextInput input {{
             background-color: #ffffff !important; /* Light grey background */
             color: #000000 !important; /* Dark text */
             font-size: 16px !important; /* Larger text */
             width: 300px !important; /* Set a fixed width */
-            height: 40px !important; /* Adjust input height */
         }}
 
     .stTextInput input:focus {{

@@ -1040,7 +1040,7 @@ elif selected_page == "Input Form":
                                         }
                                     </script>
                                     """
-                    components.html(scroll_js, height=0, width=0)
+                    components.html(scroll_js, height=20, width=20)
                     st.session_state["row_index_to_update"] = matching_index
                     st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
                     st.session_state["show_update_form"] = True

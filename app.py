@@ -1000,7 +1000,7 @@ elif selected_page == "Input Form":
               # Adjust the width as needed
             
             # Place buttons beside the table
-           for index, row in enumerate(st.session_state["input_table"]):
+            for index, row in enumerate(st.session_state["input_table"]):
                 col1, col2, col3 = st.columns([3, 1, 1])
                 with col1:
                     st.write(f"Row {index + 1}: {row}")

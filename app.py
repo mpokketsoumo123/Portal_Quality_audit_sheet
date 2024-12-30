@@ -1046,7 +1046,7 @@ elif selected_page == "Input Form":
                 st.session_state["input_table"][index] = updated_row
                 st.success("Row updated successfully!")
                 time.sleep(1)  # Delay for user to see success message
-                st.query_params{"page":"main"}
+                st.query_params={"page":"main"}
                 st.rerun()
             
             # Refresh Button

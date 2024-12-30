@@ -11,6 +11,7 @@ import io
 import time
 import re
 from google.oauth2.service_account import Credentials
+import streamlit.components.v1 as components
 # Google Sheets Authentication
 
 def authenticate_google_sheets():

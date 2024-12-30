@@ -789,288 +789,262 @@ elif selected_page == "Input Form":
         date_of_audit = st.date_input("",key="date_of_audit",label_visibility="collapsed")
     st.markdown('</div>', unsafe_allow_html=True)  # Close the login-container div
     # Add Row Button
+    query_params = st.experimental_get_query_params()
+    current_page = query_params.get("page", ["main"])[0]
+    
+    # Shared Data
     if "input_table" not in st.session_state:
         st.session_state["input_table"] = []
-    
-    # Initialize session state for the update form values
-    if "update_form_values" not in st.session_state:
-        st.session_state["update_form_values"] = {}
-    error_placeholder = st.empty()
-    if st.button("Add Row"):
-        data = {
-            "LOB": LOB,
-            "Center": center,
-            "Partner Name": partner_name,
-            "Date of Audit": date_of_audit,
-            "Week": week,
-            "Audit Category": audit_category,
-            "EMP ID": EMP_ID,
-            "Login ID": Login_ID,
-            "Agent Name": Agent_Name,
-            "Team Leader": team_leader,
-            "Audit Name": audit_name,
-            "Auditor Center": auditor_center,
-            "Auditor Designation": auditor_designation,
-            "User Register Number": user_register_number,
-            "Calling Number": calling_number,
-            "Date of Call": date_of_call,
-            "Call Time Slot": call_time_slot,
-            "Bucket": bucket,
-            "Energetic Opening and Closing": energetic_opening_closing,
-            "Motive of the Call": motive_of_call,
-            "Probe / Confirm User's Profession": probe_confirm_user_profession,
-            "Current Profile Stage / Previous Interaction": Current_Profile_Stage_Previous_Interaction,
-            "Probe If User has Doc Related to Profession/Study/Business": Probe_If_User_have_any_doc_releated_Profession_Study_Business,
-            "Guide User with Required Documents": Guide_User_with_required_documents_One_by_one,
-            "Urgency": Urgency,
-            "Objection Handling": Objection_Handling,
-            "Explained User How to Take First Loan": Explained_user_how_to_take_first_loan,
-            "Reconfirmation Call Back Script": Reconfirmation_Call_back_script,
-            "Energetic Tone and Clear articulation":Energetic_Tone_and_Clear_articulation,
-            "Two-way Communication": Two_way_communication,
-            "Active Listening and Dead Air": Active_listening_and_Dead_Air,
-            "Professional Communication": Professional_Communication,
-            "Information": Information,
-            "Follow Up": Follow_Up,
-            "Tagging": Tagging,
-            "Benefits":Benefits,
-            "Fatal": Fatal,
-            "Remarks": Remarks,
-            "Agent Feedback Status": Agent_Feedback_Status,
-            "Profile Completion Status Prior to Call": Profile_completion_status_prior_to_call,
-            "PIP/SFA Status": PIP_SFA_Status,
-            "VOC": VOC,
-            "AOI": AOI,
-            "Call Duration": call_duration,
-            "KYC Type": KYC_type,
-            "Disposition Accuracy": Disposition_Accuracy,
-            "DCS Tagging L1": DCS_Tagging_L1,
-            "DCS Tagging L2": DCS_Tagging_L2,
-            "DCS Tagging L3": DCS_Tagging_L3,
-            "Actual Tagging L1": Actual_Tagging_L1,
-            "Actual Tagging L2": Actual_Tagging_L2,
-            "Actual Tagging L3": Actual_Tagging_L3
-        }
-        missing_fields = [key for key, value in data.items() if not value or value == ""]
-        new_row = data.copy()  # Create a copy of the data as new row
-    
-        # Handle missing fields
-        time_pattern = r"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$"
-        if missing_fields:
-            error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
-        # Handle duplicate row check
-        elif any(row["EMP ID"] == EMP_ID and row["User Register Number"] == user_register_number and row["Call Time Slot"] == call_time_slot for row in st.session_state.get("input_table", [])):
-            st.warning("A row with the same EMP ID, User Register Number, or Call Time already exists. Please verify the input.")
-        elif not user_register_number.isdigit() or len(user_register_number) != 10:
-            st.error("User Register Number must be exactly 10 digits.")
-        elif not calling_number.isdigit() or len(calling_number) != 10:
-            st.error("Calling Number must be exactly 10 digits.")
+    if "selected_row" not in st.session_state:
+        st.session_state["selected_row"] = None
+    if "row_index_to_update" not in st.session_state:
+        st.session_state["row_index_to_update"] = None
+        error_placeholder = st.empty()
+    if current_page == "main":
+        st.title("Data Table Management")
+        if st.button("Add Row"):
+            data = {
+                "LOB": LOB,
+                "Center": center,
+                "Partner Name": partner_name,
+                "Date of Audit": date_of_audit,
+                "Week": week,
+                "Audit Category": audit_category,
+                "EMP ID": EMP_ID,
+                "Login ID": Login_ID,
+                "Agent Name": Agent_Name,
+                "Team Leader": team_leader,
+                "Audit Name": audit_name,
+                "Auditor Center": auditor_center,
+                "Auditor Designation": auditor_designation,
+                "User Register Number": user_register_number,
+                "Calling Number": calling_number,
+                "Date of Call": date_of_call,
+                "Call Time Slot": call_time_slot,
+                "Bucket": bucket,
+                "Energetic Opening and Closing": energetic_opening_closing,
+                "Motive of the Call": motive_of_call,
+                "Probe / Confirm User's Profession": probe_confirm_user_profession,
+                "Current Profile Stage / Previous Interaction": Current_Profile_Stage_Previous_Interaction,
+                "Probe If User has Doc Related to Profession/Study/Business": Probe_If_User_have_any_doc_releated_Profession_Study_Business,
+                "Guide User with Required Documents": Guide_User_with_required_documents_One_by_one,
+                "Urgency": Urgency,
+                "Objection Handling": Objection_Handling,
+                "Explained User How to Take First Loan": Explained_user_how_to_take_first_loan,
+                "Reconfirmation Call Back Script": Reconfirmation_Call_back_script,
+                "Energetic Tone and Clear articulation":Energetic_Tone_and_Clear_articulation,
+                "Two-way Communication": Two_way_communication,
+                "Active Listening and Dead Air": Active_listening_and_Dead_Air,
+                "Professional Communication": Professional_Communication,
+                "Information": Information,
+                "Follow Up": Follow_Up,
+                "Tagging": Tagging,
+                "Benefits":Benefits,
+                "Fatal": Fatal,
+                "Remarks": Remarks,
+                "Agent Feedback Status": Agent_Feedback_Status,
+                "Profile Completion Status Prior to Call": Profile_completion_status_prior_to_call,
+                "PIP/SFA Status": PIP_SFA_Status,
+                "VOC": VOC,
+                "AOI": AOI,
+                "Call Duration": call_duration,
+                "KYC Type": KYC_type,
+                "Disposition Accuracy": Disposition_Accuracy,
+                "DCS Tagging L1": DCS_Tagging_L1,
+                "DCS Tagging L2": DCS_Tagging_L2,
+                "DCS Tagging L3": DCS_Tagging_L3,
+                "Actual Tagging L1": Actual_Tagging_L1,
+                "Actual Tagging L2": Actual_Tagging_L2,
+                "Actual Tagging L3": Actual_Tagging_L3
+            }
+            missing_fields = [key for key, value in data.items() if not value or value == ""]
+            new_row = data.copy()  # Create a copy of the data as new row
         
-        elif not re.match(time_pattern, call_duration):
-            st.error("Invalid time format! Please enter the time in HH:mm:ss format (e.g., 02:30:45).")
-        else:
-            # If no missing fields and no duplicate, add the new row to the table
-            if "input_table" not in st.session_state:
-                st.session_state["input_table"] = []
-            st.session_state["input_table"].append(new_row)
-            st.success("Row added successfully!")
+            # Handle missing fields
+            time_pattern = r"^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$"
+            if missing_fields:
+                error_placeholder.error(f"Missing required fields: {', '.join(missing_fields)}")
+            # Handle duplicate row check
+            elif any(row["EMP ID"] == EMP_ID and row["User Register Number"] == user_register_number and row["Call Time Slot"] == call_time_slot for row in st.session_state.get("input_table", [])):
+                st.warning("A row with the same EMP ID, User Register Number, or Call Time already exists. Please verify the input.")
+            elif not user_register_number.isdigit() or len(user_register_number) != 10:
+                st.error("User Register Number must be exactly 10 digits.")
+            elif not calling_number.isdigit() or len(calling_number) != 10:
+                st.error("Calling Number must be exactly 10 digits.")
+            
+            elif not re.match(time_pattern, call_duration):
+                st.error("Invalid time format! Please enter the time in HH:mm:ss format (e.g., 02:30:45).")
+            else:
+                # If no missing fields and no duplicate, add the new row to the table
+                if "input_table" not in st.session_state:
+                    st.session_state["input_table"] = []
+                st.session_state["input_table"].append(new_row)
+                st.success("Row added successfully!")
 
     # Display Table
-    if st.session_state["input_table"]:
-        st.markdown(
-            """
-            <style>
-            /* Change background color */
-            .stApp {
-                background-color: #f5f5f5; /* Light gray */
-            }
-                    
-            /* Table styling */
-            .scrollable-table {
-                max-height: 800px;
-                overflow-y: auto;
-                border: 1px solid #ddd;
-                width: 100%;
-            }
-            .styled-table {
-                border-collapse: collapse;
-                width: 100%;
-                font-size: 14px;
-                text-align: left;
-                background-color: #FFFFFF; /* Light gray background */
-            }
-            .styled-table th, .styled-table td {
-                border: 1px solid #000000;
-                padding: 8px;
-                white-space: nowrap; /* Prevent text wrapping */
-            }
-            .styled-table th {
-                background-color: #009879;
-                color: white;
-            }
-            
-                    
-            /* Custom form styling */
-            .stForm {
-                background-color: #ADD8E6; /* Light blue */
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .form-header {
-                text-align: center;
-                font-size: 30px;
-                font-weight: bold;
-                margin-bottom: 20px;
-                color: #333333; /* Dark gray */
-            }
-            .custom-label {
-                font-size: 20px;
-                margin-bottom: 0px;
-                color: #333333; /* Dark gray */
-            }
-            /* Radio button styling */
-            .stRadio > label {
-                font-size: 25px; /* Larger text */
-                font-weight: bold;
-            }
-            .stRadio div[role="radio"] {
-                transform: scale(10); /* Increase button size */
-                margin-right: 15px; /* Space between buttons */
-            }
-    
-            .stButton > button {
-                background-color: #1E90FF !important; /* Dodger blue */
-                color: white !important;
-                font-size: 24px !important;
-                padding: 30px 40px !important;
-                border-radius: 8px;
-                border: none;
-            }
-            .stButton > button:hover {
-                background-color: #0059b3 !important; /* Darker blue on hover */
-            }
-            .stForm button {
-                background-color: #FFD700 !important; /* Dodger blue */
-                color: black !important;
-                font-size: 24px !important; /* Larger button text */
-                padding: 20px 30px !important; /* Increased button size */
-                border-radius: 8px;
-                border: none;
-                font-weight: bold;
-            }
-            .stForm button:hover {
-                background-color: #DAA520 !important; /* Darker blue on hover */
-            }
-            </style>
-            """,
-        unsafe_allow_html=True,
-            )
-    
-        # Generate the HTML table
-        st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
-        table_html = "<div class='scrollable-table'><table class='styled-table'>"
-        headers = list(st.session_state["input_table"][0].keys())
-    
-        # Create the table header row
-        table_html += "<thead><tr>"
-        table_html += "".join(f"<th>{header}</th>" for header in headers)
-        table_html += "</tr></thead>"
-    
-        # Create the table body rows
-        table_html += "<tbody>"
-        for row in st.session_state["input_table"]:
-            table_html += "<tr>"
-            for value in row.values():
-                table_html += f"<td>{value}</td>"
-            table_html += "</tr>"
-        table_html += "</tbody></table></div>"
-
-    # Display the table
-        st.markdown(table_html, unsafe_allow_html=True)
-
-            
-            # Create a column layout for buttons
-          # Adjust the width as needed
-        
-        # Place buttons beside the table
-        with st.form("row_operations_form"):
-            st.markdown('<div class="form-header">Update or Delete a Row</div>', unsafe_allow_html=True)
-
-            # Using 4 columns for inputs
-            col1, col2, col3, col4 = st.columns(4)
-        
-            with col1:
-                st.markdown('<div class="custom-label">Enter User Register Number:</div>', unsafe_allow_html=True)
-                user_register_number_input = st.text_area("", key="1",label_visibility="collapsed")
-        
-            with col2:
-                st.markdown('<div class="custom-label">Enter EMP ID:</div>', unsafe_allow_html=True)
-                emp_id_input = st.text_area("", key="emp_id_input",placeholder="Type here...",label_visibility="collapsed")
-        
-            with col3:
-                st.markdown('<div class="custom-label">Select Operation:</div>', unsafe_allow_html=True)
-                operation = st.radio("", ["***Update Row***", "***Delete Row***"], key="operation")
-        
-            with col4:  # Alignment adjustment
-                submit_button = st.form_submit_button("Submit")
-
-        
-        if submit_button:
-            matching_index = None
-            for index, row in enumerate(st.session_state["input_table"]):
-                if (row.get("User Register Number") == user_register_number_input
-                        and row.get("EMP ID") == emp_id_input):
-                    matching_index = index
-                    break
+        if st.session_state["input_table"]:
+            st.markdown(
+                """
+                <style>
+                /* Change background color */
+                .stApp {
+                    background-color: #f5f5f5; /* Light gray */
+                }
+                        
+                /* Table styling */
+                .scrollable-table {
+                    max-height: 800px;
+                    overflow-y: auto;
+                    border: 1px solid #ddd;
+                    width: 100%;
+                }
+                .styled-table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    font-size: 14px;
+                    text-align: left;
+                    background-color: #FFFFFF; /* Light gray background */
+                }
+                .styled-table th, .styled-table td {
+                    border: 1px solid #000000;
+                    padding: 8px;
+                    white-space: nowrap; /* Prevent text wrapping */
+                }
+                .styled-table th {
+                    background-color: #009879;
+                    color: white;
+                }
                 
-            if matching_index is None:
-                st.error("No matching row found. Please check the inputs.")
-            else:
-                if operation == "Delete Row":
-                    st.session_state["input_table"].pop(matching_index)
-                    st.success("Row deleted successfully!")
-                    st.rerun()
-                elif operation == "Update Row":
-                    st.session_state["row_index_to_update"] = matching_index
-                    st.session_state["selected_row"] = st.session_state["input_table"][matching_index]
-                    st.session_state["show_update_form"] = True
-                    st.rerun()
+                        
+                /* Custom form styling */
+                .stForm {
+                    background-color: #ADD8E6; /* Light blue */
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                .form-header {
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                    color: #333333; /* Dark gray */
+                }
+                .custom-label {
+                    font-size: 20px;
+                    margin-bottom: 0px;
+                    color: #333333; /* Dark gray */
+                }
+                /* Radio button styling */
+                .stRadio > label {
+                    font-size: 25px; /* Larger text */
+                    font-weight: bold;
+                }
+                .stRadio div[role="radio"] {
+                    transform: scale(10); /* Increase button size */
+                    margin-right: 15px; /* Space between buttons */
+                }
+        
+                .stButton > button {
+                    background-color: #1E90FF !important; /* Dodger blue */
+                    color: white !important;
+                    font-size: 24px !important;
+                    padding: 30px 40px !important;
+                    border-radius: 8px;
+                    border: none;
+                }
+                .stButton > button:hover {
+                    background-color: #0059b3 !important; /* Darker blue on hover */
+                }
+                .stForm button {
+                    background-color: #FFD700 !important; /* Dodger blue */
+                    color: black !important;
+                    font-size: 24px !important; /* Larger button text */
+                    padding: 20px 30px !important; /* Increased button size */
+                    border-radius: 8px;
+                    border: none;
+                    font-weight: bold;
+                }
+                .stForm button:hover {
+                    background-color: #DAA520 !important; /* Darker blue on hover */
+                }
+                </style>
+                """,
+            unsafe_allow_html=True,
+                )
+        
+            # Generate the HTML table
+            st.markdown('<div class="form-header">Data Table</div>', unsafe_allow_html=True)
+            table_html = "<div class='scrollable-table'><table class='styled-table'>"
+            headers = list(st.session_state["input_table"][0].keys())
+        
+            # Create the table header row
+            table_html += "<thead><tr>"
+            table_html += "".join(f"<th>{header}</th>" for header in headers)
+            table_html += "</tr></thead>"
+        
+            # Create the table body rows
+            table_html += "<tbody>"
+            for row in st.session_state["input_table"]:
+                table_html += "<tr>"
+                for value in row.values():
+                    table_html += f"<td>{value}</td>"
+                table_html += "</tr>"
+            table_html += "</tbody></table></div>"
+    
+        # Display the table
+            st.markdown(table_html, unsafe_allow_html=True)
+    
                 
-                # Show update form if selected
-        if st.session_state.get("show_update_form", False):
-            st.markdown("### Update Row:")
+                # Create a column layout for buttons
+              # Adjust the width as needed
+            
+            # Place buttons beside the table
+           for index, row in enumerate(st.session_state["input_table"]):
+                col1, col2, col3 = st.columns([3, 1, 1])
+                with col1:
+                    st.write(f"Row {index + 1}: {row}")
+                with col2:
+                    if st.button(f"Update Row {index + 1}", key=f"update_button_{index}"):
+                        st.session_state["row_index_to_update"] = index
+                        st.session_state["selected_row"] = row
+                        st.experimental_set_query_params(page="update")
+                with col3:
+                    if st.button(f"Delete Row {index + 1}", key=f"delete_button_{index}"):
+                        st.session_state["input_table"].pop(index)
+                        st.success(f"Row {index + 1} deleted successfully!")
+                        st.experimental_rerun()  # Refresh to reflect deletion
+
+        
+            # Final Submit Button
+            if st.session_state["input_table"] and st.button("Final Submit"):
+                try:
+                    for row in st.session_state["input_table"]:
+                        write_to_sheet(
+                            "Quality_Requirment",
+                            list(row.values()),
+                            st.session_state["login_email"]
+                        )
+                    st.success("Data successfully written to Google Sheets!")
+                    st.session_state["input_table"] = []  # Clear after submission
+                except Exception as e:
+                    st.error(f"An error occurred: {e}")
+    elif current_page == "update":
+        st.title("Update Row")
+    
+        if st.session_state["selected_row"] is None:
+            st.error("No row selected for update.")
+        else:
             updated_row = {}
-            cols = st.columns(4)
-                
-                    # Populate the update form with existing values
-            for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
-                with cols[i % 4]:
-                    updated_row[key] = st.text_input(f"{key}:", value=value)
-                
-                    # Save updated row
-            if st.button("Save Updated Row"):
-                st.session_state["input_table"][st.session_state["row_index_to_update"]] = updated_row
-                del st.session_state["selected_row"]
-                del st.session_state["row_index_to_update"]
-                st.session_state["show_update_form"] = False  # Hide update form after saving
-                st.success("Row updated!")
-                st.rerun()
-
+            for key, value in st.session_state["selected_row"].items():
+                updated_row[key] = st.text_input(f"{key}:", value=value)
     
-        # Final Submit Button
-        if st.session_state["input_table"] and st.button("Final Submit"):
-            try:
-                for row in st.session_state["input_table"]:
-                    write_to_sheet(
-                        "Quality_Requirment",
-                        list(row.values()),
-                        st.session_state["login_email"]
-                    )
-                st.success("Data successfully written to Google Sheets!")
-                st.session_state["input_table"] = []  # Clear after submission
-            except Exception as e:
-                st.error(f"An error occurred: {e}")
+            if st.button("Save Update"):
+                index = st.session_state["row_index_to_update"]
+                st.session_state["input_table"][index] = updated_row
+                st.success("Row updated successfully!")
+                time.sleep(1)  # Delay for user to see success message
+                st.experimental_set_query_params(page="main")
             
             # Refresh Button
 st.markdown("""

@@ -140,7 +140,7 @@ if uploaded_file is not None:
         border-radius: 5px !important; /* Rounded corners */
         padding: 5px !important;
         width: 300px !important;
-        height:40px !important;
+        height:60px !important;
     }}
 
     div[data-baseweb="select"] > div {{
@@ -162,7 +162,7 @@ if uploaded_file is not None:
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
         width: 300px !important;
-        height:20px !important;
+        height:40px !important;
     }}
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */

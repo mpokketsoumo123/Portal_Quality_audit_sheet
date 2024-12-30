@@ -161,8 +161,8 @@ if uploaded_file is not None:
         border: 2px solid #000000 !important; /* Orange border */
         font-size: 16px !important; /* Larger text */
         border-radius: 5px !important; /* Rounded corners */
-        width: 250px !important;
-        height:35px !important;
+        width: 270px !important;
+        height:38px !important;
     }}
     div[data-baseweb="select"] > div {{
         color: #000000 !important; /* White text for dropdown and select options */

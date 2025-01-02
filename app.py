@@ -1056,7 +1056,7 @@ elif selected_page == "Input Form":
                     # Populate the update form with existing values
             for i, (key, value) in enumerate(st.session_state["selected_row"].items()):
                 with cols[i % 4]:
-                    updated_row[key] = st.text_input(f"{key}:", value=value)
+                    updated_row[key] = st.text_area(f"{key}:", value=value)
                 
                     # Save updated row
             if st.button("Save Updated Row"):
